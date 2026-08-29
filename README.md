@@ -1,0 +1,35 @@
+# khmer-lexicon
+
+Build pipeline for Khmer government terminology lexicons: OCR official PDFs
+(NCKL bulletins, MPTC digital lexicon, Council of Ministers legal terms,
+Pentagonal Strategy, RAC new words, …) with Cloud Vision, parse the text into
+structured `{khmer, english, french, pos, definition, examples}` entries with
+Gemini, then merge + standardize into a unified lexicon.
+
+Split out of the `egd platform` repo — this is the **builder**; the EGD
+letter-writer RAG is the **consumer** of the built lexicon.
+
+## Dependencies (not vendored here)
+
+- **Google AI + credentials** → bifrost: `bifrost/sdk/python/bifrost_ai.py`
+  (`get_genai_client`, `get_vision_client`). Scripts add it to `sys.path`.
+- **Generic OCR / JSON helpers** → `~/code/random`
+  (`ocr_tools.pdf_ocr`, `json_tools.gemini_json`). Reuse/upgrade there, per
+  `~/code/random/AGENTS.md` — don't re-hand-roll them here.
+- `pip install pymupdf google-genai google-cloud-vision python-dotenv requests`
+
+## Layout
+
+- `source_pdfs/` — the official source PDFs (gitignored, ~200 MB).
+- `extract_*.py` / `parse_*.py` — per-source OCR → JSON extractors.
+- `retry_failed_pages.py` — re-run pages that failed extraction.
+- `merge_all_lexicons.py`, `clean_and_arrange_official_lexicons.py`,
+  `standardize_pentagon_lexicon.py` — combine/normalize into the unified lexicon.
+- `search_lexicon.py`, `match_terms_nais.py` — query/spot-check helpers.
+
+## Publishing to the platform
+
+The extractors currently write their output JSONs into the EGD platform's
+`data/ai_letter_writer/training_datasets/`, which the letter-rag app reads
+(`unified_lexicon.json`). That is the publish target — rebuild here, and the
+platform picks up the refreshed lexicon.

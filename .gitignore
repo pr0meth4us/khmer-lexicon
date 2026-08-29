@@ -1,0 +1,8 @@
+source_pdfs/
+output/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.DS_Store
