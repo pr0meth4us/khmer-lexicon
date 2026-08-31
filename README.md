@@ -12,6 +12,26 @@ short_description: Search 5,929 official Cambodian government terms, or check a 
 
 # khmer-lexicon
 
+> ## ⚠️ This data is OCR output and has not been fully verified
+>
+> Every entry was produced by running optical character recognition over a
+> **scanned paper document**, then having a language model parse the result into
+> structured fields. Both steps make mistakes. **Nobody has checked the output
+> against the source PDFs page by page, and there is no measured accuracy figure
+> for this dataset.**
+>
+> Mechanically detected so far: 21 entries whose Khmer field contains no Khmer,
+> 682 single-word terms one syllable from a Royal Academy dictionary word, 164
+> near-duplicate pairs, 24 entries with no Khmer, 1,657 with no English. Those
+> are only the errors that produce something *detectably* wrong — an OCR mistake
+> that turns one real Khmer word into a different real Khmer word is invisible to
+> every check here.
+>
+> Every entry names its ministry, document and year. **If a term matters, open
+> the original publication.** Treat this as a research tool and a finding aid,
+> not an authoritative citation.
+
+
 Build pipeline for Khmer government terminology lexicons: OCR official PDFs
 (NCKL bulletins, MPTC digital lexicon, Council of Ministers legal terms,
 Pentagonal Strategy, RAC new words, …) with Cloud Vision, parse the text into

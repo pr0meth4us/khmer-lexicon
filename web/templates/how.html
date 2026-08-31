@@ -63,6 +63,42 @@
     source data.</p>
   </div>
 
+  <div class="card" id="accuracy" style="border-color:var(--warn)">
+    <h2 style="color:var(--warn)">How accurate is this? Honestly: we don't fully know</h2>
+    <p>Every entry here was produced by running <b>optical character recognition
+    over a scanned paper document</b>, then having a language model parse the
+    messy output into structured fields. Both steps make mistakes, and
+    <b>no one has checked the result against the source PDFs page by page.</b>
+    There is no measured accuracy figure for this dataset. Treat it as a
+    research tool and a finding aid, not as an authoritative citation.</p>
+
+    <p>What we <i>have</i> measured, mechanically:</p>
+    <ul>
+      <li><b>21 entries</b> have a Khmer field containing no Khmer at all —
+        old-font text misread as Latin. Excluded from search.</li>
+      <li><b>682 single-word terms</b> are one syllable away from a word in the
+        Royal Academy of Cambodia dictionary. Some are OCR errors; some are
+        legitimate coinages or older spellings. <b>Nobody has been through them
+        one by one.</b></li>
+      <li><b>164 pairs</b> of entries differ by one syllable and share an English
+        gloss — the same term spelled two ways, mostly from transliterated place
+        names.</li>
+      <li><b>23 entries</b> had their marks in a non-standard order and were
+        corrected automatically at build time.</li>
+      <li><b>24 entries</b> have no Khmer form, <b>1,657</b> have no English.</li>
+    </ul>
+
+    <p>Those are only the errors that produce something <i>detectably</i> wrong.
+    An OCR mistake that turns one real Khmer word into a different real Khmer
+    word is invisible to every check we run, and we have no estimate of how often
+    that happens.</p>
+
+    <p><b>If a term matters, open the original publication.</b> Every entry names
+    the ministry, the document and the year precisely so you can go and check.
+    If you find an error, please report it — that is the fastest way this gets
+    better.</p>
+  </div>
+
   <div class="card">
     <h2>What it can't do</h2>
     <ul>

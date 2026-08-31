@@ -84,6 +84,11 @@ def _cors(response):
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
     response.headers["Cache-Control"] = "public, max-age=300"
     response.headers["X-Licence"] = "Khmer government terminology; attribution requested"
+    # Anyone consuming this programmatically deserves the same warning the web
+    # page carries, in a place they cannot miss.
+    response.headers["X-Data-Warning"] = (
+        "OCR-derived from scanned documents and not fully verified; entries may "
+        "be wrong. Check the cited source publication before relying on a term.")
     return response
 
 
@@ -131,7 +136,24 @@ def register(app, words, check):
 
     @api.get("/about")
     def about():
-        return jsonify(check.about())
+        return jsonify({
+            **check.about(),
+            "disclaimer": (
+                "This lexicon was produced by OCR over scanned government PDFs "
+                "and parsed by a language model. It has NOT been fully verified "
+                "against the source documents and has no measured accuracy "
+                "figure. Individual entries may be wrong. Every entry names its "
+                "source publication and year — check the original before relying "
+                "on a term in official writing."),
+            "known_defects": {
+                "khmer_field_with_no_khmer": 21,
+                "one_syllable_from_a_dictionary_word": 682,
+                "near_duplicate_pairs": 164,
+                "mark_order_corrected_at_build": 23,
+                "missing_khmer": 24,
+                "missing_english": 1657,
+            },
+        })
 
     app.register_blueprint(api)
     return api
