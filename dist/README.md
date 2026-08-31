@@ -94,20 +94,20 @@ is a systematic OCR failure on transliterated place names rather than noise.
 
 ## Sources
 
-| tag | author | year | entries |
-|---|---|---:|---:|
-| `council-of-ministers-legal-terms` | Council of Ministers | 2007 | 372 |
-| `mptc-digital-lexicon` | Ministry of Post and Telecommunications (MPTC) | 2025 | 278 |
-| `nckl-bulletin-vol3-2010` | National Council of Khmer Language (NCKL) | 2010 | 167 |
-| `nckl-bulletin-vol4-2012` | National Council of Khmer Language (NCKL) | 2012 | 418 |
-| `nckl-bulletin-vol5-2013` | National Council of Khmer Language (NCKL) | 2013 | 124 |
-| `nckl-bulletin-vol7-2015` | National Council of Khmer Language (NCKL) | 2015 | 508 |
-| `nckl-bulletin-vol8-2017` | National Council of Khmer Language (NCKL) | 2017 | 466 |
-| `nckl-bulletin-vol9-2018` | National Council of Khmer Language (NCKL) | 2018 | 376 |
-| `nckl-bulletin-vol10-2019` | National Council of Khmer Language (NCKL) | 2019 | 200 |
-| `nckl-country-and-city-names` | National Council of Khmer Language (NCKL) | 2013 | 510 |
-| `nckl-economics` | National Council of Khmer Language (NCKL) | 2019 | 215 |
-| `nckl-political-science-and-diplomacy` | National Council of Khmer Language (NCKL) | 2014 | 120 |
-| `nckl-technology-and-science` | National Council of Khmer Language (NCKL) | 2014 | 466 |
-| `pentagonal-strategy-phase1` | Royal Government of Cambodia | 2023 | 486 |
-| `rac-new-words` | Royal Academy of Cambodia (National Language Institute) | 2018 | 1,223 |
+| tag | title | author | year | entries |
+|---|---|---|---:|---:|
+| `council-of-ministers-legal-terms` | សទ្ទានុក្រមពាក្យច្បាប់ ផ្នែករដ្ឋប្បវេណី និង នីតិវិធីរដ្ឋប្បវេណី | Council of Ministers | 2007 | 372 |
+| `mptc-digital-lexicon` | សទ្ទានុក្រមបច្ចេកសព្ទឌីជីថល | Ministry of Post and Telecommunications (MPTC) | 2025 | 278 |
+| `nckl-bulletin-vol3-2010` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ៣ | National Council of Khmer Language (NCKL) | 2010 | 167 |
+| `nckl-bulletin-vol4-2012` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ៤ | National Council of Khmer Language (NCKL) | 2012 | 418 |
+| `nckl-bulletin-vol5-2013` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ៥ | National Council of Khmer Language (NCKL) | 2013 | 124 |
+| `nckl-bulletin-vol7-2015` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ៧ | National Council of Khmer Language (NCKL) | 2015 | 508 |
+| `nckl-bulletin-vol8-2017` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ៨ | National Council of Khmer Language (NCKL) | 2017 | 466 |
+| `nckl-bulletin-vol9-2018` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ៩ | National Council of Khmer Language (NCKL) | 2018 | 376 |
+| `nckl-bulletin-vol10-2019` | ព្រឹត្តិបត្រក្រុមប្រឹក្សាជាតិភាសាខ្មែរ លេខ ១០ | National Council of Khmer Language (NCKL) | 2019 | 200 |
+| `nckl-country-and-city-names` | សទ្ទានុក្រមនាមទ្វីប ប្រទេស រដ្ឋធានី ទីក្រុង និងរូបិយបណ្ណ | National Council of Khmer Language (NCKL) | 2013 | 510 |
+| `nckl-economics` | សទ្ទានុក្រមសេដ្ឋកិច្ច | National Council of Khmer Language (NCKL) | 2019 | 215 |
+| `nckl-political-science-and-diplomacy` | សទ្ទានុក្រមវិទ្យាសាស្ត្រនយោបាយ និងការទូត | National Council of Khmer Language (NCKL) | 2014 | 120 |
+| `nckl-technology-and-science` | សទ្ទានុក្រមបច្ចេកវិទ្យា និងវិទ្យាសាស្ត្រ | National Council of Khmer Language (NCKL) | 2014 | 466 |
+| `pentagonal-strategy-phase1` | យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១ | Royal Government of Cambodia | 2023 | 486 |
+| `rac-new-words` | វចនានុក្រមពាក្យថ្មី | Royal Academy of Cambodia (National Language Institute) | 2018 | 1,223 |
