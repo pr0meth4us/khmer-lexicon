@@ -70,6 +70,38 @@ def test_negated_class_catches_what_no_table_anticipated():
     assert contaminants("បច្ចេកវិទ្យាហិរញ្ញវត្ថុ (FinTech)") == []
 
 
+def test_nfc_cannot_reorder_khmer_marks():
+    import unicodedata as ud
+
+    from khmerlex.normalize import normalize
+
+    # Only U+17D2 COENG and U+17DD ATTHACAN have a nonzero combining class, and
+    # NFC reorders by combining class only -- ccc=0 counts as already ordered.
+    named = [chr(cp) for cp in range(0x1780, 0x1800)
+             if ud.name(chr(cp), "").startswith("KHMER")]
+    assert len(named) == 114
+    assert [c for c in named if ud.combining(c)] == ["្", "\u17dd"]
+
+    good, bad = "ភ្ជាប់", "ភា្ជប់"      # same code points, coeng vs vowel first
+    assert sorted(good) == sorted(bad)   # nothing added or removed
+    assert ud.normalize("NFC", good) != ud.normalize("NFC", bad)
+    assert ud.normalize("NFD", good) != ud.normalize("NFD", bad)
+    assert normalize(good) == normalize(bad) == good
+
+
+def test_normalize_is_idempotent_and_lossless():
+    from khmerlex.normalize import normalize
+
+    for term in ("ភា្ជប់", "សារខៅ្ម", "សនិ្តភាពក្លែងក្លាយ", "ក្រសួង", ""):
+        once = normalize(term)
+        assert normalize(once) == once, term
+        assert sorted(once) == sorted(term), term   # reorder only, never rewrite
+
+    # Stacked coeng must keep their relative order: ស្ត្រ and ស្រ្ត differ.
+    assert normalize("ស្ត្រី") == "ស្ត្រី"
+    assert normalize("ស្រ្តី") == "ស្រ្តី"
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_"):

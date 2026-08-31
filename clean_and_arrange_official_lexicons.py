@@ -2,6 +2,9 @@ import os
 import json
 import re
 
+from khmerlex.contamination import repair
+from khmerlex.normalize import normalize
+
 dataset_dir = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets"
 
 # Official files and metadata
@@ -138,6 +141,11 @@ def clean_khmer(text):
     text = text.replace("កតិកាសញ្ញដ", "កតិកាសញ្ញា")
     text = text.replace("ដមារ", "ខ្មែរ")
     text = text.replace("ដមរា", "ខ្មែរ")
+    # Wrong-script code points (Devanagari/Thai emitted where Khmer was meant),
+    # then canonical mark order. NFC does neither: only U+17D2 and U+17DD carry
+    # a nonzero combining class, so canonical reordering has nothing to act on
+    # and NFC changes 0 of the 5,932 entries. See khmerlex/normalize.py.
+    text = normalize(repair(text))
     return text.strip()
 
 def clean_english(text):

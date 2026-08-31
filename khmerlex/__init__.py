@@ -6,8 +6,10 @@ from .graphemes import (
     edit_distance,
     on_boundary,
 )
+from .normalize import nfc_evidence, normalize
 
 __all__ = [
     "clusters", "cluster_len", "boundaries", "on_boundary", "edit_distance",
     "CONFUSABLES", "contaminants", "repair", "is_khmer",
+    "normalize", "nfc_evidence",
 ]
