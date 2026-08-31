@@ -35,7 +35,8 @@ from pathlib import Path
 
 from khmerlex import clusters, edit_distance
 
-HERE = Path(__file__).parent
+# scripts/ lives one level below the repo root; dist/ and data/ are up there.
+HERE = Path(__file__).resolve().parent.parent
 CACHE = HERE / "data"
 LEXICON = HERE / "dist" / "unified_lexicon.json"
 REPORT = HERE / "dist" / "near_duplicates.md"

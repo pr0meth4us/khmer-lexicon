@@ -2,10 +2,10 @@
   "ASCII digits in khmer": 0,
   "characters outside Khmer, Latin and punctuation (occurrences)": 13,
   "duplicate english glosses (case-insensitive)": 285,
-  "duplicate khmer forms": 121,
+  "duplicate khmer forms": 123,
   "empty english": 1657,
   "empty khmer": 24,
-  "entries": 5929,
+  "entries": 5934,
   "khmer field with no Khmer at all": 21,
   "not in canonical mark order": 0,
   "terms longer than 20 clusters": 143

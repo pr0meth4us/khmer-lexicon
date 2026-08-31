@@ -1,6 +1,6 @@
 # Lexicon validation report
 
-`unified_lexicon.json` — 5,929 entries
+`unified_lexicon.json` — 5,934 entries
 
 | check | count | baseline |
 | --- | ---: | ---: |
@@ -10,7 +10,7 @@
 | characters outside Khmer, Latin and punctuation (occurrences) | 13 | 13 |
 | ASCII digits in khmer | 0 | 0 |
 | not in canonical mark order | 0 | 0 |
-| duplicate khmer forms | 121 | 121 |
+| duplicate khmer forms | 123 | 121 ⬆ REGRESSION |
 | duplicate english glosses (case-insensitive) | 285 | 285 |
 | terms longer than 20 clusters | 143 | 143 |
 
@@ -110,7 +110,7 @@
 - official_lex_1815 'Muññ' (LATIN SMALL LETTER N WITH TILDE)
 - official_lex_3826 'Génitif' (LATIN SMALL LETTER E WITH ACUTE)
 
-## duplicate khmer forms (121)
+## duplicate khmer forms (123)
 
 - 'ប្រព័ន្ធគាំពារសង្គម' x2
 - 'គម្លាតឌីជីថល' x2
@@ -137,7 +137,7 @@
 - 'សេវាសារខ្លី' x2
 - 'អ៊ីសឺណិតជីហ្គាប៊ីត' x2
 - 'ការបោះបង់តំណែង' x2
-- …and 96 more
+- …and 98 more
 
 ## duplicate english glosses (case-insensitive) (285)
 

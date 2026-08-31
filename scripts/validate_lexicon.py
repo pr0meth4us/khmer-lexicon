@@ -21,7 +21,8 @@ from pathlib import Path
 
 from khmerlex import cluster_len, clusters, contaminants, is_khmer, normalize
 
-HERE = Path(__file__).parent
+# scripts/ lives one level below the repo root; dist/ and data/ are up there.
+HERE = Path(__file__).resolve().parent.parent
 LEXICON = HERE / "dist" / "unified_lexicon.json"
 BASELINE = HERE / "dist" / "quality_baseline.json"
 REPORT = HERE / "dist" / "validation_report.md"

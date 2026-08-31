@@ -22,6 +22,16 @@ api = Blueprint("api", __name__, url_prefix="/api/v1")
 
 # Caps. No endpoint returns the whole lexicon: a caller who wants everything
 # should clone the repo, which is cheaper for them and for us.
+# DO NOT ADD AN offset/page/cursor PARAMETER.
+#
+# This is the single measure that actually prevents enumeration, and it happened
+# by accident before it was a decision. Without it, extracting the lexicon means
+# guessing Khmer search terms you do not already have; /categories caps at
+# MAX_LIMIT per category, so at most ~900 of 5,929 entries are reachable however
+# patient you are. Rate limits only slow a scraper down. This stops one.
+#
+# A future "helpful" pagination parameter would undo every other protection here
+# in a single commit. If bulk access is genuinely needed, hand over a file.
 MAX_LIMIT = 100
 DEFAULT_LIMIT = 40
 MAX_CHARS = 8000
