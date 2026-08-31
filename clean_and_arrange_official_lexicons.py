@@ -264,6 +264,15 @@ def process_official_data():
         json.dump(all_official_entries, f, ensure_ascii=False, indent=2)
     print(f"✓ Overwrote unified_lexicon.json with official entries (Panhavonh excluded)!")
 
+    # Save to local dist folder to track the dataset inside the repo
+    local_dist_dir = os.path.join(os.path.dirname(__file__), "dist")
+    os.makedirs(local_dist_dir, exist_ok=True)
+    with open(os.path.join(local_dist_dir, "unified_official_lexicon.json"), "w", encoding="utf-8") as f:
+        json.dump(all_official_entries, f, ensure_ascii=False, indent=2)
+    with open(os.path.join(local_dist_dir, "unified_lexicon.json"), "w", encoding="utf-8") as f:
+        json.dump(all_official_entries, f, ensure_ascii=False, indent=2)
+    print(f"✓ Copied both output files to local dist/ folder for tracking.")
+
     # 2. Save Fast-Lookup Index for instant pipeline query
     lookup_data = {
         "metadata": {
@@ -282,3 +291,4 @@ def process_official_data():
 
 if __name__ == "__main__":
     process_official_data()
+

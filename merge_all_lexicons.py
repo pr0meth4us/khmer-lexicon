@@ -27,4 +27,10 @@ unified_path = os.path.join(dataset_dir, "unified_lexicon.json")
 with open(unified_path, "w", encoding="utf-8") as f:
     json.dump(master_lexicon, f, ensure_ascii=False, indent=2)
 
+local_dist_path = os.path.join(os.path.dirname(__file__), "dist", "unified_lexicon.json")
+os.makedirs(os.path.dirname(local_dist_path), exist_ok=True)
+with open(local_dist_path, "w", encoding="utf-8") as f:
+    json.dump(master_lexicon, f, ensure_ascii=False, indent=2)
+
 print(f"\n✓ Successfully compiled master unified_lexicon.json with {len(master_lexicon)} total entries!")
+print(f"✓ Saved to {unified_path} and {local_dist_path}")
