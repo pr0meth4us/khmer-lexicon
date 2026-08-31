@@ -48,6 +48,25 @@
 .warnbar a{color:var(--warn);text-decoration:underline}
 @media(max-width:760px){.warnbar-inner{padding:9px 14px;font-size:13.5px}}
 
+#report-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;
+  display:flex;align-items:center;justify-content:center;padding:16px}
+#report-modal[hidden]{display:none}
+.report-box{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px;max-width:520px;width:100%;position:relative;
+  max-height:90vh;overflow-y:auto}
+.report-box h2{margin:0 0 4px;font-size:19px}
+.report-hint{margin:0 0 14px;color:var(--muted);font-size:13.5px}
+.report-box label{display:block;margin-bottom:12px;font-size:14.5px}
+.report-box .opt{color:var(--muted);font-size:12.5px}
+.report-box input,.report-box textarea{width:100%;font:inherit;font-size:15px;
+  margin-top:5px;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;
+  background:var(--bg);color:var(--ink)}
+.report-box textarea{resize:vertical}
+.report-actions{display:flex;align-items:center;gap:12px;margin-top:4px}
+#report-status{font-size:13.5px;color:var(--muted)}
+.report-close{position:absolute;top:10px;right:12px;background:none;border:0;
+  font-size:19px;color:var(--muted);cursor:pointer;line-height:1}
+
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
@@ -268,19 +287,30 @@ footer {
   <div class="warnbar-inner">
     <b>ទិន្នន័យនេះមកពីការស្កេន និងអានអក្សរដោយស្វ័យប្រវត្តិ (OCR) — អាចមានកំហុស។</b>
     យើងកំពុងកែលម្អ និងផ្ទៀងផ្ទាត់ជាបន្តបន្ទាប់។
-    បើលោកអ្នកឃើញកំហុសណាមួយ សូមមេត្តាជូនដំណឹងមកយើងខ្ញុំ —
-    <a href="https://github.com/pr0meth4us/khmer-lexicon/issues/new?labels=data-error&amp;title=%E1%9E%80%E1%9F%86%E1%9E%A0%E1%9E%BB%E1%9E%9F%E1%9E%91%E1%9E%B7%E1%9E%93%E1%9F%92%E1%9E%93%E1%9E%93%E1%9F%90%E1%9E%99"
-       target="_blank" rel="noopener">រាយការណ៍កំហុស</a>។
-    <span class="en">Built by OCR from scanned government PDFs and parsed by a
-    language model. <b>It has not been fully verified against the source
-    documents</b>, and individual entries can be wrong. It is being refined and
-    checked on an ongoing basis — <b>if you spot an error, please tell us</b>, it
-    is the fastest way this improves.
-    <a href="/how#accuracy">What we know about the errors</a> ·
-    <a href="https://github.com/pr0meth4us/khmer-lexicon/issues/new?labels=data-error"
-       target="_blank" rel="noopener">Report one</a></span>
+    សូមផ្ទៀងផ្ទាត់ជាមួយឯកសារផ្លូវការដើម មុននឹងប្រើក្នុងឯកសាររដ្ឋបាល។
+    បើលោកអ្នកឃើញកំហុសណាមួយ សូមមេត្តា<a href="#" id="report-open">ជូនដំណឹងមកយើងខ្ញុំ</a>។
   </div>
 </div>
+
+<div id="report-modal" hidden>
+  <div class="report-box">
+    <button class="report-close" id="report-close" aria-label="បិទ">✕</button>
+    <h2>រាយការណ៍កំហុស</h2>
+    <p class="report-hint">មិនតម្រូវឲ្យមានគណនីទេ។ សរសេរជាភាសាខ្មែរបានស្រួល។</p>
+    <label>ពាក្យដែលមានកំហុស <span class="opt">(បើមាន)</span>
+      <input type="text" id="report-term" placeholder="ឧ. ប្លុកឆេន"></label>
+    <label>តើមានកំហុសអ្វី? តើត្រូវជាអ្វី?
+      <textarea id="report-message" rows="5"
+        placeholder="ឧ. ពាក្យនេះសរសេរខុស ត្រូវជា… / និយមន័យមិនត្រឹមត្រូវ…"></textarea></label>
+    <label>ទំនាក់ទំនង <span class="opt">(មិនចាំបាច់)</span>
+      <input type="text" id="report-contact" placeholder="អ៊ីមែល ឬ ទូរសព្ទ"></label>
+    <div class="report-actions">
+      <button class="btn primary" id="report-send">ផ្ញើ</button>
+      <span id="report-status"></span>
+    </div>
+  </div>
+</div>
+
 {% block body %}{% endblock %}
 <footer>
   <div>ពាក្យទាំងអស់ត្រូវបានដកស្រង់ចេញពីឯកសារផ្លូវការរបស់រាជរដ្ឋាភិបាលកម្ពុជា។</div>
@@ -288,5 +318,47 @@ footer {
     <a href="/how">ដំណើរការកម្មវិធី</a>
   </div>
 </footer>
+<script>
+// Reporting has to cost nothing: no account, no leaving the page, Khmer only.
+(function(){
+  const modal = document.getElementById('report-modal');
+  const status = document.getElementById('report-status');
+  const term = document.getElementById('report-term');
+  const message = document.getElementById('report-message');
+  const contact = document.getElementById('report-contact');
+  let context = {};
+
+  window.openReport = function(prefill){
+    context = prefill || {};
+    term.value = context.khmer || '';
+    message.value = ''; contact.value = ''; status.textContent = '';
+    modal.hidden = false;
+    (context.khmer ? message : term).focus();
+  };
+  document.getElementById('report-open').onclick = e => { e.preventDefault(); openReport(); };
+  document.getElementById('report-close').onclick = () => { modal.hidden = true; };
+  modal.onclick = e => { if (e.target === modal) modal.hidden = true; };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.hidden = true; });
+
+  document.getElementById('report-send').onclick = async () => {
+    if (!message.value.trim()){ status.textContent = 'សូមសរសេរបញ្ហាជាមុនសិន។'; return; }
+    status.textContent = 'កំពុងផ្ញើ…';
+    try{
+      const res = await fetch('/api/v1/report', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          khmer: term.value.trim(), message: message.value.trim(),
+          contact: contact.value.trim(),
+          entry_id: context.id || '', source: context.source || ''
+        })
+      });
+      status.textContent = res.ok
+        ? 'អរគុណច្រើន! យើងបានទទួលហើយ។'
+        : 'ផ្ញើមិនបានទេ សូមព្យាយាមម្ដងទៀត។';
+      if (res.ok) setTimeout(() => { modal.hidden = true; }, 1400);
+    } catch(_){ status.textContent = 'ផ្ញើមិនបានទេ សូមព្យាយាមម្ដងទៀត។'; }
+  };
+})();
+</script>
 </body>
 </html>

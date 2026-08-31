@@ -215,26 +215,6 @@ const POS = {'ន.':'នាម','ន':'នាម','noun':'នាម',
   'គុ.':'គុណនាម','adj':'គុណនាម',
   'f.':'f.','f':'f.','m.':'m.','m':'m.','(m.)':'m.','(f.)':'f.'};
 
-const REPO = 'https://github.com/pr0meth4us/khmer-lexicon';
-function reportUrl(e){
-  const title = `កំហុសទិន្នន័យ: ${e.khmer}`;
-  const body = [
-    `**ធាតុ / Entry:** ${e.khmer}`,
-    `**អង់គ្លេស / English:** ${e.english || '\u2014'}`,
-    `**ប្រភព / Source:** ${e.author || e.source} (${e.year || '\u2014'})`,
-    `**Entry id:** ${e.id || '\u2014'}`,
-    '',
-    '**តើមានកំហុសអ្វី? / What is wrong?**',
-    '',
-    '**តើត្រូវជាអ្វី? / What should it be?**',
-    '',
-    '**ឯកសារយោង / Checked against which document?**',
-    '',
-  ].join('\n');
-  return `${REPO}/issues/new?labels=data-error&title=${encodeURIComponent(title)}`
-       + `&body=${encodeURIComponent(body)}`;
-}
-
 function entryCard(e){
   const pos = e.pos ? `<span class="pos">${esc(POS[e.pos] || e.pos)}</span>` : '';
   const gloss = e.english
@@ -260,8 +240,9 @@ function entryCard(e){
     ${eg}
     <div class="src">${esc(citeKh)}${e.year ? ' · '+esc(e.year) : ''}
       ${cat ? '<br>'+esc(cat) : ''}
-      <a class="report" target="_blank" rel="noopener" href="${reportUrl(e)}"
-         title="រាយការណ៍កំហុសនៃធាតុនេះ">រាយការណ៍កំហុស · report</a></div>
+      <a class="report" href="#" data-report="${esc(JSON.stringify(
+         {khmer:e.khmer, id:e.id||'', source:e.source||''}))}"
+         title="រាយការណ៍កំហុសនៃធាតុនេះ">រាយការណ៍កំហុស</a></div>
   </div>`;
 }
 
@@ -271,6 +252,12 @@ function wireDefs(root){
       d.classList.add('clamped');
       d.onclick = () => d.classList.remove('clamped');
     }
+  });
+}
+function wireReports(root){
+  root.querySelectorAll('.report').forEach(a => a.onclick = ev => {
+    ev.preventDefault();
+    openReport(JSON.parse(a.dataset.report));
   });
 }
 function wireCopy(root){
@@ -299,7 +286,7 @@ async function doSearch(){
       html += `<p class="hint">បង្ហាញ ${d.results.length} ក្នុងចំណោមលទ្ធផលសរុប ${d.total}</p>`;
     html += d.results.map(entryCard).join('');
   }
-  $('results').innerHTML = html; wireCopy($('results')); wireDefs($('results'));
+  $('results').innerHTML = html; wireCopy($('results')); wireDefs($('results')); wireReports($('results'));
 }
 $('q').oninput = () => { clearTimeout(searchTimer); searchTimer=setTimeout(doSearch,180); };
 document.querySelectorAll('.eg').forEach(a => a.onclick = ev => {
@@ -327,7 +314,7 @@ async function loadCategory() {
   const d = await r.json();
   $('browse-results').innerHTML =
     `<p class="hint">សរុប ${d.total} ពាក្យ (បង្ហាញ ${d.results.length})</p>` + d.results.map(entryCard).join('');
-  wireCopy($('browse-results')); wireDefs($('browse-results'));
+  wireCopy($('browse-results')); wireDefs($('browse-results')); wireReports($('browse-results'));
   
   if (d.total > d.results.length) {
     $('browse-more').hidden = false;
@@ -386,7 +373,7 @@ function showDetail(kind,i){
       ${c.suggest?`<div class="fix"><button data-replace="${esc(c.char)}"
         data-with="${esc(c.suggest)}">កែឲ្យត្រូវ (គួរជា ${esc(c.suggest)})</button></div>`:''}</div>`;
   }
-  $('detail').innerHTML = html; wireCopy($('detail')); wireDefs($('detail'));
+  $('detail').innerHTML = html; wireCopy($('detail')); wireDefs($('detail')); wireReports($('detail'));
   $('detail').querySelectorAll('[data-replace]').forEach(b => b.onclick = () => {
     $('text').value = $('text').value.split(b.dataset.replace).join(b.dataset.with);
     $('detail').innerHTML=''; run();

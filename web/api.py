@@ -14,6 +14,7 @@ service for everyone — a speed bump, not a lock. The honest posture is the one
 khmerdict takes: give the data away deliberately, and ask for attribution.
 """
 import collections
+import json
 import time
 
 from flask import Blueprint, jsonify, request
@@ -133,6 +134,37 @@ def register(app, words, check):
         if len(text) > MAX_CHARS:
             return jsonify({"error": f"text too long ({MAX_CHARS} character limit)"}), 400
         return jsonify(check.check(text, use_segmenter=payload.get("segmenter", True)))
+
+    @api.post("/report")
+    def report():
+        """A correction from a reader.
+
+        Written to Cloud Logging as a structured entry rather than a database:
+        the service is stateless and free, and reports are rare enough that a
+        log query is the right tool. Read them with:
+
+            gcloud logging read 'jsonPayload.kind="lexicon_report"' \
+                --project khmer-ocr-496606 --limit 50 --format json
+
+        Inherits the blueprint's 60/minute rate limit, so it cannot be flooded
+        cheaply. No account, no email required — the point is that a civil
+        servant who spots a wrong term can say so in ten seconds.
+        """
+        payload = request.get_json(silent=True) or {}
+        message = (payload.get("message") or "").strip()
+        if not message:
+            return jsonify({"error": "message required"}), 400
+        entry = {
+            "kind": "lexicon_report",
+            "khmer": (payload.get("khmer") or "")[:200],
+            "entry_id": (payload.get("entry_id") or "")[:60],
+            "source": (payload.get("source") or "")[:120],
+            "message": message[:2000],
+            "contact": (payload.get("contact") or "")[:200],
+        }
+        # print() lands in Cloud Logging; JSON on one line becomes jsonPayload.
+        print(json.dumps(entry, ensure_ascii=False), flush=True)
+        return jsonify({"ok": True})
 
     @api.get("/about")
     def about():
