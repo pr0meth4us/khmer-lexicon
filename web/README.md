@@ -62,8 +62,20 @@ Notes:
 `fly.toml` is committed and configured (Singapore, 1 GB, health check on
 `/healthz`). Needs a payment method on the account, then `flyctl deploy`.
 
-## Hugging Face Spaces
+## Hugging Face Spaces (recommended)
 
-Free, no card. Create a Docker Space, push this repo, and use
-`SPACE_README.md` as the Space's `README.md` — its front-matter sets
-`app_port: 8000`.
+Free, no credit card, and it runs the Dockerfile at the repository root. The
+root `README.md` already carries the YAML front-matter a Docker Space needs
+(`sdk: docker`, `app_port: 8000`), so no file juggling — one push deploys.
+
+```bash
+hf auth login
+hf repo create khmer-terminology --repo-type space --space_sdk docker
+git remote add space https://huggingface.co/spaces/<user>/khmer-terminology
+git push space main
+```
+
+The build takes a few minutes, mostly `khmer-nltk`. The Space then serves the
+309-entry sample; add `LEXICON_URL` (and `LEXICON_TOKEN` if needed) under
+Settings -> Variables and secrets to load the full 5,929, and confirm with
+`/healthz`.

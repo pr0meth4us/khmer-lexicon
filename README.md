@@ -1,3 +1,15 @@
+---
+title: Khmer Official Terminology
+emoji: 🇰🇭
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 8000
+pinned: false
+license: cc-by-sa-4.0
+short_description: Search 5,929 official Cambodian government terms, or check a Khmer draft
+---
+
 # khmer-lexicon
 
 Build pipeline for Khmer government terminology lexicons: OCR official PDFs
