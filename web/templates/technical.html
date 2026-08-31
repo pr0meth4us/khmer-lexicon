@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}How it came to be (technically){% endblock %}
+{% block body %}
+<main class="en">
+  <p><a href="/">← back to the dictionary</a></p>
+
+  <div class="card">
+    <h2>Architecture &amp; Engineering</h2>
+    <p>This lexicon isn't just a static JSON file; it is powered by a set of advanced string-matching algorithms specifically designed to handle the complexities of the Khmer script.</p>
+  </div>
+
+  <div class="card">
+    <h2>1. The Aho-Corasick Automaton</h2>
+    <p>Searching a document for 5,700 terms using a naive loop requires 5,700 passes over the text. The <code>Checker</code> class instead builds an Aho-Corasick automaton at startup. This algorithm constructs a finite state machine that allows it to find every occurrence of all 5,700 terms in a single, simultaneous pass over the document. The cost scales with the length of the document, not the size of the dictionary.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Boundary Detection in Spaceless Text</h2>
+    <p>Khmer is written without spaces between words. This makes naive substring matching dangerous. For example, finding <code>ប្រក</code> (a valid term) inside the word <code>ប្រកាស</code> ("announce") is an error.</p>
+    <p>The <code>Checker</code> applies a two-tier filter to prevent this:</p>
+    <ul>
+      <li><b>Grapheme Clusters (UAX #29):</b> Every match must start and end on a Unicode grapheme cluster boundary to avoid splitting a syllable in half.</li>
+      <li><b>CRF Tokenizer:</b> The match must also align perfectly with the word boundaries predicted by <code>khmer-nltk</code>'s Conditional Random Field segmenter.</li>
+    </ul>
+    <p>Finally, a longest-match-wins rule ensures that compound terms like <code>ក្រុមប្រឹក្សាធម្មនុញ្ញ</code> are reported once, rather than as three overlapping nested terms.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Typo-Tolerant Deletion Index</h2>
+    <p>Because typing Khmer correctly is challenging, an exact-match dictionary often fails users. The <code>Dictionary</code> class implements a typo-tolerant search using a "deletion index".</p>
+    <p>Instead of calculating the Levenshtein distance against all 5,700 terms at query time (which is too slow), it pre-computes every possible single-cluster deletion for every term at startup. A near-match is thus reduced to a rapid dictionary lookup, returning suggestions that are exactly one grapheme cluster away.</p>
+  </div>
+</main>
+{% endblock %}

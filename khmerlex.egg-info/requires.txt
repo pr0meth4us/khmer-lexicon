@@ -1,0 +1,2 @@
+regex>=2024.0.0
+confusable_homoglyphs>=3.3.1

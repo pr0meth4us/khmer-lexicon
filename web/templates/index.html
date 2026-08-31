@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+{% block nav %}
+<nav role="tablist">
+  <button role="tab" id="tab-search" aria-selected="true">ស្វែងរក</button>
+  <button role="tab" id="tab-browse" aria-selected="false">រកមើលតាមប្រធានបទ</button>
+  <button role="tab" id="tab-check" aria-selected="false">ពិនិត្យលិខិត</button>
+  <button role="tab" id="tab-sources" aria-selected="false">ប្រភពឯកសារ</button>
+</nav>
+{% endblock %}
+
+{% block body %}
+<main>
+
+<!-- ── search ───────────────────────────────────────────────── -->
+<section id="pane-search">
+  <div class="card hero">
+    <input type="search" id="q" autofocus
+           placeholder="វាយពាក្យស្វែងរក…" autocomplete="off">
+    <p class="hint">ឧទាហរណ៍៖
+      <a href="#" class="eg">ទិន្នន័យ</a> ·
+      <a href="#" class="eg">blockchain</a> ·
+      <a href="#" class="eg">អភិបាលកិច្ច</a> ·
+      <a href="#" class="eg">contract</a>
+      <br>ប្រសិនបើគ្មានពាក្យដែលត្រូវគ្នា យើងនឹងស្នើពាក្យដែលជិតបំផុត។</p>
+  </div>
+  <div id="results" class="cards"></div>
+</section>
+
+<!-- ── browse ───────────────────────────────────────────────── -->
+<section id="pane-browse" hidden>
+  <div class="split">
+    <div class="card sticky">
+      <b>រកមើលតាមប្រធានបទ</b>
+      <div class="muted" style="margin-bottom:6px">ជ្រើសរើសប្រធានបទខាងក្រោម</div>
+      <div class="chips topics">
+        {% for c in categories %}
+        <button class="chip cat" data-cat="{{ c.name }}">{{ c.khmer }}
+          <span class="muted">{{ c.count }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      <div id="browse-results" class="cards"></div>
+      <div id="browse-more" style="text-align: center; margin-top: 20px;" hidden>
+        <button class="btn" id="btn-load-more">បង្ហាញបន្ថែម</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── check ────────────────────────────────────────────────── -->
+<section id="pane-check" hidden>
+ <div class="split">
+  <div>
+  <div class="card sticky">
+    <b>បិទភ្ជាប់សេចក្ដីព្រាងលិខិតរបស់អ្នក</b>
+    <p class="hint" style="margin-bottom:10px">យើងនឹងរំលេចពាក្យផ្លូវការដែលអ្នកបានប្រើ ព្រមទាំងស្នើពាក្យខ្មែរសម្រាប់ពាក្យបរទេស និងស្វែងរកតួអក្សរដែលមិនត្រឹមត្រូវ។</p>
+    <textarea id="text" placeholder="បិទភ្ជាប់អត្ថបទនៅទីនេះ…"></textarea>
+    <div class="chips" style="margin-top:10px">
+      <button class="btn primary" id="run">ពិនិត្យលិខិត</button>
+      {% for s in samples %}
+      <button class="chip sample" data-i="{{ loop.index0 }}">{{ s.name }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+  <div>
+  <div id="summary"></div>
+  <div class="card" id="marked-card" hidden>
+    <b>លិខិតរបស់អ្នក</b>
+    <div id="marked" style="margin-top:8px"></div>
+    <p class="hint">
+      <span style="background:var(--ok-bg);border-bottom:2px solid var(--ok)">ពាក្យផ្លូវការ</span>
+      <span style="background:var(--warn-bg);border-bottom:2px solid var(--warn)">ពាក្យខ្មែរដែលគួរប្រើជំនួស</span>
+      <span style="background:var(--bad-bg);border-bottom:2px solid var(--bad)">តួអក្សរខុស</span>
+      · សូមចុចលើពាក្យដែលបានរំលេចដើម្បីមើលព័ត៌មានលម្អិត</p>
+  </div>
+  <div id="detail" class="cards"></div>
+  </div>
+ </div>
+</section>
+
+<!-- ── sources ────────────────────────────────────────────────── -->
+<section id="pane-sources" hidden>
+  <div class="card">
+    <b>ប្រភពឯកសារ (Sources)</b>
+    <p class="hint">ទិន្នន័យត្រូវបានដកស្រង់ចេញពីឯកសារ និងសៀវភៅខាងក្រោម៖</p>
+    <div style="overflow-x:auto; margin-top:16px;">
+      <table class="src-table">
+        <thead>
+          <tr>
+            <th>អក្សរកាត់ (Abbr)</th>
+            <th>អ្នកនិពន្ធ (Author KH)</th>
+            <th>សៀវភៅ (Book KH)</th>
+            <th>Author (EN)</th>
+            <th>Book (EN)</th>
+          </tr>
+        </thead>
+        <tbody id="src-tbody">
+          <!-- populated by js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<style>
+.src-table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}
+.src-table th{background:var(--bg);padding:12px;border-bottom:2px solid var(--line);font-weight:600}
+.src-table td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+.split{display:grid;gap:16px;grid-template-columns:minmax(280px,340px) minmax(0,1fr);
+  align-items:start}
+@media(max-width:900px){.split{grid-template-columns:1fr}.split .sticky{position:static}}
+.hero input[type=search]{font-size:20px;padding:16px 18px}
+.topics{flex-direction:column;align-items:stretch}
+.topics .chip{text-align:right}
+.entry{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:13px 15px;margin-bottom:10px}
+.entry .kh{font-size:23px;font-weight:700;line-height:1.7}
+.entry .eng{font-size:16px;margin-top:2px}
+.entry .fr{color:var(--muted);font-size:14px;font-weight:400}
+.entry .pos{font-size:12.5px;color:var(--muted);font-weight:400;margin-right:8px;
+  border:1px solid var(--line);border-radius:6px;padding:1px 7px;vertical-align:middle}
+.entry .def{margin:8px 0 0;font-size:15.5px;line-height:1.85}
+.entry .def.clamped{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;
+  overflow:hidden;cursor:pointer}
+.entry .def.clamped::after{content:"… មើលបន្ថែម";color:var(--brand);font-size:13.5px}
+.entry .def.nodef{color:var(--muted);font-size:13.5px;line-height:1.6}
+.entry .eg-txt{margin:10px 0 0;padding:9px 12px;border-radius:9px;
+  background:var(--brand-soft);font-size:14.5px;line-height:1.8}
+.entry .eg-txt .lbl{display:block;font-size:12px;color:var(--muted);
+  letter-spacing:.04em;margin-bottom:2px}
+.entry .src{color:var(--muted);font-size:12.5px;margin-top:10px;line-height:1.5;
+  padding-top:8px;border-top:1px solid var(--line)}
+.entry .none{color:var(--muted);font-size:13.5px;margin-top:2px}
+.copy{float:right;font-family:inherit;font-size:13px;padding:6px 12px;border-radius:8px;
+  border:1px solid var(--line);background:var(--card);color:var(--brand);cursor:pointer}
+.copy.done{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
+.tally{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.tally div{flex:1 1 150px;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:11px 13px}
+.tally b{display:block;font-size:26px;line-height:1.2}
+.tally span{font-size:13px;color:var(--muted)}
+.tally .g b{color:var(--ok)} .tally .a b{color:var(--warn)} .tally .r b{color:var(--bad)}
+mark{padding:1px 0;border-radius:3px;cursor:pointer;border-bottom:2px solid;
+  background:var(--ok-bg);border-color:var(--ok)}
+mark.loan{background:var(--warn-bg);border-color:var(--warn)}
+mark.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fix{margin-top:6px}
+.fix button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;
+  border:1px solid var(--ok);background:var(--ok-bg);color:var(--ok);cursor:pointer}
+</style>
+
+<script>
+const SAMPLES = {{ samples|tojson }};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const CAT_LABELS = {
+  "Law & Civil Procedure": "ច្បាប់ និងនីតិវិធីរដ្ឋប្បវេណី",
+  "Digital Technology & Telecom": "បច្ចេកវិទ្យាឌីជីថល និងទូរគមនាគមន៍",
+  "Economics": "សេដ្ឋកិច្ច",
+  "Policy, Tech & Economics": "គោលនយោបាយ បច្ចេកវិទ្យា និងសេដ្ឋកិច្ច",
+  "Political Science & Diplomacy": "រដ្ឋបាលសាស្ត្រ និងការទូត",
+  "Science, Tech & Mathematics": "វិទ្យាសាស្ត្រ បច្ចេកវិទ្យា និងគណិតវិទ្យា",
+  "Geography": "ភូមិសាស្ត្រ",
+  "General & New Words": "ពាក្យទូទៅ និងពាក្យថ្មី",
+  "General & Specialized Terms (NCKL Bulletin)": "ពាក្យទូទៅ និងឯកទេស"
+};
+
+const SOURCE_MAP = {
+  "council-of-ministers-legal-terms": { abbr: "គ.រ.ម.", authorKh: "ទីស្ដីការគណៈរដ្ឋមន្ត្រី", bookKh: "ពាក្យច្បាប់", authorEn: "Council of Ministers", bookEn: "Legal Terms" },
+  "mptc-digital-lexicon": { abbr: "ក.ប.ទ.", authorKh: "ក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍", bookKh: "សទ្ទានុក្រមឌីជីថល", authorEn: "MPTC", bookEn: "Digital Lexicon" },
+  "nckl-bulletin-vol10-2019": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ១០", authorEn: "NCKL", bookEn: "Bulletin Vol. 10" },
+  "nckl-bulletin-vol3-2010": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ៣", authorEn: "NCKL", bookEn: "Bulletin Vol. 3" },
+  "nckl-bulletin-vol4-2012": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ៤", authorEn: "NCKL", bookEn: "Bulletin Vol. 4" },
+  "nckl-bulletin-vol5-2013": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ៥", authorEn: "NCKL", bookEn: "Bulletin Vol. 5" },
+  "nckl-bulletin-vol7-2015": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ៧", authorEn: "NCKL", bookEn: "Bulletin Vol. 7" },
+  "nckl-bulletin-vol8-2017": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ៨", authorEn: "NCKL", bookEn: "Bulletin Vol. 8" },
+  "nckl-bulletin-vol9-2018": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ព្រឹត្តិបត្រលេខ៩", authorEn: "NCKL", bookEn: "Bulletin Vol. 9" },
+  "nckl-country-and-city-names": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "ឈ្មោះប្រទេស និងរដ្ឋធានី", authorEn: "NCKL", bookEn: "Country and City Names" },
+  "nckl-economics": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "សេដ្ឋកិច្ច", authorEn: "NCKL", bookEn: "Economics" },
+  "nckl-political-science-and-diplomacy": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "រដ្ឋបាលសាស្ត្រ និងការទូត", authorEn: "NCKL", bookEn: "Political Science & Diplomacy" },
+  "nckl-technology-and-science": { abbr: "ក.ជ.ភ.ខ.", authorKh: "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ", bookKh: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", authorEn: "NCKL", bookEn: "Technology & Science" },
+  "rac-new-words": { abbr: "រ.ប.ស.ក.", authorKh: "រាជបណ្ឌិត្យសភាកម្ពុជា", bookKh: "ពាក្យថ្មី", authorEn: "Royal Academy of Cambodia", bookEn: "New Words" },
+  "pentagonal-strategy-phase1": { abbr: "រ.រ.ក.", authorKh: "រាជរដ្ឋាភិបាលកម្ពុជា", bookKh: "យុទ្ធសាស្ត្របញ្ចកោណ", authorEn: "Royal Government of Cambodia", bookEn: "Pentagonal Strategy Phase 1" }
+};
+
+/* ---- init sources tab ---- */
+$('src-tbody').innerHTML = Object.values(SOURCE_MAP).map(s => `<tr>
+  <td><b>${esc(s.abbr)}</b></td>
+  <td>${esc(s.authorKh)}</td>
+  <td>${esc(s.bookKh)}</td>
+  <td>${esc(s.authorEn)}</td>
+  <td>${esc(s.bookEn)}</td>
+</tr>`).join('');
+
+/* ---- tabs ---- */
+const TABS = ['search','browse','check','sources'];
+TABS.forEach(name => $('tab-'+name).onclick = () => {
+  TABS.forEach(n => {
+    $('tab-'+n).setAttribute('aria-selected', String(n===name));
+    $('pane-'+n).hidden = (n!==name);
+  });
+});
+
+/* ---- one entry card ---- */
+const POS = {'ន.':'នាម','ន':'នាម','noun':'នាម',
+  'កិ.':'កិរិយា','កិ':'កិរិយា','verb':'កិរិយា',
+  'គុ.':'គុណនាម','adj':'គុណនាម',
+  'f.':'f.','f':'f.','m.':'m.','m':'m.','(m.)':'m.','(f.)':'f.'};
+
+function entryCard(e){
+  const pos = e.pos ? `<span class="pos">${esc(POS[e.pos] || e.pos)}</span>` : '';
+  const gloss = e.english
+    ? `<div class="eng">${esc(e.english)}${e.french
+        ? ` <span class="fr">· បារាំង ${esc(e.french)}</span>` : ''}</div>`
+    : `<div class="none">ឯកសារប្រភពជាភាសាខ្មែរសុទ្ធ</div>`;
+  const def = e.definition
+    ? `<p class="def">${esc(e.definition)}</p>`
+    : `<p class="def nodef">គ្មាននិយមន័យក្នុងឯកសារប្រភព</p>`;
+  const eg = e.examples
+    ? `<p class="eg-txt"><span class="lbl">ឧទាហរណ៍</span>${esc(e.examples)}</p>`
+    : '';
+  const cat = e.category ? CAT_LABELS[e.category] || e.category : '';
+  const src = e.source;
+  const smap = SOURCE_MAP[src];
+  const citeKh = smap ? `${smap.abbr} · ${smap.bookKh}` : (e.author || e.source);
+  
+  return `<div class="entry">
+    <button class="copy" data-copy="${esc(e.khmer)}">ចម្លង</button>
+    <div class="kh">${esc(e.khmer)}${pos}</div>
+    ${gloss}
+    ${def}
+    ${eg}
+    <div class="src">${esc(citeKh)}${e.year ? ' · '+esc(e.year) : ''}
+      ${cat ? '<br>'+esc(cat) : ''}</div>
+  </div>`;
+}
+
+function wireDefs(root){
+  root.querySelectorAll('.def:not(.nodef)').forEach(d => {
+    if (d.scrollHeight > d.clientHeight + 4){
+      d.classList.add('clamped');
+      d.onclick = () => d.classList.remove('clamped');
+    }
+  });
+}
+function wireCopy(root){
+  root.querySelectorAll('.copy').forEach(b => b.onclick = async () => {
+    try{ await navigator.clipboard.writeText(b.dataset.copy);
+      b.textContent='បានចម្លង ✓'; b.classList.add('done');
+      setTimeout(()=>{b.textContent='ចម្លង'; b.classList.remove('done');},1600);
+    }catch(_){ }
+  });
+}
+
+/* ---- search ---- */
+let searchTimer;
+async function doSearch(){
+  const q = $('q').value.trim();
+  if (!q){ $('results').innerHTML=''; return; }
+  const r = await fetch('/api/search?q='+encodeURIComponent(q));
+  const d = await r.json();
+  let html = '';
+  if (!d.results.length){
+    html = d.suggestions.length
+      ? `<p class="hint">រកមិនឃើញ «${esc(q)}» ។ តើអ្នកចង់ស្វែងរកពាក្យទាំងនេះមែនទេ?</p>` + d.suggestions.map(entryCard).join('')
+      : `<p class="hint">រកមិនឃើញ «${esc(q)}» ក្នុងវចនានុក្រមផ្លូវការទេ។</p>`;
+  } else {
+    if (d.total > d.results.length)
+      html += `<p class="hint">បង្ហាញ ${d.results.length} ក្នុងចំណោមលទ្ធផលសរុប ${d.total}</p>`;
+    html += d.results.map(entryCard).join('');
+  }
+  $('results').innerHTML = html; wireCopy($('results')); wireDefs($('results'));
+}
+$('q').oninput = () => { clearTimeout(searchTimer); searchTimer=setTimeout(doSearch,180); };
+document.querySelectorAll('.eg').forEach(a => a.onclick = ev => {
+  ev.preventDefault(); $('q').value = a.textContent.trim(); doSearch();
+});
+
+/* ---- browse ---- */
+let currentCategory = '';
+let currentLimit = 60;
+document.querySelectorAll('.cat').forEach(b => b.onclick = async () => {
+  document.querySelectorAll('.cat').forEach(o =>
+    o.setAttribute('aria-pressed', String(o===b)));
+  currentCategory = b.dataset.cat;
+  currentLimit = 60;
+  await loadCategory();
+});
+
+$('btn-load-more').onclick = async () => {
+  currentLimit += 60;
+  await loadCategory();
+};
+
+async function loadCategory() {
+  const r = await fetch('/api/search?category='+encodeURIComponent(currentCategory)+'&limit='+currentLimit);
+  const d = await r.json();
+  $('browse-results').innerHTML =
+    `<p class="hint">សរុប ${d.total} ពាក្យ (បង្ហាញ ${d.results.length})</p>` + d.results.map(entryCard).join('');
+  wireCopy($('browse-results')); wireDefs($('browse-results'));
+  
+  if (d.total > d.results.length) {
+    $('browse-more').hidden = false;
+  } else {
+    $('browse-more').hidden = true;
+  }
+}
+
+/* ---- check a letter ---- */
+let LAST=null;
+function tally(d){
+  const c=d.counters, bad=d.contamination.length, loan=d.loanwords.length;
+  let html = `<div class="tally">
+    <div class="g"><b>${c.matches}</b><span>ពាក្យផ្លូវការដែលបានប្រើ</span></div>`;
+  if (loan) html += `<div class="a"><b>${loan}</b><span>ពាក្យបរទេសដែលអាចជំនួសដោយពាក្យខ្មែរផ្លូវការ</span></div>`;
+  if (bad) html += `<div class="r"><b>${bad}</b><span>តួអក្សរដែលមិនត្រឹមត្រូវ</span></div>`;
+  html += `</div>`;
+  if (!loan && !bad) html += `<p class="hint">មិនមានបញ្ហាដែលត្រូវកែសម្រួលទេ។</p>`;
+  $('summary').innerHTML = html;
+}
+function marked(d){
+  const spans=[];
+  d.matches.forEach((m,i)=>spans.push({s:m.start,e:m.end,cls:'',i,t:'m'}));
+  d.loanwords.forEach((l,i)=>spans.push({s:l.start,e:l.end,cls:'loan',i,t:'l'}));
+  d.contamination.forEach((c,i)=>spans.push({s:c.index,e:c.index+1,cls:'bad',i,t:'c'}));
+  spans.sort((a,b)=>a.s-b.s);
+  let html='',cur=0;
+  for(const sp of spans){
+    if(sp.s<cur) continue;
+    html += esc(d.text.slice(cur,sp.s))
+      + `<mark class="${sp.cls}" data-t="${sp.t}" data-i="${sp.i}">`
+      + esc(d.text.slice(sp.s,sp.e)) + `</mark>`;
+    cur = sp.e;
+  }
+  html += esc(d.text.slice(cur));
+  $('marked').innerHTML = html; $('marked-card').hidden = false;
+  $('marked').querySelectorAll('mark').forEach(el =>
+    el.onclick = () => showDetail(el.dataset.t, +el.dataset.i));
+}
+function showDetail(kind,i){
+  const d=LAST; let html='';
+  if(kind==='m'){
+    html = d.matches[i].senses.map(entryCard).join('');
+  } else if(kind==='l'){
+    const l=d.loanwords[i];
+    html = `<div class="entry"><button class="copy" data-copy="${esc(l.suggest)}">ចម្លង</button>
+      <div class="kh">${esc(l.suggest)}</div>
+      <div class="eng">គួរប្រើជំនួស «${esc(l.term)}»</div>
+      <div class="src">${esc(l.entry.author||l.entry.source)} · ${esc(l.entry.year||'')}</div>
+      <div class="fix"><button data-replace="${esc(l.term)}" data-with="${esc(l.suggest)}">
+        ជំនួសក្នុងអត្ថបទ</button></div></div>`;
+  } else {
+    const c=d.contamination[i];
+    html = `<div class="entry"><div class="kh">${esc(c.char)}</div>
+      <div class="eng">តួអក្សរនេះមិនមែនជាអក្សរខ្មែរទេ (${esc(c.name)})</div>
+      ${c.suggest?`<div class="fix"><button data-replace="${esc(c.char)}"
+        data-with="${esc(c.suggest)}">កែឲ្យត្រូវ (គួរជា ${esc(c.suggest)})</button></div>`:''}</div>`;
+  }
+  $('detail').innerHTML = html; wireCopy($('detail')); wireDefs($('detail'));
+  $('detail').querySelectorAll('[data-replace]').forEach(b => b.onclick = () => {
+    $('text').value = $('text').value.split(b.dataset.replace).join(b.dataset.with);
+    $('detail').innerHTML=''; run();
+  });
+  $('detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+async function run(){
+  const text=$('text').value; if(!text.trim()) return;
+  $('run').disabled=true; $('run').textContent='កំពុងពិនិត្យ…';
+  try{
+    const res=await fetch('/api/check',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
+    const d=await res.json();
+    if(d.error){ $('summary').innerHTML=`<p class="hint">${esc(d.error)}</p>`; return; }
+    LAST=d; tally(d); marked(d); $('detail').innerHTML='';
+  } finally { $('run').disabled=false; $('run').textContent='ពិនិត្យលិខិត'; }
+}
+$('run').onclick=run;
+document.querySelectorAll('.sample').forEach(b=>b.onclick=()=>{
+  $('text').value=SAMPLES[+b.dataset.i].text; run();
+});
+</script>
+{% endblock %}

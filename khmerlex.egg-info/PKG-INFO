@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: khmerlex
+Version: 0.1.0
+Summary: Khmer text primitives: grapheme clusters, wrong-script repair, canonical mark order, multi-pattern matching
+Requires-Python: >=3.10
+Requires-Dist: regex>=2024.0.0
+Requires-Dist: confusable_homoglyphs>=3.3.1

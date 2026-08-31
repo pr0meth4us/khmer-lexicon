@@ -1,0 +1,27 @@
+# Fly.io deployment. Koyeb works identically from the same Dockerfile — see README.
+app = "khmer-terminology-checker"
+primary_region = "sin"          # Singapore: closest region to Cambodia
+
+[build]
+
+[env]
+  PORT = "8000"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    path = "/healthz"
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "60s"
+
+[[vm]]
+  # The automaton plus the khmer-nltk CRF model need ~400 MB resident.
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1

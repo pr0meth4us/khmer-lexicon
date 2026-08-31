@@ -1,2 +1,5 @@
 regex>=2024.0.0
 confusable_homoglyphs>=3.3.1
+Flask==3.0.3
+gunicorn==22.0.0
+khmer-nltk==1.6

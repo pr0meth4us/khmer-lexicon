@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}How this works{% endblock %}
+{% block body %}
+<main class="en">
+  <p><a href="/">← back to the dictionary</a></p>
+
+  <div class="card">
+    <h2>What this is</h2>
+    <p>A searchable dictionary of Cambodian government terminology — the approved
+    Khmer renderings of technical, legal, economic and administrative terms.
+    {{ '{:,}'.format(about.entries) }} entries from 15 official sources. Until now
+    this existed almost entirely as scanned paper: a person could look a term up,
+    a program could not.</p>
+    <p>It was built by running Google Cloud Vision OCR over the source PDFs,
+    parsing the results into structured entries, then normalising and merging
+    them. <b>None of that runs when you use the site</b> — the dictionary is a
+    static file, so there are no API keys, no database, and nothing to fail
+    during use.</p>
+  </div>
+
+  <div class="card">
+    <h2>Why spelling doesn't have to be perfect</h2>
+    <p>Khmer is hard to type correctly, so an exact-match dictionary tells most
+    people “not found” when the word is sitting right there. If nothing matches
+    exactly, we look for entries one <i>grapheme cluster</i> away — one Khmer
+    syllable, not one byte — and offer those instead.</p>
+    <p>Working in clusters rather than characters matters because a Khmer
+    syllable is several code points. <code>ក្រសួង</code> is 6 code points but 3
+    clusters: <code>ក្រ | សួ | ង</code>. Measuring distance in code points would
+    call two words similar that a reader would never confuse, and miss two that
+    they would.</p>
+  </div>
+
+  <div class="card">
+    <h2>Why checking a letter is fast</h2>
+    <p>Looking for {{ '{:,}'.format(about.terms_indexed) }} terms one at a time
+    means reading the whole letter {{ '{:,}'.format(about.terms_indexed) }} times.
+    Instead all the terms are compiled into a single structure
+    (Aho&#8211;Corasick) that finds every one of them in <b>one pass</b>, so the
+    cost depends on the length of your letter, not on the size of the
+    dictionary.</p>
+    <p>Measured on this data: the naive approach takes about 7.7&nbsp;ms and grows
+    with every term added; the single pass takes about 0.3&nbsp;ms and stays flat
+    from 250 terms to 5,780. Below roughly 220 terms the naive approach is
+    genuinely faster, which is worth saying rather than hiding.</p>
+    <p>Khmer has no spaces between words, so a dictionary match can land inside
+    a longer unrelated word — <code>ប្រក</code> sitting inside
+    <code>ប្រកាស</code> (“announce”). Matches are filtered twice: they must sit
+    on syllable boundaries, and they must line up with word boundaries from a
+    CRF word segmenter. Syllable boundaries alone are not enough; that was
+    measured, not assumed.</p>
+  </div>
+
+  <div class="card">
+    <h2>The invisible-character problem</h2>
+    <p>Some characters look exactly like Khmer letters but are not. A Devanagari
+    or Thai vowel sign can sit in the middle of a Khmer word and be completely
+    invisible on screen, yet the word will never again be found by a search, sort
+    correctly, or match its own duplicate. These are detected using Unicode's own
+    data — both letters that share a Unicode name across scripts, and the
+    published confusables list — plus a catch-all for any character from a script
+    that doesn't belong, which is how a stray Cyrillic letter was found in the
+    source data.</p>
+  </div>
+
+  <div class="card">
+    <h2>What it can't do</h2>
+    <ul>
+      <li><b>It covers terminology, not vocabulary.</b> <code>ក្រសួង</code>
+        (“ministry”) is not an entry, because no glossary defined it. Common
+        words will often return nothing.</li>
+      <li><b>{{ '{:,}'.format(1657) }} entries have no English.</b> They came from
+        Khmer-only documents. They're still searchable in Khmer, and we say so
+        rather than showing a blank.</li>
+      <li><b>4,771 of 5,929 entries (80%) carry a Khmer definition</b>, and 1,116
+        carry usage examples. Coverage is uneven by source: every NCKL bulletin
+        entry has one, but the Pentagonal Strategy glossary is a term list with
+        no definitions at all, and only 9% of place names have one. Entries
+        without a definition say so rather than looking empty.</li>
+      <li><b>It finds known terms; it cannot discover new ones.</b> If a term
+        isn't in the lexicon, nothing will tell you it was a term.</li>
+      <li><b>Its accuracy has not been formally measured.</b> The boundary
+        filters demonstrably remove wrong matches, but no one has annotated a
+        test set and scored it. That's the most valuable next piece of work.</li>
+      <li><b>The source data has known defects</b>, listed openly below.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Known defects in the data</h2>
+    <ul>
+      <li><b>24</b> entries have no Khmer form at all.</li>
+      <li><b>21</b> entries have a Khmer field containing no Khmer characters —
+        old-font OCR misread as Latin, plus six French grammar terms filed in the
+        wrong column. These are excluded from search results.</li>
+      <li><b>121</b> exactly duplicated Khmer forms, and <b>164</b> pairs that
+        differ by a single syllable and mean the same thing — mostly OCR
+        confusions on transliterated place names.</li>
+      <li><b>23</b> entries had their marks in a non-standard order and were
+        corrected at build time; Unicode's own normalisation cannot fix this,
+        because almost every Khmer mark is invisible to it.</li>
+    </ul>
+    <p>A validator runs on every build and fails it if any of these counts get
+    worse.</p>
+  </div>
+
+  <div class="card">
+    <h2>Sources</h2>
+    <ul>
+      {% for s in about.sources %}
+      <li>{{ s.author }} — {{ s.year }} ({{ s.count }} terms)</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Credits</h2>
+    <p>Word segmentation by
+    <a href="https://github.com/VietHoang1512/khmer-nltk">khmer-nltk</a>.</p>
+  </div>
+</main>
+{% endblock %}

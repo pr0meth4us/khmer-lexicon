@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+khmerlex/__init__.py
+khmerlex/aho.py
+khmerlex/contamination.py
+khmerlex/graphemes.py
+khmerlex/normalize.py
+khmerlex.egg-info/PKG-INFO
+khmerlex.egg-info/SOURCES.txt
+khmerlex.egg-info/dependency_links.txt
+khmerlex.egg-info/requires.txt
+khmerlex.egg-info/top_level.txt
