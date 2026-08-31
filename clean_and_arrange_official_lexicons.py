@@ -1,6 +1,8 @@
 import os
 import json
 import re
+import sys
+from pathlib import Path
 
 from khmerlex.contamination import repair
 from khmerlex.normalize import normalize
@@ -297,6 +299,14 @@ def process_official_data():
         json.dump(lookup_data, f, ensure_ascii=False, indent=2)
     print(f"✓ Created fast lookup index at {lookup_path} (EN->KH: {len(en_to_kh_map)}, KH->EN: {len(kh_to_en_map)})")
 
+def _gate():
+    """Fail the build if the merge made data quality worse. See validate_lexicon.py."""
+    import subprocess
+    sys.stdout.flush()          # parent prints are block-buffered when piped
+    return subprocess.run([sys.executable, str(Path(__file__).parent / "validate_lexicon.py")]).returncode
+
+
 if __name__ == "__main__":
     process_official_data()
+    sys.exit(_gate())
 
