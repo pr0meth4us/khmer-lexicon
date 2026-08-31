@@ -10,7 +10,7 @@
 | characters outside Khmer, Latin and punctuation (occurrences) | 13 | 13 |
 | ASCII digits in khmer | 0 | 0 |
 | not in canonical mark order | 0 | 0 |
-| duplicate khmer forms | 123 | 121 ⬆ REGRESSION |
+| duplicate khmer forms | 123 | 123 |
 | duplicate english glosses (case-insensitive) | 285 | 285 |
 | terms longer than 20 clusters | 143 | 143 |
 

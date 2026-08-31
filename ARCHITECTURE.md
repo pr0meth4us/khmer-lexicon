@@ -7,10 +7,10 @@ How the pieces fit and *why*. For dependencies and the file roster, see
 
 Official Khmer government terminology is locked inside scanned PDFs. This repo is
 the **builder** that turns those PDFs into one structured, machine-readable
-lexicon; the EGD letter-writer over in `egd platform` is the **consumer**. Build
+lexicon; a downstream Khmer letter-writing pipeline is the **consumer**. Build
 here, publish into the platform, and the RAG picks up the refreshed terminology.
 
-Split out of the `egd platform` repo on 2026-07-24 so the heavy OCR/parse tooling
+Split out of a larger internal repository on 2026-07-24 so the heavy OCR/parse tooling
 (and ~200 MB of source PDFs) stops bloating the platform.
 
 ## Two artifacts, two roles
@@ -22,7 +22,7 @@ The platform ends up with two very different lexicon files doing opposite jobs:
 | `unified_lexicon.json` | large | built here | **RAG retrieval source** — *positive* signal: "use these exact official translations." |
 | `house_lexicon.json` | tiny | hand-curated (reviewer VS) | **post-generation guard** — *negative* signal: fault English-only loanwords. |
 
-This repo builds the first. The second lives in `egd platform` and is maintained
+This repo builds the first. The second lives in the consumer application and is maintained
 by hand — don't confuse them.
 
 ## Flow
@@ -44,15 +44,15 @@ Official PDFs  (source_pdfs/, gitignored ~200 MB)
   clean_and_arrange_official_lexicons.py · standardize_pentagon_lexicon.py
   merge_all_lexicons.py   → writes unified_lexicon.json DIRECTLY into the platform
         │
-        ▼   PUBLISH BOUNDARY (this repo writes into egd platform)
-  egd platform/data/ai_letter_writer/training_datasets/*.json
+        ▼   PUBLISH BOUNDARY
+  $LEXICON_BUILD_DIR/*.json   (consumed by the downstream application)
     mptc_lexicon · nckl_political_science · legal_terms · pentagon · nckl_technology
     · country_and_city_names · extra_lexicon_* · official_lexicon_lookup
     → merge_all_lexicons.py tags each entry with a `source` and concatenates
       [panhavonh glossary, mptc, nckl_political_science, legal_terms] into
       unified_lexicon.json
         │
-        ▼   CONSUMER — egd platform/apps/letter-rag/
+        ▼   CONSUMER — the retrieval layer of the letter-writing pipeline
   index_letters.py  collect_lexicon() reads unified_lexicon.json
     → ChromaDB collection "lexicon" (chroma_db_v2), embedded with a multilingual
       sentence-transformer (e5) or gemini-embedding-001
@@ -60,7 +60,7 @@ Official PDFs  (source_pdfs/, gitignored ~200 MB)
     → semantic top-k EN↔KH terms injected into the Gemini prompt
       ("official EN↔KH terminology — use these exact translations")
         │
-        ▼   GUARD — egd platform/apps/doc-pipeline/guards.py
+        ▼   GUARD — the document pipeline's mechanical text guards
   loanword_faults() reads house_lexicon.json → faults bare English
     (reviewer VS rule: render "ខ្មែរ (English)", never English-only)
   + foreign-script / homoglyph / Chuon-Nath spelling / spoken-register /
@@ -70,7 +70,7 @@ Official PDFs  (source_pdfs/, gitignored ~200 MB)
 ## Dependencies (not vendored here)
 
 - **Bifrost SDK** — `get_genai_client`, `get_vision_client` (scripts add
-  `bifrost/sdk/python` to `sys.path`).
+  an internal Vertex AI credential helper).
 - **`~/code/random`** — generic OCR/JSON helpers (`ocr_tools.pdf_ocr`,
   `json_tools.gemini_json`). Reuse/upgrade there per `~/code/random/AGENTS.md` —
   don't re-hand-roll them in this repo.
@@ -84,7 +84,7 @@ Official PDFs  (source_pdfs/, gitignored ~200 MB)
 ## Gotchas
 
 - **The publish target is another repo.** Extractors write into
-  `egd platform/data/ai_letter_writer/training_datasets/`. There is no local
+  `$LEXICON_BUILD_DIR`. There is no local
   "output" folder — a rebuild mutates the platform's inputs directly.
 - **`unified_lexicon.json` ≠ `unified_official_lexicon.json`.** The first is the
   RAG source (built by `merge_all_lexicons.py`); the second is a separate lookup
@@ -93,4 +93,4 @@ Official PDFs  (source_pdfs/, gitignored ~200 MB)
   originals.
 
 For the knowledge-base view (and how this ties into the Reachsak RAG pipeline),
-see the vault note **EGD - Khmer Terminology Lexicon**.
+see the project's internal design notes.

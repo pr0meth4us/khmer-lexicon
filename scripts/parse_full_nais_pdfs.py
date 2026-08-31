@@ -7,9 +7,16 @@ from google import genai
 
 import sys
 from pathlib import Path
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 client = get_genai_client()
 
 PROMPT = """Parse this document page completely into clean Markdown format. 
@@ -73,12 +80,12 @@ def process_pdf(pdf_path, doc_label, output_path):
     print(f"✓ Saved full OCR markdown output to {output_path}")
 
 if __name__ == "__main__":
-    en_pdf = "/Users/nicksng/code/nais-v5-en-for-consultation-clean.pdf"
-    en_out = "/Users/nicksng/code/egd platform/data/ai_letter_writer/nais_v5_en_parsed.md"
+    en_pdf = os.path.join(BUILD_DIR, "nais-v5-en-for-consultation-clean.pdf")
+    en_out = os.path.join(BUILD_DIR, "nais_v5_en_parsed.md")
     process_pdf(en_pdf, "NAIS-v5-EN", en_out)
 
-    kh_pdf = "/Users/nicksng/code/nais-v5-kh-for-consultation-clean.pdf"
-    kh_out = "/Users/nicksng/code/egd platform/data/ai_letter_writer/nais_v5_kh_parsed.md"
+    kh_pdf = os.path.join(BUILD_DIR, "nais-v5-kh-for-consultation-clean.pdf")
+    kh_out = os.path.join(BUILD_DIR, "nais_v5_kh_parsed.md")
     process_pdf(kh_pdf, "NAIS-v5-KH", kh_out)
 
     print("\nAll full document OCR extractions completed!")

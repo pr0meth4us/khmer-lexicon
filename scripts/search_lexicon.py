@@ -1,6 +1,13 @@
+import os
 import json
 
-filepath = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/unified_official_lexicon.json"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
+
+filepath = os.path.join(BUILD_DIR, "unified_official_lexicon.json")
 
 with open(filepath, "r", encoding="utf-8") as f:
     data = json.load(f)

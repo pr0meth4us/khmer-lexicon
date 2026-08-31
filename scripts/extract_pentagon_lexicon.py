@@ -7,9 +7,16 @@ from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client  # noqa: E402
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 
 EN_FILE = "scratch/pentagon_en_vision_output.txt"
 KH_FILE = "scratch/pentagon_kh_vision_output.txt"

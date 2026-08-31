@@ -1,8 +1,15 @@
+import os
 import re
 import json
 
-en_file = "/Users/nicksng/code/egd platform/data/ai_letter_writer/nais_v5_en_parsed.md"
-kh_file = "/Users/nicksng/code/egd platform/data/ai_letter_writer/nais_v5_kh_parsed.md"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
+
+en_file = os.path.join(BUILD_DIR, "nais_v5_en_parsed.md")
+kh_file = os.path.join(BUILD_DIR, "nais_v5_kh_parsed.md")
 
 with open(en_file, "r", encoding="utf-8") as f:
     en_text = f.read()

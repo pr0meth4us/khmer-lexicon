@@ -7,10 +7,17 @@ from google import genai
 
 import sys
 from pathlib import Path
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client
 from json_tools.gemini_json import strip_json_fences as clean_json_response
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 client = get_genai_client()
 
 PROMPT = """Extract all dictionary/lexicon/terminology entries on this page into a JSON array.
@@ -59,8 +66,8 @@ def process_page(pdf_path, page_num):
     return page_num + 1, []
 
 def main():
-    pdf_path = '/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Bulletin_Vol6_Technology_2014.pdf'
-    output_path = '/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_technology_lexicon.json'
+    pdf_path = os.path.join(SOURCE_PDFS, "NCKL_Bulletin_Vol6_Technology_2014.pdf")
+    output_path = os.path.join(BUILD_DIR, "nckl_technology_lexicon.json")
     
     doc = fitz.open(pdf_path)
     total_pages = len(doc)
@@ -104,7 +111,7 @@ def main():
     ]
 
     master_lexicon = []
-    dataset_dir = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets"
+    dataset_dir = BUILD_DIR
     for filename, default_source in files_to_merge:
         filepath = os.path.join(dataset_dir, filename)
         if os.path.exists(filepath):

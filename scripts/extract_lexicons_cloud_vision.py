@@ -6,12 +6,18 @@ import fitz
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from google.genai import types
-
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client, get_vision_client  # noqa: E402
 from ocr_tools.pdf_ocr import render_pdf_page, ocr_image
 from json_tools.gemini_json import parse_gemini_json
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 
 vision_client = get_vision_client()
 genai_client = get_genai_client()
@@ -115,26 +121,26 @@ def test_page(pdf_path, page_num):
 if __name__ == "__main__":
     sources = [
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Political_Science_2014.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "NCKL_Political_Science_2014.pdf"),
             "source_name": "nckl-political-science-and-diplomacy",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_political_science_lexicon.json",
+            "out": os.path.join(BUILD_DIR, "nckl_political_science_lexicon.json"),
             "test_page": 8 # Example
         },
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/CouncilOfMinisters_Legal_Terms_2007.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "CouncilOfMinisters_Legal_Terms_2007.pdf"),
             "source_name": "council-of-ministers-legal-terms",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/legal_terms_lexicon.json",
+            "out": os.path.join(BUILD_DIR, "legal_terms_lexicon.json"),
             "test_page": 3 # Example
         },
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Bulletin_Vol6_Technology_2014.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "NCKL_Bulletin_Vol6_Technology_2014.pdf"),
             "source_name": "nckl-technology-and-science",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_technology_lexicon.json",
+            "out": os.path.join(BUILD_DIR, "nckl_technology_lexicon.json"),
         },
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/MPTC_Digital_Lexicon_2025.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "MPTC_Digital_Lexicon_2025.pdf"),
             "source_name": "mptc-digital-lexicon",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/mptc_lexicon.json",
+            "out": os.path.join(BUILD_DIR, "mptc_lexicon.json"),
             "test_page": 25 # Example
         }
     ]

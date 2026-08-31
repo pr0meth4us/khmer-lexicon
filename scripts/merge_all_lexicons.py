@@ -1,7 +1,13 @@
 import os
 import json
 
-dataset_dir = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
+
+dataset_dir = BUILD_DIR
 
 files_to_merge = [
     ("unified_lexicon.json", "panhavonh-glossary"),

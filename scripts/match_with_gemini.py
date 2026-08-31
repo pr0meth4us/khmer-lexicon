@@ -4,10 +4,16 @@ import time
 
 # 1. Dynamically inject GOOGLE_APPLICATION_CREDENTIALS as per user rule
 # We use the explicit path mentioned in the rules for the service account
-gcp_creds = "/Users/nicksng/code/egd platform/claude.json"
+gcp_creds = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", "")
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = gcp_creds
 
 from google import genai
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 
 # 2. Initialize with vertexai=True, region us-central1
 client = genai.Client(
@@ -16,9 +22,9 @@ client = genai.Client(
     location="us-central1"
 )
 
-eng_file = "/Users/nicksng/code/egd platform/data/egd-master-docs/Enterprises Go Digital Program_ocr_transcription.txt"
-khm_file = "/Users/nicksng/.gemini/antigravity-ide/brain/eb6df402-0643-44b2-ae93-172ada213240/scratch/ocr_output.md"
-out_file = "/Users/nicksng/.gemini/antigravity-ide/brain/eb6df402-0643-44b2-ae93-172ada213240/scratch/matched_terms_llm.md"
+eng_file = os.path.join(BUILD_DIR, "Enterprises Go Digital Program_ocr_transcription.txt")
+khm_file = os.path.join(BUILD_DIR, "ocr_output.md")
+out_file = os.path.join(BUILD_DIR, "matched_terms_llm.md")
 
 with open(eng_file, "r", encoding="utf-8") as f:
     eng_text = f.read()

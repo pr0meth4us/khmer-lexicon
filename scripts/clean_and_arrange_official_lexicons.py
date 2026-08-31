@@ -7,7 +7,13 @@ from pathlib import Path
 from khmerlex.contamination import repair
 from khmerlex.normalize import normalize
 
-dataset_dir = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
+
+dataset_dir = BUILD_DIR
 
 # Official files and metadata
 official_files = [
@@ -261,6 +267,18 @@ def process_official_data():
                     }
 
         print(f"Processed {file_info['filename']}: {count} clean official entries")
+
+    # Refuse to publish a collapsed build. Source paths are configurable now, so
+    # a wrong LEXICON_BUILD_DIR would otherwise silently overwrite dist/ with an
+    # empty list and take the tracked lexicon with it.
+    previous = os.path.join(DIST_DIR, "unified_lexicon.json")
+    if os.path.exists(previous):
+        with open(previous, encoding="utf-8") as f:
+            was = len(json.load(f))
+        if len(all_official_entries) < was * 0.9:
+            raise SystemExit(
+                f"refusing to write {len(all_official_entries)} entries over "
+                f"{was}: check LEXICON_BUILD_DIR={BUILD_DIR!r}")
 
     # 1. Save clean official unified dataset (EXCLUDING panhavonh)
     official_unified_path = os.path.join(dataset_dir, "unified_official_lexicon.json")

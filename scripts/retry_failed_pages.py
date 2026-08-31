@@ -6,10 +6,17 @@ from google import genai
 
 import sys
 from pathlib import Path
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client
 from json_tools.gemini_json import strip_json_fences as clean_json_response
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 client = get_genai_client()
 
 PROMPT = """Extract all dictionary/lexicon entries on this page into a JSON array.
@@ -29,7 +36,7 @@ For each entry on the page, create a JSON object with the following schema:
 Output ONLY valid JSON (a JSON array of objects). Do not include markdown code block formatting or backticks.
 """
 
-pdf2 = "/Users/nicksng/code/de39d3c0-5d2b-4f64-ab83-3c6e780002b2.pdf"
+pdf2 = os.path.join(BUILD_DIR, "de39d3c0-5d2b-4f64-ab83-3c6e780002b2.pdf")
 failed_pages = [26, 37, 47] # 1-indexed
 
 doc2 = fitz.open(pdf2)
@@ -63,7 +70,7 @@ for p_num in failed_pages:
 doc2.close()
 
 # Update legal_terms_lexicon.json
-legal_path = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/legal_terms_lexicon.json"
+legal_path = os.path.join(BUILD_DIR, "legal_terms_lexicon.json")
 with open(legal_path, "r", encoding="utf-8") as f:
     existing_entries = json.load(f)
 

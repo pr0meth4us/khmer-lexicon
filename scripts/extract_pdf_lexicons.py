@@ -7,10 +7,17 @@ from google import genai
 
 import sys
 from pathlib import Path
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client
 from json_tools.gemini_json import strip_json_fences as clean_json_response
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 client = get_genai_client()
 
 PROMPT = """Extract all dictionary/lexicon entries on this page into a JSON array.
@@ -84,12 +91,12 @@ def process_pdf(pdf_path, source_name, output_path):
     return all_entries
 
 if __name__ == "__main__":
-    pdf1 = "/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Political_Science_2014.pdf"
-    out1 = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_political_science_lexicon.json"
+    pdf1 = os.path.join(SOURCE_PDFS, "NCKL_Political_Science_2014.pdf")
+    out1 = os.path.join(BUILD_DIR, "nckl_political_science_lexicon.json")
     entries1 = process_pdf(pdf1, "nckl-political-science-and-diplomacy", out1)
 
-    pdf2 = "/Users/nicksng/code/khmer-lexicon/source_pdfs/CouncilOfMinisters_Legal_Terms_2007.pdf"
-    out2 = "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/legal_terms_lexicon.json"
+    pdf2 = os.path.join(SOURCE_PDFS, "CouncilOfMinisters_Legal_Terms_2007.pdf")
+    out2 = os.path.join(BUILD_DIR, "legal_terms_lexicon.json")
     entries2 = process_pdf(pdf2, "council-of-ministers-legal-terms", out2)
 
     print("\nAll extractions completed successfully!")

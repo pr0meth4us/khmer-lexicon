@@ -6,11 +6,17 @@ import fitz
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from google.genai import types
-
-sys.path.insert(0, "/Users/nicksng/code/bifrost/sdk/python")
-sys.path.insert(0, "/Users/nicksng/code/random")
+sys.path.insert(0, os.path.join(BUILD_DIR, "random"))
+# Vertex AI clients. Swap for google.genai directly if you do not
+# have this helper; it only wraps credential loading.
 from bifrost_ai import get_genai_client, get_vision_client  # noqa: E402
 from json_tools.gemini_json import strip_json_fences as clean_json_response
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SOURCE_PDFS = os.environ.get("LEXICON_SOURCE_PDFS", os.path.join(ROOT, "source_pdfs"))
+BUILD_DIR = os.environ.get("LEXICON_BUILD_DIR", os.path.join(ROOT, "build"))
+DIST_DIR = os.environ.get("LEXICON_DIST_DIR", os.path.join(ROOT, "dist"))
+
 
 vision_client = get_vision_client()
 genai_client = get_genai_client()
@@ -108,21 +114,21 @@ def process_pdf(pdf_path, source_name, output_path, start_page, end_page, batch_
 if __name__ == "__main__":
     sources = [
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Bulletin_Vol8_2017.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "NCKL_Bulletin_Vol8_2017.pdf"),
             "source_name": "nckl-bulletin-vol8-2017",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_bulletin_vol8.json",
+            "out": os.path.join(BUILD_DIR, "nckl_bulletin_vol8.json"),
             "start": 29, "end": 116
         },
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Bulletin_Vol9_2018.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "NCKL_Bulletin_Vol9_2018.pdf"),
             "source_name": "nckl-bulletin-vol9-2018",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_bulletin_vol9.json",
+            "out": os.path.join(BUILD_DIR, "nckl_bulletin_vol9.json"),
             "start": 43, "end": 144
         },
         {
-            "pdf": "/Users/nicksng/code/khmer-lexicon/source_pdfs/NCKL_Bulletin_Vol10_2019.pdf",
+            "pdf": os.path.join(SOURCE_PDFS, "NCKL_Bulletin_Vol10_2019.pdf"),
             "source_name": "nckl-bulletin-vol10-2019",
-            "out": "/Users/nicksng/code/egd platform/data/ai_letter_writer/training_datasets/nckl_bulletin_vol10.json",
+            "out": os.path.join(BUILD_DIR, "nckl_bulletin_vol10.json"),
             "start": 19, "end": 82
         }
     ]

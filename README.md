@@ -6,12 +6,14 @@ Pentagonal Strategy, RAC new words, …) with Cloud Vision, parse the text into
 structured `{khmer, english, french, pos, definition, examples}` entries with
 Gemini, then merge + standardize into a unified lexicon.
 
-Split out of the `egd platform` repo — this is the **builder**; the EGD
+Split out of a larger internal system — this is the **builder**; the downstream
 letter-writer RAG is the **consumer** of the built lexicon.
 
 ## Dependencies (not vendored here)
 
-- **Google AI + credentials** → bifrost: `bifrost/sdk/python/bifrost_ai.py`
+- **Google AI + credentials** → a small internal helper that wraps Vertex AI
+  client construction (`bifrost_ai`). Substitute `google.genai` directly if you
+  do not have it; it only loads credentials.
   (`get_genai_client`, `get_vision_client`). Scripts add it to `sys.path`.
 - **Generic OCR / JSON helpers** → `~/code/random`
   (`ocr_tools.pdf_ocr`, `json_tools.gemini_json`). Reuse/upgrade there, per
@@ -29,7 +31,8 @@ letter-writer RAG is the **consumer** of the built lexicon.
 
 ## Publishing to the platform
 
-The extractors currently write their output JSONs into the EGD platform's
+The extractors write their output JSONs into `$LEXICON_BUILD_DIR` (default
+`build/`), previously a
 `data/ai_letter_writer/training_datasets/`, which the letter-rag app reads
 (`unified_lexicon.json`). That is the publish target — rebuild here, and the
 platform picks up the refreshed lexicon.
