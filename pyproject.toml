@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "khmerlex"
+version = "0.1.0"
+description = "Khmer text primitives: grapheme clusters, wrong-script repair, canonical mark order, multi-pattern matching"
+requires-python = ">=3.10"
+dependencies = ["regex>=2024.0.0", "confusable_homoglyphs>=3.3.1"]
+
+[tool.setuptools]
+packages = ["khmerlex"]
