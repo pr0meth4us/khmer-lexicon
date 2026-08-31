@@ -3,6 +3,7 @@ from pathlib import Path
 
 from flask import Flask, jsonify, render_template, request
 
+import api as public_api
 from khmerlex import Checker, Dictionary
 from samples import SAMPLES
 
@@ -28,6 +29,12 @@ def index():
 @app.get("/how")
 def how():
     return render_template("how.html", about=CHECK.about())
+
+
+@app.get("/api")
+def api_docs():
+    return render_template("api.html", about=CHECK.about(),
+                           categories=WORDS.categories())
 
 
 @app.get("/api/search")
@@ -63,6 +70,9 @@ def api_about():
 @app.get("/healthz")
 def healthz():
     return jsonify({"ok": True, "entries": len(CHECK.entries)})
+
+
+public_api.register(app, WORDS, CHECK)
 
 
 if __name__ == "__main__":

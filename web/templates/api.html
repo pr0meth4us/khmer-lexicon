@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}API — Official Khmer Terminology{% endblock %}
+{% block body %}
+<main class="en">
+  <p><a href="/">← back to the dictionary</a></p>
+
+  <div class="card">
+    <h1 style="margin-top:0">API</h1>
+    <p>{{ '{:,}'.format(about.entries) }} official Cambodian government terms,
+    from 15 published sources, as JSON. No key, no account, CORS open to any
+    origin. Read-only.</p>
+    <p>This exists because a website makes the data readable by people, and an
+    API makes it usable by every other Khmer-language tool — spellcheckers,
+    keyboards, translation memories, government systems. If you build something
+    with it, attribution to the source ministries is requested.</p>
+    <p><b>Base URL</b> <code>/api/v1</code></p>
+  </div>
+
+  <div class="card">
+    <h2>Search</h2>
+    <p>Khmer or English. Spelling is forgiven: if nothing matches exactly you get
+    <code>suggestions</code> — entries one Khmer syllable away.</p>
+    <pre><code>GET /api/v1/search?q=blockchain
+GET /api/v1/search?q=ទិន្នន័យ&amp;limit=10
+GET /api/v1/search?category=Digital%20Technology%20&amp;%20Telecom</code></pre>
+    <pre><code>{
+  "query": "blockchain",
+  "total": 1,
+  "results": [
+    { "khmer": "ប្លុកឆេន", "english": "Blockchain", "french": "",
+      "definition": "…", "examples": "…", "pos": "",
+      "category": "Digital Technology &amp; Telecom",
+      "author": "Ministry of Post and Telecommunications (MPTC)",
+      "source": "mptc-digital-lexicon", "year": "2025" }
+  ],
+  "suggestions": []
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>One term, every sense</h2>
+    <p>A Khmer form defined by several ministries returns several senses.
+    Returns <code>404</code> with <code>suggestions</code> if it isn't found.</p>
+    <pre><code>GET /api/v1/term?khmer=អភិបាលកិច្ច</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>Categories</h2>
+    <pre><code>GET /api/v1/categories</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>Check a draft</h2>
+    <p>Returns the official terms used with their positions, English loanwords
+    that have an approved Khmer form, and characters that aren't Khmer.
+    Positions are code-point offsets, guaranteed to fall on grapheme-cluster
+    boundaries so a highlight never splits a syllable.</p>
+    <pre><code>POST /api/v1/check
+Content-Type: application/json
+
+{ "text": "រដ្ឋាភិបាលបានអនុម័តគោលនយោបាយ digital transformation។" }</code></pre>
+    <p class="muted">8,000 character limit.</p>
+  </div>
+
+  <div class="card">
+    <h2>Limits, stated plainly</h2>
+    <ul>
+      <li><b>60 requests per minute per IP.</b> Over that you get
+        <code>429</code>.</li>
+      <li><b>100 results maximum</b> per request, 40 by default.</li>
+      <li><b>There is no bulk endpoint, and this is not scrape-proof.</b> The
+        entire lexicon is a single public JSON file in the repository — that is
+        deliberate, and cloning it is faster for you than paging through this
+        API. The limits exist so one caller can't degrade the service for
+        everyone, not to keep the data in.</li>
+    </ul>
+    <p><a href="https://github.com/pr0meth4us/khmer-lexicon-demo">Clone the data
+    directly →</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Try it</h2>
+    <pre><code>curl "https://YOUR-HOST/api/v1/search?q=blockchain"</code></pre>
+    <p><a href="/api/v1/search?q=blockchain">Run this one in your browser →</a>
+    · <a href="/how">How the matching works</a></p>
+  </div>
+</main>
+<style>
+main pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;overflow-x:auto;font-size:13px;line-height:1.6}
+main code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+main h2{font-size:17px;margin:0 0 8px}
+main ul{padding-left:20px}
+</style>
+{% endblock %}
