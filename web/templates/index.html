@@ -132,6 +132,9 @@
   background:var(--brand-soft);font-size:14.5px;line-height:1.8}
 .entry .eg-txt .lbl{display:block;font-size:12px;color:var(--muted);
   letter-spacing:.04em;margin-bottom:2px}
+.entry .report{display:inline-block;margin-top:5px;font-size:11.5px;
+  color:var(--warn);text-decoration:none;border-bottom:1px dotted var(--warn)}
+.entry .report:hover{color:var(--bad);border-color:var(--bad)}
 .entry .src{color:var(--muted);font-size:12.5px;margin-top:10px;line-height:1.5;
   padding-top:8px;border-top:1px solid var(--line)}
 .entry .none{color:var(--muted);font-size:13.5px;margin-top:2px}
@@ -212,6 +215,26 @@ const POS = {'ន.':'នាម','ន':'នាម','noun':'នាម',
   'គុ.':'គុណនាម','adj':'គុណនាម',
   'f.':'f.','f':'f.','m.':'m.','m':'m.','(m.)':'m.','(f.)':'f.'};
 
+const REPO = 'https://github.com/pr0meth4us/khmer-lexicon';
+function reportUrl(e){
+  const title = `កំហុសទិន្នន័យ: ${e.khmer}`;
+  const body = [
+    `**ធាតុ / Entry:** ${e.khmer}`,
+    `**អង់គ្លេស / English:** ${e.english || '\u2014'}`,
+    `**ប្រភព / Source:** ${e.author || e.source} (${e.year || '\u2014'})`,
+    `**Entry id:** ${e.id || '\u2014'}`,
+    '',
+    '**តើមានកំហុសអ្វី? / What is wrong?**',
+    '',
+    '**តើត្រូវជាអ្វី? / What should it be?**',
+    '',
+    '**ឯកសារយោង / Checked against which document?**',
+    '',
+  ].join('\n');
+  return `${REPO}/issues/new?labels=data-error&title=${encodeURIComponent(title)}`
+       + `&body=${encodeURIComponent(body)}`;
+}
+
 function entryCard(e){
   const pos = e.pos ? `<span class="pos">${esc(POS[e.pos] || e.pos)}</span>` : '';
   const gloss = e.english
@@ -236,7 +259,9 @@ function entryCard(e){
     ${def}
     ${eg}
     <div class="src">${esc(citeKh)}${e.year ? ' · '+esc(e.year) : ''}
-      ${cat ? '<br>'+esc(cat) : ''}</div>
+      ${cat ? '<br>'+esc(cat) : ''}
+      <a class="report" target="_blank" rel="noopener" href="${reportUrl(e)}"
+         title="រាយការណ៍កំហុសនៃធាតុនេះ">រាយការណ៍កំហុស · report</a></div>
   </div>`;
 }
 

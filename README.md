@@ -27,9 +27,17 @@ short_description: Search 5,929 official Cambodian government terms, or check a 
 > that turns one real Khmer word into a different real Khmer word is invisible to
 > every check here.
 >
+> **This is actively being refined.** Corrections are applied as they are found
+> and the dataset is re-validated on every build, so these numbers move.
+>
 > Every entry names its ministry, document and year. **If a term matters, open
 > the original publication.** Treat this as a research tool and a finding aid,
 > not an authoritative citation.
+>
+> **Spotted an error?**
+> [Report it](https://github.com/pr0meth4us/khmer-lexicon/issues/new?labels=data-error)
+> — every entry on the site has a one-click report link that pre-fills the term
+> and its citation. That is the fastest way this improves.
 
 
 Build pipeline for Khmer government terminology lexicons: OCR official PDFs

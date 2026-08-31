@@ -144,7 +144,9 @@ def register(app, words, check):
                 "against the source documents and has no measured accuracy "
                 "figure. Individual entries may be wrong. Every entry names its "
                 "source publication and year — check the original before relying "
-                "on a term in official writing."),
+                "on a term in official writing. It is actively being refined; "
+                "report errors at "
+                "https://github.com/pr0meth4us/khmer-lexicon/issues"),
             "known_defects": {
                 "khmer_field_with_no_khmer": 21,
                 "one_syllable_from_a_dictionary_word": 682,
