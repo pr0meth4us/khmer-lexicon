@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Fully localized the user interface and category/author mappings to Khmer.
 - Updated search result cards to strictly use the `Abbr · Book` citation format.
 - Reorganized project structure by moving data processing scripts to the `scripts/` directory.
+- Fixed OCR spelling and spacing defects in the entry for "life annuity contract" (`កិច្ចសន្យាធនលាភសមយិកមួយជីវិត`).
 
 ### Removed
 - Removed the separate `/technical` page.
