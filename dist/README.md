@@ -9,6 +9,20 @@ Rebuild and gate with:
 python3 clean_and_arrange_official_lexicons.py   # merge + normalise + validate
 ```
 
+## What is published here
+
+**The full `unified_lexicon.json` is not in this repository.** `sample_lexicon.json`
+ships instead: 309 entries spanning all 15 sources, 287 with definitions,
+including every term the demo drafts rely on — enough to run the application,
+read the code and see the algorithms work.
+
+The complete 5,929-entry lexicon is served through `/api/v1`: open, no key,
+rate-limited, and with no pagination parameter, which is what actually prevents
+enumeration. The reports in this directory (`validation_report.md`,
+`near_duplicates.md`, `ocr_suspects.md`) describe the full dataset and are
+published in full.
+
+
 ## Artifacts
 
 | file | what it is |

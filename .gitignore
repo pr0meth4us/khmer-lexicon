@@ -8,3 +8,9 @@ venv/
 .DS_Store
 data/
 canaries.json
+
+# The full lexicon is not published. dist/sample_lexicon.json (309 entries,
+# all 15 sources) ships instead so the app and the pipeline still run.
+dist/unified_lexicon.json
+dist/unified_official_lexicon.json
+build/

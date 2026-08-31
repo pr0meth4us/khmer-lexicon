@@ -8,7 +8,12 @@ from khmerlex import Checker, Dictionary
 from samples import SAMPLES
 
 BASE = Path(__file__).resolve().parent
-DATA = Path(os.environ.get("LEXICON_PATH", BASE.parent / "dist" / "unified_lexicon.json"))
+# The full lexicon if it is present (deployments mount it), otherwise the
+# 309-entry sample committed here. The full file is deliberately not published;
+# it is served through /api/v1 instead. See dist/README.md.
+_FULL = BASE.parent / "dist" / "unified_lexicon.json"
+_SAMPLE = BASE.parent / "dist" / "sample_lexicon.json"
+DATA = Path(os.environ.get("LEXICON_PATH", _FULL if _FULL.exists() else _SAMPLE))
 MAX_CHARS = 8000
 
 app = Flask(__name__)
