@@ -13,7 +13,52 @@ BASE = Path(__file__).resolve().parent
 # it is served through /api/v1 instead. See dist/README.md.
 _FULL = BASE.parent / "dist" / "unified_lexicon.json"
 _SAMPLE = BASE.parent / "dist" / "sample_lexicon.json"
-DATA = Path(os.environ.get("LEXICON_PATH", _FULL if _FULL.exists() else _SAMPLE))
+
+
+def _fetch_lexicon():
+    """Pull the full lexicon at boot if LEXICON_URL is configured.
+
+    The full file is deliberately not in the repository, so a host that builds
+    from GitHub would otherwise serve the 309-entry sample. Point LEXICON_URL at
+    private storage (a private release asset, a secret gist, an R2/S3 object) and
+    set LEXICON_TOKEN if it needs auth. Both are host secrets, never committed.
+
+    Fetched once into a temp path at start-up, so the running container holds the
+    data but nothing serves the file itself.
+    """
+    url = os.environ.get("LEXICON_URL", "").strip()
+    if not url:
+        return None
+    import json
+    import tempfile
+    import urllib.request
+    target = Path(tempfile.gettempdir()) / "unified_lexicon.json"
+    if target.exists():
+        return target
+    request = urllib.request.Request(url)
+    token = os.environ.get("LEXICON_TOKEN", "").strip()
+    if token:
+        request.add_header("Authorization", f"token {token}")
+    request.add_header("Accept", "application/octet-stream")
+    try:
+        with urllib.request.urlopen(request, timeout=60) as response:
+            body = response.read()
+        entries = json.loads(body)
+        if not isinstance(entries, list) or len(entries) < 1000:
+            raise ValueError(f"expected the full lexicon, got {len(entries)} entries")
+        target.write_bytes(body)
+        print(f"loaded {len(entries):,} entries from LEXICON_URL", flush=True)
+        return target
+    except Exception as exc:                    # never fail to boot over this
+        print(f"LEXICON_URL fetch failed ({exc}); falling back to the bundled "
+              f"file", flush=True)
+        return None
+
+
+# Path("") is Path("."), which is truthy — check the string, not the Path.
+_explicit = os.environ.get("LEXICON_PATH", "").strip()
+DATA = Path(_explicit) if _explicit else (
+    _fetch_lexicon() or (_FULL if _FULL.exists() else _SAMPLE))
 MAX_CHARS = 8000
 
 app = Flask(__name__)
