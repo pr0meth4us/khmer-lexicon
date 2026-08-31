@@ -1,0 +1,16 @@
+.git/
+__pycache__/
+*.pyc
+.venv/
+source_pdfs/
+data/
+khmerlex.egg-info/
+build/
+# The full lexicon IS shipped in the image. The image lives in a private
+# Artifact Registry and the app never serves the file itself, so the data is
+# live without being downloadable — no LEXICON_URL, no token to leak.
+# Everything else stays out of the build context.
+dist/unified_official_lexicon.json
+dist/canaries.json
+dist/ocr_suspects.md
+dist/near_duplicates.md
