@@ -1,3 +1,4 @@
+from .contamination import CONFUSABLES, contaminants, is_khmer, repair
 from .graphemes import (
     boundaries,
     cluster_len,
@@ -6,4 +7,7 @@ from .graphemes import (
     on_boundary,
 )
 
-__all__ = ["clusters", "cluster_len", "boundaries", "on_boundary", "edit_distance"]
+__all__ = [
+    "clusters", "cluster_len", "boundaries", "on_boundary", "edit_distance",
+    "CONFUSABLES", "contaminants", "repair", "is_khmer",
+]

@@ -40,6 +40,36 @@ def test_cutoff_short_circuits():
     assert edit_distance("ក្រសួង", "ក្រសួង", cutoff=1) == 0
 
 
+def test_confusables_need_both_tables():
+    from khmerlex.contamination import SAME_LETTER, VISUAL, repair
+
+    # The production failure: same Unicode NAME, wrong block. UTS #39 does NOT
+    # list these -- they are the same letter, not a look-alike -- so a
+    # UTS-#39-only table would silently pass all four.
+    for devanagari in "ीिूु":
+        assert devanagari in SAME_LETTER, devanagari
+        assert devanagari not in VISUAL, devanagari
+    assert repair("សេចក្ដីដូច".replace("ី", "ी")) == "សេចក្ដីដូច"
+
+    # UTS #39 catches what the name match cannot: Thai SARA I is a different
+    # letter that merely looks like KHMER VOWEL SIGN I.
+    assert "ิ" in VISUAL and "ิ" not in SAME_LETTER
+    assert repair("ក្ដิ") == "ក្ដិ"
+
+
+def test_negated_class_catches_what_no_table_anticipated():
+    from khmerlex.contamination import contaminants
+
+    # official_lex_0720: a Cyrillic ш inside what should be Khmer. No allow-list
+    # of "known bad scripts" would have listed Cyrillic for a Khmer lexicon.
+    found = contaminants("aquñşıyшn", allow_latin=False)
+    assert any(c["char"] == "ш" for c in found), found
+    assert all(c["reason"] for c in found)
+
+    # Legitimate house style must not fault: Khmer with a Latin acronym.
+    assert contaminants("បច្ចេកវិទ្យាហិរញ្ញវត្ថុ (FinTech)") == []
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_"):
