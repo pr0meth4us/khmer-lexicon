@@ -30,21 +30,15 @@
 <section id="pane-browse" hidden>
   <div class="split">
     <div class="card sticky">
-      <b>រកមើលតាមប្រធានបទ</b>
-      <div class="muted" style="margin-bottom:6px">ជ្រើសរើសប្រធានបទខាងក្រោម</div>
-      <div class="chips topics">
-        {% for c in categories %}
-        <button class="chip cat" data-cat="{{ c.name }}">{{ c.khmer }}
-          <span class="muted">{{ c.count }}</span></button>
-        {% endfor %}
-      </div>
+      <b>រកមើលតាមឯកសារប្រភព</b>
+      <div class="muted en" style="margin-bottom:6px">Browse by source publication</div>
+      <div class="chips topics" id="source-list"></div>
+
+      <b style="display:block;margin-top:16px">តាមអក្សរដើម</b>
+      <div class="muted en" style="margin-bottom:6px">By first letter</div>
+      <div class="chips" id="letter-list"></div>
     </div>
-    <div>
-      <div id="browse-results" class="cards"></div>
-      <div id="browse-more" style="text-align: center; margin-top: 20px;" hidden>
-        <button class="btn" id="btn-load-more">បង្ហាញបន្ថែម</button>
-      </div>
-    </div>
+    <div><div id="browse-results" class="cards"></div></div>
   </div>
 </section>
 
@@ -132,6 +126,7 @@
   background:var(--brand-soft);font-size:14.5px;line-height:1.8}
 .entry .eg-txt .lbl{display:block;font-size:12px;color:var(--muted);
   letter-spacing:.04em;margin-bottom:2px}
+.entry .copy.link{right:70px;font-size:12px}
 .entry .report{display:inline-block;margin-top:5px;font-size:11.5px;
   color:var(--warn);text-decoration:none;border-bottom:1px dotted var(--warn)}
 .entry .report:hover{color:var(--bad);border-color:var(--bad)}
@@ -234,6 +229,7 @@ function entryCard(e){
   
   return `<div class="entry">
     <button class="copy" data-copy="${esc(e.khmer)}">ចម្លង</button>
+    <button class="copy link" data-link="${esc(e.khmer)}">តំណ</button>
     <div class="kh">${esc(e.khmer)}${pos}</div>
     ${gloss}
     ${def}
@@ -258,6 +254,15 @@ function wireReports(root){
   root.querySelectorAll('.report').forEach(a => a.onclick = ev => {
     ev.preventDefault();
     openReport(JSON.parse(a.dataset.report));
+  });
+}
+function wireLinks(root){
+  root.querySelectorAll('.copy.link').forEach(b => b.onclick = async () => {
+    const url = `${location.origin}/?q=${encodeURIComponent(b.dataset.link)}`;
+    try{ await navigator.clipboard.writeText(url);
+      b.textContent='បានចម្លងតំណ ✓'; b.classList.add('done');
+      setTimeout(()=>{b.textContent='តំណ'; b.classList.remove('done');},1600);
+    }catch(_){ }
   });
 }
 function wireCopy(root){
@@ -286,42 +291,53 @@ async function doSearch(){
       html += `<p class="hint">បង្ហាញ ${d.results.length} ក្នុងចំណោមលទ្ធផលសរុប ${d.total}</p>`;
     html += d.results.map(entryCard).join('');
   }
-  $('results').innerHTML = html; wireCopy($('results')); wireDefs($('results')); wireReports($('results'));
+  $('results').innerHTML = html; wireCopy($('results')); wireDefs($('results')); wireReports($('results')); wireLinks($('results'));
 }
-$('q').oninput = () => { clearTimeout(searchTimer); searchTimer=setTimeout(doSearch,180); };
+// Shareable URLs. A dictionary entry you cannot send to a colleague is half a
+// dictionary, so the query lives in the address bar and the page restores from
+// it on load and on back/forward.
+function setUrl(q){
+  const url = q ? `?q=${encodeURIComponent(q)}` : location.pathname;
+  if (location.search !== (q ? `?q=${encodeURIComponent(q)}` : '')) history.pushState({q}, '', url);
+}
+$('q').oninput = () => { clearTimeout(searchTimer); searchTimer=setTimeout(()=>{ setUrl($('q').value.trim()); doSearch(); },180); };
+window.onpopstate = () => { const q=new URLSearchParams(location.search).get('q')||''; $('q').value=q; doSearch(); };
+(function restore(){
+  const q = new URLSearchParams(location.search).get('q');
+  if (q){ $('q').value = q; doSearch(); }
+})();
 document.querySelectorAll('.eg').forEach(a => a.onclick = ev => {
-  ev.preventDefault(); $('q').value = a.textContent.trim(); doSearch();
+  ev.preventDefault(); $('q').value = a.textContent.trim(); setUrl($('q').value); doSearch();
 });
 
 /* ---- browse ---- */
-let currentCategory = '';
-let currentLimit = 60;
-document.querySelectorAll('.cat').forEach(b => b.onclick = async () => {
-  document.querySelectorAll('.cat').forEach(o =>
-    o.setAttribute('aria-pressed', String(o===b)));
-  currentCategory = b.dataset.cat;
-  currentLimit = 60;
-  await loadCategory();
-});
-
-$('btn-load-more').onclick = async () => {
-  currentLimit += 60;
-  await loadCategory();
-};
-
-async function loadCategory() {
-  const r = await fetch('/api/search?category='+encodeURIComponent(currentCategory)+'&limit='+currentLimit);
-  const d = await r.json();
-  $('browse-results').innerHTML =
-    `<p class="hint">សរុប ${d.total} ពាក្យ (បង្ហាញ ${d.results.length})</p>` + d.results.map(entryCard).join('');
-  wireCopy($('browse-results')); wireDefs($('browse-results')); wireReports($('browse-results'));
-  
-  if (d.total > d.results.length) {
-    $('browse-more').hidden = false;
-  } else {
-    $('browse-more').hidden = true;
-  }
+// Category was a dead end: two labels hold 3,482 of 5,934 entries. The source
+// document is meaningful, dated and attributable; the alphabet is what every
+// paper dictionary offers. Both beat "General & Specialized Terms".
+async function loadBrowse(){
+  const [srcs, letters] = await Promise.all([
+    fetch('/api/v1/sources').then(r=>r.json()),
+    fetch('/api/v1/letters').then(r=>r.json())
+  ]);
+  $('source-list').innerHTML = srcs.sources.map(s =>
+    `<button class="chip srcbtn" data-source="${esc(s.source)}">
+       ${esc(SOURCE_MAP[s.source] ? SOURCE_MAP[s.source].bookKh : s.source)}
+       <span class="muted">${s.year} · ${s.count}</span></button>`).join('');
+  $('letter-list').innerHTML = letters.letters.map(l =>
+    `<button class="chip ltr" data-letter="${esc(l.letter)}" title="${l.count}">
+       ${esc(l.letter)}</button>`).join('');
+  document.querySelectorAll('.srcbtn').forEach(b => b.onclick = () => show(b, '/api/v1/browse?source='+encodeURIComponent(b.dataset.source)));
+  document.querySelectorAll('.ltr').forEach(b => b.onclick = () => show(b, '/api/v1/browse?letter='+encodeURIComponent(b.dataset.letter)));
 }
+async function show(btn, url){
+  document.querySelectorAll('.srcbtn,.ltr').forEach(o => o.setAttribute('aria-pressed', String(o===btn)));
+  const d = await (await fetch(url + '&limit=100')).json();
+  $('browse-results').innerHTML =
+    `<p class="hint">${d.total} ពាក្យ · <span class="en">showing ${d.results.length}</span></p>`
+    + d.results.map(entryCard).join('');
+  wireCopy($('browse-results')); wireDefs($('browse-results')); wireReports($('browse-results')); wireLinks($('browse-results'));
+}
+loadBrowse();
 
 /* ---- check a letter ---- */
 let LAST=null;
@@ -373,7 +389,7 @@ function showDetail(kind,i){
       ${c.suggest?`<div class="fix"><button data-replace="${esc(c.char)}"
         data-with="${esc(c.suggest)}">កែឲ្យត្រូវ (គួរជា ${esc(c.suggest)})</button></div>`:''}</div>`;
   }
-  $('detail').innerHTML = html; wireCopy($('detail')); wireDefs($('detail')); wireReports($('detail'));
+  $('detail').innerHTML = html; wireCopy($('detail')); wireDefs($('detail')); wireReports($('detail')); wireLinks($('detail'));
   $('detail').querySelectorAll('[data-replace]').forEach(b => b.onclick = () => {
     $('text').value = $('text').value.split(b.dataset.replace).join(b.dataset.with);
     $('detail').innerHTML=''; run();

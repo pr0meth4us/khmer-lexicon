@@ -108,7 +108,37 @@ def register(app, words, check):
         if not query and not category:
             return jsonify({"error": "pass q= or category="}), 400
         found = words.search(query, category=category, limit=_limit())
+        if query and not found["results"]:
+            # A query that returns nothing is a user telling us exactly which
+            # term is missing or misspelled. Logged as structured JSON so the
+            # gap list builds itself instead of waiting for someone to complain.
+            #   gcloud logging read 'jsonPayload.kind="zero_result"' \
+            #       --project khmer-ocr-496606 --limit 100
+            print(json.dumps({
+                "kind": "zero_result",
+                "query": query[:120],
+                "category": category[:80],
+                "had_suggestions": bool(found.get("suggestions")),
+            }, ensure_ascii=False), flush=True)
         return jsonify({"query": query, "category": category, **found})
+
+    @api.get("/sources")
+    def sources():
+        return jsonify({"sources": words.sources()})
+
+    @api.get("/letters")
+    def letters():
+        return jsonify({"letters": words.letters()})
+
+    @api.get("/browse")
+    def browse():
+        source = request.args.get("source", "")
+        letter = request.args.get("letter", "")
+        if source:
+            return jsonify(words.by_source(source, limit=_limit()))
+        if letter:
+            return jsonify(words.by_letter(letter, limit=_limit()))
+        return jsonify({"error": "pass source= or letter="}), 400
 
     @api.get("/term")
     def term():

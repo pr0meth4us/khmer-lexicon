@@ -15,6 +15,7 @@ import unicodedata
 from .contamination import is_khmer
 from .graphemes import clusters, edit_distance
 from .normalize import normalize
+from .romanize import fold, romanize
 
 # Khmer labels are the primary UI language; English rides along for reviewers
 # and for the many students who work bilingually.
@@ -39,6 +40,9 @@ class Dictionary:
             if entry["khmer"]:
                 self.by_khmer[entry["khmer"]].append(entry)
         self._deletions = self._build_deletion_index()
+        # Latin search key per distinct form, so someone who knows a word by
+        # sound can find it without a Khmer keyboard.
+        self._roman = {form: romanize(form) for form in self.by_khmer}
 
     def _build_deletion_index(self):
         index = collections.defaultdict(set)
@@ -65,13 +69,18 @@ class Dictionary:
 
         khmer_query = any(is_khmer(c) for c in query)
         needle = query.lower()
-        exact, partial = [], []
+        roman_needle = fold(query) if not khmer_query else ""
+        exact, partial, loose = [], [], []
         for entry in rows:
             if khmer_query:
                 if entry["khmer"] == query:
                     exact.append(entry)
                 elif query in entry["khmer"]:
                     partial.append(entry)
+                # 1,657 entries have no English at all; searching the Khmer
+                # definition is the only way they are ever discoverable.
+                elif query in entry["definition"]:
+                    loose.append(entry)
             else:
                 english = entry["english"].lower()
                 french = entry["french"].lower()
@@ -79,9 +88,24 @@ class Dictionary:
                     exact.append(entry)
                 elif needle in english or needle in french:
                     partial.append(entry)
+                elif roman_needle and len(roman_needle) >= 3:
+                    key = self._roman.get(entry["khmer"], "")
+                    if not key:
+                        continue
+                    distance = 0 if roman_needle in key else edit_distance(
+                        roman_needle, key, cutoff=2)
+                    if distance <= 2:
+                        loose.append((distance, len(entry["khmer"]), entry))
 
         partial.sort(key=lambda e: len(e["english"] or e["khmer"]))
-        results = exact + partial
+        # Sound-alike hits rank by how close the Latin key is, not by length:
+        # sorting by length put តិណាសី above ទិន្នន័យ for "tinnany".
+        if loose and isinstance(loose[0], tuple):
+            loose.sort(key=lambda t: (t[0], t[1]))
+            loose = [t[2] for t in loose]
+        else:
+            loose.sort(key=lambda e: len(e["khmer"]))
+        results = exact + partial + loose
         suggestions = [] if results else self.did_you_mean(query)
         return {"results": results[:limit], "suggestions": suggestions,
                 "total": len(results)}
@@ -112,6 +136,39 @@ class Dictionary:
                  "khmer": CATEGORY_LABELS.get(name, name),
                  "count": count}
                 for name, count in counts.most_common()]
+
+    def sources(self):
+        """Browse by publication. The category field puts 3,482 of 5,934 entries
+        under two labels, which makes browsing by category nearly useless; the
+        source document is meaningful, dated and attributable."""
+        seen = {}
+        for entry in self.entries:
+            key = entry["source"]
+            if not key:
+                continue
+            row = seen.setdefault(key, {"source": key, "author": entry["author"],
+                                        "year": entry["year"], "count": 0})
+            row["count"] += 1
+        return sorted(seen.values(), key=lambda r: (-r["count"], r["source"]))
+
+    def letters(self):
+        """Khmer alphabet index — the affordance every paper dictionary has."""
+        counts = collections.Counter()
+        for form in self.by_khmer:
+            first = clusters(form)[0] if form else ""
+            if first and is_khmer(first[0]):
+                counts[first[0]] += 1
+        return [{"letter": ch, "count": n} for ch, n in sorted(counts.items())]
+
+    def by_source(self, source, limit=200):
+        rows = [e for e in self.entries if e["source"] == source]
+        return {"results": rows[:limit], "total": len(rows), "suggestions": []}
+
+    def by_letter(self, letter, limit=200):
+        rows = [e for e in self.entries
+                if e["khmer"] and clusters(e["khmer"])[0].startswith(letter)]
+        rows.sort(key=lambda e: e["khmer"])
+        return {"results": rows[:limit], "total": len(rows), "suggestions": []}
 
     def senses(self, khmer):
         return self.by_khmer.get(khmer, [])
