@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <style>
+    :root { color-scheme: light dark; }
+    .m { stroke: #1b4b7d; }
+    .d { fill: #1b4b7d; }
+    @media (prefers-color-scheme: dark) {
+      .m { stroke: #7fb3e8; }
+      .d { fill: #7fb3e8; }
+    }
+  </style>
+  <g class="m" fill="none" stroke-width="9" stroke-linecap="round">
+    <path d="M13 18 C44 18, 46 44, 70 44" opacity=".45"/>
+    <path d="M13 44 H70"/>
+    <path d="M13 70 C44 70, 46 44, 70 44" opacity=".45"/>
+  </g>
+  <circle class="d" cx="70" cy="44" r="9"/>
+</svg>
