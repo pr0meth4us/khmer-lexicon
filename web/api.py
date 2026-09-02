@@ -2,7 +2,7 @@
 
 Why this exists at all: fifteen government documents that existed only as paper
 are now machine-readable. A website makes that readable by people; an API makes
-it usable by every other Khmer-language tool — spellcheckers, keyboards,
+it usable by every other Khmer-language tool — keyboards,
 translation memories, government CMSes. That is the difference between a demo
 and a piece of infrastructure.
 
