@@ -34,9 +34,12 @@
     --brand: #7fb3e8;
     --brand-hover: #a3c9f0;
     --brand-soft: #1c2c3d;
-    --ok: #5ec99a; --ok-bg: #122a20;
-    --warn: #e0ab5a; --warn-bg: #2e2413;
-    --bad: #ef8b96; --bad-bg: #33191c;
+    /* Highlight fills sat almost on top of the panel colour (#1e1c19), so a
+       marked term was barely distinguishable. Lifted for a visible fill that
+       still reads as a highlight rather than a block. */
+    --ok: #5ec99a; --ok-bg: #1d4433;
+    --warn: #e0ab5a; --warn-bg: #4a3a1c;
+    --bad: #ef8b96; --bad-bg: #52272d;
   }
 }
 
@@ -217,7 +220,9 @@ input[type=search]:focus, textarea:focus {
   border-color: var(--brand);
   box-shadow: 0 0 0 4px var(--brand-soft);
 }
-textarea { min-height: 600px; resize: vertical; font-size: 18px; line-height: 2; padding: 24px; }
+/* 600px was sized for the old narrow rail, where a letter wrapped every few
+   words. Full width now, so it needs a fraction of the height. */
+textarea { min-height: 200px; resize: vertical; font-size: 17px; line-height: 2.05; padding: 16px 18px; }
 
 button.btn {
   font-family: inherit;

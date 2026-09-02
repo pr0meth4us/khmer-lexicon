@@ -44,9 +44,7 @@
 
 <!-- ── check ────────────────────────────────────────────────── -->
 <section id="pane-check" hidden>
- <div class="split">
-  <div>
-  <div class="card sticky">
+  <div class="card">
     <b>បិទភ្ជាប់សេចក្ដីព្រាងលិខិតរបស់អ្នក</b>
     <p class="hint" style="margin-bottom:10px">យើងនឹងរំលេចពាក្យផ្លូវការដែលអ្នកបានប្រើ ព្រមទាំងស្នើពាក្យខ្មែរសម្រាប់ពាក្យបរទេស និងស្វែងរកតួអក្សរដែលមិនត្រឹមត្រូវ។</p>
     <textarea id="text" placeholder="បិទភ្ជាប់អត្ថបទនៅទីនេះ…"></textarea>
@@ -57,21 +55,20 @@
       {% endfor %}
     </div>
   </div>
-  </div>
-  <div>
+
   <div id="summary"></div>
+
   <div class="card" id="marked-card" hidden>
     <b>លិខិតរបស់អ្នក</b>
     <div id="marked" style="margin-top:8px"></div>
-    <p class="hint">
-      <span style="background:var(--ok-bg);border-bottom:2px solid var(--ok)">ពាក្យផ្លូវការ</span>
-      <span style="background:var(--warn-bg);border-bottom:2px solid var(--warn)">ពាក្យខ្មែរដែលគួរប្រើជំនួស</span>
-      <span style="background:var(--bad-bg);border-bottom:2px solid var(--bad)">តួអក្សរខុស</span>
-      · សូមចុចលើពាក្យដែលបានរំលេចដើម្បីមើលព័ត៌មានលម្អិត</p>
+    <p class="hint legend-row">
+      <span class="key ok">ពាក្យផ្លូវការ</span>
+      <span class="key warn">ពាក្យខ្មែរដែលគួរប្រើជំនួស</span>
+      <span class="key bad">តួអក្សរខុស</span>
+      <span class="muted">· សូមចុចលើពាក្យដែលបានរំលេចដើម្បីមើលព័ត៌មានលម្អិត</span></p>
   </div>
+
   <div id="detail" class="cards"></div>
-  </div>
- </div>
 </section>
 
 <!-- ── sources ────────────────────────────────────────────────── -->
@@ -137,13 +134,23 @@
   border:1px solid var(--line);background:var(--card);color:var(--brand);cursor:pointer}
 .copy.done{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
 .tally{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
-.tally div{flex:1 1 150px;background:var(--card);border:1px solid var(--line);
+.tally div{flex:1 1 210px;background:var(--card);border:1px solid var(--line);
   border-radius:12px;padding:11px 13px}
 .tally b{display:block;font-size:26px;line-height:1.2}
 .tally span{font-size:13px;color:var(--muted)}
 .tally .g b{color:var(--ok)} .tally .a b{color:var(--warn)} .tally .r b{color:var(--bad)}
-mark{padding:1px 0;border-radius:3px;cursor:pointer;border-bottom:2px solid;
-  background:var(--ok-bg);border-color:var(--ok)}
+/* `mark` has a user-agent default of color:black. Overriding only the
+   background left dark-mode highlights as near-black text on a near-black
+   panel, which is what made them unreadable. */
+mark{padding:1px 2px;border-radius:3px;cursor:pointer;border-bottom:2px solid;
+  color:var(--ink);background:var(--ok-bg);border-color:var(--ok)}
+mark:hover{filter:brightness(1.15)}
+.legend-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}
+.key{padding:2px 7px;border-radius:4px;border-bottom:2px solid;color:var(--ink)}
+.key.ok{background:var(--ok-bg);border-color:var(--ok)}
+.key.warn{background:var(--warn-bg);border-color:var(--warn)}
+.key.bad{background:var(--bad-bg);border-color:var(--bad)}
+#marked{line-height:2.25;font-size:17px}
 mark.loan{background:var(--warn-bg);border-color:var(--warn)}
 mark.bad{background:var(--bad-bg);border-color:var(--bad)}
 .fix{margin-top:6px}
