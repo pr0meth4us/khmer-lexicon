@@ -81,6 +81,11 @@ def how():
     return render_template("how.html", about=CHECK.about())
 
 
+@app.get("/admin")
+def admin():
+    return render_template("admin.html", about=CHECK.about())
+
+
 @app.get("/api")
 def api_docs():
     return render_template("api.html", about=CHECK.about(),

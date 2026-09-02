@@ -1,5 +1,12 @@
 FROM python:3.11-slim
 
+# The /admin page reads Cloud Logging through the gcloud CLI. Slim image, so
+# install it; the service account carries roles/logging.viewer.
+RUN apt-get update && apt-get install -y --no-install-recommends curl python3-crcmod \
+ && curl -sSL https://sdk.cloud.google.com | bash -s -- --disable-prompts --install-dir=/opt \
+ && rm -rf /var/lib/apt/lists/*
+ENV PATH="/opt/google-cloud-sdk/bin:${PATH}"
+
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

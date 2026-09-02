@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Feedback — Official Khmer Terminology{% endblock %}
+{% block body %}
+<main class="en">
+  <p><a href="/">← back to the dictionary</a></p>
+
+  <div class="card">
+    <h2 style="margin:0 0 6px">Feedback</h2>
+    <p class="muted" style="margin:0 0 12px">Corrections reported by users, and the searches that
+      found nothing — the two things that tell you what to fix next. Reports are also archived
+      permanently to Cloud Storage; this page reads the last 30 days.</p>
+    <div class="row" style="gap:8px">
+      <input type="password" id="tok" placeholder="admin token" style="max-width:280px">
+      <button class="btn primary" id="load">Load</button>
+      <span id="status" class="muted"></span>
+    </div>
+  </div>
+
+  <div id="out"></div>
+</main>
+
+<style>
+main.en table { width:100%; border-collapse:collapse; font-size:14px; margin-top:6px }
+main.en th { text-align:left; font-weight:600; color:var(--muted); font-size:12.5px;
+  border-bottom:1px solid var(--line); padding:6px 8px 6px 0; text-transform:uppercase;
+  letter-spacing:.04em }
+main.en td { padding:8px 8px 8px 0; border-bottom:1px solid var(--line); vertical-align:top }
+main.en td.kh { font-family:'Kantumruy Pro',system-ui,sans-serif; font-size:16px }
+main.en .when { color:var(--muted); font-size:12.5px; white-space:nowrap }
+main.en .n { font-variant-numeric:tabular-nums; font-weight:700; color:var(--warn) }
+main.en input[type=password]{ font:inherit; padding:9px 12px; border:1.5px solid var(--line);
+  border-radius:9px; background:var(--card); color:var(--ink) }
+</style>
+
+<script>
+const $ = i => document.getElementById(i);
+const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+$('load').onclick = async () => {
+  const tok = $('tok').value.trim();
+  if (!tok) { $('status').textContent = 'token required'; return; }
+  $('status').textContent = 'loading…';
+  const r = await fetch('/api/v1/feedback?token=' + encodeURIComponent(tok));
+  if (!r.ok) { $('status').textContent = r.status === 403 ? 'wrong token' : 'error ' + r.status; return; }
+  const d = await r.json();
+  sessionStorage.setItem('adm', tok);
+  $('status').textContent = '';
+  $('out').innerHTML =
+    section(`Corrections reported (${d.reports.length})`,
+      d.reports.length ? `<table><tr><th>when</th><th>term</th><th>what they said</th><th>contact</th></tr>` +
+        d.reports.map(x => `<tr><td class="when">${esc(x.time).replace('T',' ')}</td>
+          <td class="kh">${esc(x.khmer)}</td><td>${esc(x.message)}</td>
+          <td class="muted">${esc(x.contact)}</td></tr>`).join('') + `</table>`
+        : `<p class="muted">none yet</p>`)
+  + section(`Searches that found nothing — most frequent (${d.zero_result_top.length})`,
+      d.zero_result_top.length ? `<table><tr><th>query</th><th>times</th></tr>` +
+        d.zero_result_top.map(x => `<tr><td class="kh">${esc(x.query)}</td>
+          <td class="n">${x.times}</td></tr>`).join('') + `</table>`
+        : `<p class="muted">none yet</p>`);
+};
+function section(title, inner){
+  return `<div class="card"><h2 style="margin:0 0 4px;font-size:16px">${title}</h2>${inner}</div>`;
+}
+const saved = sessionStorage.getItem('adm');
+if (saved) { $('tok').value = saved; $('load').click(); }
+</script>
+{% endblock %}

@@ -15,6 +15,8 @@ khmerdict takes: give the data away deliberately, and ask for attribution.
 """
 import collections
 import json
+import os
+import subprocess
 import time
 
 from flask import Blueprint, jsonify, request
@@ -195,6 +197,44 @@ def register(app, words, check):
         # print() lands in Cloud Logging; JSON on one line becomes jsonPayload.
         print(json.dumps(entry, ensure_ascii=False), flush=True)
         return jsonify({"ok": True})
+
+    @api.get("/feedback")
+    def feedback():
+        """Recent corrections and failed searches, for the maintainer.
+
+        Reads Cloud Logging directly rather than keeping a database: the service
+        is stateless, reports are rare, and the log sink already archives them
+        to Cloud Storage permanently. Guarded by ADMIN_TOKEN — without one set,
+        the endpoint refuses rather than defaulting to open.
+        """
+        expected = os.environ.get("ADMIN_TOKEN", "").strip()
+        supplied = (request.args.get("token", "")
+                    or request.headers.get("X-Admin-Token", "")).strip()
+        if not expected or supplied != expected:
+            return jsonify({"error": "not authorised"}), 403
+
+        def read(kind, limit):
+            try:
+                out = subprocess.run(
+                    ["gcloud", "logging", "read", f'jsonPayload.kind="{kind}"',
+                     "--project", os.environ.get("GOOGLE_CLOUD_PROJECT", "khmer-ocr-496606"),
+                     "--limit", str(limit), "--format", "json"],
+                    capture_output=True, text=True, timeout=25)
+                rows = json.loads(out.stdout or "[]")
+                return [{"time": r.get("timestamp", "")[:19],
+                         **{k: v for k, v in r.get("jsonPayload", {}).items() if k != "kind"}}
+                        for r in rows]
+            except Exception as exc:
+                return [{"error": str(exc)[:120]}]
+
+        reports = read("lexicon_report", 100)
+        misses = read("zero_result", 300)
+        counts = collections.Counter(m.get("query", "") for m in misses if m.get("query"))
+        return jsonify({
+            "reports": reports,
+            "zero_result_top": [{"query": q, "times": n} for q, n in counts.most_common(40)],
+            "zero_result_recent": misses[:40],
+        })
 
     @api.get("/about")
     def about():
