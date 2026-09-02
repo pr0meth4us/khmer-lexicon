@@ -257,29 +257,40 @@ button.primary:hover {
 .hint { color: var(--muted); font-size: 14px; margin: 12px 0 0; }
 
 footer {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 24px 60px;
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+  background: var(--card);
   color: var(--muted);
   font-size: 14px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
-.footer-links {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+.foot-grid {
+  max-width: 1240px; margin: 0 auto; padding: 30px 24px 22px;
+  display: grid; gap: 26px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
 }
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr; gap: 20px; padding: 24px 16px 18px; } }
+.foot-col { display: flex; flex-direction: column; gap: 6px; }
+.foot-title { color: var(--ink); font-weight: 700; font-size: 14.5px; margin-bottom: 2px; }
+.foot-about p { margin: 0; line-height: 1.85; max-width: 46ch; }
+.foot-stat { color: var(--brand); font-weight: 600; }
+.foot-col a { color: var(--muted); text-decoration: none; width: fit-content;
+  border-bottom: 1px solid transparent; }
+.foot-col a:hover { color: var(--brand); border-bottom-color: var(--brand); }
+.foot-bottom {
+  border-top: 1px solid var(--line);
+  max-width: 1240px; margin: 0 auto; padding: 14px 24px 40px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-size: 12.5px; line-height: 1.7;
+}
+.foot-bottom a { color: var(--muted); }
+.foot-bottom .en { color: var(--muted); opacity: .85; }
+@media (max-width: 760px) { .foot-bottom { padding: 14px 16px 34px; } }
 </style>
 </head>
 <body>
 <header>
   <div class="bar">
     <h1>សទ្ទានុក្រមបច្ចេកសព្ទផ្លូវការ</h1>
-    <span class="badge">ពាក្យបច្ចេកទេសផ្លូវការ</span>
   </div>
   {% block nav %}{% endblock %}
 </header>
@@ -312,9 +323,34 @@ footer {
 
 {% block body %}{% endblock %}
 <footer>
-  <div>ពាក្យទាំងអស់ត្រូវបានដកស្រង់ចេញពីឯកសារផ្លូវការរបស់រាជរដ្ឋាភិបាលកម្ពុជា។</div>
-  <div class="footer-links">
-    <a href="/how">ដំណើរការកម្មវិធី</a>
+  <div class="foot-grid">
+    <div class="foot-col foot-about">
+      <div class="foot-title">សទ្ទានុក្រមបច្ចេកសព្ទផ្លូវការ</div>
+      <p>ពាក្យទាំងអស់ត្រូវបានដកស្រង់ចេញពីឯកសារផ្លូវការរបស់រាជរដ្ឋាភិបាលកម្ពុជា។
+         ធាតុនីមួយៗមានប្រភព ក្រសួង និងឆ្នាំបោះពុម្ពភ្ជាប់មកជាមួយ។</p>
+      <p class="foot-stat">{{ '{:,}'.format(about.entries) }} ធាតុ · ប្រភពផ្លូវការ {{ about.sources|length }}</p>
+    </div>
+
+    <div class="foot-col">
+      <div class="foot-title">ស្វែងយល់បន្ថែម</div>
+      <a href="/how">របៀបដំណើរការ</a>
+      <a href="/how#accuracy">ភាពត្រឹមត្រូវនៃទិន្នន័យ</a>
+      <a href="/api">API សម្រាប់អ្នកអភិវឌ្ឍន៍</a>
+    </div>
+
+    <div class="foot-col">
+      <div class="foot-title">ចូលរួមកែលម្អ</div>
+      <a href="#" class="foot-report">រាយការណ៍កំហុស</a>
+      <a href="https://github.com/pr0meth4us/khmer-lexicon" target="_blank" rel="noopener">កូដប្រភព (GitHub)</a>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>ការកាត់ពាក្យដោយ <a href="https://github.com/VietHoang1512/khmer-nltk" target="_blank" rel="noopener">khmer-nltk</a>
+      · ទិន្នន័យអក្សរច្រឡំដោយ <a href="https://huggingface.co/seanghay" target="_blank" rel="noopener">Seanghay Yath</a>
+      (CC BY-SA 4.0)</span>
+    <span class="en">Not an official publication of the Royal Government of Cambodia.
+      Verify terms against the cited source document.</span>
   </div>
 </footer>
 <script>
@@ -335,6 +371,8 @@ footer {
     (context.khmer ? message : term).focus();
   };
   document.getElementById('report-open').onclick = e => { e.preventDefault(); openReport(); };
+  document.querySelectorAll('.foot-report').forEach(a =>
+    a.onclick = e => { e.preventDefault(); openReport(); });
   document.getElementById('report-close').onclick = () => { modal.hidden = true; };
   modal.onclick = e => { if (e.target === modal) modal.hidden = true; };
   document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.hidden = true; });
