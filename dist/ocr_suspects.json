@@ -1,0 +1,3133 @@
+{
+ "build_id": "1744764254eb",
+ "count": 347,
+ "excluded": {
+  "compound": 1211,
+  "implausible swap": 183
+ },
+ "suspects": [
+  {
+   "weight": 768,
+   "id": "official_lex_5167",
+   "khmer": "ស៊ូណាមី",
+   "rac": "ស៊ូណាមិ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "tsunami (កម្ចីពីជប៉ុន)",
+   "swap": "មី → មិ"
+  },
+  {
+   "weight": 764,
+   "id": "official_lex_2631",
+   "khmer": "តុំ",
+   "rac": "រុំ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "តុំ → រុំ"
+  },
+  {
+   "weight": 764,
+   "id": "official_lex_5229",
+   "khmer": "អង្កត",
+   "rac": "អង្ករ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "survey",
+   "swap": "ត → រ"
+  },
+  {
+   "weight": 695,
+   "id": "official_lex_2219",
+   "khmer": "មិម",
+   "rac": "មុម",
+   "source": "rac-new-words",
+   "english": "Mim (a single-stringed musical instrument)",
+   "swap": "មិ → មុ"
+  },
+  {
+   "weight": 680,
+   "id": "official_lex_1005",
+   "khmer": "មូលបត",
+   "rac": "មូលបទ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "security",
+   "swap": "ត → ទ"
+  },
+  {
+   "weight": 638,
+   "id": "official_lex_3423",
+   "khmer": "បេក",
+   "rac": "បើក",
+   "source": "nckl-country-and-city-names",
+   "english": "white creole",
+   "swap": "បេ → បើ"
+  },
+  {
+   "weight": 579,
+   "id": "official_lex_2435",
+   "khmer": "កន្ទុលឱ",
+   "rac": "កន្តុលឱ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្ទុ → ន្តុ"
+  },
+  {
+   "weight": 579,
+   "id": "official_lex_2450",
+   "khmer": "កន្ទ្រាក",
+   "rac": "កន្ត្រាក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្ទ្រា → ន្ត្រា"
+  },
+  {
+   "weight": 530,
+   "id": "official_lex_4319",
+   "khmer": "បញ្ចាប់ចូល",
+   "rac": "បញ្ជាប់ចូល",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "login / logon",
+   "swap": "ញ្ចា → ញ្ជា"
+  },
+  {
+   "weight": 530,
+   "id": "official_lex_4368",
+   "khmer": "បញ្ចាប់",
+   "rac": "បញ្ជាប់",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "link",
+   "swap": "ញ្ចា → ញ្ជា"
+  },
+  {
+   "weight": 530,
+   "id": "official_lex_4721",
+   "khmer": "ចន",
+   "rac": "ជន",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ច → ជ"
+  },
+  {
+   "weight": 444,
+   "id": "official_lex_2659",
+   "khmer": "ទៀល",
+   "rac": "ទាល",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ទៀ → ទា"
+  },
+  {
+   "weight": 434,
+   "id": "official_lex_1845",
+   "khmer": "កាលី",
+   "rac": "កាឡី",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "លី → ឡី"
+  },
+  {
+   "weight": 409,
+   "id": "official_lex_2077",
+   "khmer": "ប្រក",
+   "rac": "ព្រក",
+   "source": "rac-new-words",
+   "english": "Prak (a bowed string instrument)",
+   "swap": "ប្រ → ព្រ"
+  },
+  {
+   "weight": 404,
+   "id": "official_lex_3871",
+   "khmer": "ភ្លុច",
+   "rac": "ភ្លូច",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "key",
+   "swap": "ភ្លុ → ភ្លូ"
+  },
+  {
+   "weight": 404,
+   "id": "official_lex_4862",
+   "khmer": "យន្តុបនីយកម្ម",
+   "rac": "យន្តូបនីយកម្ម",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "mechanization",
+   "swap": "ន្តុ → ន្តូ"
+  },
+  {
+   "weight": 404,
+   "id": "official_lex_4887",
+   "khmer": "គ្រុ",
+   "rac": "គ្រូ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "គ្រុ → គ្រូ"
+  },
+  {
+   "weight": 390,
+   "id": "official_lex_0685",
+   "khmer": "ឡាញ",
+   "rac": "លាញ",
+   "source": "mptc-digital-lexicon",
+   "english": "Line",
+   "swap": "ឡា → លា"
+  },
+  {
+   "weight": 390,
+   "id": "official_lex_1875",
+   "khmer": "កំឡុង",
+   "rac": "កំលុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឡុ → លុ"
+  },
+  {
+   "weight": 386,
+   "id": "official_lex_2875",
+   "khmer": "ស្ម",
+   "rac": "ស្ន",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្ម → ស្ន"
+  },
+  {
+   "weight": 384,
+   "id": "official_lex_1948",
+   "khmer": "គ្រុង",
+   "rac": "ក្រុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "គ្រុ → ក្រុ"
+  },
+  {
+   "weight": 384,
+   "id": "official_lex_2004",
+   "khmer": "ជើងគោស",
+   "rac": "ជើងកោស",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "គោ → កោ"
+  },
+  {
+   "weight": 384,
+   "id": "official_lex_2677",
+   "khmer": "បង្គ",
+   "rac": "បង្ក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្គ → ង្ក"
+  },
+  {
+   "weight": 384,
+   "id": "official_lex_2735",
+   "khmer": "ព្រះអង្គោល",
+   "rac": "ព្រះអង្កោល",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្គោ → ង្កោ"
+  },
+  {
+   "weight": 384,
+   "id": "official_lex_5877",
+   "khmer": "អគីរី",
+   "rac": "អកីរី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acheiria",
+   "swap": "គី → កី"
+  },
+  {
+   "weight": 383,
+   "id": "official_lex_1277",
+   "khmer": "ស៊ែន",
+   "rac": "ស៊ែម",
+   "source": "nckl-technology-and-science",
+   "english": "(SAN: Storage Area Network)",
+   "swap": "ន → ម"
+  },
+  {
+   "weight": 383,
+   "id": "official_lex_2522",
+   "khmer": "ឃ្នង់",
+   "rac": "ឃ្មង់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឃ្ន → ឃ្ម"
+  },
+  {
+   "weight": 383,
+   "id": "official_lex_4047",
+   "khmer": "ខ្នាញ់",
+   "rac": "ខ្មាញ់",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "",
+   "swap": "ខ្នា → ខ្មា"
+  },
+  {
+   "weight": 376,
+   "id": "official_lex_0725",
+   "khmer": "សល",
+   "rac": "សរ",
+   "source": "mptc-digital-lexicon",
+   "english": "Cell",
+   "swap": "ល → រ"
+  },
+  {
+   "weight": 353,
+   "id": "official_lex_2745",
+   "khmer": "ភាស",
+   "rac": "ភៀស",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ភា → ភៀ"
+  },
+  {
+   "weight": 329,
+   "id": "official_lex_2007",
+   "khmer": "ញិញ",
+   "rac": "ញេញ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ញិ → ញេ"
+  },
+  {
+   "weight": 329,
+   "id": "official_lex_2093",
+   "khmer": "ប្រផូ",
+   "rac": "ប្រភូ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ផូ → ភូ"
+  },
+  {
+   "weight": 329,
+   "id": "official_lex_2146",
+   "khmer": "ផ្លុង",
+   "rac": "ភ្លុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ផ្លុ → ភ្លុ"
+  },
+  {
+   "weight": 326,
+   "id": "official_lex_2451",
+   "khmer": "កន្ទ្រាកដំរី",
+   "rac": "កន្ទ្រោកដំរី",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្ទ្រា → ន្ទ្រោ"
+  },
+  {
+   "weight": 326,
+   "id": "official_lex_4290",
+   "khmer": "បាយអគាម័យ",
+   "rac": "បាយអគោម័យ",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "",
+   "swap": "គា → គោ"
+  },
+  {
+   "weight": 313,
+   "id": "official_lex_1419",
+   "khmer": "ដឺក",
+   "rac": "ដឹក",
+   "source": "nckl-technology-and-science",
+   "english": "degree",
+   "swap": "ដឺ → ដឹ"
+  },
+  {
+   "weight": 292,
+   "id": "official_lex_0672",
+   "khmer": "សែល",
+   "rac": "សែក",
+   "source": "mptc-digital-lexicon",
+   "english": "Cell",
+   "swap": "ល → ក"
+  },
+  {
+   "weight": 292,
+   "id": "official_lex_2302",
+   "khmer": "ស្រោល",
+   "rac": "ស្រោក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ល → ក"
+  },
+  {
+   "weight": 292,
+   "id": "official_lex_3348",
+   "khmer": "ម៉ាល",
+   "rac": "ម៉ាក",
+   "source": "nckl-country-and-city-names",
+   "english": "Male",
+   "swap": "ល → ក"
+  },
+  {
+   "weight": 291,
+   "id": "official_lex_2092",
+   "khmer": "ប្រផុក",
+   "rac": "ប្រផុត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ក → ត"
+  },
+  {
+   "weight": 291,
+   "id": "official_lex_2978",
+   "khmer": "ក្រិក",
+   "rac": "ក្រិត",
+   "source": "nckl-country-and-city-names",
+   "english": "Greece",
+   "swap": "ក → ត"
+  },
+  {
+   "weight": 272,
+   "id": "official_lex_5669",
+   "khmer": "អូតូបស៊ី",
+   "rac": "អូតុបស៊ី",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "autopsy",
+   "swap": "តូ → តុ"
+  },
+  {
+   "weight": 270,
+   "id": "official_lex_3893",
+   "khmer": "វប",
+   "rac": "វន",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "web/w3/www",
+   "swap": "ប → ន"
+  },
+  {
+   "weight": 264,
+   "id": "official_lex_2361",
+   "khmer": "ប្រដាក",
+   "rac": "ប្រតាក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ដា → តា"
+  },
+  {
+   "weight": 264,
+   "id": "official_lex_2989",
+   "khmer": "ឆាដ",
+   "rac": "ឆាត",
+   "source": "nckl-country-and-city-names",
+   "english": "Chad",
+   "swap": "ដ → ត"
+  },
+  {
+   "weight": 254,
+   "id": "official_lex_2370",
+   "khmer": "តាតៅ",
+   "rac": "កាតៅ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "តា → កា"
+  },
+  {
+   "weight": 253,
+   "id": "official_lex_3430",
+   "khmer": "ហ្វែ",
+   "rac": "ហ្វេ",
+   "source": "nckl-country-and-city-names",
+   "english": "fjeld",
+   "swap": "ហ្វែ → ហ្វេ"
+  },
+  {
+   "weight": 212,
+   "id": "official_lex_3194",
+   "khmer": "នូក",
+   "rac": "បូក",
+   "source": "nckl-country-and-city-names",
+   "english": "Nuuk",
+   "swap": "នូ → បូ"
+  },
+  {
+   "weight": 212,
+   "id": "official_lex_4550",
+   "khmer": "នសាទ",
+   "rac": "បសាទ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "fishery",
+   "swap": "ន → ប"
+  },
+  {
+   "weight": 207,
+   "id": "official_lex_2420",
+   "khmer": "រំដេច",
+   "rac": "រំដេក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ច → ក"
+  },
+  {
+   "weight": 206,
+   "id": "official_lex_2029",
+   "khmer": "ម្ហូម",
+   "rac": "ម្ហូប",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម → ប"
+  },
+  {
+   "weight": 206,
+   "id": "official_lex_2202",
+   "khmer": "មណ្ឌា",
+   "rac": "បណ្ឌា",
+   "source": "rac-new-words",
+   "english": "Monda (goddess)",
+   "swap": "ម → ប"
+  },
+  {
+   "weight": 206,
+   "id": "official_lex_3334",
+   "khmer": "រ៉ូម",
+   "rac": "រ៉ូប",
+   "source": "nckl-country-and-city-names",
+   "english": "Italy",
+   "swap": "ម → ប"
+  },
+  {
+   "weight": 206,
+   "id": "official_lex_4331",
+   "khmer": "ភឹម",
+   "rac": "ភឹប",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "margin",
+   "swap": "ម → ប"
+  },
+  {
+   "weight": 203,
+   "id": "official_lex_3692",
+   "khmer": "សិល្បះ",
+   "rac": "សិល្បៈ",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "art",
+   "swap": "ល្បះ → ល្បៈ"
+  },
+  {
+   "weight": 186,
+   "id": "official_lex_5639",
+   "khmer": "ធឿក",
+   "rac": "ថឿក",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "albinism",
+   "swap": "ធឿ → ថឿ"
+  },
+  {
+   "weight": 170,
+   "id": "official_lex_1294",
+   "khmer": "វោបករ",
+   "rac": "វេបករ",
+   "source": "nckl-technology-and-science",
+   "english": "webmaster",
+   "swap": "វោ → វេ"
+  },
+  {
+   "weight": 162,
+   "id": "official_lex_2304",
+   "khmer": "ហ៊ត",
+   "rac": "ហ៊ស",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ត → ស"
+  },
+  {
+   "weight": 145,
+   "id": "official_lex_2266",
+   "khmer": "ស្វាដី",
+   "rac": "ល្វាដី",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្វា → ល្វា"
+  },
+  {
+   "weight": 145,
+   "id": "official_lex_2825",
+   "khmer": "សង្ស័រ",
+   "rac": "សង្ស័យ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "រ → យ"
+  },
+  {
+   "weight": 145,
+   "id": "official_lex_5880",
+   "khmer": "អកូសួរី",
+   "rac": "អកូលួរី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acholuria",
+   "swap": "សួ → លួ"
+  },
+  {
+   "weight": 126,
+   "id": "official_lex_2017",
+   "khmer": "ត្រួន",
+   "rac": "ត្រួត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន → ត"
+  },
+  {
+   "weight": 126,
+   "id": "official_lex_2300",
+   "khmer": "ស្រុន",
+   "rac": "ស្រុត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន → ត"
+  },
+  {
+   "weight": 123,
+   "id": "official_lex_3120",
+   "khmer": "វ៉ាឌីស",
+   "rac": "រ៉ាឌីស",
+   "source": "nckl-country-and-city-names",
+   "english": "Vaduz",
+   "swap": "វ៉ា → រ៉ា"
+  },
+  {
+   "weight": 123,
+   "id": "official_lex_3927",
+   "khmer": "អូវ",
+   "rac": "អូរ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "ovary",
+   "swap": "វ → រ"
+  },
+  {
+   "weight": 116,
+   "id": "official_lex_1273",
+   "khmer": "ភន",
+   "rac": "ពន",
+   "source": "nckl-technology-and-science",
+   "english": "(PAN: Personal Area Network)",
+   "swap": "ភ → ព"
+  },
+  {
+   "weight": 116,
+   "id": "official_lex_1868",
+   "khmer": "កំពាន",
+   "rac": "កំពាង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន → ង"
+  },
+  {
+   "weight": 116,
+   "id": "official_lex_2851",
+   "khmer": "ស្ពន់",
+   "rac": "ស្ពង់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន់ → ង់"
+  },
+  {
+   "weight": 115,
+   "id": "official_lex_2400",
+   "khmer": "អល់",
+   "rac": "អស់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ល់ → ស់"
+  },
+  {
+   "weight": 112,
+   "id": "official_lex_3854",
+   "khmer": "លីប",
+   "rac": "លីវ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "chip",
+   "swap": "ប → វ"
+  },
+  {
+   "weight": 110,
+   "id": "official_lex_1870",
+   "khmer": "កំពេញ",
+   "rac": "កំពាញ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ពេ → ពា"
+  },
+  {
+   "weight": 110,
+   "id": "official_lex_3064",
+   "khmer": "បេលី",
+   "rac": "បាលី",
+   "source": "nckl-country-and-city-names",
+   "english": "Belize",
+   "swap": "បេ → បា"
+  },
+  {
+   "weight": 95,
+   "id": "official_lex_3006",
+   "khmer": "ណូរូ",
+   "rac": "ណូរី",
+   "source": "nckl-country-and-city-names",
+   "english": "Nauru",
+   "swap": "រូ → រី"
+  },
+  {
+   "weight": 92,
+   "id": "official_lex_5059",
+   "khmer": "ពហុទេពនិយម",
+   "rac": "ពហុទេវនិយម",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "Henotheism",
+   "swap": "ព → វ"
+  },
+  {
+   "weight": 89,
+   "id": "official_lex_1308",
+   "khmer": "ស្ពន",
+   "rac": "ស្ពក",
+   "source": "nckl-technology-and-science",
+   "english": "scan",
+   "swap": "ន → ក"
+  },
+  {
+   "weight": 89,
+   "id": "official_lex_2068",
+   "khmer": "បើស",
+   "rac": "បើក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស → ក"
+  },
+  {
+   "weight": 89,
+   "id": "official_lex_3035",
+   "khmer": "នប៉ាល់",
+   "rac": "កប៉ាល់",
+   "source": "nckl-country-and-city-names",
+   "english": "Nepal",
+   "swap": "ន → ក"
+  },
+  {
+   "weight": 88,
+   "id": "official_lex_3038",
+   "khmer": "បារ៉ែន",
+   "rac": "បារ៉ែល",
+   "source": "nckl-country-and-city-names",
+   "english": "Bahrain",
+   "swap": "ន → ល"
+  },
+  {
+   "weight": 86,
+   "id": "official_lex_2385",
+   "khmer": "ក្រកោះ",
+   "rac": "ប្រកោះ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ក្រ → ប្រ"
+  },
+  {
+   "weight": 86,
+   "id": "official_lex_4876",
+   "khmer": "កំប៉ះ",
+   "rac": "បំប៉ះ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "កំ → បំ"
+  },
+  {
+   "weight": 84,
+   "id": "official_lex_4519",
+   "khmer": "ធួល",
+   "rac": "ទួល",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "host",
+   "swap": "ធួ → ទួ"
+  },
+  {
+   "weight": 82,
+   "id": "official_lex_1984",
+   "khmer": "ឆ្កែង",
+   "rac": "ឆ្នែង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឆ្កែ → ឆ្នែ"
+  },
+  {
+   "weight": 82,
+   "id": "official_lex_5863",
+   "khmer": "ជឿក",
+   "rac": "ជឿន",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "albinism",
+   "swap": "ក → ន"
+  },
+  {
+   "weight": 81,
+   "id": "official_lex_2033",
+   "khmer": "បង្វល់",
+   "rac": "កង្វល់",
+   "source": "rac-new-words",
+   "english": "Bong Ngol (medicinal plant)",
+   "swap": "ប → ក"
+  },
+  {
+   "weight": 81,
+   "id": "official_lex_3171",
+   "khmer": "បាបាន",
+   "rac": "បាកាន",
+   "source": "nckl-country-and-city-names",
+   "english": "Mbabane",
+   "swap": "បា → កា"
+  },
+  {
+   "weight": 81,
+   "id": "official_lex_4697",
+   "khmer": "កបិត",
+   "rac": "កកិត",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "បិ → កិ"
+  },
+  {
+   "weight": 81,
+   "id": "official_lex_5928",
+   "khmer": "អូតូប្លាវ",
+   "rac": "អូតូក្លាវ",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "autoclave",
+   "swap": "ប្លា → ក្លា"
+  },
+  {
+   "weight": 79,
+   "id": "official_lex_2643",
+   "khmer": "ទន្ស",
+   "rac": "ទន្ត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្ស → ន្ត"
+  },
+  {
+   "weight": 75,
+   "id": "official_lex_3110",
+   "khmer": "សាណា",
+   "rac": "សាណិ",
+   "source": "nckl-country-and-city-names",
+   "english": "Sanaa",
+   "swap": "ណា → ណិ"
+  },
+  {
+   "weight": 75,
+   "id": "official_lex_4930",
+   "khmer": "ដីស្អាត",
+   "rac": "ដីស្អិត",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "",
+   "swap": "ស្អា → ស្អិ"
+  },
+  {
+   "weight": 70,
+   "id": "official_lex_2099",
+   "khmer": "ប្រមោញ",
+   "rac": "ប្រមុញ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "មោ → មុ"
+  },
+  {
+   "weight": 68,
+   "id": "official_lex_2325",
+   "khmer": "អន្លូត",
+   "rac": "អន្លូង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ត → ង"
+  },
+  {
+   "weight": 66,
+   "id": "official_lex_1858",
+   "khmer": "កំប៉ុញ",
+   "rac": "កំប៉ុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ញ → ង"
+  },
+  {
+   "weight": 66,
+   "id": "official_lex_2405",
+   "khmer": "សង្ឃរ",
+   "rac": "សង្ឃក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "រ → ក"
+  },
+  {
+   "weight": 66,
+   "id": "official_lex_2947",
+   "khmer": "កាតា",
+   "rac": "កាចា",
+   "source": "nckl-country-and-city-names",
+   "english": "Qatar",
+   "swap": "តា → ចា"
+  },
+  {
+   "weight": 66,
+   "id": "official_lex_5847",
+   "khmer": "ចញ",
+   "rac": "ចង",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "efferent",
+   "swap": "ញ → ង"
+  },
+  {
+   "weight": 62,
+   "id": "official_lex_3173",
+   "khmer": "ប៊ែន",
+   "rac": "ប៉ែន",
+   "source": "nckl-country-and-city-names",
+   "english": "Bern",
+   "swap": "ប៊ែ → ប៉ែ"
+  },
+  {
+   "weight": 59,
+   "id": "official_lex_3159",
+   "khmer": "ដាកា",
+   "rac": "ដីកា",
+   "source": "nckl-country-and-city-names",
+   "english": "Dakar",
+   "swap": "ដា → ដី"
+  },
+  {
+   "weight": 55,
+   "id": "official_lex_3267",
+   "khmer": "ដាក្ក",
+   "rac": "ដាក់",
+   "source": "nckl-country-and-city-names",
+   "english": "Dhaka",
+   "swap": "ក្ក → ក់"
+  },
+  {
+   "weight": 51,
+   "id": "official_lex_2438",
+   "khmer": "កន្ទឺ",
+   "rac": "រន្ទឺ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ក → រ"
+  },
+  {
+   "weight": 51,
+   "id": "official_lex_4916",
+   "khmer": "ទនះ",
+   "rac": "ននះ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "",
+   "swap": "ទ → ន"
+  },
+  {
+   "weight": 50,
+   "id": "official_lex_2144",
+   "khmer": "ផ្លង់",
+   "rac": "ផ្នង់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ផ្ល → ផ្ន"
+  },
+  {
+   "weight": 50,
+   "id": "official_lex_4928",
+   "khmer": "ជន្លាយ",
+   "rac": "ជន្លាស",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "",
+   "swap": "យ → ស"
+  },
+  {
+   "weight": 48,
+   "id": "official_lex_3390",
+   "khmer": "ស្វីស",
+   "rac": "ស្វាស",
+   "source": "nckl-country-and-city-names",
+   "english": "Switzerland",
+   "swap": "ស្វី → ស្វា"
+  },
+  {
+   "weight": 48,
+   "id": "official_lex_4156",
+   "khmer": "សាស្ត",
+   "rac": "សាន្ត",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "",
+   "swap": "ស្ត → ន្ត"
+  },
+  {
+   "weight": 47,
+   "id": "official_lex_1341",
+   "khmer": "វ៉ាង់",
+   "rac": "វ៉ាល់",
+   "source": "nckl-technology-and-science",
+   "english": "variance",
+   "swap": "ង់ → ល់"
+  },
+  {
+   "weight": 46,
+   "id": "official_lex_2990",
+   "khmer": "យ៉ាមណា",
+   "rac": "យ៉ាងណា",
+   "source": "nckl-country-and-city-names",
+   "english": "N'Djamena",
+   "swap": "ម → ង"
+  },
+  {
+   "weight": 45,
+   "id": "official_lex_3226",
+   "khmer": "បាគូ",
+   "rac": "បាគោ",
+   "source": "nckl-country-and-city-names",
+   "english": "Baku",
+   "swap": "គូ → គោ"
+  },
+  {
+   "weight": 42,
+   "id": "official_lex_1300",
+   "khmer": "សញ្ញ",
+   "rac": "យញ្ញ",
+   "source": "nckl-technology-and-science",
+   "english": "signal",
+   "swap": "ស → យ"
+  },
+  {
+   "weight": 42,
+   "id": "official_lex_1972",
+   "khmer": "ឃ្នាស",
+   "rac": "ឃ្នាប",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស → ប"
+  },
+  {
+   "weight": 42,
+   "id": "official_lex_3189",
+   "khmer": "អាម៉ាន់",
+   "rac": "អាម៉ាស់",
+   "source": "nckl-country-and-city-names",
+   "english": "Amman",
+   "swap": "ន់ → ស់"
+  },
+  {
+   "weight": 41,
+   "id": "official_lex_5612",
+   "khmer": "អមូត",
+   "rac": "អមូល",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "anuria",
+   "swap": "ត → ល"
+  },
+  {
+   "weight": 40,
+   "id": "official_lex_3535",
+   "khmer": "បញ្ចំ",
+   "rac": "បញ្ចា",
+   "source": "nckl-economics",
+   "english": "pawn",
+   "swap": "ញ្ចំ → ញ្ចា"
+  },
+  {
+   "weight": 39,
+   "id": "official_lex_1844",
+   "khmer": "កាណា",
+   "rac": "អាណា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "កា → អា"
+  },
+  {
+   "weight": 39,
+   "id": "official_lex_2981",
+   "khmer": "សាគប",
+   "rac": "សាគរ",
+   "source": "nckl-country-and-city-names",
+   "english": "Zagreb",
+   "swap": "ប → រ"
+  },
+  {
+   "weight": 39,
+   "id": "official_lex_4684",
+   "khmer": "កន្តំ",
+   "rac": "អន្តំ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ក → អ"
+  },
+  {
+   "weight": 34,
+   "id": "official_lex_2641",
+   "khmer": "ទន្លឹង",
+   "rac": "ទន្លីង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្លឹ → ន្លី"
+  },
+  {
+   "weight": 33,
+   "id": "official_lex_2934",
+   "khmer": "អ៊ីត",
+   "rac": "អ៊ឺត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "អ៊ី → អ៊ឺ"
+  },
+  {
+   "weight": 32,
+   "id": "official_lex_2903",
+   "khmer": "ហោរ៉",
+   "rac": "ហោរា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "រ៉ → រា"
+  },
+  {
+   "weight": 32,
+   "id": "official_lex_5125",
+   "khmer": "ទន្ល",
+   "rac": "ទន្ត",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "river",
+   "swap": "ន្ល → ន្ត"
+  },
+  {
+   "weight": 30,
+   "id": "official_lex_2832",
+   "khmer": "សម្ភុង",
+   "rac": "សម្កុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម្ភុ → ម្កុ"
+  },
+  {
+   "weight": 29,
+   "id": "official_lex_1092",
+   "khmer": "ឯកច្ឆ័ន្ទ",
+   "rac": "ឯកច្ឆាន្ទ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "unanimous",
+   "swap": "ច្ឆ័ → ច្ឆា"
+  },
+  {
+   "weight": 29,
+   "id": "official_lex_2303",
+   "khmer": "ហង់ទឹក",
+   "rac": "លង់ទឹក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ហ → ល"
+  },
+  {
+   "weight": 29,
+   "id": "official_lex_2923",
+   "khmer": "អន្លើប",
+   "rac": "អន្លឹប",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្លើ → ន្លឹ"
+  },
+  {
+   "weight": 28,
+   "id": "official_lex_2381",
+   "khmer": "ពង្រញ",
+   "rac": "ពង្រន",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ញ → ន"
+  },
+  {
+   "weight": 28,
+   "id": "official_lex_2815",
+   "khmer": "ល្វ",
+   "rac": "ល្ង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ល្វ → ល្ង"
+  },
+  {
+   "weight": 27,
+   "id": "official_lex_2389",
+   "khmer": "ភេកា",
+   "rac": "បេកា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ភេ → បេ"
+  },
+  {
+   "weight": 27,
+   "id": "official_lex_2803",
+   "khmer": "លមើ",
+   "rac": "មមើ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ល → ម"
+  },
+  {
+   "weight": 26,
+   "id": "official_lex_1866",
+   "khmer": "កំប្រុញ",
+   "rac": "កំប្រុក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ញ → ក"
+  },
+  {
+   "weight": 26,
+   "id": "official_lex_2573",
+   "khmer": "ហ្វាំង",
+   "rac": "ហ្នាំង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ហ្វាំ → ហ្នាំ"
+  },
+  {
+   "weight": 26,
+   "id": "official_lex_2843",
+   "khmer": "សើរសាច់",
+   "rac": "សីរសាច់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "សើ → សី"
+  },
+  {
+   "weight": 26,
+   "id": "official_lex_4693",
+   "khmer": "រយ៉",
+   "rac": "រញ៉",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "យ៉ → ញ៉"
+  },
+  {
+   "weight": 25,
+   "id": "official_lex_2091",
+   "khmer": "បបួយ",
+   "rac": "បបួល",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "យ → ល"
+  },
+  {
+   "weight": 23,
+   "id": "official_lex_5373",
+   "khmer": "អាណាម",
+   "rac": "អារាម",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "",
+   "swap": "ណា → រា"
+  },
+  {
+   "weight": 22,
+   "id": "official_lex_4080",
+   "khmer": "វាចកៈ",
+   "rac": "វាទកៈ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "voice",
+   "swap": "ច → ទ"
+  },
+  {
+   "weight": 21,
+   "id": "official_lex_2852",
+   "khmer": "ស្ពន់ទំនប់",
+   "rac": "ស្គន់ទំនប់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្ព → ស្គ"
+  },
+  {
+   "weight": 20,
+   "id": "official_lex_3855",
+   "khmer": "សំណុំឈឺប",
+   "rac": "សំណុំឈីប",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "chipset",
+   "swap": "ឈឺ → ឈី"
+  },
+  {
+   "weight": 20,
+   "id": "official_lex_5876",
+   "khmer": "អកឺរ៉ូប៉ូឌី",
+   "rac": "អកីរ៉ូប៉ូឌី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acheiropodia",
+   "swap": "កឺ → កី"
+  },
+  {
+   "weight": 19,
+   "id": "official_lex_0671",
+   "khmer": "សបករណ៍",
+   "rac": "អបករណ៍",
+   "source": "mptc-digital-lexicon",
+   "english": "Server",
+   "swap": "ស → អ"
+  },
+  {
+   "weight": 19,
+   "id": "official_lex_2386",
+   "khmer": "លំពោះ",
+   "rac": "ទំពោះ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "លំ → ទំ"
+  },
+  {
+   "weight": 17,
+   "id": "official_lex_2340",
+   "khmer": "អំត",
+   "rac": "អុត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "អំ → អុ"
+  },
+  {
+   "weight": 17,
+   "id": "official_lex_3306",
+   "khmer": "អាក្រ",
+   "rac": "អារ្យ",
+   "source": "nckl-country-and-city-names",
+   "english": "Accra",
+   "swap": "ក្រ → រ្យ"
+  },
+  {
+   "weight": 17,
+   "id": "official_lex_3355",
+   "khmer": "រ៉ាបា",
+   "rac": "រ៉ាដា",
+   "source": "nckl-country-and-city-names",
+   "english": "Rabat",
+   "swap": "បា → ដា"
+  },
+  {
+   "weight": 17,
+   "id": "official_lex_3707",
+   "khmer": "វគ្គំ",
+   "rac": "វគ្គុ",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "kidney",
+   "swap": "គ្គំ → គ្គុ"
+  },
+  {
+   "weight": 15,
+   "id": "official_lex_4449",
+   "khmer": "ប្រសេះទឹកបាយ",
+   "rac": "ប្រមេះទឹកបាយ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "blennorrhagia/gonorrhea",
+   "swap": "សេះ → មេះ"
+  },
+  {
+   "weight": 14,
+   "id": "official_lex_1212",
+   "khmer": "សហព័ន្ឋ",
+   "rac": "សហព័ន្ធ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "spouse",
+   "swap": "ន្ឋ → ន្ធ"
+  },
+  {
+   "weight": 14,
+   "id": "official_lex_1220",
+   "khmer": "សិទ្ឋិ",
+   "rac": "សិទ្ធិ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "right",
+   "swap": "ទ្ឋិ → ទ្ធិ"
+  },
+  {
+   "weight": 14,
+   "id": "official_lex_1256",
+   "khmer": "ឯកសិទ្ឋិ",
+   "rac": "ឯកសិទ្ធិ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "privilege",
+   "swap": "ទ្ឋិ → ទ្ធិ"
+  },
+  {
+   "weight": 14,
+   "id": "official_lex_4477",
+   "khmer": "សម្ហូប",
+   "rac": "សម្រូប",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "absorption",
+   "swap": "ម្ហូ → ម្រូ"
+  },
+  {
+   "weight": 13,
+   "id": "official_lex_1018",
+   "khmer": "វិការៈ",
+   "rac": "វិហារៈ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "defect",
+   "swap": "កា → ហា"
+  },
+  {
+   "weight": 12,
+   "id": "official_lex_2602",
+   "khmer": "តម្ជុល",
+   "rac": "តម្ពុល",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម្ជុ → ម្ពុ"
+  },
+  {
+   "weight": 12,
+   "id": "official_lex_3142",
+   "khmer": "ស៊ីលី",
+   "rac": "ស៊ីជី",
+   "source": "nckl-country-and-city-names",
+   "english": "Chile",
+   "swap": "លី → ជី"
+  },
+  {
+   "weight": 12,
+   "id": "official_lex_3316",
+   "khmer": "ហទី",
+   "rac": "ហយី",
+   "source": "nckl-country-and-city-names",
+   "english": "Haiti",
+   "swap": "ទី → យី"
+  },
+  {
+   "weight": 12,
+   "id": "official_lex_4278",
+   "khmer": "ទូកដៃ",
+   "rac": "លូកដៃ",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "",
+   "swap": "ទូ → លូ"
+  },
+  {
+   "weight": 11,
+   "id": "official_lex_2783",
+   "khmer": "រលួសផ្លុង",
+   "rac": "រលួសផ្អុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ផ្លុ → ផ្អុ"
+  },
+  {
+   "weight": 11,
+   "id": "official_lex_4115",
+   "khmer": "អច្ឆរិយៈ",
+   "rac": "មច្ឆរិយៈ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "",
+   "swap": "អ → ម"
+  },
+  {
+   "weight": 10,
+   "id": "official_lex_2746",
+   "khmer": "ភ្នំស្នែង",
+   "rac": "ភ្នំភ្នែង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្នែ → ភ្នែ"
+  },
+  {
+   "weight": 10,
+   "id": "official_lex_2880",
+   "khmer": "ស្រជិត",
+   "rac": "ស្រលិត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ជិ → លិ"
+  },
+  {
+   "weight": 10,
+   "id": "official_lex_3733",
+   "khmer": "ដង្ក",
+   "rac": "បង្ក",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "flea",
+   "swap": "ដ → ប"
+  },
+  {
+   "weight": 9,
+   "id": "official_lex_2770",
+   "khmer": "ម្ពូទេស",
+   "rac": "ម្លូទេស",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម្ពូ → ម្លូ"
+  },
+  {
+   "weight": 9,
+   "id": "official_lex_2928",
+   "khmer": "អាចម៍ឆ្អឹស",
+   "rac": "អាចម៍ឆ្ពឹស",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឆ្អឹ → ឆ្ពឹ"
+  },
+  {
+   "weight": 9,
+   "id": "official_lex_2944",
+   "khmer": "អំពំ",
+   "rac": "អំពះ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ពំ → ពះ"
+  },
+  {
+   "weight": 8,
+   "id": "official_lex_2529",
+   "khmer": "ចង្កូមស្វា",
+   "rac": "ចង្កូមស្កា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្វា → ស្កា"
+  },
+  {
+   "weight": 8,
+   "id": "official_lex_3253",
+   "khmer": "គីតូ",
+   "rac": "គីឡូ",
+   "source": "nckl-country-and-city-names",
+   "english": "Quito",
+   "swap": "តូ → ឡូ"
+  },
+  {
+   "weight": 8,
+   "id": "official_lex_3760",
+   "khmer": "ប្ញស",
+   "rac": "ប្រស",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "root",
+   "swap": "ប្ញ → ប្រ"
+  },
+  {
+   "weight": 7,
+   "id": "official_lex_2179",
+   "khmer": "ពុំពែន",
+   "rac": "ពុំសែន",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ពែ → សែ"
+  },
+  {
+   "weight": 7,
+   "id": "official_lex_4811",
+   "khmer": "ព្រឡាញ់",
+   "rac": "ស្រឡាញ់",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ព្រ → ស្រ"
+  },
+  {
+   "weight": 7,
+   "id": "official_lex_5911",
+   "khmer": "អាក់ស",
+   "rac": "អាកាស",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "access",
+   "swap": "ក់ → កា"
+  },
+  {
+   "weight": 6,
+   "id": "official_lex_2094",
+   "khmer": "ប្រផោក",
+   "rac": "ប្រមោក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ផោ → មោ"
+  },
+  {
+   "weight": 6,
+   "id": "official_lex_3300",
+   "khmer": "តាលិន",
+   "rac": "ឍាលិន",
+   "source": "nckl-country-and-city-names",
+   "english": "Tallinn",
+   "swap": "តា → ឍា"
+  },
+  {
+   "weight": 6,
+   "id": "official_lex_5652",
+   "khmer": "អាណេស",
+   "rac": "អាទេស",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "aneurysm",
+   "swap": "ណេ → ទេ"
+  },
+  {
+   "weight": 5,
+   "id": "official_lex_2632",
+   "khmer": "ប៊ើក",
+   "rac": "ប៊ិក",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ប៊ើ → ប៊ិ"
+  },
+  {
+   "weight": 5,
+   "id": "official_lex_3917",
+   "khmer": "ភ្លុយស៊ីដ",
+   "rac": "គ្លុយស៊ីដ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "glucid",
+   "swap": "ភ្លុ → គ្លុ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0070",
+   "khmer": "ជីវចម្រុះ",
+   "rac": "ជីវៈចម្រុះ",
+   "source": "pentagonal-strategy-phase1",
+   "english": "biodiversity",
+   "swap": "វ → វៈ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0091",
+   "khmer": "ពាណិជ្ជបនីយកម្ម",
+   "rac": "ពាណិជ្ជូបនីយកម្ម",
+   "source": "pentagonal-strategy-phase1",
+   "english": "commercialization",
+   "swap": "ជ្ជ → ជ្ជូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0227",
+   "khmer": "សកលភាវូបនីយកម្ម",
+   "rac": "សាកលភាវូបនីយកម្ម",
+   "source": "pentagonal-strategy-phase1",
+   "english": "globalization",
+   "swap": "ស → សា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0758",
+   "khmer": "សវូបករណ៍",
+   "rac": "សេវូបករណ៍",
+   "source": "mptc-digital-lexicon",
+   "english": "Server",
+   "swap": "ស → សេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0845",
+   "khmer": "សញ្ញាតិ",
+   "rac": "សញ្ជាតិ",
+   "source": "nckl-political-science-and-diplomacy",
+   "english": "nationality",
+   "swap": "ញ្ញា → ញ្ជា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0913",
+   "khmer": "គណនយ្យ",
+   "rac": "គណនេយ្យ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "accounting",
+   "swap": "ន → នេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0930",
+   "khmer": "ដីបើ",
+   "rac": "ដីប្លី",
+   "source": "council-of-ministers-legal-terms",
+   "english": "dominant land",
+   "swap": "បើ → ប្លី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_0963",
+   "khmer": "បញ្ជីសារពើភ័ណ្ឌ",
+   "rac": "បញ្ជីសារពើភណ្ឌ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "inventory list of properties",
+   "swap": "ភ័ → ភ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1028",
+   "khmer": "សមត្ថជំន",
+   "rac": "សមត្ថជន",
+   "source": "council-of-ministers-legal-terms",
+   "english": "person of full capacity",
+   "swap": "ជំ → ជ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1167",
+   "khmer": "បទអាជ្ញ",
+   "rac": "បទអាជ្ញា",
+   "source": "council-of-ministers-legal-terms",
+   "english": "criminal offence",
+   "swap": "ជ្ញ → ជ្ញា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1181",
+   "khmer": "មតិក",
+   "rac": "មត្លិក",
+   "source": "council-of-ministers-legal-terms",
+   "english": "estate",
+   "swap": "តិ → ត្លិ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1186",
+   "khmer": "មូលប្បទានបត",
+   "rac": "មូលប្បទានបត្រ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "check",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1202",
+   "khmer": "សច្ចានមតិ",
+   "rac": "សច្ចានុមតិ",
+   "source": "council-of-ministers-legal-terms",
+   "english": "ratification",
+   "swap": "ន → នុ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1291",
+   "khmer": "លខយោង",
+   "rac": "លេខយោង",
+   "source": "nckl-technology-and-science",
+   "english": "footnote",
+   "swap": "ល → លេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1295",
+   "khmer": "អឺរ៉",
+   "rac": "អឺរ៉េ",
+   "source": "nckl-technology-and-science",
+   "english": "array",
+   "swap": "រ៉ → រ៉េ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1309",
+   "khmer": "ស្ពនន័រ",
+   "rac": "ស្គែនន័រ",
+   "source": "nckl-technology-and-science",
+   "english": "scanner",
+   "swap": "ស្ព → ស្គែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1346",
+   "khmer": "ចំនួនគត់សស",
+   "rac": "ចំនួនគត់សេស",
+   "source": "nckl-technology-and-science",
+   "english": "odd number",
+   "swap": "ស → សេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1367",
+   "khmer": "ត្រីកោណមាត",
+   "rac": "ត្រីកោណមាត្រ",
+   "source": "nckl-technology-and-science",
+   "english": "trigonometry",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1371",
+   "khmer": "ផ្ចិតស៊ូ",
+   "rac": "ផ្ចិតស្វ៊ែ",
+   "source": "nckl-technology-and-science",
+   "english": "centre of the sphere",
+   "swap": "ស៊ូ → ស្វ៊ែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1437",
+   "khmer": "សមាមាត",
+   "rac": "សមាមាត្រ",
+   "source": "nckl-technology-and-science",
+   "english": "proportion",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1468",
+   "khmer": "អនុគមន៍",
+   "rac": "អនុគ្គមន៍",
+   "source": "nckl-technology-and-science",
+   "english": "function",
+   "swap": "គ → គ្គ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1510",
+   "khmer": "មណ្ឌលអាកាសក្ត",
+   "rac": "មណ្ឌលអាកាសក្រៅ",
+   "source": "nckl-technology-and-science",
+   "english": "thermosphere",
+   "swap": "ក្ត → ក្រៅ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1511",
+   "khmer": "មណ្ឌលអីយ៉ុង",
+   "rac": "មណ្ឌលអ៊ីយ៉ុង",
+   "source": "nckl-technology-and-science",
+   "english": "ionosphere",
+   "swap": "អី → អ៊ី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1562",
+   "khmer": "ពលករទេសន្តរ៍ប្រវេសន៍",
+   "rac": "ពលករទេសន្តរប្រវេសន៍",
+   "source": "nckl-technology-and-science",
+   "english": "migrant workers",
+   "swap": "រ៍ → រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1572",
+   "khmer": "អទវនិយម",
+   "rac": "អទេវនិយម",
+   "source": "nckl-technology-and-science",
+   "english": "atheism",
+   "swap": "ទ → ទេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1580",
+   "khmer": "សីលវិជ្ជ",
+   "rac": "សីលវិជ្ជា",
+   "source": "nckl-technology-and-science",
+   "english": "ethics",
+   "swap": "ជ្ជ → ជ្ជា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1599",
+   "khmer": "ពុទ្ធិវិជ្ជ",
+   "rac": "ពុទ្ធិវិជ្ជា",
+   "source": "nckl-technology-and-science",
+   "english": "epistemology",
+   "swap": "ជ្ជ → ជ្ជា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1606",
+   "khmer": "ស្រ្តីនិយម",
+   "rac": "ស្ត្រីនិយម",
+   "source": "nckl-technology-and-science",
+   "english": "feminism",
+   "swap": "ស្រ្តី → ស្ត្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1613",
+   "khmer": "អត្តនោម័ត",
+   "rac": "អត្តនោម័តិ",
+   "source": "nckl-technology-and-science",
+   "english": "subjective",
+   "swap": "ត → តិ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1640",
+   "khmer": "បុរពិសោធន៍",
+   "rac": "បុរេពិសោធន៍",
+   "source": "nckl-technology-and-science",
+   "english": "a priori",
+   "swap": "រ → រេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1644",
+   "khmer": "អកាស្យា",
+   "rac": "អេកាស្យា",
+   "source": "nckl-technology-and-science",
+   "english": "eikasia",
+   "swap": "អ → អេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1649",
+   "khmer": "សម្មាសង្កប្បៈ",
+   "rac": "សម្មាសង្កប្ប",
+   "source": "nckl-technology-and-science",
+   "english": "right thought/ perfect resolution",
+   "swap": "ប្បៈ → ប្ប"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1699",
+   "khmer": "ទារកក្នុងផ្ទ",
+   "rac": "ទារកក្នុងផ្ទៃ",
+   "source": "nckl-technology-and-science",
+   "english": "fetus",
+   "swap": "ផ្ទ → ផ្ទៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1703",
+   "khmer": "អាម៉ូស",
+   "rac": "អាម្ញ៉ូស",
+   "source": "nckl-technology-and-science",
+   "english": "amnion/amnios",
+   "swap": "ម៉ូ → ម្ញ៉ូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1744",
+   "khmer": "អរោគ្រូសាលា",
+   "rac": "អរោគសាលា",
+   "source": "rac-new-words",
+   "english": "Arogyasala (hospital)",
+   "swap": "គ្រូ → គ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_1973",
+   "khmer": "ឃ្ល",
+   "rac": "ឃ្លៃ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឃ្ល → ឃ្លៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2021",
+   "khmer": "ទុង្សា",
+   "rac": "ទុង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្សា → ង"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2057",
+   "khmer": "ប៉ះឡោះ",
+   "rac": "ប្រឡោះ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ប៉ះ → ប្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2078",
+   "khmer": "ប្រ៊ីក",
+   "rac": "ប្លោក",
+   "source": "rac-new-words",
+   "english": "Brik (a single-stringed musical instrument)",
+   "swap": "ប្រ៊ី → ប្លោ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2130",
+   "khmer": "ផ្កាស្មៅ",
+   "rac": "ផ្កាស",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្មៅ → ស"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2216",
+   "khmer": "ម៉ាក់ប្រាង",
+   "rac": "មាក់ប្រាង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម៉ា → មា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2248",
+   "khmer": "រោគស",
+   "rac": "រោគស្ត្រី",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស → ស្ត្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2314",
+   "khmer": "អង្កាញ់ស្វា",
+   "rac": "អង្គញ់ស្វា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្កា → ង្គ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2356",
+   "khmer": "ច័ន្ទន៍",
+   "rac": "ចន្ទន៍",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ច័ → ច"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2379",
+   "khmer": "ចម្បក់",
+   "rac": "ចម្លាក់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម្ប → ម្លា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2387",
+   "khmer": "ក្រវ៉ាន់",
+   "rac": "ក្រវាន់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "វ៉ា → វា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2428",
+   "khmer": "កណ៌ការ",
+   "rac": "កណិការ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ណ៌ → ណិ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2434",
+   "khmer": "កណ្តាលបាត",
+   "rac": "កណ្ដោលបាត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ណ្តា → ណ្ដោ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2445",
+   "khmer": "កន្ទួតព",
+   "rac": "កន្ទួតព្រៃ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ព → ព្រៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2457",
+   "khmer": "កូវក",
+   "rac": "កូវកែ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ក → កែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2474",
+   "khmer": "កកោ",
+   "rac": "ក្រកោ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ក → ក្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2489",
+   "khmer": "ក្រស្ន",
+   "rac": "ក្រស្នា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្ន → ស្នា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2523",
+   "khmer": "ឃ្លយបាត",
+   "rac": "ឃ្លាយបាត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឃ្ល → ឃ្លា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2536",
+   "khmer": "ច័ន្ទ",
+   "rac": "ច័ន្ធូ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ន្ទ → ន្ធូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2557",
+   "khmer": "ជណ្ដើរស្វ",
+   "rac": "ជណ្ដើរស្វា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្វ → ស្វា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2569",
+   "khmer": "ឈើទាលតាញ់",
+   "rac": "ឈើទាលត្រាញ់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "តា → ត្រា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2580",
+   "khmer": "ដកម៉",
+   "rac": "ដកម៉ៃ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម៉ → ម៉ៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2605",
+   "khmer": "តោតម៉",
+   "rac": "តោតម៉ា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ម៉ → ម៉ា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2611",
+   "khmer": "តកៀត",
+   "rac": "ត្រកៀត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2612",
+   "khmer": "តកៀតប៉ោង",
+   "rac": "ត្រកៀតប៉ោង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2615",
+   "khmer": "តដិត",
+   "rac": "ត្រដិត",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2648",
+   "khmer": "ទុរន",
+   "rac": "ទុរេន",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "រ → រេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2652",
+   "khmer": "ទមល់",
+   "rac": "ទ្រមល់",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ទ → ទ្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2662",
+   "khmer": "ធ្មេញតី",
+   "rac": "ធ្មេញត្រី",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "តី → ត្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2667",
+   "khmer": "ននោងព",
+   "rac": "ននោងព្រៃ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ព → ព្រៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2705",
+   "khmer": "ពពាលខ",
+   "rac": "ពពាលខែ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ខ → ខែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2707",
+   "khmer": "ពពេចចង្វ",
+   "rac": "ពពេចចង្វា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្វ → ង្វា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2709",
+   "khmer": "ពភ្ល",
+   "rac": "ពភ្លែះ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ភ្ល → ភ្លែះ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2712",
+   "khmer": "ពុកឆ្ម",
+   "rac": "ពុកឆ្មា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឆ្ម → ឆ្មា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2714",
+   "khmer": "ពុតធ្ល",
+   "rac": "ពុតធ្លេ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ធ្ល → ធ្លេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2749",
+   "khmer": "មង្ស៊ី",
+   "rac": "មង",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្ស៊ី → ង"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2862",
+   "khmer": "ស្នែងពព",
+   "rac": "ស្នែងពពែ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ព → ពែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2896",
+   "khmer": "ស្លឹកគ",
+   "rac": "ស្លឹកគ្រៃ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "គ → គ្រៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2907",
+   "khmer": "អង្គ្រាមអង្ក្រម",
+   "rac": "អង្ក្រេមអង្ក្រម",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ង្គ្រា → ង្ក្រេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2909",
+   "khmer": "អង្គញ់ស្វ",
+   "rac": "អង្គញ់ស្វា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ស្វ → ស្វា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2927",
+   "khmer": "អាចម៍ឆ្ម",
+   "rac": "អាចម៍ឆ្មា",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ឆ្ម → ឆ្មា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2943",
+   "khmer": "អំពៅព",
+   "rac": "អំពៅព្រៃ",
+   "source": "rac-new-words",
+   "english": "",
+   "swap": "ព → ព្រៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2952",
+   "khmer": "ប្រាយ៉ា",
+   "rac": "ប្រាយ",
+   "source": "nckl-country-and-city-names",
+   "english": "Praia",
+   "swap": "យ៉ា → យ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_2988",
+   "khmer": "ប៉េកាំង",
+   "rac": "ប្រកាំង",
+   "source": "nckl-country-and-city-names",
+   "english": "Beijing",
+   "swap": "ប៉េ → ប្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3052",
+   "khmer": "ប៊ូតង់",
+   "rac": "ប៉េតង់",
+   "source": "nckl-country-and-city-names",
+   "english": "Bhutan",
+   "swap": "ប៊ូ → ប៉េ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3056",
+   "khmer": "បូស្កូ",
+   "rac": "បូស",
+   "source": "nckl-country-and-city-names",
+   "english": "Bosnia",
+   "swap": "ស្កូ → ស"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3062",
+   "khmer": "ប៉ូឡូញ",
+   "rac": "ប្រឡូញ",
+   "source": "nckl-country-and-city-names",
+   "english": "Poland",
+   "swap": "ប៉ូ → ប្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3066",
+   "khmer": "បេណាំង",
+   "rac": "ប្រណាំង",
+   "source": "nckl-country-and-city-names",
+   "english": "Benin",
+   "swap": "បេ → ប្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3085",
+   "khmer": "ម៉ាលី",
+   "rac": "មោលី",
+   "source": "nckl-country-and-city-names",
+   "english": "Mali",
+   "swap": "ម៉ា → មោ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3116",
+   "khmer": "មូស្គូ",
+   "rac": "មូស",
+   "source": "nckl-country-and-city-names",
+   "english": "Moscow",
+   "swap": "ស្គូ → ស"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3125",
+   "khmer": "លីបង់",
+   "rac": "លះបង់",
+   "source": "nckl-country-and-city-names",
+   "english": "Lebanon",
+   "swap": "លី → លះ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3149",
+   "khmer": "កាស្ទី",
+   "rac": "កាស",
+   "source": "nckl-country-and-city-names",
+   "english": "Castries",
+   "swap": "ស្ទី → ស"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3162",
+   "khmer": "សំប៊ី",
+   "rac": "សំបា",
+   "source": "nckl-country-and-city-names",
+   "english": "Zambia",
+   "swap": "ប៊ី → បា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3172",
+   "khmer": "ស្វ៊ីស",
+   "rac": "ស្វាស",
+   "source": "nckl-country-and-city-names",
+   "english": "Switzerland",
+   "swap": "ស្វ៊ី → ស្វា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3177",
+   "khmer": "ប៊ីស្ស",
+   "rac": "បុស្ស",
+   "source": "nckl-country-and-city-names",
+   "english": "Bissau",
+   "swap": "ប៊ី → បុ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3197",
+   "khmer": "ហ្គេនស៊ី",
+   "rac": "ហ៊ានស៊ី",
+   "source": "nckl-country-and-city-names",
+   "english": "Guernsey",
+   "swap": "ហ្គេ → ហ៊ា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3265",
+   "khmer": "ណាស្យូ",
+   "rac": "ណាស់",
+   "source": "nckl-country-and-city-names",
+   "english": "Nassau",
+   "swap": "ស្យូ → ស់"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3271",
+   "khmer": "បណាំង",
+   "rac": "ប្រណាំង",
+   "source": "nckl-country-and-city-names",
+   "english": "Benin",
+   "swap": "ប → ប្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3274",
+   "khmer": "បូស្តុ",
+   "rac": "បូស",
+   "source": "nckl-country-and-city-names",
+   "english": "Bosnia",
+   "swap": "ស្តុ → ស"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3301",
+   "khmer": "ស៊ូវា",
+   "rac": "ស្រវា",
+   "source": "nckl-country-and-city-names",
+   "english": "Suva",
+   "swap": "ស៊ូ → ស្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3304",
+   "khmer": "ហ្ន៎ប៊ី",
+   "rac": "ហៃប៊ី",
+   "source": "nckl-country-and-city-names",
+   "english": "Gambia",
+   "swap": "ហ្ន៎ → ហៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3323",
+   "khmer": "ឥណ្ឌ",
+   "rac": "ឥណ្ឌៀ",
+   "source": "nckl-country-and-city-names",
+   "english": "India",
+   "swap": "ណ្ឌ → ណ្ឌៀ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3367",
+   "khmer": "អូស្ត",
+   "rac": "អូស",
+   "source": "nckl-country-and-city-names",
+   "english": "Oslo",
+   "swap": "ស្ត → ស"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3415",
+   "khmer": "កាំជ្រួចទឹកក្ត",
+   "rac": "កាំជ្រួចទឹកក្ដៅ",
+   "source": "nckl-country-and-city-names",
+   "english": "geyser",
+   "swap": "ក្ត → ក្ដៅ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3434",
+   "khmer": "អាប៉ារថដ",
+   "rac": "អាប៉ារថេដ",
+   "source": "nckl-country-and-city-names",
+   "english": "apartheid",
+   "swap": "ថ → ថេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3435",
+   "khmer": "អគូម៉ែន",
+   "rac": "អេគូម៉ែន",
+   "source": "nckl-country-and-city-names",
+   "english": "oekoumen",
+   "swap": "អ → អេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3489",
+   "khmer": "ខិត្តបណ្ណ",
+   "rac": "ខិត្តប័ណ្ណ",
+   "source": "nckl-economics",
+   "english": "notice-leaf",
+   "swap": "ប → ប័"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3504",
+   "khmer": "ជវភាពប្រជាសាស្ត",
+   "rac": "ជវភាពប្រជាសាស្ត្រ",
+   "source": "nckl-economics",
+   "english": "demographic dynamics",
+   "swap": "ស្ត → ស្ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3532",
+   "khmer": "និមិត្តសញ្ញ",
+   "rac": "និមិត្តសញ្ញា",
+   "source": "nckl-economics",
+   "english": "logo",
+   "swap": "ញ្ញ → ញ្ញា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3577",
+   "khmer": "ផ្សាររូបិយបណ្ណ",
+   "rac": "ផ្សាររូបិយប័ណ្ណ",
+   "source": "nckl-economics",
+   "english": "currency market",
+   "swap": "ប → ប័"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3607",
+   "khmer": "រូបិយបណ្ណ",
+   "rac": "រូបិយប័ណ្ណ",
+   "source": "nckl-economics",
+   "english": "currency",
+   "swap": "ប → ប័"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3633",
+   "khmer": "សិនិទ្ទភាព",
+   "rac": "សិនិទ្ធភាព",
+   "source": "nckl-economics",
+   "english": "cohesion",
+   "swap": "ទ្ទ → ទ្ធ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3691",
+   "khmer": "វិចិត",
+   "rac": "វិចិត្រ",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "fine",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3734",
+   "khmer": "ចលោត",
+   "rac": "ចៃលោត",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "flee/louse",
+   "swap": "ច → ចៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3738",
+   "khmer": "សមើល",
+   "rac": "ស្រមើល",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "tiny bug",
+   "swap": "ស → ស្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3755",
+   "khmer": "វចនលខន៍",
+   "rac": "វចនលេខន៍",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "lexicography",
+   "swap": "ល → លេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3775",
+   "khmer": "អព្ភសបទ",
+   "rac": "អព្ភាសបទ",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "affix",
+   "swap": "ព្ភ → ព្ភា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3807",
+   "khmer": "ឈ្នាប់ឃ្ល",
+   "rac": "ឈ្នាប់ឃ្លា",
+   "source": "nckl-bulletin-vol3-2010",
+   "english": "subordinating conjunction",
+   "swap": "ឃ្ល → ឃ្លា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3857",
+   "khmer": "ឈីបមម៉ូរី",
+   "rac": "ឈីបមេម៉ូរី",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "memory chip",
+   "swap": "ម → មេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3864",
+   "khmer": "ផេថាប",
+   "rac": "ផេថាបៃ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "petabyte",
+   "swap": "ប → បៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3868",
+   "khmer": "អនុគមន៍",
+   "rac": "អនុគ្គមន៍",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "function/routine/procedure/subroutine/subprogram",
+   "swap": "គ → គ្គ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3879",
+   "khmer": "ប្រអប់អីមែល",
+   "rac": "ប្រអប់អ៊ីមែល",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "mailbox",
+   "swap": "អី → អ៊ី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3888",
+   "khmer": "អិចសាប៊ីត",
+   "rac": "អ៊ិចសាប៊ីត",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "exabit",
+   "swap": "អិ → អ៊ិ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3889",
+   "khmer": "សិតាប៊ីត",
+   "rac": "សិត្តាប៊ីត",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "zettabit",
+   "swap": "តា → ត្តា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3894",
+   "khmer": "ទំព័រវប",
+   "rac": "ទំព័រវេប",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "web page/webpage/ web-page",
+   "swap": "វ → វេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_3926",
+   "khmer": "អូវ៉ុល",
+   "rac": "អូវុល",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "ovule",
+   "swap": "វ៉ុ → វុ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4006",
+   "khmer": "តួសម្តង",
+   "rac": "តួសម្ដែង",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "actor, actress",
+   "swap": "ម្ត → ម្ដែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4055",
+   "khmer": "វវចនសព្ទ",
+   "rac": "វេវចនសព្ទ",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "synonym",
+   "swap": "វ → វេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4166",
+   "khmer": "សិល្ប៍វិជ្ជ",
+   "rac": "សិល្ប៍វិជ្ជា",
+   "source": "nckl-bulletin-vol4-2012",
+   "english": "aesthetics",
+   "swap": "ជ្ជ → ជ្ជា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4265",
+   "khmer": "សន្ធិសញ្ញ",
+   "rac": "សន្ធិសញ្ញា",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "treaty",
+   "swap": "ញ្ញ → ញ្ញា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4337",
+   "khmer": "អាក់សស",
+   "rac": "អាក់សេស",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "access",
+   "swap": "ស → សេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4371",
+   "khmer": "អ៊ីចឹង",
+   "rac": "អ៊‌ីចឹង",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "sic",
+   "swap": "អ៊ី → អ៊‌ី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4374",
+   "khmer": "ប៉ានដៃ",
+   "rac": "បានដៃ",
+   "source": "nckl-bulletin-vol5-2013",
+   "english": "",
+   "swap": "ប៉ា → បា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4425",
+   "khmer": "វក្កវិទ្យា",
+   "rac": "វក្កំវិទ្យា",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "nephrology",
+   "swap": "ក្ក → ក្កំ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4473",
+   "khmer": "មីញ៉សាកូម",
+   "rac": "មីញ៉ូសាកូម",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "myosarcoma",
+   "swap": "ញ៉ → ញ៉ូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4483",
+   "khmer": "អាប់ស",
+   "rac": "អាប់សែ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "abscess",
+   "swap": "ស → សែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4493",
+   "khmer": "វគ្គីសាស្ត",
+   "rac": "វគ្គីសាស្ត្រ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "taxonomy",
+   "swap": "ស្ត → ស្ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4522",
+   "khmer": "បរាសិតក",
+   "rac": "បរាសិតក្រៅ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "ectoparasite",
+   "swap": "ក → ក្រៅ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4543",
+   "khmer": "មុទ្ធិវប្បកម្ម",
+   "rac": "មុទ្ទិវប្បកម្ម",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "viticulture",
+   "swap": "ទ្ធិ → ទ្ទិ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4553",
+   "khmer": "ផ្អកស្ម",
+   "rac": "ផ្អកស្មៅ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "silage",
+   "swap": "ស្ម → ស្មៅ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4596",
+   "khmer": "អគីណូកុកកូស",
+   "rac": "អេគីណូកុកកូស",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "echinococcosis/ hydatidosis / hydatid disease",
+   "swap": "អ → អេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4601",
+   "khmer": "សរ៉ូទីប",
+   "rac": "សេរ៉ូទីប",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "serotype/serovar",
+   "swap": "ស → សេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4705",
+   "khmer": "ស្នាប់ដ",
+   "rac": "ស្នាប់ដៃ",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ដ → ដៃ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4868",
+   "khmer": "សពក៍",
+   "rac": "ស្រាពក៍",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ស → ស្រា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4869",
+   "khmer": "ជើងសពក៍",
+   "rac": "ជើងស្រាពក៍",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ស → ស្រា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4880",
+   "khmer": "ហឹបស្ល",
+   "rac": "ហឹបស្លា",
+   "source": "nckl-bulletin-vol7-2015",
+   "english": "",
+   "swap": "ស្ល → ស្លា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4936",
+   "khmer": "កូនតី",
+   "rac": "កូនត្រី",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "",
+   "swap": "តី → ត្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_4939",
+   "khmer": "រះមាត់",
+   "rac": "រមាត់",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "",
+   "swap": "រះ → រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5122",
+   "khmer": "មហាសមុទ",
+   "rac": "មហាសមុទ្រ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "ocean",
+   "swap": "ទ → ទ្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5123",
+   "khmer": "សមុទ",
+   "rac": "សម្ភេទ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "sea",
+   "swap": "មុ → ម្ភេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5151",
+   "khmer": "ពាមសមុទ",
+   "rac": "ពាមសមុទ្រ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "estuary",
+   "swap": "ទ → ទ្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5209",
+   "khmer": "ប្រជាសាស្ត",
+   "rac": "ប្រជាសាស្ត្រ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "demography",
+   "swap": "ស្ត → ស្ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5256",
+   "khmer": "មេតូប៉ូល",
+   "rac": "មេត្រូប៉ូល",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "metropolis",
+   "swap": "តូ → ត្រូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5290",
+   "khmer": "បំលែង",
+   "rac": "ប្រលែង",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "transformation",
+   "swap": "បំ → ប្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5327",
+   "khmer": "ធរណីមាត",
+   "rac": "ធរណីមាត្រ",
+   "source": "nckl-bulletin-vol8-2017",
+   "english": "geometry",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5528",
+   "khmer": "ទុនដ",
+   "rac": "ទុនដ្រា",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "tundra",
+   "swap": "ដ → ដ្រា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5594",
+   "khmer": "ឋានលេខាសាស្ត",
+   "rac": "ឋានលេខាសាស្ត្រ",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "topography",
+   "swap": "ស្ត → ស្ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5646",
+   "khmer": "រសិចស្យុង",
+   "rac": "រេសិចស្យុង",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "resection",
+   "swap": "រ → រេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5659",
+   "khmer": "អាកតស",
+   "rac": "អាកត្រូស",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "arthrosis",
+   "swap": "ត → ត្រូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5661",
+   "khmer": "អាសស្តូស",
+   "rac": "អាស្បេស្តូស",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "asbestosis",
+   "swap": "ស → ស្បេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5724",
+   "khmer": "អាជ្ញ",
+   "rac": "អាជ្ញា",
+   "source": "nckl-bulletin-vol9-2018",
+   "english": "authority",
+   "swap": "ជ្ញ → ជ្ញា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5759",
+   "khmer": "គង្វាលសាស្ត",
+   "rac": "គង្វាលសាស្ត្រ",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "patristics",
+   "swap": "ស្ត → ស្ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5797",
+   "khmer": "លូធនិយម",
+   "rac": "លូធែនិយម",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "Lutheranism",
+   "swap": "ធ → ធែ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5806",
+   "khmer": "វិសសានុមាន",
+   "rac": "វិសេសានុមាន",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "abduction",
+   "swap": "ស → សេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5822",
+   "khmer": "សម្មាសង្កប្បា",
+   "rac": "សម្មាសង្កប្ប",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "",
+   "swap": "ប្បា → ប្ប"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5836",
+   "khmer": "អវិជ្ជ",
+   "rac": "អវិជ្ជា",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "avijjā (ignorance)",
+   "swap": "ជ្ជ → ជ្ជា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5838",
+   "khmer": "អាជ្ញនិយម",
+   "rac": "អាជ្ញានិយម",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "authoritarianism",
+   "swap": "ជ្ញ → ជ្ញា"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5885",
+   "khmer": "អក្លរីឌី",
+   "rac": "អក្លរីឌ្រី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "achlorhydria",
+   "swap": "ឌី → ឌ្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5894",
+   "khmer": "អាកតូស",
+   "rac": "អាកត្រូស",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "arthrosis",
+   "swap": "តូ → ត្រូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5897",
+   "khmer": "អាកូប៉ូស្ទីត",
+   "rac": "អាក្រូប៉ូស្ទីត",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acroposthitis",
+   "swap": "កូ → ក្រូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5898",
+   "khmer": "អាក្រូមីគី",
+   "rac": "អាក្រូមីគ្រី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acromicria",
+   "swap": "គី → គ្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5901",
+   "khmer": "អាក្រូសក្លរ៉ូស",
+   "rac": "អាក្រូសក្លេរ៉ូស",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acrosclerosis",
+   "swap": "ក្ល → ក្លេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5902",
+   "khmer": "អាក្រសាំងដាក់ទីលី",
+   "rac": "អាក្រូសាំងដាក់ទីលី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acrosyndactyly",
+   "swap": "ក្រ → ក្រូ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5912",
+   "khmer": "អាគូម៉ែត",
+   "rac": "អាគូម៉ែត្រ",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acoumeter",
+   "swap": "ត → ត្រ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5913",
+   "khmer": "អាគូមេទី",
+   "rac": "អាគូមេទ្រី",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acoumetry",
+   "swap": "ទី → ទ្រី"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5916",
+   "khmer": "អាគ្វីត",
+   "rac": "អាគ្វីតេ",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "acuteness /acuity",
+   "swap": "ត → តេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5919",
+   "khmer": "អាតរ៉ូម",
+   "rac": "អាតេរ៉ូម",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "atheroma",
+   "swap": "ត → តេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5920",
+   "khmer": "អាប់រអាក់ស្យុង",
+   "rac": "អាប់រេអាក់ស្យុង",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "abreaction",
+   "swap": "រ → រេ"
+  },
+  {
+   "weight": 0,
+   "id": "official_lex_5927",
+   "khmer": "អាស្សេស្តូស",
+   "rac": "អាស្បេស្តូស",
+   "source": "nckl-bulletin-vol10-2019",
+   "english": "asbestosis",
+   "swap": "ស្សេ → ស្បេ"
+  }
+ ]
+}

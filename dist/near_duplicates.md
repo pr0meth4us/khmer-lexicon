@@ -1,10 +1,10 @@
 # Near-duplicate report
 
-- entries: 5,929
-- distinct Khmer forms: 5,777
-- exact duplicate forms: 121 (128 redundant rows)
-- pairs at cluster distance 1: 7,140
-- of those, sharing an English gloss: **164** -- the actual near-duplicates
+- entries: 5,934
+- distinct Khmer forms: 5,780
+- exact duplicate forms: 123 (130 redundant rows)
+- pairs at cluster distance 1: 7,138
+- of those, sharing an English gloss: **162** -- the actual near-duplicates
 
 Distance alone is not evidence: most distance-1 pairs are short words that are simply different. Agreement on the English gloss is what makes a pair a spelling variant rather than two words.
 
@@ -92,7 +92,7 @@ Confusion weights come from seanghay/khmer-character-confusions (CC-BY-SA-4.0), 
 - ឯកសិទ្ឋិ ~ ឯកសិទ្ធិ — `ឋ`→`ធ`, confused **14×** by real users, searched 0/16
 - ឌុយខ្លាំង ~ ឌុយភ្លាំង — `ខ`→`ភ`, confused **7×** by real users
 
-## one character added or dropped (76)
+## one character added or dropped (74)
 
 *prefer the longer form when the shorter is a truncation; otherwise review*
 
@@ -154,8 +154,6 @@ Confusion weights come from seanghay/khmer-character-confusions (CC-BY-SA-4.0), 
 - ប៊ីស្ស ~ ប៊ីស្សូ — ``→`ូ`
 - បលម៉ូម៉ង់ ~ បែលម៉ូម៉ង់ — ``→`ែ`
 - បរឡាំង ~ បែរឡាំង — ``→`ែ`
-- បទល្មើសសង្គម ~ បទល្មើសសង្គ្រាម — ``→`្រា`
-- បទដ្ឋានសង្គម ~ បទដ្ឋានសង្គ្រាម — ``→`្រា`
 - បណាំង ~ បេណាំង — ``→`េ`
 - នូគូអាឡហ្វ ~ នូគូអាឡូហ្វ — ``→`ូ`
 - នីហ្សេរីយ៉ ~ នីហ្សេរីយ៉ា — ``→`ា`

@@ -251,8 +251,8 @@ def register(app, words, check):
                 "https://github.com/pr0meth4us/khmer-lexicon/issues"),
             "known_defects": {
                 "khmer_field_with_no_khmer": 21,
-                "one_syllable_from_a_dictionary_word": 682,
-                "near_duplicate_pairs": 164,
+                "one_misread_from_a_dictionary_word": 347,
+                "near_duplicate_pairs": 162,
                 "mark_order_corrected_at_build": 23,
                 "missing_khmer": 24,
                 "missing_english": 1657,

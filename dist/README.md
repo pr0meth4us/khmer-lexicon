@@ -93,12 +93,12 @@ Three of these are commonly misread and are worth stating precisely:
 
 ### Near-duplicates
 
-Beyond the 121 exact duplicates, **164 pairs** are one grapheme cluster apart
+Beyond the 121 exact duplicates, **162 pairs** are one grapheme cluster apart
 *and* share an English gloss. (7,140 pairs are one cluster apart on distance
 alone; agreement on meaning is what separates a spelling variant from two
 different words.) See `near_duplicates.md`. Nothing has been merged.
 
-33 of the 164 are explained by empirically measured character confusions from
+33 of the 162 are explained by empirically measured character confusions from
 [seanghay/khmer-character-confusions](https://huggingface.co/datasets/seanghay/khmer-character-confusions)
 (CC-BY-SA-4.0, aggregated from 3.2M khmerdict.com searches) — ក/គ alone is
 confused 551× by real users and produces ម៉ាដាហ្កាស្ក / ម៉ាដាហ្គាស្ក

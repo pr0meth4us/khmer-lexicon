@@ -1,0 +1,2923 @@
+{
+ "build_id": "1744764254eb",
+ "count": 162,
+ "pairs": [
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ឱសថជំនួយកម្លាំង/ អាណាឡឹបទិក",
+    "ids": [
+     "official_lex_5891"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ឱសថជំនួយកម្លាំង/អាណាឡឹបទិក",
+    "ids": [
+     "official_lex_5649"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ឧក្រិដ្ឋកម្មអន្ដរព័ន្ធ /ឧក្រិដ្ឋកម្មសាយប័រ",
+    "ids": [
+     "official_lex_0703"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ឧក្រិដ្ឋកម្មអន្ដរព័ន្ធ/ឧក្រិដ្ឋកម្មសាយប័រ",
+    "ids": [
+     "official_lex_0731"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អ្នកដំណើរការតតិយភាគី/ ប្រតិបត្តិករតតិយភាគី",
+    "ids": [
+     "official_lex_3660"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "អ្នកដំណើរការតតិយភាគី/ប្រតិបត្តិករតតិយភាគី",
+    "ids": [
+     "official_lex_5752"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អភ័យឯកសិទ្ធិដាច់ខាត ការទូត",
+    "ids": [
+     "official_lex_4262"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អភ័យឯកសិទ្ធិដាច់ខាតការទូត",
+    "ids": [
+     "official_lex_0867"
+    ],
+    "year": "2014"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អភ័យឯកសិទ្ធិ ការទូត",
+    "ids": [
+     "official_lex_0866"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "អភ័យឯកសិទ្ធិការទូត",
+    "ids": [
+     "official_lex_4263"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អប្បផរណា/ បរិត្តផរណា",
+    "ids": [
+     "official_lex_5750"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "អប្បផរណា/បរិត្តផរណា",
+    "ids": [
+     "official_lex_3652"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អត្តនោមតិភាព/ ប្រធានវិស័យភាព",
+    "ids": [
+     "official_lex_5686"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "អត្តនោមតិភាព/ប្រធានវិស័យភាព",
+    "ids": [
+     "official_lex_5829"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អង្គការលើកលែង ទោសអន្តរជាតិ",
+    "ids": [
+     "official_lex_4270"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អង្គការលើកលែងទោសអន្តរជាតិ",
+    "ids": [
+     "official_lex_0858"
+    ],
+    "year": "2014"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "អង់គ្លេស (ចក្រភព)",
+    "ids": [
+     "official_lex_3211"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អង់គ្លេស(ចក្រភព)",
+    "ids": [
+     "official_lex_3378"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "សេវាមិនអាជីពតាមផ្កាយរណប/ សេវាអាម៉ាតួតាមផ្កាយរណប",
+    "ids": [
+     "official_lex_0718"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សេវាមិនអាជីពតាមផ្កាយរណប/សេវាអាម៉ាតួតាមផ្កាយរណប",
+    "ids": [
+     "official_lex_0663"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "សេវាធនាគារចល័ត/ ធនាគារកិច្ចចល័ត",
+    "ids": [
+     "official_lex_3638"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "សេវាធនាគារចល័ត/ធនាគារកិច្ចចល័ត",
+    "ids": [
+     "official_lex_5747"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "សត្យានុមតិភាព/ វត្ថុវិស័យភាព",
+    "ids": [
+     "official_lex_5685"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "សត្យានុមតិភាព/វត្ថុវិស័យភាព",
+    "ids": [
+     "official_lex_5808"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "លិខិតឆ្លងដែន ផ្លូវការ",
+    "ids": [
+     "official_lex_0837"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "លិខិតឆ្លងដែនផ្លូវការ",
+    "ids": [
+     "official_lex_4267"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ម៉ាស៊ីនអេធីអឹម/ ម៉ាស៊ីន ប្រតិបត្តិការធនាគារស្វ័យប្រវត្ត",
+    "ids": [
+     "official_lex_5743"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ម៉ាស៊ីនអេធីអឹម/ម៉ាស៊ីន ប្រតិបត្តិការធនាគារស្វ័យប្រវត្ត",
+    "ids": [
+     "official_lex_3597"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ពិភពលោកមួយ ភូមិមួយ",
+    "ids": [
+     "official_lex_0825"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "ពិភពលោកមួយភូមិមួយ",
+    "ids": [
+     "official_lex_4259"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ផែនការអាជីវកម្ម/ ផែនការធុរកិច្ច",
+    "ids": [
+     "official_lex_3570"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ផែនការអាជីវកម្ម/ផែនការធុរកិច្ច",
+    "ids": [
+     "official_lex_5740"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "បរិយាបន្នកម្ម ហិរញ្ញវត្ថុ",
+    "ids": [
+     "official_lex_4861"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "បរិយាបន្នកម្មហិរញ្ញវត្ថុ",
+    "ids": [
+     "official_lex_3547"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "នយោបាយ កលិយុគ",
+    "ids": [
+     "official_lex_0809"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "នយោបាយកលិយុគ",
+    "ids": [
+     "official_lex_3676"
+    ],
+    "year": "2010"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ទ្រីនីដាដ និង តូបាហ្គ",
+    "ids": [
+     "official_lex_3028"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ទ្រីនីដាដនិង តូបាហ្គ",
+    "ids": [
+     "official_lex_3398"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ឋានានុក្រមកម្ម/ឋានានុក្រម នីយកម្ម",
+    "ids": [
+     "official_lex_3506"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ឋានានុក្រមកម្ម/ឋានានុក្រមនីយកម្ម",
+    "ids": [
+     "official_lex_4369"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ជំងឺធូលីសួត/ ថ្មីម៉ូកូនីញ៉ូស",
+    "ids": [
+     "official_lex_5848"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ជំងឺធូលីសួត/ថ្មីម៉ូកូនីញ៉ូស",
+    "ids": [
+     "official_lex_5660"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "គ្រឹះស្ថានហិរញ្ញវត្ថុ/ស្ថាប័ន ហិរញ្ញវត្ថុ",
+    "ids": [
+     "official_lex_3497"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "គ្រឹះស្ថានហិរញ្ញវត្ថុ/ស្ថាប័នហិរញ្ញវត្ថុ",
+    "ids": [
+     "official_lex_5738"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ក្រុមហ៊ុនឯកជនទទួលខុសត្រូវមានកម្រិត (ឯ.ក)",
+    "ids": [
+     "official_lex_3488"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ក្រុមហ៊ុនឯកជនទទួលខុសត្រូវមានកម្រិត(ឯ.ក)",
+    "ids": [
+     "official_lex_5736"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ក្រុមហ៊ុនមហាជនទទួល ខុសត្រូវមានកម្រិត",
+    "ids": [
+     "official_lex_3483"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ក្រុមហ៊ុនមហាជនទទួលខុសត្រូវមានកម្រិត",
+    "ids": [
+     "official_lex_5735"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ការិយាល័យតំណាងធនាគារ បរទេស",
+    "ids": [
+     "official_lex_5731"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ការិយាល័យតំណាងធនាគារបរទេស",
+    "ids": [
+     "official_lex_3468"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ការយល់សប្តិ /សុបិន",
+    "ids": [
+     "official_lex_5717"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "ការយល់សប្តិ/សុបិន",
+    "ids": [
+     "official_lex_5755"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ការបោះឆ្នោតជា កញ្ចប់",
+    "ids": [
+     "official_lex_0774"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "ការបោះឆ្នោតជាកញ្ចប់",
+    "ids": [
+     "official_lex_3673"
+    ],
+    "year": "2010"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "ការបង្ហាញ ជាសាធារណៈ",
+    "ids": [
+     "official_lex_4864"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "ការបង្ហាញជាសាធារណៈ",
+    "ids": [
+     "official_lex_3465"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "whitespace",
+   "weight": 0,
+   "a": {
+    "khmer": "កន្ថោរពេទ្យ/ បាសាំងពេទ្យ",
+    "ids": [
+     "official_lex_5676"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "កន្ថោរពេទ្យ/បាសាំងពេទ្យ",
+    "ids": [
+     "official_lex_5839"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "punctuation",
+   "weight": 0,
+   "a": {
+    "khmer": "ប៊ូរុនឌី",
+    "ids": [
+     "official_lex_3058"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប៊ូរុនឌី,",
+    "ids": [
+     "official_lex_3277"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "punctuation",
+   "weight": 0,
+   "a": {
+    "khmer": "តេហេរ៉ង់",
+    "ids": [
+     "official_lex_3450"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "តេហេ​រ៉ង់",
+    "ids": [
+     "official_lex_3328"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "punctuation",
+   "weight": 0,
+   "a": {
+    "khmer": "កិច្ចទីផ្សារចម្រុះ/ម៉ាឃិធីងចម្រុះ",
+    "ids": [
+     "official_lex_5732"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "កិច្ចទីផ្សារចម្រុះម៉ាឃិធីងចម្រុះ",
+    "ids": [
+     "official_lex_3475"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "punctuation",
+   "weight": 0,
+   "a": {
+    "khmer": "កាយវិភាគវិទ្យា/អាណាតូមី",
+    "ids": [
+     "official_lex_5651"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "កាយវិភាគវិទ្យាអាណាតូមី",
+    "ids": [
+     "official_lex_5841"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "punctuation",
+   "weight": 0,
+   "a": {
+    "khmer": "កសិ-ឧស្សាហកម្ម",
+    "ids": [
+     "official_lex_0057"
+    ],
+    "year": "2023"
+   },
+   "b": {
+    "khmer": "កសិឧស្សាហកម្ម",
+    "ids": [
+     "official_lex_5502"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 981,
+   "a": {
+    "khmer": "ម៉ូសំប៊ិក",
+    "ids": [
+     "official_lex_3356"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ម៉ូសំប៊ីក",
+    "ids": [
+     "official_lex_3107"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 551,
+   "a": {
+    "khmer": "រីហ្ក",
+    "ids": [
+     "official_lex_3339"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "រីហ្គ",
+    "ids": [
+     "official_lex_3202"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 551,
+   "a": {
+    "khmer": "ម៉ាដាហ្កាស្ក",
+    "ids": [
+     "official_lex_3083"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ម៉ាដាហ្គាស្ក",
+    "ids": [
+     "official_lex_3452"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 551,
+   "a": {
+    "khmer": "ប៊ុលហ្ការី",
+    "ids": [
+     "official_lex_3276"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប៊ុលហ្គារី",
+    "ids": [
+     "official_lex_3047"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 404,
+   "a": {
+    "khmer": "យន្តុបនីយកម្ម",
+    "ids": [
+     "official_lex_4862"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "យន្តូបនីយកម្ម",
+    "ids": [
+     "official_lex_3605"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 374,
+   "a": {
+    "khmer": "ន័រវេស",
+    "ids": [
+     "official_lex_3366"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ន័រវែស",
+    "ids": [
+     "official_lex_3030"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 326,
+   "a": {
+    "khmer": "លីសបាន",
+    "ids": [
+     "official_lex_3079"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "លីសបោន",
+    "ids": [
+     "official_lex_3377"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 291,
+   "a": {
+    "khmer": "ប៊ីស្កក",
+    "ids": [
+     "official_lex_3337"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប៊ីស្តក",
+    "ids": [
+     "official_lex_2975"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 264,
+   "a": {
+    "khmer": "លិខិតប្ដូរសារ",
+    "ids": [
+     "official_lex_4269"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "លិខិតប្តូរសារ",
+    "ids": [
+     "official_lex_0838"
+    ],
+    "year": "2014"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 264,
+   "a": {
+    "khmer": "ផ្ដើមឡើងឌីជីថល/ធុរកិច្ចថ្មីឌីជីថល",
+    "ids": [
+     "official_lex_0735"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ផ្តើមឡើងឌីជីថល/ធុរកិច្ចថ្មីឌីជីថល",
+    "ids": [
+     "official_lex_0597"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 264,
+   "a": {
+    "khmer": "ប្រធានសក្ដិ",
+    "ids": [
+     "official_lex_5163"
+    ],
+    "year": "2017"
+   },
+   "b": {
+    "khmer": "ប្រធានសក្តិ",
+    "ids": [
+     "official_lex_0984"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 225,
+   "a": {
+    "khmer": "យន្តការឆ្នូល/យន្តការអាក់សស",
+    "ids": [
+     "official_lex_0624"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "យន្តការឆ្នួល/យន្តការអាក់សស",
+    "ids": [
+     "official_lex_0713"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 149,
+   "a": {
+    "khmer": "សរូបករណ៍",
+    "ids": [
+     "official_lex_1297"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "សវូបករណ៍",
+    "ids": [
+     "official_lex_0758"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 149,
+   "a": {
+    "khmer": "វ៉ាសូរី",
+    "ids": [
+     "official_lex_3376"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "វ៉ាសូវី",
+    "ids": [
+     "official_lex_3063"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 149,
+   "a": {
+    "khmer": "ប៉ូដហ្គរីកា",
+    "ids": [
+     "official_lex_3358"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប៉ូដហ្គវីកា",
+    "ids": [
+     "official_lex_3095"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 100,
+   "a": {
+    "khmer": "សិនិទ្ទភាព",
+    "ids": [
+     "official_lex_3633"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "សិនិទ្ធភាព",
+    "ids": [
+     "official_lex_4854"
+    ],
+    "year": "2015"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 86,
+   "a": {
+    "khmer": "អូតូក្លាវ",
+    "ids": [
+     "official_lex_5668"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "អូតូប្លាវ",
+    "ids": [
+     "official_lex_5928"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 68,
+   "a": {
+    "khmer": "វ៉ាឌីស",
+    "ids": [
+     "official_lex_3120"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "វ៉ាឌូស",
+    "ids": [
+     "official_lex_3341"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 68,
+   "a": {
+    "khmer": "ឌីស្ពាន់ប",
+    "ids": [
+     "official_lex_3011"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ឌូស្ពាន់ប",
+    "ids": [
+     "official_lex_3393"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 51,
+   "a": {
+    "khmer": "ខ្យល់ឆាយទូក",
+    "ids": [
+     "official_lex_3688"
+    ],
+    "year": "2010"
+   },
+   "b": {
+    "khmer": "ខ្យល់ឆាយនូក",
+    "ids": [
+     "official_lex_3416"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 47,
+   "a": {
+    "khmer": "ការស្ងាប",
+    "ids": [
+     "official_lex_5674"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "ការស្លាប",
+    "ids": [
+     "official_lex_5844"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 37,
+   "a": {
+    "khmer": "ប៉ែន",
+    "ids": [
+     "official_lex_3391"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប៊ែន",
+    "ids": [
+     "official_lex_3173"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 33,
+   "a": {
+    "khmer": "អីសឺណិតល្បឿនលឿន",
+    "ids": [
+     "official_lex_0745"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "អឺសឺណិតល្បឿនលឿន",
+    "ids": [
+     "official_lex_0699"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 26,
+   "a": {
+    "khmer": "ជឿក",
+    "ids": [
+     "official_lex_5863"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ធឿក",
+    "ids": [
+     "official_lex_5639"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 26,
+   "a": {
+    "khmer": "ជីមភូ",
+    "ids": [
+     "official_lex_3272"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ធីមភូ",
+    "ids": [
+     "official_lex_3053"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 25,
+   "a": {
+    "khmer": "ស៊ូវា",
+    "ids": [
+     "official_lex_3301"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស៊ូវ៉",
+    "ids": [
+     "official_lex_3181"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 24,
+   "a": {
+    "khmer": "ហ្សាម៉ាអ៊ីក",
+    "ids": [
+     "official_lex_3186"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ហ្សាម៉ាអ៊ុក",
+    "ids": [
+     "official_lex_3335"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 24,
+   "a": {
+    "khmer": "ស៊ីប",
+    "ids": [
+     "official_lex_3283"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស៊ុប",
+    "ids": [
+     "official_lex_3144"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 23,
+   "a": {
+    "khmer": "នត្ថិភាព",
+    "ids": [
+     "official_lex_1148"
+    ],
+    "year": "2007"
+   },
+   "b": {
+    "khmer": "វត្ថិភាព",
+    "ids": [
+     "official_lex_0950"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 19,
+   "a": {
+    "khmer": "ស៊ីសឺណិត",
+    "ids": [
+     "official_lex_0697"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "អ៊ីសឺណិត",
+    "ids": [
+     "official_lex_0744"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 19,
+   "a": {
+    "khmer": "ស៊ីនធឺណិតបង់ទូលាយ/អ៊ីនធឺណិតប៊ែដប៊ែន",
+    "ids": [
+     "official_lex_0694"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "អ៊ីនធឺណិតបង់ទូលាយ/អ៊ីនធឺណិតប៊ែដប៊ែន",
+    "ids": [
+     "official_lex_0724"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 14,
+   "a": {
+    "khmer": "ឯកសិទ្ឋិ",
+    "ids": [
+     "official_lex_1256"
+    ],
+    "year": "2007"
+   },
+   "b": {
+    "khmer": "ឯកសិទ្ធិ",
+    "ids": [
+     "official_lex_1093"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "confusion",
+   "weight": 7,
+   "a": {
+    "khmer": "ឌុយខ្លាំង",
+    "ids": [
+     "official_lex_3330"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ឌុយភ្លាំង",
+    "ids": [
+     "official_lex_3251"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អូតាវ៉",
+    "ids": [
+     "official_lex_3279"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អូតាវ៉ា",
+    "ids": [
+     "official_lex_2950"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អឺរ៉",
+    "ids": [
+     "official_lex_1295"
+    ],
+    "year": "2014"
+   },
+   "b": {
+    "khmer": "អឺរ៉េ",
+    "ids": [
+     "official_lex_5302"
+    ],
+    "year": "2017"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាហ្វលី",
+    "ids": [
+     "official_lex_3686"
+    ],
+    "year": "2010"
+   },
+   "b": {
+    "khmer": "អាហ្វេលី",
+    "ids": [
+     "official_lex_3433"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាសហ្កបាត",
+    "ids": [
+     "official_lex_3399"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អាសហ្កាបាត",
+    "ids": [
+     "official_lex_3019"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាសស្តូស",
+    "ids": [
+     "official_lex_5661"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "អាស្សេស្តូស",
+    "ids": [
+     "official_lex_5927"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាល្លឺម៉ង",
+    "ids": [
+     "official_lex_3223"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អាល្លឺម៉ង់",
+    "ids": [
+     "official_lex_3259"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាថន",
+    "ids": [
+     "official_lex_3308"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អាថែន",
+    "ids": [
+     "official_lex_2979"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាជ្ញនិយម",
+    "ids": [
+     "official_lex_5838"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "អាជ្ញានិយម",
+    "ids": [
+     "official_lex_5725"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាក់ស",
+    "ids": [
+     "official_lex_5911"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "អាក់សស",
+    "ids": [
+     "official_lex_4337"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អាកតស",
+    "ids": [
+     "official_lex_5659"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "អាកតូស",
+    "ids": [
+     "official_lex_5894"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អង់តាណាណារីវ",
+    "ids": [
+     "official_lex_3345"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អង់តាណាណារីវូ",
+    "ids": [
+     "official_lex_3453"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អង់តាណាណារី",
+    "ids": [
+     "official_lex_3443"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អង់តាណាណារីវូ",
+    "ids": [
+     "official_lex_3453"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អង់តាណាណារី",
+    "ids": [
+     "official_lex_3443"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អង់តាណាណារីវ",
+    "ids": [
+     "official_lex_3345"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អគូម៉ន",
+    "ids": [
+     "official_lex_3681"
+    ],
+    "year": "2010"
+   },
+   "b": {
+    "khmer": "អគូម៉ែន",
+    "ids": [
+     "official_lex_3435"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "អក្វាទ័រ",
+    "ids": [
+     "official_lex_3446"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "អេក្វាទ័រ",
+    "ids": [
+     "official_lex_3252"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ឡម៉",
+    "ids": [
+     "official_lex_3017"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ឡូម៉",
+    "ids": [
+     "official_lex_3396"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ហ្វីលីពីន",
+    "ids": [
+     "official_lex_3190"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ហ្វ៊ីលីពីន",
+    "ids": [
+     "official_lex_3375"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ហ្គីណាដ",
+    "ids": [
+     "official_lex_3309"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ហ្គ្រីណាដ",
+    "ids": [
+     "official_lex_3195"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ស្វីស",
+    "ids": [
+     "official_lex_3390"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស្វ៊ីស",
+    "ids": [
+     "official_lex_3172"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ស្វាស៊ីឡង",
+    "ids": [
+     "official_lex_3392"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស្វាស៊ីឡង់",
+    "ids": [
+     "official_lex_3170"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ស្ថានីយអង់តន",
+    "ids": [
+     "official_lex_0722"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ស្ថានីយអង់តែន",
+    "ids": [
+     "official_lex_0679"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ស៊ូដង",
+    "ids": [
+     "official_lex_3152"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស៊ូដង់",
+    "ids": [
+     "official_lex_3388"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សោឆ្នូល/សោអាក់សស",
+    "ids": [
+     "official_lex_0712"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សោឆ្នូល/សោអាក់សេស",
+    "ids": [
+     "official_lex_0674"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សាគ្រប",
+    "ids": [
+     "official_lex_3289"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "សាគ្រែប",
+    "ids": [
+     "official_lex_3437"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សាគប",
+    "ids": [
+     "official_lex_2981"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "សាគ្រែប",
+    "ids": [
+     "official_lex_3437"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សាគប",
+    "ids": [
+     "official_lex_2981"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "សាគ្រប",
+    "ids": [
+     "official_lex_3289"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សអ៊ូល",
+    "ids": [
+     "official_lex_3287"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "សេអ៊ូល",
+    "ids": [
+     "official_lex_2964"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សវាឌីជីថល",
+    "ids": [
+     "official_lex_0734"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សេវាឌីជីថល",
+    "ids": [
+     "official_lex_0657"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សលលុយឡា",
+    "ids": [
+     "official_lex_0726"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សែលលុយឡា",
+    "ids": [
+     "official_lex_0673"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សល",
+    "ids": [
+     "official_lex_0725"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សែល",
+    "ids": [
+     "official_lex_0672"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សបករណ៍",
+    "ids": [
+     "official_lex_0671"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សវូបករណ៍",
+    "ids": [
+     "official_lex_0758"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សបករណ៍",
+    "ids": [
+     "official_lex_0671"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សរូបករណ៍",
+    "ids": [
+     "official_lex_1297"
+    ],
+    "year": "2014"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សន្ធិសញ្ញ",
+    "ids": [
+     "official_lex_4265"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "សន្ធិសញ្ញា",
+    "ids": [
+     "official_lex_0846"
+    ],
+    "year": "2014"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សច្ចានមតិ",
+    "ids": [
+     "official_lex_1202"
+    ],
+    "year": "2007"
+   },
+   "b": {
+    "khmer": "សច្ចានុមតិ",
+    "ids": [
+     "official_lex_1025"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "សកលភាវូបនីយកម្ម",
+    "ids": [
+     "official_lex_0227"
+    ],
+    "year": "2023"
+   },
+   "b": {
+    "khmer": "សាកលភាវូបនីយកម្ម",
+    "ids": [
+     "official_lex_3632"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "វីលនីញស",
+    "ids": [
+     "official_lex_3342"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "វីលនីញ៉ូស",
+    "ids": [
+     "official_lex_3128"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "វីយន",
+    "ids": [
+     "official_lex_3444"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "វីយែន",
+    "ids": [
+     "official_lex_3264"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "វីនដក",
+    "ids": [
+     "official_lex_3005"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "វីនដុក",
+    "ids": [
+     "official_lex_3360"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "វិចតូរីយ",
+    "ids": [
+     "official_lex_3454"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "វិចតូរីយ៉",
+    "ids": [
+     "official_lex_3139"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "វិការភាពទីផ្សារ",
+    "ids": [
+     "official_lex_4865"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "វិការភាពផ្សារ",
+    "ids": [
+     "official_lex_3610"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "វបសកល/វប",
+    "ids": [
+     "official_lex_0764"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "វេបសកល/វប",
+    "ids": [
+     "official_lex_0645"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "លក្ខណសញ្ញា",
+    "ids": [
+     "official_lex_4242"
+    ],
+    "year": "2012"
+   },
+   "b": {
+    "khmer": "លក្ខណៈសញ្ញា",
+    "ids": [
+     "official_lex_3608"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "រសិចស្យុង",
+    "ids": [
+     "official_lex_5646"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "រេសិចស្យុង",
+    "ids": [
+     "official_lex_5868"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "រនសាំវែរ",
+    "ids": [
+     "official_lex_0756"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "រែនសាំវែរ",
+    "ids": [
+     "official_lex_0627"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ម៉ុងស៊រ៉",
+    "ids": [
+     "official_lex_3096"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ម៉ុងស៊រ៉ា",
+    "ids": [
+     "official_lex_3359"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ម៉ុងតេណេហ្គ",
+    "ids": [
+     "official_lex_3357"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ម៉ុងតេណេហ្គ្រា",
+    "ids": [
+     "official_lex_3094"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ម៉ាស្កត",
+    "ids": [
+     "official_lex_3243"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ម៉ាស្កាត",
+    "ids": [
+     "official_lex_3369"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ម៉ាសដ្ធាន",
+    "ids": [
+     "official_lex_3343"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ម៉ាសេដ្ធាន",
+    "ids": [
+     "official_lex_3088"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ម៉សសិនជើ",
+    "ids": [
+     "official_lex_0750"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ម៉េសសិនជើ",
+    "ids": [
+     "official_lex_0616"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "មូលប្បទានបត/សែក",
+    "ids": [
+     "official_lex_3602"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "មូលប្បទានបត្រ/សែក",
+    "ids": [
+     "official_lex_5745"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "មាត់ឆែបឆែបមាត់",
+    "ids": [
+     "official_lex_5677"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "មាត់ឆែបឆ្កែបមាត់",
+    "ids": [
+     "official_lex_5865"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "មជ្ឈមណ្ឌលបន្សាយឌីជីថល/មជ្ឈមណ្ឌលមេឌាឌីជីថល",
+    "ids": [
+     "official_lex_0610"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "មជ្ឈមណ្ឌលបន្សាយឌីជីថល/មជ្ឈមមណ្ឌលមេឌាឌីជីថល",
+    "ids": [
+     "official_lex_0733"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ព្រុយណ",
+    "ids": [
+     "official_lex_3275"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ព្រុយណេ",
+    "ids": [
+     "official_lex_3080"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ពលករទេសន្តរប្រវេសន៍",
+    "ids": [
+     "official_lex_0309"
+    ],
+    "year": "2023"
+   },
+   "b": {
+    "khmer": "ពលករទេសន្តរ៍ប្រវេសន៍",
+    "ids": [
+     "official_lex_1562"
+    ],
+    "year": "2014"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ផ្នែកទន់/សុសវរ",
+    "ids": [
+     "official_lex_0762"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ផ្នែកទន់/សុសវែរ",
+    "ids": [
+     "official_lex_0599"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ប៊ីស្ស",
+    "ids": [
+     "official_lex_3177"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប៊ីស្សូ",
+    "ids": [
+     "official_lex_3313"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "បលម៉ូម៉ង់",
+    "ids": [
+     "official_lex_3270"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "បែលម៉ូម៉ង់",
+    "ids": [
+     "official_lex_3065"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "បរឡាំង",
+    "ids": [
+     "official_lex_3224"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "បែរឡាំង",
+    "ids": [
+     "official_lex_3260"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "បណាំង",
+    "ids": [
+     "official_lex_3271"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "បេណាំង",
+    "ids": [
+     "official_lex_3066"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "នូគូអាឡហ្វ",
+    "ids": [
+     "official_lex_3013"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "នូគូអាឡូហ្វ",
+    "ids": [
+     "official_lex_3397"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "នីហ្សេរីយ៉",
+    "ids": [
+     "official_lex_3364"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "នីហ្សេរីយ៉ា",
+    "ids": [
+     "official_lex_3033"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "និមិត្តសត្វ",
+    "ids": [
+     "official_lex_5781"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "មិត្តសត្វ",
+    "ids": [
+     "official_lex_5704"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "និមិត្តសញ្ញ",
+    "ids": [
+     "official_lex_3532"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "និមិត្តសញ្ញា",
+    "ids": [
+     "official_lex_4241"
+    ],
+    "year": "2012"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ទីផ្សារផលិតផល",
+    "ids": [
+     "official_lex_4857"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "ផ្សារផលិតផល",
+    "ids": [
+     "official_lex_3576"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ទីផ្សារកត្តាផលិតកម្ម",
+    "ids": [
+     "official_lex_4866"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "ផ្សារកត្តាផលិតកម្ម",
+    "ids": [
+     "official_lex_3575"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ទិន្នន័យសលលុយឡា",
+    "ids": [
+     "official_lex_0727"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ទិន្នន័យសែលលុយឡា",
+    "ids": [
+     "official_lex_0559"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ទស្សនវិជ្ជបស្ចិមប្រទេស",
+    "ids": [
+     "official_lex_5693"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "ទស្សនវិជ្ជាបស្ចិមប្រទេស",
+    "ids": [
+     "official_lex_5773"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ថ្លៃទីផ្សារ",
+    "ids": [
+     "official_lex_5739"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ថ្លៃផ្សារ",
+    "ids": [
+     "official_lex_3513"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ចញ",
+    "ids": [
+     "official_lex_5847"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ចេញ",
+    "ids": [
+     "official_lex_5635"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "គស្នើ",
+    "ids": [
+     "official_lex_3282"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "គោស្នើ",
+    "ids": [
+     "official_lex_3438"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "ខាទុំ",
+    "ids": [
+     "official_lex_3153"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ខាទំ",
+    "ids": [
+     "official_lex_3389"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "កូន",
+    "ids": [
+     "official_lex_4502"
+    ],
+    "year": "2015"
+   },
+   "b": {
+    "khmer": "ក្លូន",
+    "ids": [
+     "official_lex_4327"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "កម្រៃជើងសា",
+    "ids": [
+     "official_lex_3460"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "កម្រៃជើងសារ",
+    "ids": [
+     "official_lex_0886"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "one character added or dropped",
+   "weight": 0,
+   "a": {
+    "khmer": "កនយ៉",
+    "ids": [
+     "official_lex_3336"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "កនយ៉ា",
+    "ids": [
+     "official_lex_2976"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "substitution",
+   "weight": 0,
+   "a": {
+    "khmer": "ប្រព័ន្ធអន្តរព័ន្ធរូបវន្ត/ប្រព័ន្ធសាយបំររូបវន្ត",
+    "ids": [
+     "official_lex_0591"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ប្រព័ន្ធអន្តរព័ន្ធរូបវន្ត/ប្រព័ន្ធសាយប័ររូបវន្ត",
+    "ids": [
+     "official_lex_0730"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "substitution",
+   "weight": 0,
+   "a": {
+    "khmer": "កូតឌីវរ៉",
+    "ids": [
+     "official_lex_3288"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "កូតឌីវរ័",
+    "ids": [
+     "official_lex_2972"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "substitution",
+   "weight": 0,
+   "a": {
+    "khmer": "ការរួបចូល/អាត់ដុកម្ម",
+    "ids": [
+     "official_lex_5630"
+    ],
+    "year": "2018"
+   },
+   "b": {
+    "khmer": "ការរៀបចូល/អាត់ដុកម្ម",
+    "ids": [
+     "official_lex_5842"
+    ],
+    "year": "2019"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "អាតរ៉ូម",
+    "ids": [
+     "official_lex_5919"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ឤតរ៉ូម",
+    "ids": [
+     "official_lex_5662"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ហ្ន៎ប៊ី",
+    "ids": [
+     "official_lex_3304"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ឡុំប៊ី",
+    "ids": [
+     "official_lex_3174"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ហ្គីណេប៊ីសូ",
+    "ids": [
+     "official_lex_3312"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ហ្គីណេប៊ីស្ស",
+    "ids": [
+     "official_lex_3176"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ហ៊ូថោន",
+    "ids": [
+     "official_lex_3161"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ហ្វ៊ីថោន",
+    "ids": [
+     "official_lex_3384"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ហ៊ូកហ្ស៊ី",
+    "ids": [
+     "official_lex_3447"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ហ្សកហ្ស៊ី",
+    "ids": [
+     "official_lex_3184"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ស្នៀត",
+    "ids": [
+     "official_lex_3639"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "ស្លូត",
+    "ids": [
+     "official_lex_4243"
+    ],
+    "year": "2012"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ស៊ក",
+    "ids": [
+     "official_lex_4364"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស្លឹក",
+    "ids": [
+     "official_lex_1257",
+     "official_lex_2572"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "សៀវភៅអេឡិចត្រូនិក/ម៉ីប៊ុក",
+    "ids": [
+     "official_lex_0655"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "សៀវភៅអេឡិចត្រូនិក/អឺប៊ុក",
+    "ids": [
+     "official_lex_0741"
+    ],
+    "year": "2025"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "សិទ្ធិលើការបញ្ចាំ",
+    "ids": [
+     "official_lex_1043"
+    ],
+    "year": "2007"
+   },
+   "b": {
+    "khmer": "សិទ្ធិលើការបញ្ជ",
+    "ids": [
+     "official_lex_1227"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "សាំងពៀរ",
+    "ids": [
+     "official_lex_3198"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "សាំងព្យែរ",
+    "ids": [
+     "official_lex_3448"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "សហព័ទ្ធ",
+    "ids": [
+     "official_lex_1032"
+    ],
+    "year": "2007"
+   },
+   "b": {
+    "khmer": "សហព័ន្ឋ",
+    "ids": [
+     "official_lex_1212"
+    ],
+    "year": "2007"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "មីនស៏",
+    "ids": [
+     "official_lex_3269"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "មីនស្គី",
+    "ids": [
+     "official_lex_3069"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "មរណាសន្នកាល/អាហ្គានី",
+    "ids": [
+     "official_lex_5864"
+    ],
+    "year": "2019"
+   },
+   "b": {
+    "khmer": "មរណាសន្នកាល/អាហ្វើនី",
+    "ids": [
+     "official_lex_5638"
+    ],
+    "year": "2018"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ប៉ាទីស្លាវ៉ា",
+    "ids": [
+     "official_lex_3386"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ប្រាទីស្លាវ៉ា",
+    "ids": [
+     "official_lex_3165"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "បូស្កូ",
+    "ids": [
+     "official_lex_3056"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "បូស្តុ",
+    "ids": [
+     "official_lex_3274"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ណូកសុត",
+    "ids": [
+     "official_lex_3104"
+    ],
+    "year": "2013"
+   },
+   "b": {
+    "khmer": "ស្លោកសុត",
+    "ids": [
+     "official_lex_3351"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ឆាត",
+    "ids": [
+     "official_lex_0728"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ឈែត",
+    "ids": [
+     "official_lex_4339"
+    ],
+    "year": "2013"
+   }
+  },
+  {
+   "reason": "multi-character",
+   "weight": 0,
+   "a": {
+    "khmer": "ចំណុចចូល/ចំណុចអាក់សស",
+    "ids": [
+     "official_lex_0525"
+    ],
+    "year": "2025"
+   },
+   "b": {
+    "khmer": "ចំណុចឆ្នូល/ចំណុចអាក់សស",
+    "ids": [
+     "official_lex_0714"
+    ],
+    "year": "2025"
+   }
+  }
+ ]
+}

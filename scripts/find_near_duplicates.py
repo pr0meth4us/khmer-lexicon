@@ -40,6 +40,7 @@ HERE = Path(__file__).resolve().parent.parent
 CACHE = HERE / "data"
 LEXICON = HERE / "dist" / "unified_lexicon.json"
 REPORT = HERE / "dist" / "near_duplicates.md"
+SIDECAR = HERE / "dist" / "near_duplicates.json"
 
 # seanghay/khmer-* on HuggingFace, CC-BY-SA-4.0, aggregates only, no personal data.
 DATASETS = {
@@ -47,6 +48,12 @@ DATASETS = {
     "khmer-search-frequency": "word",
 }
 PUNCT = set(" /-().,​")
+
+
+def _build_id():
+    """Stamp sidecars with the build they describe. See scripts/build_manifest.py."""
+    m = LEXICON.parent / "manifest.json"
+    return json.loads(m.read_text("utf-8"))["build_id"] if m.exists() else None
 
 
 def _fetch(name):
@@ -191,7 +198,22 @@ def main():
         "government terminology, not a data-cleaning one.",
     ]
     REPORT.write_text("\n".join(out), encoding="utf-8")
-    print(f"{len(near)} near-duplicates -> {REPORT}")
+    # a form can be carried by more than one entry, so a pair of forms is a pair
+    # of id *groups*, not a pair of ids.
+    sidecar = []
+    for reason in ORDER:
+        for weight, a, b in sorted(groups.get(reason, []), reverse=True):
+            sidecar.append({
+                "reason": reason, "weight": weight,
+                "a": {"khmer": a, "ids": [r["id"] for r in by_form[a]],
+                      "year": sorted({r.get("year", "") for r in by_form[a]})[-1]},
+                "b": {"khmer": b, "ids": [r["id"] for r in by_form[b]],
+                      "year": sorted({r.get("year", "") for r in by_form[b]})[-1]},
+            })
+    SIDECAR.write_text(json.dumps(
+        {"build_id": _build_id(), "count": len(sidecar), "pairs": sidecar},
+        ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print(f"{len(near)} near-duplicates -> {REPORT}, {SIDECAR}")
     for reason in ORDER:
         if groups.get(reason):
             print(f"  {len(groups[reason]):>4}  {reason}")

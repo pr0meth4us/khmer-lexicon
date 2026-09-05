@@ -21,8 +21,8 @@ short_description: Search 5,929 official Cambodian government terms, or check a 
 > for this dataset.**
 >
 > Mechanically detected so far: 21 entries whose Khmer field contains no Khmer,
-> 682 single-word terms one syllable from a Royal Academy dictionary word, 164
-> near-duplicate pairs, 24 entries with no Khmer, 1,657 with no English. Those
+> 347 single-word terms one plausible misread from a Royal Academy dictionary
+> word, 162 near-duplicate pairs, 24 entries with no Khmer, 1,657 with no English. Those
 > are only the errors that produce something *detectably* wrong — an OCR mistake
 > that turns one real Khmer word into a different real Khmer word is invisible to
 > every check here.
