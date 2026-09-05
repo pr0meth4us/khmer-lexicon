@@ -324,7 +324,14 @@ def _gate():
     return subprocess.run([sys.executable, str(Path(__file__).parent / "validate_lexicon.py")]).returncode
 
 
+def _stamp():
+    """Write dist/manifest.json + build_index.json so consumers can pin a build."""
+    import subprocess
+    return subprocess.run([sys.executable, str(Path(__file__).parent / "build_manifest.py")]).returncode
+
+
 if __name__ == "__main__":
     process_official_data()
-    sys.exit(_gate())
+    rc = _gate()
+    sys.exit(rc or _stamp())
 

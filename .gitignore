@@ -14,3 +14,4 @@ canaries.json
 dist/unified_lexicon.json
 dist/unified_official_lexicon.json
 build/
+dist/build_index.json

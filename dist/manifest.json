@@ -1,0 +1,34 @@
+{
+  "build_id": "1744764254eb",
+  "built_at": "2026-09-05",
+  "entries": 5934,
+  "sources": {
+    "council-of-ministers-legal-terms": 373,
+    "mptc-digital-lexicon": 279,
+    "nckl-bulletin-vol10-2019": 200,
+    "nckl-bulletin-vol3-2010": 167,
+    "nckl-bulletin-vol4-2012": 418,
+    "nckl-bulletin-vol5-2013": 124,
+    "nckl-bulletin-vol7-2015": 508,
+    "nckl-bulletin-vol8-2017": 466,
+    "nckl-bulletin-vol9-2018": 376,
+    "nckl-country-and-city-names": 510,
+    "nckl-economics": 216,
+    "nckl-political-science-and-diplomacy": 121,
+    "nckl-technology-and-science": 467,
+    "pentagonal-strategy-phase1": 486,
+    "rac-new-words": 1223
+  },
+  "quality": {
+    "ASCII digits in khmer": 0,
+    "characters outside Khmer, Latin and punctuation (occurrences)": 13,
+    "duplicate english glosses (case-insensitive)": 285,
+    "duplicate khmer forms": 123,
+    "empty english": 1657,
+    "empty khmer": 24,
+    "entries": 5934,
+    "khmer field with no Khmer at all": 21,
+    "not in canonical mark order": 0,
+    "terms longer than 20 clusters": 143
+  }
+}
