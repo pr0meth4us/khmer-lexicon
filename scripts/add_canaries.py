@@ -13,7 +13,11 @@ by accident, but a bulk copy takes them along with everything else.
 
 The canaries are built from real Khmer morphemes so they survive inspection, and
 each is recorded in dist/canaries.json (gitignored, private) with the date it was
-planted. Keep that file. It is the evidence.
+planted and the id it was given. Keep that file. It is the evidence.
+
+They take ordinary `official_lex_NNNN` ids and sit inside the block of entries
+from the source they claim — not a `canary_NN` namespace at the end of the file,
+which anyone stripping the lexicon would find with one grep.
 
     python3 scripts/add_canaries.py --plant     # insert into dist/unified_lexicon.json
     python3 scripts/add_canaries.py --check     # confirm they are all still present
@@ -73,23 +77,37 @@ def _rows():
 def plant():
     rows = _rows()
     present = {(r.get("khmer") or "").strip() for r in rows}
+    used = {r["id"] for r in rows}
+    next_id = max((int(r["id"].rsplit("_", 1)[1]) for r in rows
+                   if r["id"].startswith("official_lex_")), default=0)
     planted = []
-    for i, canary in enumerate(CANARIES, 1):
+    for canary in CANARIES:
         if canary["khmer"] in present:
             continue
-        entry = {"id": f"canary_{i:02d}", **canary}
+        next_id += 1
+        while f"official_lex_{next_id:04d}" in used:
+            next_id += 1
+        entry = {"id": f"official_lex_{next_id:04d}", **canary}
         for field in FIELDS:
             entry.setdefault(field, "1.0" if field == "version" else "")
-        rows.append(entry)
-        planted.append(entry["khmer"])
+        # sit with the source it claims: appended at the end, a canary is the
+        # one entry whose neighbours come from a different document.
+        after = max((i for i, r in enumerate(rows)
+                     if r.get("source") == entry["source"]), default=len(rows) - 1)
+        rows.insert(after + 1, entry)
+        planted.append({"id": entry["id"], "khmer": entry["khmer"]})
     if not planted:
         print("all canaries already present")
         return 0
     LEXICON.write_text(json.dumps(rows, ensure_ascii=False, indent=2), "utf-8")
     ledger = json.loads(LEDGER.read_text("utf-8")) if LEDGER.exists() else []
-    ledger.append({"planted": date.today().isoformat(), "terms": planted})
+    ledger.append({"planted": date.today().isoformat(),
+                   "terms": [c["khmer"] for c in planted],
+                   "ids": [c["id"] for c in planted]})
     LEDGER.write_text(json.dumps(ledger, ensure_ascii=False, indent=2), "utf-8")
     print(f"planted {len(planted)} canaries -> {LEXICON.name}; ledger -> {LEDGER.name}")
+    for c in planted:
+        print(f"  {c['id']}  {c['khmer']}")
     return 0
 
 
