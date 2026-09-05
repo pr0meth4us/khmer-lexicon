@@ -9,6 +9,8 @@
 | khmer field with no Khmer at all | 21 | 21 |
 | characters outside Khmer, Latin and punctuation (occurrences) | 13 | 13 |
 | ASCII digits in khmer | 0 | 0 |
+| khmer shorter than 3 characters | 52 | — |
+| khmer is a single bare consonant | 10 | — |
 | not in canonical mark order | 0 | 0 |
 | duplicate khmer forms | 123 | 123 |
 | duplicate english glosses (case-insensitive) | 285 | 285 |
@@ -109,6 +111,48 @@
 - official_lex_1815 'Muññ' (LATIN SMALL LETTER N WITH TILDE)
 - official_lex_1815 'Muññ' (LATIN SMALL LETTER N WITH TILDE)
 - official_lex_3826 'Génitif' (LATIN SMALL LETTER E WITH ACUTE)
+
+## khmer shorter than 3 characters (52)
+
+- official_lex_0532 'វ៣' = '3D'
+- official_lex_0534 'ជ៥' = 'Fifth Generation'
+- official_lex_0675 'សោ' = 'Key'
+- official_lex_0725 'សល' = 'Cell'
+- official_lex_0907 'ម' = 'quorum'
+- official_lex_1273 'ភន' = '(PAN: Personal Area Network)'
+- official_lex_1288 'រម' = 'RAM (Random Access Memory)'
+- official_lex_1370 'កង' = 'annulus'
+- official_lex_1438 'អត' = 'rate'
+- official_lex_1496 'ឆក' = 'bay'
+- official_lex_1671 'ភើ' = 'eructation/belching'
+- official_lex_1723 'ន.' = 'Noun'
+- official_lex_1734 'ស.' = 'Siamese/Thai'
+- official_lex_2026 'នក' = ''
+- official_lex_2238 'រ' = ''
+- official_lex_2471 'កម' = ''
+- official_lex_2543 'ចក' = ''
+- official_lex_2575 'ញ' = ''
+- official_lex_2604 'តែ' = ''
+- official_lex_2609 'ត' = ''
+- official_lex_2633 'ថ' = ''
+- official_lex_2676 'នី' = ''
+- official_lex_2680 'ប' = ''
+- official_lex_2702 'ពង' = ''
+- official_lex_2737 'ភ' = ''
+- …and 27 more
+
+## khmer is a single bare consonant (10)
+
+- official_lex_0907 'ម' = 'quorum'
+- official_lex_2238 'រ' = ''
+- official_lex_2575 'ញ' = ''
+- official_lex_2609 'ត' = ''
+- official_lex_2633 'ថ' = ''
+- official_lex_2680 'ប' = ''
+- official_lex_2737 'ភ' = ''
+- official_lex_2826 'ស' = ''
+- official_lex_3020 'ថ' = 'Thailand'
+- official_lex_3735 'ច' = 'louse'
 
 ## duplicate khmer forms (123)
 

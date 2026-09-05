@@ -11,6 +11,16 @@ All notable changes to this project will be documented in this file.
   re-process only what moved. The id is content-addressed over Khmer forms only,
   so it changes when and only when a stored character offset could be invalid.
   Written by the build gate, so a build that regresses quality is never stamped.
+- Two validator checks for truncated headwords: `khmer shorter than 3
+  characters` (52) and `khmer is a single bare consonant` (10). Found by a
+  consumer whose pipeline forced `official_lex_0907` — "quorum" rendered as the
+  single consonant ម — into a generated sentence. The entry carries a full
+  Council of Ministers definition and a French gloss; only the headword is gone,
+  so every structural check passed it. The bare-consonant count is the
+  recoverable set: a lone consonant has no vowel, so it is the first letter of a
+  word rather than a word. A Khmer-vs-English length-ratio test was tried and
+  rejected — Khmer is dense enough that one cluster spells a six-letter English
+  word (មុំ "angle", កោះ "island"), so it flags 625 entries, nearly all correct.
 - Id-level JSON sidecars beside the markdown reports: `dist/ocr_suspects.json`
   and `dist/near_duplicates.json`, each stamped with the build they describe.
   Near-duplicate pairs carry id *groups* per side, since a Khmer form can be

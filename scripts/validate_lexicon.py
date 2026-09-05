@@ -31,6 +31,13 @@ REPORT = HERE / "dist" / "validation_report.md"
 # definition dumped into the khmer field, not a term -- so length is a signal
 # for extraction failure, but only well past the 95th percentile.
 LONG_TERM_CLUSTERS = 20
+# A term this short is either a truncation or unusable as a match target: one or
+# two characters match inside almost any word. Found by a consumer whose pipeline
+# forced official_lex_0907, "quorum" -> ម, into a generated sentence -- the entry
+# has Khmer, an English gloss and a full definition, so every other check here
+# passes it. Only trying to use it in a sentence reveals it.
+SHORT_TERM_CHARS = 3
+KHMER_CONSONANT = re.compile(r"^[ក-អ]$")
 ASCII_DIGIT = re.compile(r"[0-9]")
 KHMER_DIGIT = re.compile(r"[០-៩]")
 
@@ -57,6 +64,17 @@ def check(rows):
     ]
     out["ASCII digits in khmer"] = [
         f"{r['id']} {t!r}" for r, t in non_empty if ASCII_DIGIT.search(t)
+    ]
+    out[f"khmer shorter than {SHORT_TERM_CHARS} characters"] = [
+        f"{r['id']} {t!r} = {(r.get('english') or '')[:30]!r}"
+        for r, t in non_empty
+        if any(is_khmer(c) for c in t) and len(t) < SHORT_TERM_CHARS
+    ]
+    # A lone consonant carries no vowel, so it is not a word in any glossary --
+    # it is the first letter of one. These are the recoverable truncations.
+    out["khmer is a single bare consonant"] = [
+        f"{r['id']} {t!r} = {(r.get('english') or '')[:30]!r}"
+        for r, t in non_empty if KHMER_CONSONANT.match(t)
     ]
     out["not in canonical mark order"] = [
         f"{r['id']} {t!r} -> {normalize(t)!r}" for r, t in non_empty if normalize(t) != t

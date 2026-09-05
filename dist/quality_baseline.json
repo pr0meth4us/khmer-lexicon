@@ -7,6 +7,8 @@
   "empty khmer": 24,
   "entries": 5934,
   "khmer field with no Khmer at all": 21,
+  "khmer is a single bare consonant": 10,
+  "khmer shorter than 3 characters": 52,
   "not in canonical mark order": 0,
   "terms longer than 20 clusters": 143
 }
