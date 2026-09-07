@@ -1,0 +1,111 @@
+# Evaluating this lexicon
+
+The dataset has counts but no measured accuracy. Every figure in
+`dist/validation_report.md` is a *detectable* defect — an empty field, a
+duplicate, a character out of range. The dominant failure mode of Khmer OCR is
+none of those: it turns one valid Khmer word into a different valid Khmer word,
+and no automated check here can see it. Only a human with the source page can.
+
+This document is the procedure for producing that number. It needs no tooling
+beyond the two scripts below and the PDFs in `source_pdfs/`.
+
+## What is being measured
+
+Two independent error rates, per entry:
+
+- **`khmer_ok`** — does the Khmer headword match the source page exactly?
+  This is the number that matters. A wrong headword makes the entry actively
+  misleading, because the whole point of the dataset is the official form.
+- **`english_ok`** — does the English gloss match what the source printed?
+  Lower stakes: a wrong gloss is findable by a reader who knows the term.
+
+Judge against **what the document printed**, not against what is correct. If
+the ministry published a typo, the entry is right to reproduce it — note it in
+`notes` and mark it `y`. This is a transcription evaluation, not a review of
+Cambodian terminology policy.
+
+Count as an error (`n`): any difference in characters, including a missing or
+added diacritic, wrong subscript, wrong vowel, or wrong zero-width character.
+Khmer renders such differences invisibly at small sizes — compare at high zoom,
+and when in doubt paste both strings into a diff rather than eyeballing them.
+
+Leave blank to skip: rows you cannot locate on a page, and rows from the two
+sources whose PDFs are missing (below). Blank rows are excluded from the
+result rather than counted as correct.
+
+## Procedure
+
+### 1. Draw the sample
+
+```bash
+python scripts/evaluate_sample.py draw -n 400 -o dist/eval_sample.csv
+```
+
+Stratified random sample across all 15 sources, proportional to source size
+with a floor of 10 per source so small sources are still covered. The seed is
+fixed, so the same command always yields the same rows — say so when you report
+the result, and do not redraw after seeing the outcome.
+
+Sample size against the precision it buys, for an error rate near 10%:
+
+| n | 95% interval half-width |
+|---:|---|
+| 150 (the floor: 10 × 15 sources) | ±5% |
+| 400 | ±3% |
+| 1,000 | ±2% |
+
+400 is the recommended starting point — roughly two evenings of checking, and
+enough to distinguish "a few percent" from "a fifth of the dataset", which is
+the distinction anyone reading the number actually cares about. Per-source rates
+at that size are indicative only; their intervals will be wide, and the script
+prints them so you can see that.
+
+### 2. Check each row against its page
+
+Open the CSV; each row carries its `source`, `author` and `year`, which identify
+the PDF in `source_pdfs/`. Find the term on the page and fill `khmer_ok` and
+`english_ok` with `y` or `n`. Use `notes` for anything worth keeping — a
+recurring confusion between two characters is more useful than the rate itself,
+because it can be fixed in the pipeline.
+
+Work through the file in order rather than skipping around: consecutive rows
+often come from the same source, so you page through one PDF at a time.
+
+### 3. Score it
+
+```bash
+python scripts/evaluate_sample.py score dist/eval_sample.csv
+```
+
+Reports per-source and overall error rates with Wilson 95% confidence intervals.
+The overall figure weights each source by its true size, so the per-source floor
+does not let a 121-entry source distort a 5,934-entry estimate. The `covering`
+figure states how many entries the estimate actually speaks for.
+
+## Reporting it
+
+Put the headline number in `README.md` and `DATA_STATEMENT.md` §7, replacing the
+"unevaluated" notice. Report it as an interval, with the sample size and the
+seed — `khmer` headword error rate 4.2% [2.6–6.7%], n=400, seed 20260907 — not
+as a bare percentage. State that it was single-annotator if it was.
+
+An honest wide interval is worth more than a precise-looking number: it is the
+difference between a dataset a reviewer can reason about and one they have to
+take on trust.
+
+## Limits worth stating alongside the result
+
+**Two sources cannot be verified.** The Pentagonal Strategy Phase 1 glossary
+(486 entries) and the NCKL technology and science volume (467) have no PDF in
+`source_pdfs/`. Those 953 entries — 16% of the dataset — are unverifiable
+until the documents are recovered. Leave their rows blank; the score output will
+show a `covering` figure below 5,934, which is the honest scope of the claim.
+
+**One annotator is a known weakness.** A second person checking the same rows
+blind, with agreement reported, is meaningfully stronger. If that is not
+possible, say so plainly rather than leaving it implied.
+
+**The sample says nothing about coverage.** It measures whether the entries that
+are present are right. Terms the OCR dropped entirely never appear in the
+dataset and so can never be sampled. Measuring that needs the opposite exercise:
+take a page, count its terms, and check how many reached the JSON.

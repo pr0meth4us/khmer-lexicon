@@ -14,5 +14,7 @@ canaries.json
 dist/unified_lexicon.json
 dist/unified_official_lexicon.json
 dist/*.tbx
+dist/eval_sample.csv
+dist/eval_sample.strata.json
 build/
 dist/build_index.json
