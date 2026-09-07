@@ -1,5 +1,5 @@
 {
-  "$comment": "PDFs recovered from Wayback Machine captures of the previous NCKL WordPress site (nckl.rac.gov.kh/wp-content/uploads/2020/12/). The current NCKL site serves its downloads from panel.racmanagementsystem.academy, which no longer resolves in DNS, so these captures are currently the only reachable copies. Filenames are opaque numbers and the PDFs carry no title metadata: contents are UNIDENTIFIED and must be opened to be known. Only byte-identical duplicates of the existing corpus are marked; a document re-scanned or re-compressed will not match by hash even when it is the same publication. Files themselves live in source_pdfs/candidates/ and are gitignored.",
+  "$comment": "PDFs recovered from Wayback Machine captures of the previous NCKL WordPress site (nckl.rac.gov.kh/wp-content/uploads/2020/12/). The current NCKL site serves its downloads from panel.racmanagementsystem.academy, which no longer resolves in DNS, so these captures are currently the only reachable copies. Filenames are opaque numbers and the PDFs carry no title metadata: contents are UNIDENTIFIED and must be opened to be known. Only byte-identical duplicates of the existing corpus are marked; a document re-scanned or re-compressed will not match by hash even when it is the same publication. Files themselves live in source_pdfs/candidates/ and are gitignored. 'identified' records what could be read from each PDF's embedded text layer on 2026-09-07 without OCR. Files whose text layer is legacy Limon (ASCII bytes that render as Khmer only in that font) read as garbage and are still unidentified — those must be OCR'd from RENDERED PAGE IMAGES, never from extracted text.",
   "recovered": "2026-09-07",
   "count": 40,
   "candidates": [
@@ -10,7 +10,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/200.pdf",
-      "wayback_url": "https://web.archive.org/web/20240515071415id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/200.pdf"
+      "wayback_url": "https://web.archive.org/web/20240515071415id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/200.pdf",
+      "pages": 3,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "203.pdf",
@@ -19,7 +26,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/203.pdf",
-      "wayback_url": "https://web.archive.org/web/20220809224835id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/203.pdf"
+      "wayback_url": "https://web.archive.org/web/20220809224835id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/203.pdf",
+      "pages": 2,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "204.pdf",
@@ -28,7 +42,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/204.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807170736id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/204.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807170736id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/204.pdf",
+      "pages": 4,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "205.pdf",
@@ -37,7 +58,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/205.pdf",
-      "wayback_url": "https://web.archive.org/web/20220809224759id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/205.pdf"
+      "wayback_url": "https://web.archive.org/web/20220809224759id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/205.pdf",
+      "pages": 2,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "206.pdf",
@@ -46,7 +74,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/206.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807170129id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/206.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807170129id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/206.pdf",
+      "pages": 5,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "207.pdf",
@@ -55,7 +90,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/207.pdf",
-      "wayback_url": "https://web.archive.org/web/20220809224711id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/207.pdf"
+      "wayback_url": "https://web.archive.org/web/20220809224711id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/207.pdf",
+      "pages": 11,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "208.pdf",
@@ -64,7 +106,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/208.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135551id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/208.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135551id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/208.pdf",
+      "pages": 6,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "209.pdf",
@@ -73,7 +122,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/209.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135545id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/209.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135545id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/209.pdf",
+      "pages": 4,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "210.pdf",
@@ -82,7 +138,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/210.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135541id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/210.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135541id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/210.pdf",
+      "pages": 2,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "211.pdf",
@@ -91,7 +154,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/211.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135539id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/211.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135539id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/211.pdf",
+      "pages": 2,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "212.pdf",
@@ -100,7 +170,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/212.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135535id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/212.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135535id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/212.pdf",
+      "pages": 3,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "213.pdf",
@@ -109,7 +186,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/213.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135529id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/213.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135529id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/213.pdf",
+      "pages": 15,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "214.pdf",
@@ -118,7 +202,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/214.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135524id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/214.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135524id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/214.pdf",
+      "pages": 3,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "215.pdf",
@@ -127,7 +218,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/215.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135521id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/215.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135521id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/215.pdf",
+      "pages": 8,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "216.pdf",
@@ -136,7 +234,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/216.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135517id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/216.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135517id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/216.pdf",
+      "pages": 5,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "217.pdf",
@@ -145,7 +250,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/217.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135456id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/217.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135456id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/217.pdf",
+      "pages": 36,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "218.pdf",
@@ -154,7 +266,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/218.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807170032id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/218.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807170032id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/218.pdf",
+      "pages": 10,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "219.pdf",
@@ -163,7 +282,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/219.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807165733id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/219.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807165733id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/219.pdf",
+      "pages": 124,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "220.pdf",
@@ -172,7 +298,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/220.pdf",
-      "wayback_url": "https://web.archive.org/web/20220804161439id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/220.pdf"
+      "wayback_url": "https://web.archive.org/web/20220804161439id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/220.pdf",
+      "pages": 89,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "221.pdf",
@@ -181,7 +314,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/221.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807165753id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/221.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807165753id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/221.pdf",
+      "pages": 12,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "222.pdf",
@@ -190,7 +330,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/222.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807165909id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/222.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807165909id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/222.pdf",
+      "pages": 131,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "223.pdf",
@@ -199,7 +346,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/223.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807170006id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/223.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807170006id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/223.pdf",
+      "pages": 69,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "224.pdf",
@@ -208,7 +362,14 @@
       "complete": false,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/224.pdf",
-      "wayback_url": "https://web.archive.org/web/20211202094700id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/224.pdf"
+      "wayback_url": "https://web.archive.org/web/20211202094700id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/224.pdf",
+      "pages": 0,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "225.pdf",
@@ -217,7 +378,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/225.pdf",
-      "wayback_url": "https://web.archive.org/web/20240515060718id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/225.pdf"
+      "wayback_url": "https://web.archive.org/web/20240515060718id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/225.pdf",
+      "pages": 104,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "226.pdf",
@@ -226,7 +394,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/226.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807170640id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/226.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807170640id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/226.pdf",
+      "pages": 144,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "227.pdf",
@@ -235,7 +410,18 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/227.pdf",
-      "wayback_url": "https://web.archive.org/web/20240515075357id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/227.pdf"
+      "wayback_url": "https://web.archive.org/web/20240515075357id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/227.pdf",
+      "pages": 128,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": "សទ្ទានុក្រម វប្បធម៌ និង វិចិត្រសិល្បៈ ខ្មែរ-អង់គ្លេស-បារាំង",
+        "title_english": "LEXICON OF CULTURE AND FINE ARTS (Khmer-English-French)",
+        "issuing_body": "ទីស្តីការគណៈរដ្ឋមន្ត្រី / ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
+        "year": "2015",
+        "confidence": "high",
+        "verdict": "new",
+        "evidence": "p1 title page, embedded Unicode text: 'សទ្ទ នុ្រកម វប្បធម៌ និង វិចិ្រតសិល្បៈ ... LEXICON OF CULTURE AND FINE ARTS Khmer-English-French', dated សីហា ២០១៥"
+      }
     },
     {
       "file": "228.pdf",
@@ -244,7 +430,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/228.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807171634id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/228.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807171634id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/228.pdf",
+      "pages": 123,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "229.pdf",
@@ -253,7 +446,19 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/229.pdf",
-      "wayback_url": "https://web.archive.org/web/20211202104654id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/229.pdf"
+      "wayback_url": "https://web.archive.org/web/20211202104654id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/229.pdf",
+      "pages": 123,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": "ព្រឹត្តិបត្រ លេខ ៧ ឆ្នាំ២០១៥",
+        "title_english": "Bulletin Vol. 7, 2015",
+        "issuing_body": "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
+        "year": "2015",
+        "confidence": "high",
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol7-2015",
+        "evidence": "p1, embedded Unicode: 'ព្រឹតƎិប្រត ... េលខ ៧ ឆាƒំ២០១៥ ... Vol. 7, 2015 BULLETIN OF THE NATIONAL COUNCIL OF KHMER LANGUAGE'; 123 pages, same as the local copy"
+      }
     },
     {
       "file": "230.pdf",
@@ -262,7 +467,18 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/230.pdf",
-      "wayback_url": "https://web.archive.org/web/20211202100427id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/230.pdf"
+      "wayback_url": "https://web.archive.org/web/20211202100427id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/230.pdf",
+      "pages": 115,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": "សទ្ទានុក្រម វេជ្ជសាស្ត្រ និង កសិកម្ម ខ្មែរ-អង់គ្លេស-បារាំង",
+        "title_english": "LEXICON OF MEDICINE AND AGRICULTURE (Khmer-English-French)",
+        "issuing_body": "ទីស្តីការគណៈរដ្ឋមន្ត្រី / ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
+        "year": "2015",
+        "confidence": "high",
+        "verdict": "new",
+        "evidence": "p1 title page, embedded Unicode: 'សទ្ទ នុ្រកម េវជƅសȜស្ត និង កសិកមƗ ... LEXICON OF MEDICINE AND AGRICULTURE Khmer-English-French', dated សីហា ២០១៥"
+      }
     },
     {
       "file": "231.pdf",
@@ -271,7 +487,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/231.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807171456id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/231.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807171456id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/231.pdf",
+      "pages": 111,
+      "has_text_layer": false,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "232.pdf",
@@ -280,7 +503,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/232.pdf",
-      "wayback_url": "https://web.archive.org/web/20220807170333id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/232.pdf"
+      "wayback_url": "https://web.archive.org/web/20220807170333id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/232.pdf",
+      "pages": 118,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "233.pdf",
@@ -289,7 +519,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/233.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135109id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/233.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135109id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/233.pdf",
+      "pages": 104,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "234.pdf",
@@ -298,7 +535,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/234.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135058id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/234.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135058id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/234.pdf",
+      "pages": 91,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "235.pdf",
@@ -307,7 +551,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/235.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135050id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/235.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135050id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/235.pdf",
+      "pages": 54,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "236.pdf",
@@ -316,7 +567,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/236.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135040id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/236.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135040id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/236.pdf",
+      "pages": 61,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "237.pdf",
@@ -325,7 +583,14 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/237.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135028id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/237.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135028id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/237.pdf",
+      "pages": 103,
+      "has_text_layer": true,
+      "identified": {
+        "verdict": "unidentified",
+        "confidence": null,
+        "evidence": "text layer carries no title; needs OCR of rendered pages"
+      }
     },
     {
       "file": "238.pdf",
@@ -334,7 +599,19 @@
       "complete": true,
       "duplicate_of": "nckl-economics",
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/238.pdf",
-      "wayback_url": "https://web.archive.org/web/20211202094149id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/238.pdf"
+      "wayback_url": "https://web.archive.org/web/20211202094149id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/238.pdf",
+      "pages": 97,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": "សទ្ទានុក្រមវិទ្យាសាស្ត្រសេដ្ឋកិច្ច",
+        "title_english": null,
+        "issuing_body": "គណៈកម្មការវិទ្យាសាស្ត្រសេដ្ឋកិច្ច, ក.ជ.ភ.ខ.",
+        "year": null,
+        "confidence": "high",
+        "verdict": "duplicate",
+        "matches_known": "nckl-economics",
+        "evidence": "p1 committee page names គណៈកម្មការវិទ្យាសាស្ត្រសេដ្ឋកិច្ច (ពីឆ្នាំ២០១២ ដល់ឆ្នាំ២០១៤); byte-identical to the local NCKL_Economics_2019.pdf"
+      }
     },
     {
       "file": "240.pdf",
@@ -343,7 +620,18 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/240.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729135013id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/240.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729135013id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/240.pdf",
+      "pages": 132,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": null,
+        "title_english": null,
+        "issuing_body": "គណៈកម្មការទស្សនវិជ្ជា, ក.ជ.ភ.ខ.",
+        "year": null,
+        "confidence": "medium",
+        "verdict": "new",
+        "evidence": "p1 committee page: 'សមាសភាព គណៈកម្មការទស្សនវិជ្ជា' (Philosophy commission). No printed title found in the text layer; the NCKL catalogue lists a សទ្ទានុក្រមទស្សនវិជ្ជាឆ្នាំ២០១៩, but that identification is inferred, not read"
+      }
     },
     {
       "file": "241.pdf",
@@ -352,7 +640,18 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/241.pdf",
-      "wayback_url": "https://web.archive.org/web/20211202091530id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/241.pdf"
+      "wayback_url": "https://web.archive.org/web/20211202091530id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/241.pdf",
+      "pages": 102,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": null,
+        "title_english": null,
+        "issuing_body": "គណៈកម្មការសុខាភិបាល, ក.ជ.ភ.ខ.",
+        "year": null,
+        "confidence": "medium",
+        "verdict": "new",
+        "evidence": "p1 committee page: 'សមាសភាព គណៈកមមការសុខាភិបាល' (Health commission). No printed title in the text layer"
+      }
     },
     {
       "file": "242.pdf",
@@ -361,7 +660,18 @@
       "complete": true,
       "duplicate_of": null,
       "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/242.pdf",
-      "wayback_url": "https://web.archive.org/web/20220729134959id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/242.pdf"
+      "wayback_url": "https://web.archive.org/web/20220729134959id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/242.pdf",
+      "pages": 13,
+      "has_text_layer": true,
+      "identified": {
+        "title_khmer": "របាយការណ៍កិច្ចពិភាក្សាតុមូល «បទពិសោធនិងបញ្ហាគោលការណ៍ក្នុងការប្រើអក្សរឡាតាំង...»",
+        "title_english": null,
+        "issuing_body": "រាជបណ្ឌិត្យសភាកម្ពុជា / ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
+        "year": "2020",
+        "confidence": "high",
+        "verdict": "not-a-term-list",
+        "evidence": "p1: round-table report dated ១៣ សីហា ២០២០ on romanising Khmer; 13 pages, no term entries"
+      }
     }
   ]
 }
