@@ -143,7 +143,7 @@ link was checked:
 |---|---:|---|
 | `verified` | 1 | re-downloaded; SHA-256 identical to the local copy |
 | `size-match` | 1 | HTTP 200 and byte size identical; body not re-hashed |
-| `page-count-match` | 2 | a copy downloads from the Ministry of Education's Sala Digital library; different bytes, same page count |
+| `content-identical` | 2 | a copy downloads from the Ministry of Education's Sala Digital library; different bytes, but every page renders pixel-identical |
 | `listed-but-unreachable` | 11 | advertised on the official NCKL page, but the file host does not resolve |
 
 The eleven NCKL documents are listed for download at
