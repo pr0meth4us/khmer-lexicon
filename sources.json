@@ -9,11 +9,11 @@
       "file": "CouncilOfMinisters_Legal_Terms_2007.pdf",
       "sha256": "48325df0b832354dbb331d15500ae1c417ce919cdc18b8953f7d3069357a005f",
       "bytes": 2813445,
-      "official_url": null,
-      "official_page": null,
+      "official_url": "https://api.saladigital.org/books/67972f0c8bd9e50b5fd5beed/download",
+      "official_page": "https://sala.moeys.gov.kh/kh/library/00005194",
       "archived_url": null,
-      "url_status": "not-found",
-      "note": "No official online copy located on 2026-09-07."
+      "url_status": "page-count-match",
+      "note": "Catalogued as សទ្ទានុក្រមពាក្យច្បាប់ ផ្នែករដ្ឋប្បវេណី និងនីតិវិធីរដ្ឋប្បវេណី, Office of the Council of Ministers, 2007, in the Ministry of Education's Sala Digital library. Downloads as 3,289,452 bytes against 2,813,445 here — same 64 pages, so a different scan or compression of the same edition. The National Council of Khmer Language sat within the Office of the Council of Ministers at the time, so catalogues crediting either body are both right; `issuing_body` here follows the Sala Digital record."
     },
     "mptc-digital-lexicon": {
       "issuing_body": "Ministry of Post and Telecommunications (MPTC)",
@@ -191,11 +191,11 @@
       "file": "RAC_New_Words_2018.pdf",
       "sha256": "be58e788c1c6824abe30ad3714dcb0e0142a60d772dfa4352af4c73eadae12cd",
       "bytes": 5246875,
-      "official_url": null,
-      "official_page": "https://rac.gov.kh/",
+      "official_url": "https://api.saladigital.org/books/6835629cdaae3dc94ef0dcaf/download",
+      "official_page": "https://sala.moeys.gov.kh/kh/library/00006455",
       "archived_url": null,
-      "url_status": "not-found",
-      "note": "No official online copy located on 2026-09-07. The Royal Academy publishes the 2022 dictionary as an app, not this 2018 volume as a PDF."
+      "url_status": "page-count-match",
+      "note": "Catalogued as សទ្ទានុក្រមពាក្យថ្មី, National Institute of the Royal Academy of Cambodia, 2018, in the Ministry of Education's Sala Digital library. Downloads as a PDF of 5,247,571 bytes against 5,246,875 here — not byte-identical, but the same 188 pages, so a different encode of the same edition rather than a different document. Re-run the extraction against it to confirm."
     }
   }
 }
