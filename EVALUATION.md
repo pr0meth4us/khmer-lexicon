@@ -101,6 +101,16 @@ against `sources.json` and fails if any file is not the one the pipeline read �
 a re-downloaded or re-scanned PDF can differ from the original while looking
 identical, which would make your error rate a measurement of the wrong document.
 
+**Some errors cannot be settled by looking.** Khmer has subscript pairs that
+most fonts render identically — ្ត and ្ដ above all, which appears in 677
+entries, 11.4% of the corpus. In the source PDFs at 700 dpi the two are the
+same shape, and the text layer is no help: it encodes the whole cluster as one
+mis-mapped glyph. An entry differing only in that subscript is therefore not
+checkable by eye, and a `y` on such a row means "no visible difference", not
+"correct". Leave those blank and note them; they need the printed book, a
+native reader who knows the intended spelling, or a comparison against the
+Royal Academy dictionary — which is what `check_against_rac.py` is for.
+
 **One annotator is a known weakness.** A second person checking the same rows
 blind, with agreement reported, is meaningfully stronger. If that is not
 possible, say so plainly rather than leaving it implied.
