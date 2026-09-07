@@ -102,6 +102,10 @@ So a clone reproduces the pipeline, not the dataset. `CITATION.cff` and the
 for the *data* is citing the 309-entry sample unless the full file has been
 shared with them separately.
 
+`sources.json` records where each of the 15 source documents came from, with a
+SHA-256 of the exact file the pipeline read; `python scripts/verify_sources.py`
+checks the local PDFs against it, and `--urls` re-checks the published links.
+
 `DATA_STATEMENT.md` describes the dataset in the Bender & Friedman schema —
 curation rationale, language variety, provenance, and known defects.
 `EVALUATION.md` is the procedure for replacing the missing accuracy figure with

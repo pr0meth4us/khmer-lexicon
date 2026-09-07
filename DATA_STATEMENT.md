@@ -131,10 +131,27 @@ document when what matters is a term's official status.
 
 ## 9. Other
 
-Source PDFs are not redistributed. 13 of the 15 source documents are held
-locally in `source_pdfs/` (gitignored); the remaining two — the Pentagonal
-Strategy Phase 1 glossary and the NCKL technology and science volume — were
-extracted from documents not retained in that directory, which limits
-re-verification of those 953 entries.
+Source PDFs are not redistributed. All 15 source documents are held locally in
+`source_pdfs/` (gitignored), so every entry can be checked against its page.
+
+`sources.json` records, per source: the issuing body, year, entry count, the
+SHA-256 and byte size of the exact file the pipeline read, and where the
+document can be obtained. Its `url_status` field is honest about how far each
+link was checked:
+
+| Status | Sources | Meaning |
+|---|---:|---|
+| `verified` | 1 | re-downloaded; SHA-256 identical to the local copy |
+| `size-match` | 1 | HTTP 200 and byte size identical; body not re-hashed |
+| `listed-but-unreachable` | 11 | advertised on the official NCKL page, but the file host does not resolve |
+| `not-found` | 2 | no official online copy located |
+
+The eleven NCKL documents are listed for download at
+https://nckl.rac.gov.kh/bulletin/index, but that page serves its files from
+`panel.racmanagementsystem.academy`, which did not resolve in DNS on 2026-09-07.
+The links are therefore dead at the publisher, and the copies here cannot be
+re-fetched from source. No Wayback Machine snapshot of that host exists. This is
+a preservation problem for Khmer terminology generally, not only for this
+dataset.
 
 No personal data. The dataset contains published terminology only.

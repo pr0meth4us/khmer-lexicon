@@ -95,11 +95,11 @@ take on trust.
 
 ## Limits worth stating alongside the result
 
-**Two sources cannot be verified.** The Pentagonal Strategy Phase 1 glossary
-(486 entries) and the NCKL technology and science volume (467) have no PDF in
-`source_pdfs/`. Those 953 entries — 16% of the dataset — are unverifiable
-until the documents are recovered. Leave their rows blank; the score output will
-show a `covering` figure below 5,934, which is the honest scope of the claim.
+**Confirm you are checking the right file.** Run
+`python scripts/verify_sources.py` first. It hashes every PDF in `source_pdfs/`
+against `sources.json` and fails if any file is not the one the pipeline read —
+a re-downloaded or re-scanned PDF can differ from the original while looking
+identical, which would make your error rate a measurement of the wrong document.
 
 **One annotator is a known weakness.** A second person checking the same rows
 blind, with agreement reported, is meaningfully stronger. If that is not
