@@ -21,6 +21,10 @@ from pathlib import Path
 
 from khmerlex import cluster_len, clusters, contaminants, is_khmer, normalize
 
+# ្រ preceding another subscript, e.g. ស្រ្ត where ស្ត្រ is meant.
+COENG_RO_FIRST = re.compile(r'([ក-អ])្រ្([ក-អ])')
+OBSOLETE = "ឝឞឣឤ"
+
 # scripts/ lives one level below the repo root; dist/ and data/ are up there.
 HERE = Path(__file__).resolve().parent.parent
 LEXICON = HERE / "dist" / "unified_lexicon.json"
@@ -75,6 +79,21 @@ def check(rows):
     out["khmer is a single bare consonant"] = [
         f"{r['id']} {t!r} = {(r.get('english') or '')[:30]!r}"
         for r, t in non_empty if KHMER_CONSONANT.match(t)
+    ]
+    # ្រ is written last when a base carries two subscripts: ស្ត្រី, not
+    # ស្រ្តី. The reversed order renders almost identically, survives NFC, and
+    # is invisible to the mark-order check above -- but no Khmer word has it,
+    # so every hit is a defect. Confirmed against the Khmerlang spellchecker,
+    # which flags each of these and suggests the corrected form.
+    out["coeng ro before another subscript"] = [
+        f"{r['id']} {t!r} -> {COENG_RO_FIRST.sub(lambda m: m.group(1) + '្' + m.group(2) + '្រ', t)!r}"
+        for r, t in non_empty if COENG_RO_FIRST.search(t)
+    ]
+    # Four Khmer letters are obsolete and appear in no modern word. They sit
+    # inside the Khmer block, so the character-range check above cannot see
+    # them.
+    out["obsolete Khmer letter"] = [
+        f"{r['id']} {t!r} ({c})" for r, t in non_empty for c in OBSOLETE if c in t
     ]
     out["not in canonical mark order"] = [
         f"{r['id']} {t!r} -> {normalize(t)!r}" for r, t in non_empty if normalize(t) != t

@@ -9,8 +9,10 @@
 | khmer field with no Khmer at all | 21 | 21 |
 | characters outside Khmer, Latin and punctuation (occurrences) | 13 | 13 |
 | ASCII digits in khmer | 0 | 0 |
-| khmer shorter than 3 characters | 52 | — |
-| khmer is a single bare consonant | 10 | — |
+| khmer shorter than 3 characters | 52 | 52 |
+| khmer is a single bare consonant | 10 | 10 |
+| coeng ro before another subscript | 7 | — |
+| obsolete Khmer letter | 1 | — |
 | not in canonical mark order | 0 | 0 |
 | duplicate khmer forms | 123 | 123 |
 | duplicate english glosses (case-insensitive) | 285 | 285 |
@@ -153,6 +155,20 @@
 - official_lex_2826 'ស' = ''
 - official_lex_3020 'ថ' = 'Thailand'
 - official_lex_3735 'ច' = 'louse'
+
+## coeng ro before another subscript (7)
+
+- official_lex_0169 'ការបង្កើនភាពអង់អាចដល់ស្រ្តី និង ក្មេងស្រី' -> 'ការបង្កើនភាពអង់អាចដល់ស្ត្រី និង ក្មេងស្រី'
+- official_lex_0829 'យុទ្ធសាស្រ្តដុតឱ្យខ្លោចរោចឱ្យឆៅ' -> 'យុទ្ធសាស្ត្រដុតឱ្យខ្លោចរោចឱ្យឆៅ'
+- official_lex_1039 'សិទ្ធិជួលអចិន្រ្តៃយ៍' -> 'សិទ្ធិជួលអចិន្ត្រៃយ៍'
+- official_lex_1105 'ការផ្តល់ជំនួយសង្រ្គោះលើបណ្តឹង' -> 'ការផ្តល់ជំនួយសង្គ្រោះលើបណ្តឹង'
+- official_lex_1606 'ស្រ្តីនិយម' -> 'ស្ត្រីនិយម'
+- official_lex_1707 'ហ្សឺណេកូវិទ្យា / រោគស្រ្តីវិទ្យា' -> 'ហ្សឺណេកូវិទ្យា / រោគស្ត្រីវិទ្យា'
+- official_lex_1832 'កន្រ្ទាធាវី' -> 'កន្ទ្រាធាវី'
+
+## obsolete Khmer letter (1)
+
+- official_lex_5662 'ឤតរ៉ូម' (ឤ)
 
 ## duplicate khmer forms (123)
 

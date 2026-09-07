@@ -1,6 +1,7 @@
 {
   "ASCII digits in khmer": 0,
   "characters outside Khmer, Latin and punctuation (occurrences)": 13,
+  "coeng ro before another subscript": 7,
   "duplicate english glosses (case-insensitive)": 285,
   "duplicate khmer forms": 123,
   "empty english": 1657,
@@ -10,5 +11,6 @@
   "khmer is a single bare consonant": 10,
   "khmer shorter than 3 characters": 52,
   "not in canonical mark order": 0,
+  "obsolete Khmer letter": 1,
   "terms longer than 20 clusters": 143
 }
