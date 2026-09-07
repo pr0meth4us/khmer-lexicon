@@ -1,0 +1,367 @@
+{
+  "$comment": "PDFs recovered from Wayback Machine captures of the previous NCKL WordPress site (nckl.rac.gov.kh/wp-content/uploads/2020/12/). The current NCKL site serves its downloads from panel.racmanagementsystem.academy, which no longer resolves in DNS, so these captures are currently the only reachable copies. Filenames are opaque numbers and the PDFs carry no title metadata: contents are UNIDENTIFIED and must be opened to be known. Only byte-identical duplicates of the existing corpus are marked; a document re-scanned or re-compressed will not match by hash even when it is the same publication. Files themselves live in source_pdfs/candidates/ and are gitignored.",
+  "recovered": "2026-09-07",
+  "count": 40,
+  "candidates": [
+    {
+      "file": "200.pdf",
+      "bytes": 399304,
+      "sha256": "f6f7afa33bc410123b83f293b84037aabc2c33cd66e25ba69a0e7a2d44f56010",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/200.pdf",
+      "wayback_url": "https://web.archive.org/web/20240515071415id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/200.pdf"
+    },
+    {
+      "file": "203.pdf",
+      "bytes": 341107,
+      "sha256": "0e7bbb83a07d91d27f41e132faefcff0815c065b93ff58bcd9307af24a2b2705",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/203.pdf",
+      "wayback_url": "https://web.archive.org/web/20220809224835id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/203.pdf"
+    },
+    {
+      "file": "204.pdf",
+      "bytes": 491053,
+      "sha256": "660a81b8739dbf4bcb999ef5374a5bc2b3a44b869d8a0b947d907633b4ebd6c4",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/204.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807170736id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/204.pdf"
+    },
+    {
+      "file": "205.pdf",
+      "bytes": 332818,
+      "sha256": "5311708f3e4b3cf5f2f3973bd62f38392107ef5ef9213e1a99a2262e569a4898",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/205.pdf",
+      "wayback_url": "https://web.archive.org/web/20220809224759id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/205.pdf"
+    },
+    {
+      "file": "206.pdf",
+      "bytes": 2567670,
+      "sha256": "882d5949373b1152aee7f9b917e0eff787a3ce3bccdcb76eae3ed8513903cf09",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/206.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807170129id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/206.pdf"
+    },
+    {
+      "file": "207.pdf",
+      "bytes": 4903649,
+      "sha256": "d5495dcd56e97456881e7736b1d2857fb182dd3bdc3f2e1c667104601f7c7823",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/207.pdf",
+      "wayback_url": "https://web.archive.org/web/20220809224711id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/207.pdf"
+    },
+    {
+      "file": "208.pdf",
+      "bytes": 2625514,
+      "sha256": "5b7153e9d97f9c070cb7de831ff47c2b3537923eb3023ddf8d6317d76c026fda",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/208.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135551id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/208.pdf"
+    },
+    {
+      "file": "209.pdf",
+      "bytes": 1825577,
+      "sha256": "f261983156459c1d63ad9b6ba8bbcb316eb687da47b9f78318157e276638f2b2",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/209.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135545id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/209.pdf"
+    },
+    {
+      "file": "210.pdf",
+      "bytes": 168924,
+      "sha256": "b76e645213deac6382efdce92ddc914e0959abe45b95364ada54c09c5d88592e",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/210.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135541id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/210.pdf"
+    },
+    {
+      "file": "211.pdf",
+      "bytes": 173455,
+      "sha256": "9bd4f708ea2d405cc3a9f07bba9b4f5bd143c21df9245d4d6c38bde708106798",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/211.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135539id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/211.pdf"
+    },
+    {
+      "file": "212.pdf",
+      "bytes": 248090,
+      "sha256": "85aee2b59556ba5780043462ee679e301441cc97c450a58d688b66b634723a20",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/212.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135535id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/212.pdf"
+    },
+    {
+      "file": "213.pdf",
+      "bytes": 1369225,
+      "sha256": "94a356c7f788f3e2c1d23c03ba96976fffd54965fd15dac82e069face174b8a9",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/213.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135529id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/213.pdf"
+    },
+    {
+      "file": "214.pdf",
+      "bytes": 207626,
+      "sha256": "7eb754157e5114cbb6858b8ca575442001d780693c8e48e7b55f5d284802bd2b",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/214.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135524id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/214.pdf"
+    },
+    {
+      "file": "215.pdf",
+      "bytes": 650984,
+      "sha256": "e00a3e2a03fff7b1660ef29b1b611f9b0cf7e2f2bb9fd126cc0d7d13f32099a6",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/215.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135521id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/215.pdf"
+    },
+    {
+      "file": "216.pdf",
+      "bytes": 353096,
+      "sha256": "563ba940a12ce73adf3c4bbd9609aafc0538ee4b6a4d3f925b25d0ac542c013e",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/216.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135517id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/216.pdf"
+    },
+    {
+      "file": "217.pdf",
+      "bytes": 8127669,
+      "sha256": "d66891db5fd9c321fc1da059993f6090da5a04e5fccfb95a28fe8a13b2b7dc63",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/217.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135456id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/217.pdf"
+    },
+    {
+      "file": "218.pdf",
+      "bytes": 715843,
+      "sha256": "d5cf126df338192ca6fb66e339e497dc008c7998c839abac086365229e3113b7",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/218.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807170032id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/218.pdf"
+    },
+    {
+      "file": "219.pdf",
+      "bytes": 4277315,
+      "sha256": "733a9a6a714bfc61d8d8839bf06a11242ef48a93b5674046fbae007043985491",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/219.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807165733id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/219.pdf"
+    },
+    {
+      "file": "220.pdf",
+      "bytes": 11864175,
+      "sha256": "886cab777bfeae185e9e252a78b6220f98802443f26e72a5fc6e6524b26c6691",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/220.pdf",
+      "wayback_url": "https://web.archive.org/web/20220804161439id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/220.pdf"
+    },
+    {
+      "file": "221.pdf",
+      "bytes": 384302,
+      "sha256": "94ed3d2eb6fd09675b7b8719553808f28f305e786567361efce39b3b62e1c6d2",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/221.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807165753id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/221.pdf"
+    },
+    {
+      "file": "222.pdf",
+      "bytes": 26999946,
+      "sha256": "5087ed978de19b65f6ee49eaa6daef7e088c637f8b5e474d35b680656b5c2715",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/222.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807165909id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/222.pdf"
+    },
+    {
+      "file": "223.pdf",
+      "bytes": 7759160,
+      "sha256": "7d77355bbee79239be49551e6ea51f2171e652150eb3fafb0ac0ef413098e18d",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/223.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807170006id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/223.pdf"
+    },
+    {
+      "file": "224.pdf",
+      "bytes": 1048576,
+      "sha256": "ffa09f3ce873c7429ce05ce95ec6dfdfb4c9557ec9eafe80c2c003cba8d101fc",
+      "complete": false,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/224.pdf",
+      "wayback_url": "https://web.archive.org/web/20211202094700id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/224.pdf"
+    },
+    {
+      "file": "225.pdf",
+      "bytes": 1675793,
+      "sha256": "304b0c6fc86b7e7acecb8351fac344f06b77cb31d65b9695e724cc145d292ce1",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/225.pdf",
+      "wayback_url": "https://web.archive.org/web/20240515060718id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/225.pdf"
+    },
+    {
+      "file": "226.pdf",
+      "bytes": 5099841,
+      "sha256": "a2b71f58268b4e76040ddd43ec0775b2ec2d320acc92eb4a17f84ce5c1235bc8",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/226.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807170640id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/226.pdf"
+    },
+    {
+      "file": "227.pdf",
+      "bytes": 24388336,
+      "sha256": "78b96c2d6987246f0441bcb03613fd0af3756d53ac7763c92687248985528dac",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/227.pdf",
+      "wayback_url": "https://web.archive.org/web/20240515075357id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/227.pdf"
+    },
+    {
+      "file": "228.pdf",
+      "bytes": 8244001,
+      "sha256": "33960879bb927f7131c78eb67bb4b4e07ab84ddc306c9fefac96451e5824aac1",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/228.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807171634id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/228.pdf"
+    },
+    {
+      "file": "229.pdf",
+      "bytes": 29935485,
+      "sha256": "c9e9fa1bd1aa9087e9a492fd04907082786473e3b7ed3ff2e4fdb71ef530b688",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/229.pdf",
+      "wayback_url": "https://web.archive.org/web/20211202104654id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/229.pdf"
+    },
+    {
+      "file": "230.pdf",
+      "bytes": 23220010,
+      "sha256": "d7432638234ecd0f1485540bf8fe01f0fec65cf0bd00431a127c35c7c8a2d0e5",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/230.pdf",
+      "wayback_url": "https://web.archive.org/web/20211202100427id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/230.pdf"
+    },
+    {
+      "file": "231.pdf",
+      "bytes": 57805699,
+      "sha256": "b92554c0aaecddfced60e72e1c243d193505b96049fd562efcef745381206ef3",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/231.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807171456id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/231.pdf"
+    },
+    {
+      "file": "232.pdf",
+      "bytes": 15530774,
+      "sha256": "14eccf744f2294d246665ab485b14f2a5459dd10845d6f0981d8b13587b6eca2",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/232.pdf",
+      "wayback_url": "https://web.archive.org/web/20220807170333id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/232.pdf"
+    },
+    {
+      "file": "233.pdf",
+      "bytes": 37111105,
+      "sha256": "29dc73666132741cc0f0bb8da3cf1cdb5873918d830ea8f1a1df9b45d6bbf0fd",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/233.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135109id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/233.pdf"
+    },
+    {
+      "file": "234.pdf",
+      "bytes": 7252251,
+      "sha256": "8410a110fdf38a52c217f33198e4bdab1f2e0ba50f173e944bebf9d2dff83c76",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/234.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135058id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/234.pdf"
+    },
+    {
+      "file": "235.pdf",
+      "bytes": 6206103,
+      "sha256": "4bf1e4fd054722d767890fa93b18562c4b1ce90e887832c5c9c06bbca9b4c6b4",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/235.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135050id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/235.pdf"
+    },
+    {
+      "file": "236.pdf",
+      "bytes": 9525316,
+      "sha256": "4e014b451082e5802cf948274af4b53fbcf98a84e9de11cf3ecbaa30a06fbc57",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/236.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135040id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/236.pdf"
+    },
+    {
+      "file": "237.pdf",
+      "bytes": 12062769,
+      "sha256": "3d7cce9835af51680972412328a859ad264f73526b25aa49b91071632557f705",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/237.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135028id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/237.pdf"
+    },
+    {
+      "file": "238.pdf",
+      "bytes": 4364070,
+      "sha256": "58b61f0526b7905f61df9014d120827412dfb80e7e21d4495d16e6e87aaa7c74",
+      "complete": true,
+      "duplicate_of": "nckl-economics",
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/238.pdf",
+      "wayback_url": "https://web.archive.org/web/20211202094149id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/238.pdf"
+    },
+    {
+      "file": "240.pdf",
+      "bytes": 3103246,
+      "sha256": "2fa65b9a77fd5972eee5daf0c448badb0f3f88577aa50b30abf6781419eda4ba",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/240.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729135013id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/240.pdf"
+    },
+    {
+      "file": "241.pdf",
+      "bytes": 3235268,
+      "sha256": "762d22f6b0f9f04b5ac8cce1d9a59f8f7253686587c5769cea3fec6ce51a6b42",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/241.pdf",
+      "wayback_url": "https://web.archive.org/web/20211202091530id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/241.pdf"
+    },
+    {
+      "file": "242.pdf",
+      "bytes": 338230,
+      "sha256": "03965a72ff175fe2fb328a2f55216a58cb30deb03910e26f4f39df62aa1bd104",
+      "complete": true,
+      "duplicate_of": null,
+      "original_url": "https://nckl.rac.gov.kh/wp-content/uploads/2020/12/242.pdf",
+      "wayback_url": "https://web.archive.org/web/20220729134959id_/https://nckl.rac.gov.kh/wp-content/uploads/2020/12/242.pdf"
+    }
+  ]
+}

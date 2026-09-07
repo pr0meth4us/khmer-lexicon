@@ -106,6 +106,10 @@ shared with them separately.
 SHA-256 of the exact file the pipeline read; `python scripts/verify_sources.py`
 checks the local PDFs against it, and `--urls` re-checks the published links.
 
+`candidates.json` lists 40 further NCKL PDFs recovered from Wayback Machine
+captures of the council's previous website, whose contents are not yet
+identified — see "Recovered but unread" below.
+
 `DATA_STATEMENT.md` describes the dataset in the Bender & Friedman schema —
 curation rationale, language variety, provenance, and known defects.
 `EVALUATION.md` is the procedure for replacing the missing accuracy figure with
@@ -123,3 +127,23 @@ termbase and CAT tools. One concept per entry, `km`/`en`/`fr` sections, with
 source/author/year as concept-level `<admin type="source">`. The 24 entries with
 no Khmer headword are skipped. The output is gitignored, like the full lexicon it
 is built from.
+
+## Recovered but unread
+
+The National Council of Khmer Language lists twenty terminology documents for
+download at https://nckl.rac.gov.kh/bulletin/index, but that page serves its
+files from `panel.racmanagementsystem.academy`, a domain that no longer resolves
+in DNS. The council's own downloads are dead, and the Wayback Machine has no
+capture of that host.
+
+Captures of the council's *previous* website do survive, and
+`source_pdfs/candidates/` (gitignored) holds 40 PDFs recovered from them.
+`candidates.json` records each one's size, SHA-256, and the capture it came
+from. Their filenames are opaque numbers, none carries title metadata, and
+exactly one is byte-identical to a document already in the corpus — so the rest
+are **unidentified**, not necessarily new. A document that was re-scanned or
+re-compressed between site versions will not match by hash even when it is the
+same publication. Reading them means running the extraction pipeline over them.
+
+One file, `224.pdf`, is truncated at exactly 1 MiB in the only capture that
+exists; that document is incomplete at the archive, not merely here.
