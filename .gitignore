@@ -13,5 +13,6 @@ canaries.json
 # all 15 sources) ships instead so the app and the pipeline still run.
 dist/unified_lexicon.json
 dist/unified_official_lexicon.json
+dist/*.tbx
 build/
 dist/build_index.json

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "Khmer Official Terminology (khmer-lexicon)"
+abstract: >-
+  A compiled, provenance-annotated lexicon of official Cambodian government
+  terminology (Khmer / English / French), extracted by OCR from published
+  ministry and Royal Academy documents and normalised into a single structured
+  dataset. Includes the extraction pipeline, normalisation rules, and a Khmer
+  orthography checker.
+type: dataset
+authors:
+  - family-names: "Soeung"
+    given-names: "Phearaneron"
+    email: "phearaniron.soeung@gmail.com"
+repository-code: "https://github.com/pr0meth4us/khmer-lexicon"
+license: CC-BY-SA-4.0
+version: "1.0.0"
+date-released: "2026-09-07"
+keywords:
+  - Khmer
+  - Cambodia
+  - terminology
+  - lexicon
+  - low-resource languages
+  - OCR
+  - language resources

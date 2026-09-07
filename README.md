@@ -76,3 +76,41 @@ The extractors write their output JSONs into `$LEXICON_BUILD_DIR` (default
 `data/ai_letter_writer/training_datasets/`, which the letter-rag app reads
 (`unified_lexicon.json`). That is the publish target — rebuild here, and the
 platform picks up the refreshed lexicon.
+
+## Licence and what it covers
+
+The compilation is licensed **CC BY-SA 4.0** (see `LICENSE`). Share-alike:
+anything built on this data must be released under the same terms.
+
+What that licence covers is the *compilation* — the extraction pipeline, the
+normalisation and merge rules, the provenance annotation, the checker, and the
+selection and arrangement of entries. The underlying terminology is published by
+Cambodian government bodies (NCKL, the Royal Academy of Cambodia, MPTC, the
+Council of Ministers and others) and is not claimed here; each entry carries its
+`source`, `author` and `year`. Cite the originating document, not this repo, when
+what you need is the term's official status.
+
+### What this repository contains
+
+Not the full lexicon. `dist/unified_lexicon.json` (5,934 entries) and
+`dist/unified_official_lexicon.json` are gitignored; what ships is
+`dist/sample_lexicon.json` — 309 entries drawn from all 15 sources — alongside
+the extractors, the checker and the quality reports, which are complete.
+
+So a clone reproduces the pipeline, not the dataset. `CITATION.cff` and the
+`v1.0.0` tag describe the compilation as a whole; anyone citing the repository
+for the *data* is citing the 309-entry sample unless the full file has been
+shared with them separately.
+
+Cite the dataset with `CITATION.cff`, or via the "Cite this repository" button on
+GitHub.
+
+## Other formats
+
+    python scripts/export_tbx.py
+
+writes `dist/unified_lexicon.tbx` — TBX (ISO 30042:2019, TBX-Basic dialect) for
+termbase and CAT tools. One concept per entry, `km`/`en`/`fr` sections, with
+source/author/year as concept-level `<admin type="source">`. The 24 entries with
+no Khmer headword are skipped. The output is gitignored, like the full lexicon it
+is built from.
