@@ -22,8 +22,8 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 DEFAULT_LEXICON = BASE / "dist" / "unified_lexicon.json"
 DEFAULT_SAMPLE = BASE / "dist" / "eval_sample.csv"
-FIELDS = ["id", "source", "author", "year", "khmer", "english", "french",
-          "definition"]
+FIELDS = ["id", "source", "pdf", "page", "khmer", "english", "french",
+          "definition", "year"]
 VERDICTS = ["khmer_ok", "english_ok", "notes"]
 MIN_PER_SOURCE = 10  # so a 121-entry source still gets looked at
 SEED = 20260907
@@ -48,6 +48,44 @@ def draw(entries, n, seed=SEED):
     return sample, {s: len(r) for s, r in by_source.items()}
 
 
+def locate(entries, sources_path, pdf_dir):
+    """Add `pdf` and `page` to each entry by finding its English gloss in the
+    PDF's text layer.
+
+    The Khmer in these text layers is mis-mapped and unusable (archaic
+    codepoints, visual order), but the Latin comes out clean, so the gloss is a
+    reliable locator even though the Khmer beside it is not. Entries with no
+    gloss, or whose gloss is not found, get a blank page and are looked up by
+    hand.
+    """
+    try:
+        import fitz
+    except ImportError:
+        print("PyMuPDF not installed; skipping page location", file=sys.stderr)
+        return
+    meta = json.loads(Path(sources_path).read_text(encoding="utf-8"))["sources"]
+    cache = {}
+    for entry in entries:
+        sid = entry["source"]
+        entry["pdf"] = meta.get(sid, {}).get("file", "")
+        entry["page"] = ""
+        if sid not in cache:
+            path = Path(pdf_dir) / entry["pdf"]
+            if not path.exists():
+                cache[sid] = []
+            else:
+                doc = fitz.open(path)
+                cache[sid] = [doc[i].get_text().lower() for i in range(doc.page_count)]
+                doc.close()
+        gloss = (entry.get("english") or "").strip().lower()
+        if len(gloss) <= 3:
+            continue
+        for number, text in enumerate(cache[sid], start=1):
+            if gloss in text:
+                entry["page"] = number
+                break
+
+
 def wilson(errors, n, z=1.96):
     """Wilson score interval — correct at 0 and n errors, where the normal
     approximation collapses to a zero-width interval."""
@@ -63,6 +101,8 @@ def wilson(errors, n, z=1.96):
 def cmd_draw(args):
     entries = json.loads(args.lexicon.read_text(encoding="utf-8"))
     sample, sizes = draw(entries, args.n, args.seed)
+    if not args.no_locate:
+        locate(sample, args.sources, args.pdf_dir)
     with args.output.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS + VERDICTS,
                            extrasaction="ignore")
@@ -73,7 +113,9 @@ def cmd_draw(args):
     # stratum sizes are needed to weight the score; keep them next to the CSV
     args.output.with_suffix(".strata.json").write_text(
         json.dumps({"seed": args.seed, "population": sizes}, indent=1))
+    located = sum(1 for r in sample if r.get("page"))
     print(f"{len(sample)} rows across {len(sizes)} sources -> {args.output}\n"
+          f"{located} located to a page; the rest need finding by hand\n"
           f"Fill khmer_ok / english_ok with y or n, leave blank to skip, "
           f"then: python {Path(__file__).name} score {args.output}",
           file=sys.stderr)
@@ -175,6 +217,10 @@ def main():
     d.add_argument("--seed", type=int, default=SEED)
     d.add_argument("--lexicon", type=Path, default=DEFAULT_LEXICON)
     d.add_argument("-o", "--output", type=Path, default=DEFAULT_SAMPLE)
+    d.add_argument("--sources", type=Path, default=BASE / "sources.json")
+    d.add_argument("--pdf-dir", type=Path, default=BASE / "source_pdfs")
+    d.add_argument("--no-locate", action="store_true",
+                   help="skip page lookup (no PyMuPDF, or PDFs unavailable)")
     d.set_defaults(func=cmd_draw)
     s = sub.add_parser("score")
     s.add_argument("sample", type=Path, nargs="?", default=DEFAULT_SAMPLE)
