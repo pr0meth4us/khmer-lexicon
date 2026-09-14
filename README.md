@@ -148,13 +148,14 @@ Identified by Cloud Vision OCR of each file's title, middle and last pages
 (`scripts/identify_candidates.py`), with duplicates confirmed by pixel
 comparison against `source_pdfs/`:
 
-- **8 new term sources, not in this lexicon:** glossaries of Linguistics &
+- **7 new term sources, not in this lexicon:** glossaries of Linguistics &
   Literature (2013), Culture & Fine Arts (2015), Medicine & Agriculture (2015),
-  Philosophy (2019) and Health (2019); NCKL Bulletins No. 1 (2008), No. 2 (2009)
-  and No. 6 (2014).
+  Philosophy (2019) and Health (2019); NCKL Bulletins No. 2 (2009) and No. 6
+  (2014).
 - **11 duplicates** of documents already here.
-- **21 without term entries:** founding decrees and decisions for the NCKL and
-  Royal Academy, a national Khmer language policy (2019), a grammar book, an
+- **22 without term entries:** founding decrees and decisions for the NCKL and
+  Royal Academy, NCKL Bulletin No. 1 (2008; committee lists and decree articles,
+  no glosses in 61 pages), a national Khmer language policy (2019), a grammar book, an
   orthography guide, a 2020 round-table report, and one file truncated in the
   only capture that exists.
 

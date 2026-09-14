@@ -618,12 +618,12 @@
       "pages": 61,
       "has_text_layer": true,
       "identified": {
-        "verdict": "new",
+        "verdict": "not-a-term-list",
         "doc_type": "bulletin",
-        "title": "ព្រឹត្តិបត្រប្រចាំឆមាស លេខ ១ ឆមាសទី១ ឆ្នាំ២០០៨",
+        "title": "ព្រឹត្តិបត្រប្រចាំឆមាស លេខ ១ ឆមាសទី១ ឆ្នាំ២០០៨ (NCKL Bulletin No. 1, 2008)",
         "year": "2008",
         "confidence": "verified",
-        "evidence": "Cloud Vision OCR of the title page"
+        "evidence": "Cloud Vision OCR of all 61 pages: 92,103 characters, zero English or French gloss lines; the 225 numbered lines are committee member lists and decree articles (មាត្រា). Extraction correctly returned no entries."
       }
     },
     {
