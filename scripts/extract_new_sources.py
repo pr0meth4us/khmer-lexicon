@@ -199,6 +199,8 @@ def main():
     ap.add_argument("--only", choices=sorted(SOURCES))
     ap.add_argument("--test", nargs=2, metavar=("SOURCE", "PAGE"))
     ap.add_argument("--self-check", action="store_true")
+    ap.add_argument("--workers", type=int, default=4,
+                    help="pages in flight at once; each is one Vision and one Gemini call")
     args = ap.parse_args()
     if args.self_check:
         return _self_check()
@@ -217,7 +219,7 @@ def main():
 
     grand, failures = 0, {}
     for source in ([args.only] if args.only else SOURCES):
-        n, failed = run_source(source, vision, gemini)
+        n, failed = run_source(source, vision, gemini, workers=args.workers)
         grand += n
         if failed:
             failures[source] = failed
