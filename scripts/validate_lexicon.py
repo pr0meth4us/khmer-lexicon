@@ -92,6 +92,13 @@ def check(rows):
     # Four Khmer letters are obsolete and appear in no modern word. They sit
     # inside the Khmer block, so the character-range check above cannot see
     # them.
+    # ឫ is an independent vowel whose glyph matches ប + coeng ញ. Typed as the
+    # lookalike, a word renders correctly and never matches a search. The
+    # Royal Academy dictionary has 110 headwords with ឫ and none with ប្ញ.
+    # (ល្ង is NOT the same case: it is a real cluster, in 22 RAC headwords.)
+    out["ba + coeng nya typed for the vowel ឫ"] = [
+        f"{r['id']} {t!r} -> {t.replace('ប្ញ', 'ឫ')!r}" for r, t in non_empty if "ប្ញ" in t
+    ]
     out["obsolete Khmer letter"] = [
         f"{r['id']} {t!r} ({c})" for r, t in non_empty for c in OBSOLETE if c in t
     ]

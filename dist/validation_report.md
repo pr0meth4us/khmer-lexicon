@@ -11,8 +11,9 @@
 | ASCII digits in khmer | 0 | 0 |
 | khmer shorter than 3 characters | 52 | 52 |
 | khmer is a single bare consonant | 10 | 10 |
-| coeng ro before another subscript | 7 | — |
-| obsolete Khmer letter | 1 | — |
+| coeng ro before another subscript | 7 | 7 |
+| ba + coeng nya typed for the vowel ឫ | 3 | — |
+| obsolete Khmer letter | 1 | 1 |
 | not in canonical mark order | 0 | 0 |
 | duplicate khmer forms | 123 | 123 |
 | duplicate english glosses (case-insensitive) | 285 | 285 |
@@ -165,6 +166,12 @@
 - official_lex_1606 'ស្រ្តីនិយម' -> 'ស្ត្រីនិយម'
 - official_lex_1707 'ហ្សឺណេកូវិទ្យា / រោគស្រ្តីវិទ្យា' -> 'ហ្សឺណេកូវិទ្យា / រោគស្ត្រីវិទ្យា'
 - official_lex_1832 'កន្រ្ទាធាវី' -> 'កន្ទ្រាធាវី'
+
+## ba + coeng nya typed for the vowel ឫ (3)
+
+- official_lex_0798 'ជីកស្មៅជីកទាំងប្ញស' -> 'ជីកស្មៅជីកទាំងឫស'
+- official_lex_3760 'ប្ញស' -> 'ឫស'
+- official_lex_3783 'ពាក្យប្ញស' -> 'ពាក្យឫស'
 
 ## obsolete Khmer letter (1)
 
