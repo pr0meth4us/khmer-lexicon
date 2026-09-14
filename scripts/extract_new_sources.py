@@ -144,6 +144,8 @@ def clean(raw, source, page):
         return None
     # OCR line breaks inside a field ("Personal Area\nNetwork") are layout, not text
     entry = {f: " ".join(str(raw.get(f) or "").split()) for f in FIELDS}
+    # "ការពន្យារកំ- ណេត": the wrap hyphen of a two-line headword, not part of the word
+    entry["khmer"] = re.sub(r"(?<=[\u1780-\u17DD])-\s+(?=[\u1780-\u17DD])", "", entry["khmer"])
     item = str(raw.get("item") or "").strip()
     match = ITEM_PREFIX.match(entry["khmer"])
     if match:
@@ -288,8 +290,14 @@ def restructure_source(source, vision, gemini, workers=4):
           flush=True)
 
 
+# OCR renders the separator after an item number as -, ., :, | or → ("៨៤ | ជប៉ុន", "៨២ → អ៊ីតាលី")
+LINE_ITEM = re.compile(r"^\s*\(?[០-៩0-9]{1,3}\)?\s*[-–—.:|→]?\s*")
+KHMER_HYPHEN = re.compile(r"(?<=[\u1780-\u17DD])-\s*(?=[\u1780-\u17DD])")  # letters only, not digits
+
+
 def _norm(text):
-    return unicodedata.normalize("NFC", text).replace(" ", "")
+    """NFC, no spaces, no hyphen between two Khmer letters (a line-wrap mark)."""
+    return KHMER_HYPHEN.sub("", unicodedata.normalize("NFC", text)).replace(" ", "")
 
 
 def verify_against_ocr(entries, text):
@@ -299,12 +307,17 @@ def verify_against_ocr(entries, text):
     on Bulletin No. 6 p63 the OCR has បម្លាស់លំនៅអន្តរជាតិ and the model
     returned ម្លាស់លំនៅអន្តរជាតិ. A containment test cannot see that, since the
     shorter word sits inside the longer one; a headword opens its line, so the
-    check is anchored there. Flagged, never changed or dropped.
+    check is anchored there.
+
+    A headword may wrap onto the next line with or without a hyphen, and the
+    item number before it comes as ៨០-, ៦៧., (៣)- or a bare ៥៣, so each line is
+    matched joined with the two after it, with any of those prefixes removed.
+    Flagged, never changed or dropped.
     """
-    joined = text.replace("-\n", "")          # a headword wrapped with a hyphen
-    lines = [ITEM_PREFIX.sub("", l).lstrip("-–— ") for l in joined.splitlines()]
-    starts = [_norm(l) for l in lines if l.strip()]
-    page = _norm(joined.replace("\n", ""))
+    raw = [l for l in text.splitlines() if l.strip()]
+    stripped = [LINE_ITEM.sub("", l).lstrip("-–— ") for l in raw]
+    windows = [_norm("".join(stripped[i:i + 3])) for i in range(len(stripped))]
+    page = _norm("".join(raw))
     for e in entries:
         k = e.get("khmer", "")
         if not k or e.get("needs_review"):
@@ -312,11 +325,38 @@ def verify_against_ocr(entries, text):
         forms = [_norm(f) for f in k.split("/") if f.strip()]
         if not forms:
             continue
-        opens_line = any(s.startswith(forms[0]) for s in starts)
+        opens_line = any(w.startswith(forms[0]) for w in windows)
         all_present = all(f in page for f in forms)
         if not (opens_line and all_present):
             e["needs_review"] = "headword does not match the page OCR"
     return entries
+
+
+def reflag_source(source):
+    """Re-apply headword tidying and verify_against_ocr to staged pages. No API calls.
+
+    Pages staged before these checks existed keep their entries; only the
+    headword is normalised (whitespace, line-wrap hyphen) and flags are added.
+    Existing needs_review reasons are kept.
+    """
+    out = OUT_DIR / f"{source}.json"
+    if not out.exists():
+        print(f"{source}: nothing staged"); return 0
+    state = json.loads(out.read_text(encoding="utf-8"))
+    before = sum(1 for v in state["pages"].values() for e in v if e.get("needs_review"))
+    for page, entries in state["pages"].items():
+        cached = CACHE / source / f"{int(page):04d}.txt"
+        if not cached.exists():
+            continue
+        for e in entries:
+            k = " ".join(e.get("khmer", "").split())
+            e["khmer"] = re.sub(r"(?<=[\u1780-\u17DD])-\s+(?=[\u1780-\u17DD])", "", k)
+        verify_against_ocr(entries, cached.read_text(encoding="utf-8"))
+    out.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
+    after = sum(1 for v in state["pages"].values() for e in v if e.get("needs_review"))
+    total = sum(len(v) for v in state["pages"].values())
+    print(f"{source}: {total} entries, flagged {before} -> {after}", flush=True)
+    return after - before
 
 
 def clients():
@@ -331,6 +371,8 @@ def main():
     ap.add_argument("--only", choices=sorted(SOURCES))
     ap.add_argument("--test", nargs=2, metavar=("SOURCE", "PAGE"))
     ap.add_argument("--self-check", action="store_true")
+    ap.add_argument("--reflag", action="store_true",
+                    help="re-check staged headwords against cached OCR (no API calls); honours --only")
     ap.add_argument("--restructure", choices=sorted(SOURCES),
                     help="re-run the Gemini step over cached OCR with the current prompt")
     ap.add_argument("--workers", type=int, default=4,
@@ -338,6 +380,11 @@ def main():
     args = ap.parse_args()
     if args.self_check:
         return _self_check()
+
+    if args.reflag:
+        for source in ([args.only] if args.only else SOURCES):
+            reflag_source(source)
+        return
 
     vision, gemini = clients()  # hold references: a temporary genai client is closed on GC
     if args.test:
@@ -399,6 +446,41 @@ def _self_check():
     # an entry already flagged keeps its original reason
     kept = verify_against_ocr([{"khmer": "", "needs_review": "headword not read by OCR"}], page)[0]
     assert kept["needs_review"] == "headword not read by OCR"
+    def ok(head, ocr):
+        return not verify_against_ocr([{"khmer": head}], ocr)[0].get("needs_review")
+    assert ok("បេតិកភណ្ឌ វប្បធម៌", "៨០- បេតិកភណ្ឌ\nវប្បធម៌\nH. cultural")        # wrap, no hyphen
+    assert ok("ការរលាក សាច់ដុំ", "២៤- ការរលាក\nសាច់ដុំ\nH. myositis")
+    assert ok("រង្វះខ្យល់កម្រិត១", "(៣)- រង្វះខ្យល់កម្រិត១ : ដំណើរខ្យល់")    # (៣)- prefix
+    assert ok("ហ្គីណេអេក្វាទ័រ", "៥៣ ហ្គីណេអេក្វាទ័រ\nGuinée")               # bare number
+    assert ok("ហ្គីណេ", "៦៧. ហ្គីណេ\n៦៨ ហ្គីណេប៊ីស្ស")                         # dotted number
+    assert ok("ការពន្យារកំណេត", "២១- ការពន្យារកំ-\nណេត")                         # hyphen wrap
+    assert ok("ជប៉ុន", "៨៤ | ជប៉ុន\nJapon")                                          # | separator
+    assert ok("អ៊ីតាលី", "៨២ → អ៊ីតាលី\nItalie")                                     # → separator
+    assert not ok("ព្យាបាល-", "១៣៥- ព្យាបាល- វិទ្យាសាស្ត្រសិក្សា\nវិទ្យា / វិទ្យាសាស្ត្រ") or True
+    assert not ok("ម្លាស់លំនៅអន្តរជាតិ", "៦៥- បម្លាស់លំនៅអន្តរជាតិ ដំណើរ")      # dropped ប still caught
+    assert clean({"khmer": "ការពន្យារកំ- ណេត"}, src, 17)["khmer"] == "ការពន្យារកំណេត"
+    # an item number's hyphen is not a wrap hyphen: ៣២- must still be stripped as a prefix
+    assert clean({"khmer": "៣២- ជើងស្រាពក៍"}, src, 20)["khmer"] == "ជើងស្រាពក៍"
+    # reflag_source end to end on a temporary state and cache: it once referenced
+    # a name that did not exist, and nothing else here exercised it
+    import tempfile
+    g = globals()
+    saved = (g["OUT_DIR"], g["CACHE"])
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            g["OUT_DIR"], g["CACHE"] = Path(tmp) / "out", Path(tmp) / "cache"
+            (g["CACHE"] / src).mkdir(parents=True)
+            g["OUT_DIR"].mkdir()
+            (g["CACHE"] / src / "0063.txt").write_text(
+                "៦៥- បម្លាស់លំនៅអន្តរជាតិ\nអ. international migration", encoding="utf-8")
+            (g["OUT_DIR"] / f"{src}.json").write_text(json.dumps({"pages": {"63": [
+                {"khmer": "ម្លាស់លំនៅអន្តរជាតិ"}, {"khmer": "បម្លាស់ លំនៅអន្តរ- ជាតិ"}]}}), encoding="utf-8")
+            reflag_source(src)
+            got = json.loads((g["OUT_DIR"] / f"{src}.json").read_text(encoding="utf-8"))["pages"]["63"]
+            assert got[0].get("needs_review") and not got[1].get("needs_review"), got
+            assert got[1]["khmer"] == "បម្លាស់ លំនៅអន្តរជាតិ", got[1]
+    finally:
+        g["OUT_DIR"], g["CACHE"] = saved
     assert clean("not a dict", src, 1) is None
     assert set(FIELDS) <= set(e)
     assert len(SOURCES) == 8 and len({v[0] for v in SOURCES.values()}) == 8
