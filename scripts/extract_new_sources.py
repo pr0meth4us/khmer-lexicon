@@ -123,6 +123,9 @@ def ocr_page(pdf, index, source, vision):
     return text
 
 
+REQUEST_TIMEOUT_MS = 120_000
+
+
 def structure(text, gemini):
     from google.genai import types
     from json_tools.gemini_json import parse_gemini_json
@@ -134,8 +137,10 @@ def structure(text, gemini):
         try:
             res = gemini.models.generate_content(
                 model=MODEL, contents=[PROMPT + text],
-                config=types.GenerateContentConfig(response_mime_type="application/json",
-                                                   temperature=0.0))
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json", temperature=0.0,
+                    # without a timeout a stalled connection blocks the worker forever
+                    http_options=types.HttpOptions(timeout=REQUEST_TIMEOUT_MS)))
             data = parse_gemini_json(res.text)
             return data if isinstance(data, list) else []
         except Exception as exc:
