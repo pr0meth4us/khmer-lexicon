@@ -1,5 +1,5 @@
 {
-  "$comment": "PDFs recovered from Wayback Machine captures of the previous NCKL WordPress site (nckl.rac.gov.kh/wp-content/uploads/2020/12/). The current NCKL site serves its downloads from panel.racmanagementsystem.academy, which no longer resolves in DNS, so these captures are currently the only reachable copies. Filenames are opaque numbers and the PDFs carry no title metadata: contents are UNIDENTIFIED and must be opened to be known. Only byte-identical duplicates of the existing corpus are marked; a document re-scanned or re-compressed will not match by hash even when it is the same publication. Files themselves live in source_pdfs/candidates/ and are gitignored. 'identified' records what could be read from each PDF's embedded text layer on 2026-09-07 without OCR. Files whose text layer is legacy Limon (ASCII bytes that render as Khmer only in that font) read as garbage and are still unidentified — those must be OCR'd from RENDERED PAGE IMAGES, never from extracted text.",
+  "$comment": "PDFs recovered from Wayback Machine captures of the previous NCKL WordPress site. Identified 2026-09-14 by Cloud Vision OCR of each file's title, middle and last pages (scripts/identify_candidates.py); duplicates confirmed by pixel comparison against source_pdfs/. Gemini was tried first and invented titles, so no identification here rests on it. Files live in source_pdfs/candidates/ (gitignored).",
   "recovered": "2026-09-07",
   "count": 40,
   "candidates": [
@@ -14,9 +14,11 @@
       "pages": 3,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2007",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -30,9 +32,11 @@
       "pages": 2,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2008",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -46,9 +50,11 @@
       "pages": 4,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2009",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -62,9 +68,11 @@
       "pages": 2,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2009",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -78,9 +86,11 @@
       "pages": 5,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2011",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -94,9 +104,11 @@
       "pages": 11,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2011",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -110,9 +122,11 @@
       "pages": 6,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2011",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -126,9 +140,11 @@
       "pages": 4,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2011",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -142,9 +158,11 @@
       "pages": 2,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -158,9 +176,11 @@
       "pages": 2,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -174,9 +194,11 @@
       "pages": 3,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -190,9 +212,11 @@
       "pages": 15,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -206,9 +230,11 @@
       "pages": 3,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -222,9 +248,11 @@
       "pages": 8,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -238,9 +266,11 @@
       "pages": 5,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2017",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -254,9 +284,11 @@
       "pages": 36,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "doc_type": "law-or-decree",
+        "description": "Cambodian government decree or decision, 2020",
+        "confidence": "ocr",
+        "evidence": "Cloud Vision OCR: decree type word in the title block"
       }
     },
     {
@@ -270,9 +302,10 @@
       "pages": 10,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "description": "national policy on the Khmer language (គោលនយោបាយជាតិ ស្តីពី ភាសាខ្មែរ), 2019",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR"
       }
     },
     {
@@ -286,9 +319,12 @@
       "pages": 124,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "new",
+        "doc_type": "terminology-glossary",
+        "title": "សទ្ទានុក្រម ភាសាវិទ្យា និង អក្សរសិល្ប៍ ខ្មែរ-អង់គ្លេស-បារាំង",
+        "year": "2013",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -302,9 +338,10 @@
       "pages": 89,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-technology-and-science",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -318,9 +355,10 @@
       "pages": 12,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "description": "orthography guidance (legacy Limon text), no term entries",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR"
       }
     },
     {
@@ -334,9 +372,10 @@
       "pages": 131,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "description": "Khmer grammar book, intermediate level (សៀវភៅវេយ្យាករណ៍ភាសាខ្មែរ), 2018",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR"
       }
     },
     {
@@ -350,9 +389,10 @@
       "pages": 69,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-political-science-and-diplomacy",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy; 223 differs only in its cover and one extra final page"
       }
     },
     {
@@ -366,9 +406,10 @@
       "pages": 0,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "not-a-term-list",
+        "description": "truncated at 1 MiB in the only archived capture; unreadable",
+        "confidence": "n/a",
+        "evidence": "file truncated"
       }
     },
     {
@@ -382,9 +423,10 @@
       "pages": 104,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-country-and-city-names",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -398,9 +440,10 @@
       "pages": 144,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol9-2018",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -414,13 +457,12 @@
       "pages": 128,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": "សទ្ទានុក្រម វប្បធម៌ និង វិចិត្រសិល្បៈ ខ្មែរ-អង់គ្លេស-បារាំង",
-        "title_english": "LEXICON OF CULTURE AND FINE ARTS (Khmer-English-French)",
-        "issuing_body": "ទីស្តីការគណៈរដ្ឋមន្ត្រី / ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
-        "year": "2015",
-        "confidence": "high",
         "verdict": "new",
-        "evidence": "p1 title page, embedded Unicode text: 'សទ្ទ នុ្រកម វប្បធម៌ និង វិចិ្រតសិល្បៈ ... LEXICON OF CULTURE AND FINE ARTS Khmer-English-French', dated សីហា ២០១៥"
+        "doc_type": "terminology-glossary",
+        "title": "សទ្ទានុក្រម វប្បធម៌ និង វិចិត្រសិល្បៈ ខ្មែរ-អង់គ្លេស-បារាំង",
+        "year": "2015",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -434,9 +476,10 @@
       "pages": 123,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol8-2017",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -450,14 +493,10 @@
       "pages": 123,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": "ព្រឹត្តិបត្រ លេខ ៧ ឆ្នាំ២០១៥",
-        "title_english": "Bulletin Vol. 7, 2015",
-        "issuing_body": "ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
-        "year": "2015",
-        "confidence": "high",
         "verdict": "duplicate",
         "matches_known": "nckl-bulletin-vol7-2015",
-        "evidence": "p1, embedded Unicode: 'ព្រឹតƎិប្រត ... េលខ ៧ ឆាƒំ២០១៥ ... Vol. 7, 2015 BULLETIN OF THE NATIONAL COUNCIL OF KHMER LANGUAGE'; 123 pages, same as the local copy"
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -471,13 +510,12 @@
       "pages": 115,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": "សទ្ទានុក្រម វេជ្ជសាស្ត្រ និង កសិកម្ម ខ្មែរ-អង់គ្លេស-បារាំង",
-        "title_english": "LEXICON OF MEDICINE AND AGRICULTURE (Khmer-English-French)",
-        "issuing_body": "ទីស្តីការគណៈរដ្ឋមន្ត្រី / ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
-        "year": "2015",
-        "confidence": "high",
         "verdict": "new",
-        "evidence": "p1 title page, embedded Unicode: 'សទ្ទ នុ្រកម េវជƅសȜស្ត និង កសិកមƗ ... LEXICON OF MEDICINE AND AGRICULTURE Khmer-English-French', dated សីហា ២០១៥"
+        "doc_type": "terminology-glossary",
+        "title": "សទ្ទានុក្រម វេជ្ជសាស្ត្រ និង កសិកម្ម ខ្មែរ-អង់គ្លេស-បារាំង",
+        "year": "2015",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -491,9 +529,12 @@
       "pages": 111,
       "has_text_layer": false,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "new",
+        "doc_type": "bulletin",
+        "title": "ព្រឹត្តិបត្រ លេខ ៦ ឆ្នាំ២០១៤ / Vol. 6, 2014",
+        "year": "2014",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -507,9 +548,10 @@
       "pages": 118,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol5-2013",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -523,9 +565,10 @@
       "pages": 104,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol4-2012",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -539,9 +582,10 @@
       "pages": 91,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol3-2010",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -555,9 +599,12 @@
       "pages": 54,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "new",
+        "doc_type": "bulletin",
+        "title": "ព្រឹត្តិបត្រ លេខ ២ ឆ្នាំ២០០៩ / Vol. 2, 2009 (second printing)",
+        "year": "2009",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -571,9 +618,12 @@
       "pages": 61,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "new",
+        "doc_type": "bulletin",
+        "title": "ព្រឹត្តិបត្រប្រចាំឆមាស លេខ ១ ឆមាសទី១ ឆ្នាំ២០០៨",
+        "year": "2008",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -587,9 +637,10 @@
       "pages": 103,
       "has_text_layer": true,
       "identified": {
-        "verdict": "unidentified",
-        "confidence": null,
-        "evidence": "text layer carries no title; needs OCR of rendered pages"
+        "verdict": "duplicate",
+        "matches_known": "nckl-bulletin-vol10-2019",
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -603,14 +654,10 @@
       "pages": 97,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": "សទ្ទានុក្រមវិទ្យាសាស្ត្រសេដ្ឋកិច្ច",
-        "title_english": null,
-        "issuing_body": "គណៈកម្មការវិទ្យាសាស្ត្រសេដ្ឋកិច្ច, ក.ជ.ភ.ខ.",
-        "year": null,
-        "confidence": "high",
         "verdict": "duplicate",
         "matches_known": "nckl-economics",
-        "evidence": "p1 committee page names គណៈកម្មការវិទ្យាសាស្ត្រសេដ្ឋកិច្ច (ពីឆ្នាំ២០១២ ដល់ឆ្នាំ២០១៤); byte-identical to the local NCKL_Economics_2019.pdf"
+        "confidence": "verified",
+        "evidence": "pages sampled across the document render pixel-identical to the local copy"
       }
     },
     {
@@ -624,13 +671,12 @@
       "pages": 132,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": null,
-        "title_english": null,
-        "issuing_body": "គណៈកម្មការទស្សនវិជ្ជា, ក.ជ.ភ.ខ.",
-        "year": null,
-        "confidence": "medium",
         "verdict": "new",
-        "evidence": "p1 committee page: 'សមាសភាព គណៈកម្មការទស្សនវិជ្ជា' (Philosophy commission). No printed title found in the text layer; the NCKL catalogue lists a សទ្ទានុក្រមទស្សនវិជ្ជាឆ្នាំ២០១៩, but that identification is inferred, not read"
+        "doc_type": "terminology-glossary",
+        "title": "សទ្ទានុក្រម ទស្សនវិជ្ជា (Philosophy commission)",
+        "year": "2019",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -644,13 +690,12 @@
       "pages": 102,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": null,
-        "title_english": null,
-        "issuing_body": "គណៈកម្មការសុខាភិបាល, ក.ជ.ភ.ខ.",
-        "year": null,
-        "confidence": "medium",
         "verdict": "new",
-        "evidence": "p1 committee page: 'សមាសភាព គណៈកមមការសុខាភិបាល' (Health commission). No printed title in the text layer"
+        "doc_type": "terminology-glossary",
+        "title": "សទ្ទានុក្រម (Health commission)",
+        "year": "2019",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR of the title page"
       }
     },
     {
@@ -664,13 +709,10 @@
       "pages": 13,
       "has_text_layer": true,
       "identified": {
-        "title_khmer": "របាយការណ៍កិច្ចពិភាក្សាតុមូល «បទពិសោធនិងបញ្ហាគោលការណ៍ក្នុងការប្រើអក្សរឡាតាំង...»",
-        "title_english": null,
-        "issuing_body": "រាជបណ្ឌិត្យសភាកម្ពុជា / ក្រុមប្រឹក្សាជាតិភាសាខ្មែរ",
-        "year": "2020",
-        "confidence": "high",
         "verdict": "not-a-term-list",
-        "evidence": "p1: round-table report dated ១៣ សីហា ២០២០ on romanising Khmer; 13 pages, no term entries"
+        "description": "round-table report on romanising Khmer (របាយការណ៍), 2020",
+        "confidence": "verified",
+        "evidence": "Cloud Vision OCR"
       }
     }
   ]

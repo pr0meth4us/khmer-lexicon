@@ -169,7 +169,7 @@
       "official_page": "https://nckl.rac.gov.kh/bulletin/index",
       "archived_url": null,
       "url_status": "listed-but-unreachable",
-      "note": "Listed for download on the NCKL bulletin page, but the file host panel.racmanagementsystem.academy did not resolve in DNS on 2026-09-07, so the link is dead and the copy could not be re-fetched or hash-verified."
+      "note": "The local file is named NCKL_Bulletin_Vol6_Technology_2014.pdf, but it is not Bulletin No. 6: it is the NCKL glossary សទ្ទានុក្រម វិទ្យាសាស្ត្រ និង បច្ចេកវិទ្យា (Khmer-English-French, 2014), pixel-identical on every sampled page to archived candidate 220.pdf. The real Bulletin No. 6 (2014) is candidate 231.pdf and is not in the corpus. The source id and extraction are unaffected; only the filename is misleading. Listed for download on the NCKL bulletin page, but the file host panel.racmanagementsystem.academy did not resolve in DNS on 2026-09-07, so the link is dead and the copy could not be re-fetched or hash-verified."
     },
     "pentagonal-strategy-phase1": {
       "issuing_body": "Royal Government of Cambodia",

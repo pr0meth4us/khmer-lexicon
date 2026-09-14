@@ -128,22 +128,29 @@ source/author/year as concept-level `<admin type="source">`. The 24 entries with
 no Khmer headword are skipped. The output is gitignored, like the full lexicon it
 is built from.
 
-## Recovered but unread
+## Recovered from archived captures
 
-The National Council of Khmer Language lists twenty terminology documents for
-download at https://nckl.rac.gov.kh/bulletin/index, but that page serves its
-files from `panel.racmanagementsystem.academy`, a domain that no longer resolves
-in DNS. The council's own downloads are dead, and the Wayback Machine has no
-capture of that host.
-
-Captures of the council's *previous* website do survive, and
+The National Council of Khmer Language lists its terminology documents for
+download at https://nckl.rac.gov.kh/bulletin/index, but that page serves the
+files from `panel.racmanagementsystem.academy`, a domain that no longer resolves.
+Captures of the council's *previous* website survive, and
 `source_pdfs/candidates/` (gitignored) holds 40 PDFs recovered from them.
-`candidates.json` records each one's size, SHA-256, and the capture it came
-from. Their filenames are opaque numbers, none carries title metadata, and
-exactly one is byte-identical to a document already in the corpus — so the rest
-are **unidentified**, not necessarily new. A document that was re-scanned or
-re-compressed between site versions will not match by hash even when it is the
-same publication. Reading them means running the extraction pipeline over them.
+`candidates.json` records each one's checksum, capture URL and what it is.
 
-One file, `224.pdf`, is truncated at exactly 1 MiB in the only capture that
-exists; that document is incomplete at the archive, not merely here.
+Identified by Cloud Vision OCR of each file's title, middle and last pages
+(`scripts/identify_candidates.py`), with duplicates confirmed by pixel
+comparison against `source_pdfs/`:
+
+- **8 new term sources, not in this lexicon:** glossaries of Linguistics &
+  Literature (2013), Culture & Fine Arts (2015), Medicine & Agriculture (2015),
+  Philosophy (2019) and Health (2019); NCKL Bulletins No. 1 (2008), No. 2 (2009)
+  and No. 6 (2014).
+- **11 duplicates** of documents already here.
+- **21 without term entries:** founding decrees and decisions for the NCKL and
+  Royal Academy, a national Khmer language policy (2019), a grammar book, an
+  orthography guide, a 2020 round-table report, and one file truncated in the
+  only capture that exists.
+
+One correction fell out of this: `NCKL_Bulletin_Vol6_Technology_2014.pdf` is not
+Bulletin No. 6 but the NCKL Science & Technology glossary. Its entries are
+correctly attributed (`nckl-technology-and-science`); only the filename is wrong.
