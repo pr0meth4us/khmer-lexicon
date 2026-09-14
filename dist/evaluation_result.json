@@ -1,0 +1,147 @@
+{
+  "$comment": "Measured transcription accuracy of dist/unified_lexicon.json. Counts only: the per-row verdicts (dist/eval_sample.csv) contain unpublished lexicon text and are not committed. Method in EVALUATION.md; each verdict was made by reading the rendered source page, zooming to 600-700 dpi where a mark was in doubt.",
+  "checked": "2026-09-14",
+  "build_id": "1744764254eb",
+  "sample_seed": 20260907,
+  "sample_rows": 401,
+  "fields": {
+    "khmer": {
+      "rows_checked": 153,
+      "errors": 34,
+      "error_rate_weighted": 0.2008,
+      "ci95": [
+        0.1466,
+        0.2732
+      ],
+      "entries_covered": 3807,
+      "entries_total": 5934,
+      "by_source": {
+        "council-of-ministers-legal-terms": {
+          "errors": 1,
+          "checked": 16
+        },
+        "mptc-digital-lexicon": {
+          "errors": 1,
+          "checked": 7
+        },
+        "nckl-bulletin-vol10-2019": {
+          "errors": 5,
+          "checked": 11
+        },
+        "nckl-bulletin-vol3-2010": {
+          "errors": 1,
+          "checked": 4
+        },
+        "nckl-bulletin-vol5-2013": {
+          "errors": 1,
+          "checked": 5
+        },
+        "nckl-bulletin-vol7-2015": {
+          "errors": 4,
+          "checked": 17
+        },
+        "nckl-bulletin-vol8-2017": {
+          "errors": 1,
+          "checked": 19
+        },
+        "nckl-bulletin-vol9-2018": {
+          "errors": 5,
+          "checked": 18
+        },
+        "nckl-country-and-city-names": {
+          "errors": 12,
+          "checked": 30
+        },
+        "nckl-economics": {
+          "errors": 2,
+          "checked": 11
+        },
+        "nckl-political-science-and-diplomacy": {
+          "errors": 0,
+          "checked": 6
+        },
+        "nckl-technology-and-science": {
+          "errors": 1,
+          "checked": 9
+        }
+      }
+    },
+    "english": {
+      "rows_checked": 158,
+      "errors": 0,
+      "error_rate_weighted": 0.0,
+      "ci95": [
+        0,
+        0.0237
+      ],
+      "entries_covered": 3807,
+      "entries_total": 5934,
+      "by_source": {
+        "council-of-ministers-legal-terms": {
+          "errors": 0,
+          "checked": 17
+        },
+        "mptc-digital-lexicon": {
+          "errors": 0,
+          "checked": 7
+        },
+        "nckl-bulletin-vol10-2019": {
+          "errors": 0,
+          "checked": 11
+        },
+        "nckl-bulletin-vol3-2010": {
+          "errors": 0,
+          "checked": 6
+        },
+        "nckl-bulletin-vol5-2013": {
+          "errors": 0,
+          "checked": 6
+        },
+        "nckl-bulletin-vol7-2015": {
+          "errors": 0,
+          "checked": 17
+        },
+        "nckl-bulletin-vol8-2017": {
+          "errors": 0,
+          "checked": 20
+        },
+        "nckl-bulletin-vol9-2018": {
+          "errors": 0,
+          "checked": 18
+        },
+        "nckl-country-and-city-names": {
+          "errors": 0,
+          "checked": 30
+        },
+        "nckl-economics": {
+          "errors": 0,
+          "checked": 11
+        },
+        "nckl-political-science-and-diplomacy": {
+          "errors": 0,
+          "checked": 6
+        },
+        "nckl-technology-and-science": {
+          "errors": 0,
+          "checked": 9
+        }
+      }
+    }
+  },
+  "not_covered": {
+    "rac-new-words": "image-only scan; most entries have no English gloss to locate them by",
+    "pentagonal-strategy-phase1": "image-only scan; no text layer to locate glosses in",
+    "nckl-bulletin-vol4-2012": "legacy-font text layer; glosses not locatable",
+    "coeng_ta_da": "entries containing ្ត or ្ដ were excluded: the two render identically and cannot be judged by eye (see dist/coeng_worklist.csv)"
+  },
+  "khmer_error_types": {
+    "vowel or subscript dropped": 21,
+    "one letter swapped for another": 3,
+    "leading word or cluster dropped": 3,
+    "wrong or garbled word": 2,
+    "encoding or stray character": 2,
+    "other": 2,
+    "headword missing": 1
+  },
+  "locator_misses": 4
+}

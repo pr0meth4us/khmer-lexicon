@@ -1,6 +1,11 @@
 # Evaluating this lexicon
 
-The dataset has counts but no measured accuracy. Every figure in
+**First result (2026-09-14):** Khmer headword error rate 20.1% [14.7–27.3%],
+n=153; English gloss 0.0% [0.0–2.4%], n=158; seed 20260907; covering 3,807 of
+5,934 entries; one annotator, an AI model reading page renders. Summary counts in
+`dist/evaluation_result.json`, discussion in `DATA_STATEMENT.md` §7.
+
+Before this, the dataset had counts but no measured accuracy. Every figure in
 `dist/validation_report.md` is a *detectable* defect — an empty field, a
 duplicate, a character out of range. The dominant failure mode of Khmer OCR is
 none of those: it turns one valid Khmer word into a different valid Khmer word,
@@ -92,6 +97,22 @@ as a bare percentage. State that it was single-annotator if it was.
 An honest wide interval is worth more than a precise-looking number: it is the
 difference between a dataset a reviewer can reason about and one they have to
 take on trust.
+
+## What the first run learned about the method
+
+- **Locate by the whole gloss line.** Matching a gloss as a substring, or even as
+  whole words, sent annotators to the wrong entry: "architecture" sat inside the
+  wrapped gloss of "landscape architecture". `relocate` recomputes pages for
+  unjudged rows without touching recorded verdicts.
+- **Crop, don't read whole pages.** Most errors are one dropped vowel or
+  subscript. A 300 dpi crop of the headword cell shows them; a full-page render
+  often does not. Zoom to 600–700 dpi before recording any doubtful mark.
+- **Some pages are indexes.** The country-names volume repeats its English names
+  in a French/English index with no Khmer column; a gloss found there is a
+  locator miss, not a verdict.
+- **Visible is not encoded.** ឫ typed as ប + coeng ញ looks identical on screen and
+  on the page. Where a headword looks right but will not match a search, check its
+  code points.
 
 ## Limits worth stating alongside the result
 

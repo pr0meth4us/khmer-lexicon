@@ -16,9 +16,12 @@ short_description: Search 5,929 official Cambodian government terms, or check a 
 >
 > Every entry was produced by running optical character recognition over a
 > **scanned paper document**, then having a language model parse the result into
-> structured fields. Both steps make mistakes. **Nobody has checked the output
-> against the source PDFs page by page, and there is no measured accuracy figure
-> for this dataset.**
+> structured fields. Both steps make mistakes. **A sample checked against the
+> source pages found about one Khmer headword in five wrong: 20.1% [14.7–27.3%],
+> n=153.** English glosses were correct in every row checked (0.0% [0.0–2.4%],
+> n=158). The figure covers 3,807 of 5,934 entries, was made by one annotator (an
+> AI model reading page renders), and has not yet been confirmed by a native
+> Khmer reader. Details in `DATA_STATEMENT.md` §7.
 >
 > Mechanically detected so far: 21 entries whose Khmer field contains no Khmer,
 > 347 single-word terms one plausible misread from a Royal Academy dictionary
