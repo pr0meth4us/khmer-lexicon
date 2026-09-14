@@ -12,6 +12,8 @@ short_description: Search 5,929 official Cambodian government terms, or check a 
 
 # khmer-lexicon
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22746199.svg)](https://doi.org/10.5281/zenodo.22746199)
+
 > ## ⚠️ This data is OCR output and has not been fully verified
 >
 > Every entry was produced by running optical character recognition over a
@@ -120,6 +122,8 @@ a measured one.
 
 Cite the dataset with `CITATION.cff`, or via the "Cite this repository" button on
 GitHub.
+
+DOI (all versions): [10.5281/zenodo.22746199](https://doi.org/10.5281/zenodo.22746199). This release, v1.0.0: [10.5281/zenodo.22746200](https://doi.org/10.5281/zenodo.22746200).
 
 ## Other formats
 
