@@ -183,6 +183,14 @@ def cmd_score(args):
         _, lo, hi = wilson(round(p * n_eff), n_eff)
         print(f"  {'OVERALL (size-weighted)':42} {p:16.1%} [{lo:.1%}–{hi:.1%}]"
               f"  n={n_eff}, covering {covered} entries")
+        # With one row checked in a source, one error makes that whole source
+        # 100% wrong and the size weighting carries it into the overall figure.
+        # Show the raw count beside it until every source has a few rows.
+        raw_err = sum(e for e, _ in counts.values())
+        thin = [s for s, (_, k) in counts.items() if 0 < k < 5]
+        print(f"  {'raw (unweighted)':42} {raw_err}/{n_eff} = {raw_err / n_eff:.1%}"
+              + (f"  (weighted figure unstable: {len(thin)} sources have <5 rows checked)"
+                 if thin else ""))
 
 
 def _self_check():
