@@ -15,6 +15,7 @@ import csv
 import json
 import math
 import random
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -46,6 +47,17 @@ def draw(entries, n, seed=SEED):
     for source in sorted(by_source):
         sample.extend(rng.sample(by_source[source], alloc[source]))
     return sample, {s: len(r) for s, r in by_source.items()}
+
+
+def gloss_on_page(gloss, page_text):
+    """Whole-word match of a lower-cased gloss in lower-cased page text.
+
+    A bare substring test put "historic times" on the page holding
+    "Prehistoric Times" -- the right letters inside the wrong term, which sends
+    the annotator to a page where the entry is not.
+    """
+    pattern = r"(?<![a-z])" + r"\s+".join(map(re.escape, gloss.split())) + r"(?![a-z])"
+    return re.search(pattern, page_text) is not None
 
 
 def locate(entries, sources_path, pdf_dir):
@@ -81,7 +93,7 @@ def locate(entries, sources_path, pdf_dir):
         if len(gloss) <= 3:
             continue
         for number, text in enumerate(cache[sid], start=1):
-            if gloss in text:
+            if gloss_on_page(gloss, text):
                 entry["page"] = number
                 break
 
@@ -174,6 +186,11 @@ def cmd_score(args):
 
 
 def _self_check():
+    # whole words only: a gloss inside a longer term is not a location
+    assert not gloss_on_page("historic times", "28- prehistoric times")
+    assert gloss_on_page("historic times", "30- historic\ntimes (f.)")
+    assert gloss_on_page("graph", "5- graph / graphe")
+    assert not gloss_on_page("graph", "7- graphics")
     # Wilson stays finite at the boundaries, where the normal approximation
     # would report a zero-width interval and claim certainty.
     p, lo, hi = wilson(0, 50)
