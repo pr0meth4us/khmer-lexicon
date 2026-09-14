@@ -217,6 +217,14 @@ def cmd_score(args):
 
 
 def _self_check():
+    # anchor_box: item number first, then gloss, then a headword guess
+    paras = [{"text": "៣០- ជ័យតដាក\nH. Jayatataka", "box": (1, 1, 2, 2)},
+             {"text": "៣១-\nខ្នាតខ្មែរពីបុរាណ", "box": (3, 3, 4, 4)},
+             {"text": "អ. tangible cultural heritage", "box": (5, 5, 6, 6)}]
+    assert anchor_box(paras, "៣១", "", "") == ((3, 3, 4, 4), "item")
+    assert anchor_box(paras, "៣៥", "Tangible  cultural heritage", "") == ((5, 5, 6, 6), "gloss")
+    assert anchor_box(paras, "", "", "ជ័យតដាក") == ((1, 1, 2, 2), "headword-guess")
+    assert anchor_box(paras, "", "", "") == (None, None)
     # the gloss must be a whole printed gloss line, not a word inside a longer one
     assert gloss_on_page("architecture", "១៣- ស្ថាបត្យកម្ម\nអ. architecture\nបារ. architecture (f.)")
     assert not gloss_on_page("architecture", "អ. landscape\narchitecture")
@@ -274,6 +282,100 @@ def cmd_relocate(args):
           f"{sum(1 for r in open_rows if r['page'])} now located", file=sys.stderr)
 
 
+ITEM_SEP = r"\s*[-–—.:|→]"
+
+
+def anchor_box(paragraphs, item, english, khmer):
+    """-> (box, how) for the paragraph an entry's headword sits in, or (None, None).
+
+    Tried in order of reliability: the printed item number opening a line, the
+    English gloss, then the headword's first letters. The last is the weakest,
+    since a mis-extracted headword is what is being tested, and is reported as
+    such so the annotator knows the crop may be off.
+    """
+    if item:
+        pat = re.compile(r"(?m)^\s*\(?" + re.escape(item) + r"\)?" + ITEM_SEP)
+        for para in paragraphs:
+            if pat.search(para["text"]):
+                return para["box"], "item"
+    gloss = " ".join((english or "").lower().split())
+    if len(gloss) > 3:
+        for para in paragraphs:
+            if gloss in " ".join(para["text"].lower().split()):
+                return para["box"], "gloss"
+    stem = "".join(ch for ch in (khmer or "") if "\u1780" <= ch <= "\u17dd")[:3]
+    if stem:
+        for para in paragraphs:
+            if stem in para["text"].replace(" ", ""):
+                return para["box"], "headword-guess"
+    return None, None
+
+
+def cmd_crop(args):
+    """Crop each open row's headword area from its page, located with Vision boxes."""
+    import io
+    import os
+    from concurrent.futures import ThreadPoolExecutor
+
+    import fitz
+    from PIL import Image
+    sys.path.insert(0, os.path.expanduser("~/code/random"))
+    from ocr_tools.pdf_ocr import _default_vision_client, ocr_image_paragraphs
+
+    rows = list(csv.DictReader(args.sample.open(encoding="utf-8")))
+    extra = {}
+    if args.entries:
+        extra = {e["id"]: e for e in json.loads(args.entries.read_text(encoding="utf-8"))}
+    todo = [r for r in rows if r["page"] and not (r["khmer_ok"] or r["english_ok"] or r["notes"])
+            and "្ត" not in r["khmer"] and "្ដ" not in r["khmer"]]
+    args.out.mkdir(parents=True, exist_ok=True)
+    cache = BASE / "build" / "ocr_boxes"
+    client = _default_vision_client()
+    pages = sorted({(r["pdf"], int(r["page"])) for r in todo})
+    dpi = 300
+
+    def page_data(key):
+        pdf, page = key
+        doc = fitz.open(args.pdf_dir / pdf)
+        png = doc[page - 1].get_pixmap(dpi=dpi).tobytes("png")
+        doc.close()
+        cached = cache / Path(pdf).stem / f"{page:04d}.json"
+        if cached.exists():
+            paras = json.loads(cached.read_text(encoding="utf-8"))
+        else:
+            paras = ocr_image_paragraphs(png, client)
+            cached.parent.mkdir(parents=True, exist_ok=True)
+            cached.write_text(json.dumps(paras, ensure_ascii=False), encoding="utf-8")
+        return key, png, paras
+
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        data = {k: (png, paras) for k, png, paras in pool.map(page_data, pages)}
+
+    manifest = []
+    for n, r in enumerate(todo):
+        png, paras = data[(r["pdf"], int(r["page"]))]
+        e = extra.get(r["id"], {})
+        box, how = anchor_box(paras, e.get("item", ""), r["english"], r["khmer"])
+        img = Image.open(io.BytesIO(png))
+        W, H = img.size
+        if box is None:
+            crop, how = img.resize((W // 3, H // 3)), "whole-page"
+        elif how == "item":
+            x0, y0, x1, y1 = box
+            crop = img.crop((max(0, x0 - 30), max(0, y0 - 20), min(W, x0 + 1100), min(H, y0 + 300)))
+        else:
+            x0, y0, x1, y1 = box
+            crop = img.crop((max(0, x0 - 60), max(0, y0 - 260), min(W, x0 + 1100), min(H, y1 + 20)))
+        name = f"{n:03d}_{r['id']}.png"
+        crop.save(args.out / name)
+        manifest.append({"n": n, "img": name, "id": r["id"], "source": r["source"], "page": r["page"],
+                         "item": e.get("item", ""), "anchor": how, "khmer": r["khmer"],
+                         "english": r["english"], "flag": e.get("flag", "")})
+    (args.out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+    counts = collections.Counter(m["anchor"] for m in manifest)
+    print(f"{len(manifest)} crops from {len(pages)} pages -> {args.out}  anchors: {dict(counts)}", file=sys.stderr)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -291,6 +393,12 @@ def main():
     s = sub.add_parser("score")
     s.add_argument("sample", type=Path, nargs="?", default=DEFAULT_SAMPLE)
     s.set_defaults(func=cmd_score)
+    cr = sub.add_parser("crop")
+    cr.add_argument("sample", type=Path)
+    cr.add_argument("--pdf-dir", type=Path, default=BASE / "source_pdfs")
+    cr.add_argument("--entries", type=Path, help="JSON list with item/flag fields, joined on id")
+    cr.add_argument("--out", type=Path, required=True)
+    cr.set_defaults(func=cmd_crop)
     rl = sub.add_parser("relocate")
     rl.add_argument("sample", type=Path, nargs="?", default=DEFAULT_SAMPLE)
     rl.add_argument("--sources", type=Path, default=BASE / "sources.json")

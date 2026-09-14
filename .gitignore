@@ -20,3 +20,5 @@ dist/candidate_identifications.json
 dist/eval_sample.strata.json
 build/
 dist/build_index.json
+dist/eval_new_sample.csv
+dist/eval_new_sample.strata.json
