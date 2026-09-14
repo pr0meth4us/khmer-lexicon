@@ -49,15 +49,38 @@ def draw(entries, n, seed=SEED):
     return sample, {s: len(r) for s, r in by_source.items()}
 
 
-def gloss_on_page(gloss, page_text):
-    """Whole-word match of a lower-cased gloss in lower-cased page text.
+GLOSS_MARK = re.compile(r"^\s*(?:អ\.|eng\.|h\.|-)\s*")
+GLOSS_END = re.compile(r"\s+(?:បារ\.|fr\.)")
 
-    A bare substring test put "historic times" on the page holding
-    "Prehistoric Times" -- the right letters inside the wrong term, which sends
-    the annotator to a page where the entry is not.
+
+def _gloss_text(line):
+    """A printed gloss line reduced to the gloss: marker stripped, French cut off."""
+    line = GLOSS_MARK.sub("", line.strip().lower())
+    return " ".join(GLOSS_END.split(line, maxsplit=1)[0].split())
+
+
+def gloss_on_page(gloss, page_text):
+    """True if some line of the page IS this gloss.
+
+    Whole-word containment was not enough: "architecture" sat inside the
+    wrapped gloss of "landscape architecture" and "annuity" inside "life
+    annuity contract", sending the annotator to an entry that shares a word
+    with the sampled one. A gloss wrapped over two lines is joined first.
     """
-    pattern = r"(?<![a-z])" + r"\s+".join(map(re.escape, gloss.split())) + r"(?![a-z])"
-    return re.search(pattern, page_text) is not None
+    want = " ".join(gloss.lower().split())
+    raw = [l for l in page_text.splitlines() if l.strip()]
+    for i, line in enumerate(raw):
+        # only a line that opens a gloss counts: a bare continuation line
+        # ("architecture" under "អ. landscape") is the tail of another entry
+        if not GLOSS_MARK.match(line.lower()):
+            continue
+        text = _gloss_text(line)
+        if text == want:
+            return True
+        if i + 1 < len(raw) and not GLOSS_MARK.match(raw[i + 1].lower()):
+            if _gloss_text(f"{line} {raw[i + 1]}") == want:
+                return True
+    return False
 
 
 def locate(entries, sources_path, pdf_dir):
@@ -194,11 +217,13 @@ def cmd_score(args):
 
 
 def _self_check():
-    # whole words only: a gloss inside a longer term is not a location
-    assert not gloss_on_page("historic times", "28- prehistoric times")
-    assert gloss_on_page("historic times", "30- historic\ntimes (f.)")
-    assert gloss_on_page("graph", "5- graph / graphe")
-    assert not gloss_on_page("graph", "7- graphics")
+    # the gloss must be a whole printed gloss line, not a word inside a longer one
+    assert gloss_on_page("architecture", "១៣- ស្ថាបត្យកម្ម\nអ. architecture\nបារ. architecture (f.)")
+    assert not gloss_on_page("architecture", "អ. landscape\narchitecture")
+    assert not gloss_on_page("annuity", "Eng. life annuity contract")
+    assert not gloss_on_page("historic times", "អ. prehistoric times")
+    assert gloss_on_page("digital divide", "អ. Digital Divide បារ. Écart numérique")
+    assert gloss_on_page("british colonial empire", "អ. British colonial\nEmpire")
     # Wilson stays finite at the boundaries, where the normal approximation
     # would report a zero-width interval and claim certainty.
     p, lo, hi = wilson(0, 50)
@@ -233,6 +258,22 @@ def _self_check():
     print("self-check ok")
 
 
+def cmd_relocate(args):
+    """Recompute `page` for rows nobody has judged yet; judged rows are untouched."""
+    with args.sample.open(encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    open_rows = [r for r in rows if not (r["khmer_ok"] or r["english_ok"] or r["notes"])]
+    before = {id(r): r["page"] for r in open_rows}
+    locate(open_rows, args.sources, args.pdf_dir)
+    moved = sum(1 for r in open_rows if str(r["page"]) != str(before[id(r)]))
+    with args.sample.open("w", newline="", encoding="utf-8") as fh:
+        writer = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+    print(f"{len(open_rows)} unjudged rows relocated, {moved} changed page; "
+          f"{sum(1 for r in open_rows if r['page'])} now located", file=sys.stderr)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -250,6 +291,11 @@ def main():
     s = sub.add_parser("score")
     s.add_argument("sample", type=Path, nargs="?", default=DEFAULT_SAMPLE)
     s.set_defaults(func=cmd_score)
+    rl = sub.add_parser("relocate")
+    rl.add_argument("sample", type=Path, nargs="?", default=DEFAULT_SAMPLE)
+    rl.add_argument("--sources", type=Path, default=BASE / "sources.json")
+    rl.add_argument("--pdf-dir", type=Path, default=BASE / "source_pdfs")
+    rl.set_defaults(func=cmd_relocate)
     args = ap.parse_args()
     args.func(args)
 
