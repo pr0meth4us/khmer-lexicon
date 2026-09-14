@@ -1,0 +1,198 @@
+{
+  "khmer": {
+    "rows_checked": 197,
+    "errors": 46,
+    "error_rate_weighted": 0.2311,
+    "ci95": [
+      0.1799,
+      0.2973
+    ],
+    "raw_rate": 0.2335,
+    "raw_ci95": [
+      0.1799,
+      0.2973
+    ],
+    "entries_covered": 2624,
+    "by_source": {
+      "nckl-bulletin-vol2-2009": {
+        "errors": 4,
+        "checked": 18
+      },
+      "nckl-bulletin-vol6-2014": {
+        "errors": 5,
+        "checked": 39
+      },
+      "nckl-culture-and-fine-arts": {
+        "errors": 13,
+        "checked": 37
+      },
+      "nckl-health": {
+        "errors": 10,
+        "checked": 29
+      },
+      "nckl-linguistics-and-literature": {
+        "errors": 2,
+        "checked": 24
+      },
+      "nckl-medicine-and-agriculture": {
+        "errors": 10,
+        "checked": 35
+      },
+      "nckl-philosophy": {
+        "errors": 2,
+        "checked": 15
+      }
+    }
+  },
+  "english": {
+    "rows_checked": 163,
+    "errors": 12,
+    "error_rate_weighted": 0.1315,
+    "ci95": [
+      0.0858,
+      0.1889
+    ],
+    "raw_rate": 0.0736,
+    "raw_ci95": [
+      0.0426,
+      0.1243
+    ],
+    "entries_covered": 2624,
+    "by_source": {
+      "nckl-bulletin-vol2-2009": {
+        "errors": 12,
+        "checked": 17
+      },
+      "nckl-bulletin-vol6-2014": {
+        "errors": 0,
+        "checked": 39
+      },
+      "nckl-culture-and-fine-arts": {
+        "errors": 0,
+        "checked": 9
+      },
+      "nckl-health": {
+        "errors": 0,
+        "checked": 30
+      },
+      "nckl-linguistics-and-literature": {
+        "errors": 0,
+        "checked": 19
+      },
+      "nckl-medicine-and-agriculture": {
+        "errors": 0,
+        "checked": 34
+      },
+      "nckl-philosophy": {
+        "errors": 0,
+        "checked": 15
+      }
+    }
+  },
+  "khmer_flagged": {
+    "rows_checked": 6,
+    "errors": 2,
+    "error_rate_weighted": 0.4069,
+    "ci95": [
+      0.0968,
+      0.7
+    ],
+    "raw_rate": 0.3333,
+    "raw_ci95": [
+      0.0968,
+      0.7
+    ],
+    "entries_covered": 1515,
+    "by_source": {
+      "nckl-bulletin-vol2-2009": {
+        "errors": 0,
+        "checked": 2
+      },
+      "nckl-culture-and-fine-arts": {
+        "errors": 1,
+        "checked": 1
+      },
+      "nckl-medicine-and-agriculture": {
+        "errors": 1,
+        "checked": 2
+      },
+      "nckl-philosophy": {
+        "errors": 0,
+        "checked": 1
+      }
+    }
+  },
+  "khmer_unflagged": {
+    "rows_checked": 191,
+    "errors": 44,
+    "error_rate_weighted": 0.2323,
+    "ci95": [
+      0.1763,
+      0.295
+    ],
+    "raw_rate": 0.2304,
+    "raw_ci95": [
+      0.1763,
+      0.295
+    ],
+    "entries_covered": 2624,
+    "by_source": {
+      "nckl-bulletin-vol2-2009": {
+        "errors": 4,
+        "checked": 16
+      },
+      "nckl-bulletin-vol6-2014": {
+        "errors": 5,
+        "checked": 39
+      },
+      "nckl-culture-and-fine-arts": {
+        "errors": 12,
+        "checked": 36
+      },
+      "nckl-health": {
+        "errors": 10,
+        "checked": 29
+      },
+      "nckl-linguistics-and-literature": {
+        "errors": 2,
+        "checked": 24
+      },
+      "nckl-medicine-and-agriculture": {
+        "errors": 9,
+        "checked": 33
+      },
+      "nckl-philosophy": {
+        "errors": 2,
+        "checked": 14
+      }
+    }
+  },
+  "khmer_error_types": {
+    "vowel or subscript dropped/added": 23,
+    "headword truncated at a line wrap": 12,
+    "printed second/parenthetical form dropped": 7,
+    "letter swapped for another": 3,
+    "headword missing entirely": 1
+  },
+  "not_checked": {
+    "locator miss": 11,
+    "crop off-target": 14,
+    "spurious entry": 1
+  },
+  "coeng_ta_da_excluded": 21,
+  "english_empty_but_printed": 10,
+  "open_rows_left": 21,
+  "$comment": "Measured transcription accuracy of the 2,624 staged entries from the 7 recovered NCKL sources (build/new_sources). Counts only; row verdicts in dist/eval_new_sample.csv are gitignored. One annotator, an AI model reading 300 dpi page crops located by Cloud Vision.",
+  "checked": "2026-09-14",
+  "sample_seed": 20260907,
+  "sample_rows": 249,
+  "population": {
+    "nckl-bulletin-vol2-2009": 489,
+    "nckl-bulletin-vol6-2014": 465,
+    "nckl-culture-and-fine-arts": 422,
+    "nckl-health": 369,
+    "nckl-linguistics-and-literature": 275,
+    "nckl-medicine-and-agriculture": 389,
+    "nckl-philosophy": 215
+  }
+}
