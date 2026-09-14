@@ -50,7 +50,11 @@ SOURCES = {
 }
 FIELDS = ("khmer", "english", "french", "pos", "definition", "examples")
 
-PROMPT = """Extract every terminology entry from this OCR text of one page into a
+# Two layouts need two prompts. Numbered two-column tables pair headwords with
+# definitions by item order; anchoring on gloss lines there shifted definitions
+# onto the wrong entries (Bulletin No. 6 p30). Glossaries that print no item
+# numbers return nothing under the numbered prompt (Philosophy lost 52 pages).
+PROMPT_NUMBERED = """Extract every terminology entry from this OCR text of one page into a
 JSON array. If the page has no term entries (cover, contents, preface,
 committee list, index), return [].
 
@@ -76,6 +80,53 @@ Output ONLY the JSON array.
 OCR text:
 """
 
+PROMPT_GLOSS = """Extract every terminology entry from this OCR text of one page into a
+JSON array. If the page has no term entries (cover, contents, preface,
+committee list, index), return [].
+
+The page is a glossary laid out as a table or as blocks. An entry is a Khmer
+headword, sometimes preceded by an item number such as ៣១-, then glosses marked
+អ. (English; OCR may read it as H. or Eng.) and បារ. (French; OCR may read it as
+mi. or Fr.), then a Khmer definition, sometimes with an example marked ឧ. The OCR
+may list several headwords before their definitions, and many pages print no
+item numbers at all.
+
+How to find the entries:
+- Every English gloss line (អ. / H. / Eng.) marks exactly one entry. Its
+  headword is the short Khmer text printed immediately before that gloss line,
+  with any item number removed. A headword may wrap onto a second line
+  ("ទឡីករណ៍បុព្វ-" then "ហេតុទីមួយ"): join the pieces, dropping the hyphen.
+- An entry with no English gloss is marked by an item number followed by Khmer
+  text.
+- Numbered points inside a definition (១- … ២- …) belong to that definition.
+  They are not new entries.
+
+Each entry:
+{"item": "the item number as printed, e.g. ៣១, or \"\" if none is printed", "khmer": "the headword only, without the item number",
+ "english": "text after អ. or H.", "french": "text after បារ.", "pos": "part of speech if printed",
+ "definition": "the Khmer definition", "examples": "text after ឧ."}
+
+Rules:
+- If an item number is printed with no Khmer text after it on its own line, the
+  OCR did not read that headword: set "khmer" to "". Do not take the headword
+  from the definition that follows.
+- If you cannot find an entry's headword, set "khmer" to "". Never use
+  definition text as a headword.
+- Copy text as it appears in the OCR. Do not correct spelling, translate, or
+  invent glosses; use "" for anything absent.
+Output ONLY the JSON array.
+
+OCR text:
+"""
+
+PROMPT = PROMPT_NUMBERED
+GLOSS_LAYOUT = {"nckl-philosophy", "nckl-health"}
+
+
+def prompt_for(source):
+    return PROMPT_GLOSS if source in GLOSS_LAYOUT else PROMPT_NUMBERED
+
+
 
 ITEM_PREFIX = re.compile(r"^\s*([០-៩0-9]+)\s*[-–—.]\s*")
 
@@ -90,7 +141,8 @@ def clean(raw, source, page):
     """
     if not isinstance(raw, dict):
         return None
-    entry = {f: str(raw.get(f) or "").strip() for f in FIELDS}
+    # OCR line breaks inside a field ("Personal Area\nNetwork") are layout, not text
+    entry = {f: " ".join(str(raw.get(f) or "").split()) for f in FIELDS}
     item = str(raw.get("item") or "").strip()
     match = ITEM_PREFIX.match(entry["khmer"])
     if match:
@@ -126,7 +178,7 @@ def ocr_page(pdf, index, source, vision):
 REQUEST_TIMEOUT_MS = 120_000
 
 
-def structure(text, gemini):
+def structure(text, gemini, prompt=None):
     from google.genai import types
     from json_tools.gemini_json import parse_gemini_json
 
@@ -136,7 +188,7 @@ def structure(text, gemini):
     for attempt in range(4):
         try:
             res = gemini.models.generate_content(
-                model=MODEL, contents=[PROMPT + text],
+                model=MODEL, contents=[(prompt or PROMPT) + text],
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json", temperature=0.0,
                     # without a timeout a stalled connection blocks the worker forever
@@ -161,7 +213,7 @@ def run_source(source, vision, gemini, workers=4):
 
     def work(i):
         text = ocr_page(pdf, i, source, vision)
-        entries = [e for e in (clean(r, source, i + 1) for r in structure(text, gemini)) if e]
+        entries = [e for e in (clean(r, source, i + 1) for r in structure(text, gemini, prompt_for(source))) if e]
         return i, entries
 
     failed = []
@@ -192,6 +244,46 @@ def run_source(source, vision, gemini, workers=4):
     return total, failed
 
 
+def restructure_source(source, vision, gemini, workers=4):
+    """Re-run only the Gemini step, with the source's current prompt, on every page.
+
+    Vision text is cached, so no page is OCR'd twice. A page whose call fails
+    keeps the entries it already had rather than losing them.
+    """
+    import fitz
+    pdf = CANDIDATES / SOURCES[source][0]
+    out = OUT_DIR / f"{source}.json"
+    state = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {"pages": {}}
+    pages = fitz.open(pdf).page_count
+    before = sum(len(v) for v in state["pages"].values())
+
+    def work(i):
+        text = ocr_page(pdf, i, source, vision)
+        return i, [e for e in (clean(r, source, i + 1) for r in structure(text, gemini, prompt_for(source))) if e]
+
+    failed = []
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {pool.submit(work, i): i for i in range(pages)}
+        for n, fut in enumerate(as_completed(futures), 1):
+            i = futures[fut]
+            try:
+                _, entries = fut.result()
+            except Exception as exc:
+                failed.append(i + 1)
+                print(f"  {source} p{i + 1} FAILED ({type(exc).__name__}), previous entries kept", flush=True)
+                continue
+            state["pages"][str(i + 1)] = entries
+            if n % 20 == 0:
+                out.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
+                print(f"  {source}: {n}/{pages} pages restructured", flush=True)
+    state["complete"] = not failed and len(state["pages"]) == pages
+    state["failed_pages"] = failed
+    out.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
+    after = sum(len(v) for v in state["pages"].values())
+    print(f"{source}: restructured {before} -> {after} entries" + (f", {len(failed)} pages failed" if failed else ""),
+          flush=True)
+
+
 def clients():
     from gemini_tools.transcribe_audio import get_vertex_client
     from ocr_tools.pdf_ocr import _default_vision_client
@@ -204,6 +296,8 @@ def main():
     ap.add_argument("--only", choices=sorted(SOURCES))
     ap.add_argument("--test", nargs=2, metavar=("SOURCE", "PAGE"))
     ap.add_argument("--self-check", action="store_true")
+    ap.add_argument("--restructure", choices=sorted(SOURCES),
+                    help="re-run the Gemini step over cached OCR with the current prompt")
     ap.add_argument("--workers", type=int, default=4,
                     help="pages in flight at once; each is one Vision and one Gemini call")
     args = ap.parse_args()
@@ -214,12 +308,16 @@ def main():
     if args.test:
         source, page = args.test[0], int(args.test[1])
         text = ocr_page(CANDIDATES / SOURCES[source][0], page - 1, source, vision)
-        entries = [e for e in (clean(r, source, page) for r in structure(text, gemini)) if e]
+        entries = [e for e in (clean(r, source, page) for r in structure(text, gemini, prompt_for(source))) if e]
         print(f"--- {source} p{page}: {len(entries)} entries ---")
         for e in entries:
             flag = "  <-- " + e["needs_review"] if e.get("needs_review") else ""
             print(f"  [{e['item']:>3}] {e['khmer'] or '(none)'} | en: {e['english'][:26]} | "
                   f"fr: {e['french'][:18]} | def: {e['definition'][:30]}{flag}")
+        return
+
+    if args.restructure:
+        restructure_source(args.restructure, vision, gemini, workers=args.workers)
         return
 
     grand, failures = 0, {}
@@ -246,6 +344,14 @@ def _self_check():
     r = clean({"item": "៣១", "khmer": "", "definition": "ខ្នាតខ្មែរពីបុរាណ"}, src, 20)
     assert r["needs_review"] and r["khmer"] == "" and r["item"] == "៣១", r
     assert clean({"khmer": "", "english": ""}, src, 1) is None
+    # a gloss wrapped across OCR lines comes out as one line
+    w = clean({"khmer": "ភន", "english": "(PAN: Personal Area\nNetwork)"}, src, 30)
+    assert w["english"] == "(PAN: Personal Area Network)", w["english"]
+    # each layout gets its own prompt
+    assert prompt_for("nckl-bulletin-vol6-2014") is PROMPT_NUMBERED
+    assert prompt_for("nckl-philosophy") is PROMPT_GLOSS and prompt_for("nckl-health") is PROMPT_GLOSS
+    assert "ONLY the text printed right after the item number" in PROMPT_NUMBERED
+    assert "Every English gloss line" in PROMPT_GLOSS and "Every English gloss line" not in PROMPT_NUMBERED
     assert clean("not a dict", src, 1) is None
     assert set(FIELDS) <= set(e)
     assert len(SOURCES) == 8 and len({v[0] for v in SOURCES.values()}) == 8
