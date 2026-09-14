@@ -23,6 +23,7 @@ import argparse
 import json
 import os
 import re
+import unicodedata
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -192,7 +193,10 @@ def structure(text, gemini, prompt=None):
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json", temperature=0.0,
                     # without a timeout a stalled connection blocks the worker forever
-                    http_options=types.HttpOptions(timeout=REQUEST_TIMEOUT_MS)))
+                    http_options=types.HttpOptions(timeout=REQUEST_TIMEOUT_MS),
+                    # structuring is transcription, not reasoning: with thinking on, some
+                    # pages ran past the server deadline (504) on every attempt
+                    thinking_config=types.ThinkingConfig(thinking_budget=0)))
             data = parse_gemini_json(res.text)
             return data if isinstance(data, list) else []
         except Exception as exc:
@@ -213,7 +217,7 @@ def run_source(source, vision, gemini, workers=4):
 
     def work(i):
         text = ocr_page(pdf, i, source, vision)
-        entries = [e for e in (clean(r, source, i + 1) for r in structure(text, gemini, prompt_for(source))) if e]
+        entries = verify_against_ocr([e for e in (clean(r, source, i + 1) for r in structure(text, gemini, prompt_for(source))) if e], text)
         return i, entries
 
     failed = []
@@ -259,7 +263,7 @@ def restructure_source(source, vision, gemini, workers=4):
 
     def work(i):
         text = ocr_page(pdf, i, source, vision)
-        return i, [e for e in (clean(r, source, i + 1) for r in structure(text, gemini, prompt_for(source))) if e]
+        return i, verify_against_ocr([e for e in (clean(r, source, i + 1) for r in structure(text, gemini, prompt_for(source))) if e], text)
 
     failed = []
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -282,6 +286,37 @@ def restructure_source(source, vision, gemini, workers=4):
     after = sum(len(v) for v in state["pages"].values())
     print(f"{source}: restructured {before} -> {after} entries" + (f", {len(failed)} pages failed" if failed else ""),
           flush=True)
+
+
+def _norm(text):
+    return unicodedata.normalize("NFC", text).replace(" ", "")
+
+
+def verify_against_ocr(entries, text):
+    """Flag an entry whose headword does not open a line of the page's OCR.
+
+    The structuring model sometimes drops a character the OCR read correctly:
+    on Bulletin No. 6 p63 the OCR has បម្លាស់លំនៅអន្តរជាតិ and the model
+    returned ម្លាស់លំនៅអន្តរជាតិ. A containment test cannot see that, since the
+    shorter word sits inside the longer one; a headword opens its line, so the
+    check is anchored there. Flagged, never changed or dropped.
+    """
+    joined = text.replace("-\n", "")          # a headword wrapped with a hyphen
+    lines = [ITEM_PREFIX.sub("", l).lstrip("-–— ") for l in joined.splitlines()]
+    starts = [_norm(l) for l in lines if l.strip()]
+    page = _norm(joined.replace("\n", ""))
+    for e in entries:
+        k = e.get("khmer", "")
+        if not k or e.get("needs_review"):
+            continue
+        forms = [_norm(f) for f in k.split("/") if f.strip()]
+        if not forms:
+            continue
+        opens_line = any(s.startswith(forms[0]) for s in starts)
+        all_present = all(f in page for f in forms)
+        if not (opens_line and all_present):
+            e["needs_review"] = "headword does not match the page OCR"
+    return entries
 
 
 def clients():
@@ -308,7 +343,7 @@ def main():
     if args.test:
         source, page = args.test[0], int(args.test[1])
         text = ocr_page(CANDIDATES / SOURCES[source][0], page - 1, source, vision)
-        entries = [e for e in (clean(r, source, page) for r in structure(text, gemini, prompt_for(source))) if e]
+        entries = verify_against_ocr([e for e in (clean(r, source, page) for r in structure(text, gemini, prompt_for(source))) if e], text)
         print(f"--- {source} p{page}: {len(entries)} entries ---")
         for e in entries:
             flag = "  <-- " + e["needs_review"] if e.get("needs_review") else ""
@@ -352,6 +387,18 @@ def _self_check():
     assert prompt_for("nckl-philosophy") is PROMPT_GLOSS and prompt_for("nckl-health") is PROMPT_GLOSS
     assert "ONLY the text printed right after the item number" in PROMPT_NUMBERED
     assert "Every English gloss line" in PROMPT_GLOSS and "Every English gloss line" not in PROMPT_NUMBERED
+    # a dropped leading character is caught even though the short form is a substring
+    page = "៦៥- បម្លាស់លំនៅអន្តរជាតិ ដំណើរផ្លាស់\nអ. international migration"
+    bad = verify_against_ocr([{"khmer": "ម្លាស់លំនៅអន្តរជាតិ"}], page)[0]
+    good = verify_against_ocr([{"khmer": "បម្លាស់លំនៅអន្តរជាតិ"}], page)[0]
+    assert bad.get("needs_review") and not good.get("needs_review"), (bad, good)
+    # wrapped headword, table row with a leading dash, slash alternatives
+    assert not verify_against_ocr([{"khmer": "ទឡីករណ៍បុព្វហេតុទីមួយ"}], "ទឡីករណ៍បុព្វ-\nហេតុទីមួយ\nអ. x")[0].get("needs_review")
+    assert not verify_against_ocr([{"khmer": "ឥណ្ឌា"}], "១៩៤ -ឥណ្ឌា\n-ញូវដេលី")[0].get("needs_review")
+    assert not verify_against_ocr([{"khmer": "ជ័យតដាក/វាលរាជដាក"}], "៣០- ជ័យតដាក/\nវាលរាជដាក")[0].get("needs_review")
+    # an entry already flagged keeps its original reason
+    kept = verify_against_ocr([{"khmer": "", "needs_review": "headword not read by OCR"}], page)[0]
+    assert kept["needs_review"] == "headword not read by OCR"
     assert clean("not a dict", src, 1) is None
     assert set(FIELDS) <= set(e)
     assert len(SOURCES) == 8 and len({v[0] for v in SOURCES.values()}) == 8
