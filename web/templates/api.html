@@ -68,14 +68,12 @@ Content-Type: application/json
       <li><b>60 requests per minute per IP.</b> Over that you get
         <code>429</code>.</li>
       <li><b>100 results maximum</b> per request, 40 by default.</li>
-      <li><b>There is no bulk endpoint, and this is not scrape-proof.</b> The
-        entire lexicon is a single public JSON file in the repository — that is
-        deliberate, and cloning it is faster for you than paging through this
-        API. The limits exist so one caller can't degrade the service for
-        everyone, not to keep the data in.</li>
+      <li><b>There is no bulk endpoint and no pagination.</b> This API is for
+        looking terms up, not for downloading the lexicon. The full dataset is
+        not published; the repository carries a 309-entry sample.</li>
     </ul>
-    <p><a href="https://github.com/pr0meth4us/khmer-lexicon-demo">Clone the data
-    directly →</a></p>
+    <p>Need bulk access for research? <a
+    href="https://github.com/pr0meth4us/khmer-lexicon/issues">Ask →</a></p>
   </div>
 
   <div class="card">

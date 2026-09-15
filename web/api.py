@@ -6,12 +6,13 @@ it usable by every other Khmer-language tool — keyboards,
 translation memories, government CMSes. That is the difference between a demo
 and a piece of infrastructure.
 
-On making it "unscrapable": it cannot be, and pretending otherwise would be
-worse than useless. dist/unified_lexicon.json is a public file in a public
-repository, and the web page itself has to read it. What these limits actually
-buy is protection from *cheap* bulk pulls and from one caller degrading the
-service for everyone — a speed bump, not a lock. The honest posture is the one
-khmerdict takes: give the data away deliberately, and ask for attribution.
+The full lexicon is not published. dist/unified_lexicon.json is gitignored; the
+repository ships a 309-entry sample, and the deployment mounts the full file
+from private storage. This API is the only way to it, and it is built so that
+lookups are easy and bulk extraction is not: no endpoint returns everything,
+there is no pagination, and each caller is rate-limited. That does not make
+copying impossible — a determined scraper with a Khmer word list will get far —
+which is why the lexicon also carries canary entries (scripts/add_canaries.py).
 """
 import collections
 import json
@@ -24,8 +25,7 @@ from flask import Blueprint, jsonify, request
 
 api = Blueprint("api", __name__, url_prefix="/api/v1")
 
-# Caps. No endpoint returns the whole lexicon: a caller who wants everything
-# should clone the repo, which is cheaper for them and for us.
+# Caps. No endpoint returns the whole lexicon, and the file is not published.
 # DO NOT ADD AN offset/page/cursor PARAMETER.
 #
 # This is the single measure that actually prevents enumeration, and it happened
@@ -74,9 +74,8 @@ def _guard():
     if _rate_limited():
         return jsonify({"error": "rate limited",
                         "limit": f"{MAX_REQUESTS} requests per {WINDOW_SECONDS}s",
-                        "hint": "the whole lexicon is at "
-                                "github.com/pr0meth4us/khmer-lexicon-demo — clone "
-                                "it instead of paging through this"}), 429
+                        "hint": "for research or bulk access, ask at "
+                                "github.com/pr0meth4us/khmer-lexicon/issues"}), 429
     return None
 
 
