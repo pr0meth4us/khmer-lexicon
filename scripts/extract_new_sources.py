@@ -70,10 +70,27 @@ Each entry:
  "english": "text after អ. or H.", "french": "text after បារ.", "pos": "part of speech if printed",
  "definition": "the Khmer definition", "examples": "text after ឧ."}
 
+Some pages are tables with no អ./បារ. markers, one column each for Khmer,
+French and English (country lists: ១២ ប្រទេសក / Pays K / Country K). There, fill
+"french" and "english" from those columns; the English column is the second
+Latin-script name in the row. The capital-city columns that follow are not a
+definition: leave "definition" "".
+
+Word-formation tables list a root, an infix mark, then the derived word
+(១២ ស្រាក [-អំ-] សំរាក). The headword is the root only; never join the derived
+word to it.
+
 Rules:
 - The headword is ONLY the text printed right after the item number. If an item
   number has no text after it, the headword was not read: set "khmer" to "".
   Never use definition text as a headword.
+- A headword often wraps onto one or two more short lines before its glosses
+  ("១២- ក្បាច់ផ្កា" then "ឈូករ័ត្ន"): join them into one headword. Keep a
+  second form printed after "/" or in parentheses ("ជំងឺស្បែក" then
+  "/ ដែម៉ាតូស" gives "ជំងឺស្បែក/ដែម៉ាតូស"; "ជំងឺភ្នែក (អុបតាល់មី)"
+  stays whole). A line that reads as a sentence explaining the term is the
+  definition, not part of the headword.
+- "english" and "french" hold only Latin-script text. Never put Khmer words there.
 - Copy text as it appears in the OCR. Do not correct spelling, translate, or
   invent glosses; use "" for anything absent.
 Output ONLY the JSON array.
@@ -97,6 +114,9 @@ How to find the entries:
   headword is the short Khmer text printed immediately before that gloss line,
   with any item number removed. A headword may wrap onto a second line
   ("ទឡីករណ៍បុព្វ-" then "ហេតុទីមួយ"): join the pieces, dropping the hyphen.
+- Keep a second form printed after "/" or in parentheses: "ជំងឺស្បែក/ដែម៉ាតូស"
+  stays "ជំងឺស្បែក/ដែម៉ាតូស", including when the part after "/" wraps onto the
+  next line.
 - An entry with no English gloss is marked by an item number followed by Khmer
   text.
 - Numbered points inside a definition (១- … ២- …) belong to that definition.
@@ -146,6 +166,10 @@ def clean(raw, source, page):
     entry = {f: " ".join(str(raw.get(f) or "").split()) for f in FIELDS}
     # "ការពន្យារកំ- ណេត": the wrap hyphen of a two-line headword, not part of the word
     entry["khmer"] = re.sub(r"(?<=[\u1780-\u17DD])-\s+(?=[\u1780-\u17DD])", "", entry["khmer"])
+    # word-formation tables put the Khmer derived form in the gloss column (Bulletin No. 2 p18)
+    for gloss in ("english", "french"):
+        if re.search(r"[\u1780-\u17FF]", entry[gloss]) and not re.search(r"[A-Za-z]", entry[gloss]):
+            entry[gloss] = ""
     item = str(raw.get("item") or "").strip()
     match = ITEM_PREFIX.match(entry["khmer"])
     if match:
@@ -429,6 +453,9 @@ def _self_check():
     # a gloss wrapped across OCR lines comes out as one line
     w = clean({"khmer": "ភន", "english": "(PAN: Personal Area\nNetwork)"}, src, 30)
     assert w["english"] == "(PAN: Personal Area Network)", w["english"]
+    # Khmer in a gloss column is not a gloss; Khmer inside a Latin gloss is kept
+    assert clean({"khmer": "ស្រេច", "english": "សម្រេច"}, src, 18)["english"] == ""
+    assert clean({"khmer": "ខ", "english": "urethra (បង្ហួរនោម)"}, src, 18)["english"] == "urethra (បង្ហួរនោម)"
     # each layout gets its own prompt
     assert prompt_for("nckl-bulletin-vol6-2014") is PROMPT_NUMBERED
     assert prompt_for("nckl-philosophy") is PROMPT_GLOSS and prompt_for("nckl-health") is PROMPT_GLOSS

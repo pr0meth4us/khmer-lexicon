@@ -22,3 +22,5 @@ build/
 dist/build_index.json
 dist/eval_new_sample.csv
 dist/eval_new_sample.strata.json
+dist/eval_new_*.csv
+dist/eval_new_*.strata.json
