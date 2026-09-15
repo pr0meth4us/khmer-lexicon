@@ -124,7 +124,7 @@ a measured one.
 Cite the dataset with `CITATION.cff`, or via the "Cite this repository" button on
 GitHub.
 
-DOI (all versions): [10.5281/zenodo.22746199](https://doi.org/10.5281/zenodo.22746199). This release, v1.0.0: [10.5281/zenodo.22746200](https://doi.org/10.5281/zenodo.22746200).
+DOI (all versions): [10.5281/zenodo.22746199](https://doi.org/10.5281/zenodo.22746199). v1.1.0: [10.5281/zenodo.22761423](https://doi.org/10.5281/zenodo.22761423). v1.0.0: [10.5281/zenodo.22746200](https://doi.org/10.5281/zenodo.22746200).
 
 ## Other formats
 
