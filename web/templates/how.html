@@ -1,170 +1,81 @@
 {% extends "base.html" %}
-{% block title %}How this works{% endblock %}
+{% block title %}How to use this{% endblock %}
+{% set v10 = ev.evaluation['v1.0_sources'] %}
 {% block body %}
 <main class="en">
   <p><a href="/">← back to the dictionary</a></p>
 
   <div class="card">
     <h2>What this is</h2>
-    <p>A searchable dictionary of Cambodian government terminology — the approved
-    Khmer renderings of technical, legal, economic and administrative terms.
-    {{ '{:,}'.format(about.entries) }} entries from {{ sources|length }} official
-    sources (<a href="/data">where they came from</a>). Until now
-    this existed almost entirely as scanned paper: a person could look a term up,
-    a program could not.</p>
-    <p>It was built by running Google Cloud Vision OCR over the source PDFs,
-    parsing the results into structured entries, then normalising and merging
-    them. <b>None of that runs when you use the site</b> — the dictionary is a
-    static file, so there are no API keys, no database, and nothing to fail
-    during use.</p>
+    <p>A place to look up the official Khmer word for a term — the word a
+    ministry or the National Council of Khmer Language has published for
+    things like <i>blockchain</i>, <i>governance</i> or <i>contract</i>.</p>
+    <p>It holds {{ '{:,}'.format(about.entries) }} words from
+    {{ sources|length }} government documents. Every word shows which document
+    it came from and the year, so you can always go back to the original.</p>
   </div>
 
   <div class="card">
-    <h2>Why you don't have to type it perfectly</h2>
-    <p>Khmer is hard to type correctly, so an exact-match dictionary tells most
-    people “not found” when the word is sitting right there. If nothing matches
-    exactly, we look for entries one <i>grapheme cluster</i> away — one Khmer
-    syllable, not one byte — and offer those instead.</p>
-
-    <p><b>This is not a spell checker, and it never judges your spelling.</b> It
-    forgives an imperfect <i>query</i> so you can reach an entry. Checking whether
-    Khmer prose is spelled correctly needs a dictionary of general vocabulary;
-    this is a dictionary of {{ '{:,}'.format(about.entries) }} official terms, and checking ordinary writing
-    against it would mark almost every normal word as wrong.</p>
-    <p>Working in clusters rather than characters matters because a Khmer
-    syllable is several code points. <code>ក្រសួង</code> is 6 code points but 3
-    clusters: <code>ក្រ | សួ | ង</code>. Measuring distance in code points would
-    call two words similar that a reader would never confuse, and miss two that
-    they would.</p>
+    <h2>Look up a word <span class="km muted">· ស្វែងរក</span></h2>
+    <ul>
+      <li><b>Type in Khmer, English or French.</b></li>
+      <li><b>You don't have to spell it perfectly.</b> If nothing matches, you'll
+        see the closest words instead.</li>
+      <li><b>No Khmer keyboard?</b> Type how the word sounds in Latin letters —
+        <i>tinnany</i> finds <span class="km">ទិន្នន័យ</span>.</li>
+      <li><b class="km">ចម្លង</b> (copy) puts the Khmer word on your clipboard, ready to paste.</li>
+    </ul>
   </div>
 
   <div class="card">
-    <h2>Why checking a letter is fast</h2>
-    <p>Looking for {{ '{:,}'.format(about.terms_indexed) }} terms one at a time
-    means reading the whole letter {{ '{:,}'.format(about.terms_indexed) }} times.
-    Instead all the terms are compiled into a single structure
-    (Aho&#8211;Corasick) that finds every one of them in <b>one pass</b>, so the
-    cost depends on the length of your letter, not on the size of the
-    dictionary.</p>
-    <p>Measured on this data: the naive approach takes about 7.7&nbsp;ms and grows
-    with every term added; the single pass takes about 0.3&nbsp;ms and stays flat
-    from 250 terms to 5,780. Below roughly 220 terms the naive approach is
-    genuinely faster, which is worth saying rather than hiding.</p>
-    <p>Khmer has no spaces between words, so a dictionary match can land inside
-    a longer unrelated word — <code>ប្រក</code> sitting inside
-    <code>ប្រកាស</code> (“announce”). Matches are filtered twice: they must sit
-    on syllable boundaries, and they must line up with word boundaries from a
-    CRF word segmenter. Syllable boundaries alone are not enough; that was
-    measured, not assumed.</p>
+    <h2>Browse <span class="km muted">· រកមើលតាមប្រធានបទ</span></h2>
+    <p>See every word from one document, or every word starting with a given
+    letter.</p>
   </div>
 
   <div class="card">
-    <h2>The invisible-character problem</h2>
-    <p>Some characters look exactly like Khmer letters but are not. A Devanagari
-    or Thai vowel sign can sit in the middle of a Khmer word and be completely
-    invisible on screen, yet the word will never again be found by a search, sort
-    correctly, or match its own duplicate. These are detected using Unicode's own
-    data — both letters that share a Unicode name across scripts, and the
-    published confusables list — plus a catch-all for any character from a script
-    that doesn't belong, which is how a stray Cyrillic letter was found in the
-    source data.</p>
+    <h2>Check a letter <span class="km muted">· ពិនិត្យលិខិត</span></h2>
+    <p>Paste a draft and press <b class="km">ពិនិត្យលិខិត</b>. It will:</p>
+    <ul>
+      <li>highlight the official terms you used;</li>
+      <li>suggest the official Khmer word where you wrote an English one;</li>
+      <li>point out hidden characters that look like Khmer but aren't — they
+        are invisible on screen, but they stop a word being found or sorted
+        properly.</li>
+    </ul>
+    <p><b>It does not check general spelling or grammar.</b> It only knows the
+    official terms, so ordinary words are not checked at all.</p>
   </div>
 
   <div class="card" id="accuracy" style="border-color:var(--warn)">
-    {% set v10 = ev.evaluation['v1.0_sources'] %}
-    {% set v11 = ev.evaluation['v1.1_recovered_sources'] %}
-    <h2 style="color:var(--warn)">How accurate is this? About one Khmer headword in five is wrong</h2>
-    <p>Every entry here was produced by running <b>optical character recognition
-    over a scanned paper document</b>, then having a language model parse the
-    messy output into structured fields. Both steps make mistakes. Treat it as a
-    research tool and a finding aid, not as an authoritative citation.</p>
-
+    <h2 style="color:var(--warn)">Can I trust it?</h2>
+    <p>Use it as a helper, not as the final word. The documents were scanned
+    paper, and a computer read them, which introduces mistakes.</p>
     {% if v10.khmer_headword %}
-    <p>A random sample was checked character by character against the printed
-    pages. <b>{{ '{:.1%}'.format(v10.khmer_headword.error_rate) }}</b> of Khmer
-    headwords from the original sources differed from the page
-    ({{ '{:.1%}'.format(v10.khmer_headword.ci95[0]) }}–{{ '{:.1%}'.format(v10.khmer_headword.ci95[1]) }},
-    {{ v10.khmer_headword.rows_checked }} checked){% if v11.khmer_headword %}, and
-    <b>{{ '{:.1%}'.format(v11.khmer_headword.error_rate) }}</b> from the recovered
-    sources{% endif %}. English glosses were almost always right. One annotator,
-    an AI model, made these checks; no native Khmer reader has confirmed them yet.</p>
+    <p>We checked a sample by hand against the original pages: <b>about
+    {{ '{:.0%}'.format(v10.khmer_headword.error_rate) }} of Khmer words had a
+    mistake</b>, usually a missing vowel or subscript. English meanings were
+    almost always right.</p>
     {% endif %}
-
-    <p>Beyond that sample, the build counts what a program can see:
-    <b>{{ ev.known_defects.near_duplicate_pairs }}</b> pairs that look like one
-    term spelled two ways, <b>{{ ev.known_defects.one_misread_from_a_dictionary_word }}</b>
-    single-word terms one misread from a Royal Academy dictionary word, and
-    <b>{{ '{:,}'.format(ev.known_defects.missing_english) }}</b> entries with no
-    English. An OCR mistake that turns one real Khmer word into another is
-    invisible to all of those checks, which is why the sample matters.</p>
-    <p><a href="/data#evaluation">The method, the intervals and the limits →</a></p>
-
-    <p><b>This is being refined and checked on an ongoing basis.</b> Corrections
-    are applied as they are found and the whole dataset is re-validated on every
-    build, so the numbers above move.</p>
-
-    <p><b>If a term matters, open the original publication.</b> Every entry names
-    the ministry, the document and the year precisely so you can go and check —
-    and every entry on the site carries a <i>report</i> link that opens a
-    pre-filled issue. Telling us is the fastest way this gets better.
-    <a href="https://github.com/pr0meth4us/khmer-lexicon/issues/new?labels=data-error"
-       target="_blank" rel="noopener">Report an error →</a></p>
+    <p><b>If a word matters — in an official letter, a law, a publication —
+    check it in the original document.</b> Each entry tells you which one.</p>
   </div>
 
   <div class="card">
-    <h2>What it can't do</h2>
-    <ul>
-      <li><b>It covers terminology, not vocabulary.</b> <code>ក្រសួង</code>
-        (“ministry”) is not an entry, because no glossary defined it. Common
-        words will often return nothing.</li>
-      <li><b>{{ '{:,}'.format(ev.known_defects.missing_english) }} entries have no English.</b> They came from
-        Khmer-only documents. They're still searchable in Khmer, and we say so
-        rather than showing a blank.</li>
-      <li><b>{{ '{:,}'.format(coverage[3][1]) }} of {{ '{:,}'.format(about.entries) }} entries
-        ({{ '{:.0%}'.format(coverage[3][2]) }}) carry a Khmer definition</b>, and
-        {{ '{:,}'.format(coverage[5][1]) }} carry usage examples. Coverage is uneven by source: every NCKL bulletin
-        entry has one, but the Pentagonal Strategy glossary is a term list with
-        no definitions at all, and only 9% of place names have one. Entries
-        without a definition say so rather than looking empty.</li>
-      <li><b>It finds known terms; it cannot discover new ones.</b> If a term
-        isn't in the lexicon, nothing will tell you it was a term.</li>
-      <li><b>Its accuracy has not been formally measured.</b> The boundary
-        filters demonstrably remove wrong matches, but no one has annotated a
-        test set and scored it. That's the most valuable next piece of work.</li>
-      <li><b>The source data has known defects</b>, listed openly below.</li>
-    </ul>
+    <h2>Found a mistake?</h2>
+    <p>Press <b class="km">រាយការណ៍កំហុស</b> (report) under the word, or
+    <a href="#" class="foot-report">tell us here</a>. No account needed, and you
+    can write in Khmer. Every report makes the dictionary better.</p>
   </div>
 
   <div class="card">
-    <h2>Known defects in the data</h2>
-    <ul>
-      <li><b>{{ ev.known_defects.missing_khmer }}</b> entries have no Khmer form at all.</li>
-      <li><b>{{ ev.known_defects.khmer_field_with_no_khmer }}</b> entries have a Khmer field containing no Khmer characters —
-        old-font OCR misread as Latin, plus six French grammar terms filed in the
-        wrong column. These are excluded from search results.</li>
-      <li><b>{{ baseline['duplicate khmer forms'] }}</b> Khmer forms appear more than once, and
-        <b>{{ ev.known_defects.near_duplicate_pairs }}</b> pairs differ by a single syllable and mean the same thing.</li>
-      <li><b>23</b> entries had their marks in a non-standard order and were
-        corrected at build time; Unicode's own normalisation cannot fix this,
-        because almost every Khmer mark is invisible to it.</li>
-    </ul>
-    <p>A validator runs on every build and fails it if any of these counts get
-    worse.</p>
-  </div>
-
-  <div class="card">
-    <h2>Sources</h2>
-    <ul>
-      {% for s in about.sources %}
-      <li>{{ s.author }} — {{ s.year }} ({{ s.count }} terms)</li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Credits</h2>
-    <p>Word segmentation by
-    <a href="https://github.com/VietHoang1512/khmer-nltk">khmer-nltk</a>.</p>
+    <h2>Want the details?</h2>
+    <p>The full list of source documents, how the words were extracted, how
+    accuracy was measured and the known problems are on
+    <a href="/data">About the data</a>.</p>
   </div>
 </main>
+<style>
+main .km{font-family:'Kantumruy Pro',sans-serif;font-weight:500;font-size:.8em}
+</style>
 {% endblock %}
