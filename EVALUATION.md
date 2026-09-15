@@ -5,6 +5,13 @@ n=153; English gloss 0.0% [0.0–2.4%], n=158; seed 20260907; covering 3,807 of
 5,934 entries; one annotator, an AI model reading page renders. Summary counts in
 `dist/evaluation_result.json`, discussion in `DATA_STATEMENT.md` §7.
 
+**Recovered sources (2026-09-15):** the 2,624 entries extracted from the seven
+NCKL documents added in v1.1 were sampled on their own (same seed; 197 Khmer
+rows, 163 English). Khmer headword error rate 17.9% [13.1–23.7%], English gloss
+0.4% [0.1–3.4%]. That is after an extraction fix, measured by re-checking the
+same rows, not a fresh sample. The fixed extraction yields 2,697 entries, of
+which 768 were merged; most of the rest repeat terms already in the lexicon. Counts in `dist/evaluation_new_sources.json`.
+
 Before this, the dataset had counts but no measured accuracy. Every figure in
 `dist/validation_report.md` is a *detectable* defect — an empty field, a
 duplicate, a character out of range. The dominant failure mode of Khmer OCR is

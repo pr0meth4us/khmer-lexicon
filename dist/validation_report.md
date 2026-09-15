@@ -1,23 +1,23 @@
 # Lexicon validation report
 
-`unified_lexicon.json` — 5,934 entries
+`unified_lexicon.json` — 6,702 entries
 
 | check | count | baseline |
 | --- | ---: | ---: |
 | empty khmer | 24 | 24 |
-| empty english | 1657 | 1657 |
+| empty english | 1832 | 1657 ⬆ REGRESSION |
 | khmer field with no Khmer at all | 21 | 21 |
 | characters outside Khmer, Latin and punctuation (occurrences) | 13 | 13 |
 | ASCII digits in khmer | 0 | 0 |
-| khmer shorter than 3 characters | 52 | 52 |
+| khmer shorter than 3 characters | 60 | 52 ⬆ REGRESSION |
 | khmer is a single bare consonant | 10 | 10 |
 | coeng ro before another subscript | 7 | 7 |
-| ba + coeng nya typed for the vowel ឫ | 3 | — |
+| ba + coeng nya typed for the vowel ឫ | 3 | 3 |
 | obsolete Khmer letter | 1 | 1 |
 | not in canonical mark order | 0 | 0 |
-| duplicate khmer forms | 123 | 123 |
-| duplicate english glosses (case-insensitive) | 285 | 285 |
-| terms longer than 20 clusters | 143 | 143 |
+| duplicate khmer forms | 253 | 123 ⬆ REGRESSION |
+| duplicate english glosses (case-insensitive) | 595 | 285 ⬆ REGRESSION |
+| terms longer than 20 clusters | 150 | 143 ⬆ REGRESSION |
 
 ## empty khmer (24)
 
@@ -46,7 +46,7 @@
 - official_lex_3767
 - official_lex_3768
 
-## empty english (1657)
+## empty english (1832)
 
 - official_lex_0668
 - official_lex_0793
@@ -73,7 +73,7 @@
 - official_lex_1749
 - official_lex_1750
 - official_lex_1751
-- …and 1632 more
+- …and 1807 more
 
 ## khmer field with no Khmer at all (21)
 
@@ -115,7 +115,7 @@
 - official_lex_1815 'Muññ' (LATIN SMALL LETTER N WITH TILDE)
 - official_lex_3826 'Génitif' (LATIN SMALL LETTER E WITH ACUTE)
 
-## khmer shorter than 3 characters (52)
+## khmer shorter than 3 characters (60)
 
 - official_lex_0532 'វ៣' = '3D'
 - official_lex_0534 'ជ៥' = 'Fifth Generation'
@@ -142,7 +142,7 @@
 - official_lex_2680 'ប' = ''
 - official_lex_2702 'ពង' = ''
 - official_lex_2737 'ភ' = ''
-- …and 27 more
+- …and 35 more
 
 ## khmer is a single bare consonant (10)
 
@@ -177,9 +177,10 @@
 
 - official_lex_5662 'ឤតរ៉ូម' (ឤ)
 
-## duplicate khmer forms (123)
+## duplicate khmer forms (253)
 
 - 'ប្រព័ន្ធគាំពារសង្គម' x2
+- 'បេតិកភណ្ឌ វប្បធម៌' x2
 - 'គម្លាតឌីជីថល' x2
 - 'បច្ចេកវិទ្យាឌីជីថល' x2
 - 'កម្មសិទ្ធិបញ្ញា' x2
@@ -203,10 +204,9 @@
 - 'ម៉ាក' x2
 - 'សេវាសារខ្លី' x2
 - 'អ៊ីសឺណិតជីហ្គាប៊ីត' x2
-- 'ការបោះបង់តំណែង' x2
-- …and 98 more
+- …and 228 more
 
-## duplicate english glosses (case-insensitive) (285)
+## duplicate english glosses (case-insensitive) (595)
 
 - 'agro-industry' x2
 - 'contract farming' x2
@@ -233,9 +233,9 @@
 - 'messenger' x2
 - 'access mechanism' x2
 - 'ransomware' x2
-- …and 260 more
+- …and 570 more
 
-## terms longer than 20 clusters (143)
+## terms longer than 20 clusters (150)
 
 - 51 clusters: ល្បះក្រង/ប្រយោគក្រុងល្បះ/ប្រយោគដែលកើតឡើងពីល្បះ / ប្រយោគទោលច្
 - 42 clusters: សេចក្តីប្រកាសរបស់រដ្ឋាភិបាលកម្ពុជាក្នុងអវសានកិច្ចនៃសន្និសីទក
@@ -262,4 +262,4 @@
 - 32 clusters: ខ្សែកាបអុបទិកក្រោមបាតសមុទ្រ និង ខ្សែកាបអុបទិកឆ្លងព្រំដែនគោក
 - 32 clusters: អនុសញ្ញាស្តីពីការត្រួត ពិនិត្យអន្តោប្រវេសន៍ នៅឥណ្ឌូចិន ឆ្នាំ
 - 32 clusters: កិច្ចព្រមព្រៀងទាក់ទងនឹងពាណិជ្ជកម្មក្រៅប្រទេសនៅឥណ្ឌូចិន ឆ្នាំ
-- …and 118 more
+- …and 125 more

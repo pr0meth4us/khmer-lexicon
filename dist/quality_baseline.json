@@ -3,15 +3,15 @@
   "ba + coeng nya typed for the vowel \u17ab": 3,
   "characters outside Khmer, Latin and punctuation (occurrences)": 13,
   "coeng ro before another subscript": 7,
-  "duplicate english glosses (case-insensitive)": 285,
-  "duplicate khmer forms": 123,
-  "empty english": 1657,
+  "duplicate english glosses (case-insensitive)": 595,
+  "duplicate khmer forms": 253,
+  "empty english": 1832,
   "empty khmer": 24,
-  "entries": 5934,
+  "entries": 6702,
   "khmer field with no Khmer at all": 21,
   "khmer is a single bare consonant": 10,
-  "khmer shorter than 3 characters": 52,
+  "khmer shorter than 3 characters": 60,
   "not in canonical mark order": 0,
   "obsolete Khmer letter": 1,
-  "terms longer than 20 clusters": 143
+  "terms longer than 20 clusters": 150
 }

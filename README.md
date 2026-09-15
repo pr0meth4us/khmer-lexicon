@@ -7,7 +7,7 @@ sdk: docker
 app_port: 8000
 pinned: false
 license: cc-by-sa-4.0
-short_description: Search 5,929 official Cambodian government terms, or check a Khmer draft
+short_description: Search 6,702 official Cambodian government terms, or check a Khmer draft
 ---
 
 # khmer-lexicon
@@ -21,13 +21,14 @@ short_description: Search 5,929 official Cambodian government terms, or check a 
 > structured fields. Both steps make mistakes. **A sample checked against the
 > source pages found about one Khmer headword in five wrong: 20.1% [14.7–27.3%],
 > n=153.** English glosses were correct in every row checked (0.0% [0.0–2.4%],
-> n=158). The figure covers 3,807 of 5,934 entries, was made by one annotator (an
-> AI model reading page renders), and has not yet been confirmed by a native
-> Khmer reader. Details in `DATA_STATEMENT.md` §7.
+> n=158). The figure covers 3,807 of the 5,934 v1.0 entries. The documents added
+> in v1.1 measured 17.9% [13.1–23.7%] on their own (n=197). Both figures were
+> made by one annotator (an AI model reading page renders) and have not yet been
+> confirmed by a native Khmer reader. Details in `DATA_STATEMENT.md` §7.
 >
 > Mechanically detected so far: 21 entries whose Khmer field contains no Khmer,
 > 347 single-word terms one plausible misread from a Royal Academy dictionary
-> word, 162 near-duplicate pairs, 24 entries with no Khmer, 1,657 with no English. Those
+> word (v1.0 entries), 417 near-duplicate pairs, 24 entries with no Khmer, 1,832 with no English. Those
 > are only the errors that produce something *detectably* wrong — an OCR mistake
 > that turns one real Khmer word into a different real Khmer word is invisible to
 > every check here.
@@ -97,23 +98,23 @@ what you need is the term's official status.
 
 ### What this repository contains
 
-Not the full lexicon. `dist/unified_lexicon.json` (5,934 entries) and
+Not the full lexicon. `dist/unified_lexicon.json` (6,702 entries) and
 `dist/unified_official_lexicon.json` are gitignored; what ships is
-`dist/sample_lexicon.json` — 309 entries drawn from all 15 sources — alongside
-the extractors, the checker and the quality reports, which are complete.
+`dist/sample_lexicon.json` — 309 entries drawn from the 15 v1.0 sources —
+alongside the extractors, the checker and the quality reports, which are complete.
 
 So a clone reproduces the pipeline, not the dataset. `CITATION.cff` and the
-`v1.0.0` tag describe the compilation as a whole; anyone citing the repository
+release tags describe the compilation as a whole; anyone citing the repository
 for the *data* is citing the 309-entry sample unless the full file has been
 shared with them separately.
 
-`sources.json` records where each of the 15 source documents came from, with a
+`sources.json` records where each of the 22 source documents came from, with a
 SHA-256 of the exact file the pipeline read; `python scripts/verify_sources.py`
 checks the local PDFs against it, and `--urls` re-checks the published links.
 
 `candidates.json` lists 40 further NCKL PDFs recovered from Wayback Machine
-captures of the council's previous website, whose contents are not yet
-identified — see "Recovered but unread" below.
+captures of the council's previous website; seven of them became sources in
+v1.1 — see "Recovered from archived captures" below.
 
 `DATA_STATEMENT.md` describes the dataset in the Bender & Friedman schema —
 curation rationale, language variety, provenance, and known defects.
@@ -148,10 +149,13 @@ Identified by Cloud Vision OCR of each file's title, middle and last pages
 (`scripts/identify_candidates.py`), with duplicates confirmed by pixel
 comparison against `source_pdfs/`:
 
-- **7 new term sources, not in this lexicon:** glossaries of Linguistics &
+- **7 new term sources, merged in v1.1:** glossaries of Linguistics &
   Literature (2013), Culture & Fine Arts (2015), Medicine & Agriculture (2015),
   Philosophy (2019) and Health (2019); NCKL Bulletins No. 2 (2009) and No. 6
-  (2014).
+  (2014). They yielded 2,697 entries, but most repeat terms first published in
+  Bulletins 3–10 (Bulletin No. 6 is almost entirely the 2014 Technology &
+  Science lexicon), so 768 were added. `python scripts/merge_new_sources.py`
+  appends them to the lexicon, and its docstring gives the rules.
 - **11 duplicates** of documents already here.
 - **22 without term entries:** founding decrees and decisions for the NCKL and
   Royal Academy, NCKL Bulletin No. 1 (2008; committee lists and decree articles,

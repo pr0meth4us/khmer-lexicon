@@ -4,12 +4,14 @@ Following the schema of Bender & Friedman (2018), *Data Statements for Natural
 Language Processing*, TACL 6:587–604.
 
 Dataset: `dist/unified_lexicon.json`
-Version: 1.0 · Build `1744764254eb` · Built 2026-09-05 · 5,934 entries
+Version: 1.1 · Build `0e11fa6c1df3` · Built 2026-09-15 · 6,702 entries
 
 > **Measured Khmer headword error rate: 20.1% [14.7–27.3%]** (n=153, seed
-> 20260907, covering 3,807 of 5,934 entries). English glosses: 0.0% [0.0–2.4%]
-> (n=158). One annotator, an AI model reading page renders; not yet confirmed by
-> a native Khmer reader. See §7 and `EVALUATION.md`.
+> 20260907, covering 3,807 of the 5,934 v1.0 entries). English glosses: 0.0%
+> [0.0–2.4%] (n=158). The seven documents added in v1.1, measured on their own:
+> Khmer 17.9% [13.1–23.7%] (n=197), English 0.4% [0.1–3.4%] (n=163). One
+> annotator, an AI model reading page renders; not yet confirmed by a native
+> Khmer reader. See §7 and `EVALUATION.md`.
 
 ## 1. Curation rationale
 
@@ -21,8 +23,17 @@ traceable to the document that issued it, so that the official form of a term ca
 be checked rather than guessed.
 
 Entries were not selected on linguistic criteria. The unit of selection was the
-*document*: fifteen official sources were digitised in full, and every term they
-contain is included. There is no sampling, filtering or quality threshold.
+*document*: fifteen official sources were digitised in full for v1.0, and every
+term they contain is included. v1.1 adds seven documents recovered from archived
+captures of the NCKL's previous website. From those, three kinds of entry were
+left out:
+- terms already present with the same Khmer and English;
+- the word-formation tables on pages 8–19 of Bulletin No. 2, which are a grammar
+  exercise, not terminology;
+- 18 entries that were empty or plainly extraction failures: no Khmer, OCR junk
+  characters, definition text in the headword, or a lone consonant.
+
+Beyond that there is no sampling, filtering or quality threshold.
 
 ## 2. Language variety
 
@@ -42,7 +53,7 @@ Not individual speakers. Authorship is institutional:
 
 | Issuing body | Entries |
 |---|---:|
-| National Council of Khmer Language (NCKL) | 3,573 |
+| National Council of Khmer Language (NCKL) | 4,341 |
 | Royal Academy of Cambodia (National Language Institute) | 1,223 |
 | Royal Government of Cambodia | 486 |
 | Council of Ministers | 373 |
@@ -67,17 +78,17 @@ register is uniformly formal.
 
 ## 6. Text characteristics
 
-5,934 entries across 15 sources and 9 subject categories. Field coverage:
+6,702 entries across 22 sources and 14 subject categories. Field coverage:
 
 | Field | Non-empty | Coverage |
 |---|---:|---:|
-| `khmer` | 5,910 | 99.6% |
-| `english` | 4,277 | 72.1% |
-| `french` | 3,448 | 58.1% |
-| `definition` | 4,776 | 80.5% |
-| `pos` | 1,601 | 27.0% |
-| `examples` | 1,116 | 18.8% |
-| `category` | 5,934 | 100% |
+| `khmer` | 6,678 | 99.6% |
+| `english` | 4,870 | 72.7% |
+| `french` | 4,011 | 59.8% |
+| `definition` | 5,485 | 81.8% |
+| `pos` | 1,712 | 25.5% |
+| `examples` | 1,416 | 21.1% |
+| `category` | 6,702 | 100% |
 
 Entries are terms, not running text — typically one to five words. Definitions,
 where present, are one or two sentences of Khmer.
@@ -123,6 +134,32 @@ text layer). Entries containing ្ត or ្ដ were excluded by design, becaus
 two render identically and cannot be judged by eye; they are listed, with the
 Royal Academy dictionary's spelling, in the ្ត/្ដ worklist.
 
+### Recovered sources, added in v1.1 (2026-09-15)
+
+The 2,624 entries extracted from the seven recovered documents were sampled on
+their own, located and checked the same way, from 300 dpi crops placed by Cloud
+Vision word boxes.
+
+| Field | Rows checked | Errors | Error rate (size-weighted) | 95% interval |
+|---|---:|---:|---:|---|
+| Khmer headword | 197 | 34 | 17.9% | 13.1–23.7% |
+| English gloss | 163 | 1 | 0.4% | 0.1–3.4% |
+
+A first pass found 46 Khmer and 12 English errors. 19 of the Khmer errors were
+the extraction step, not OCR: a headword wrapping onto a second line was cut
+off, or a printed second form ("/ …", "(…)") was dropped. Most of the English
+errors came from Bulletin No. 2's country tables, where the English column was
+never read. After the extraction prompt was fixed, the same rows were checked
+again. The rows that had not changed kept their verdicts, and the 23 that had
+changed were judged afresh:
+- 9 of the extraction errors were fixed outright;
+- 8 now expose an OCR misread in the recovered text;
+- 1 pulled definition text into the headword.
+
+That re-check is paired, not a fresh sample, and the annotator had seen the
+first verdicts. The figure describes the 2,624 entries of the first extraction.
+The fixed extraction yields 2,697, of which 768 were merged.
+
 **Who checked.** One annotator: an AI model (Claude) reading rendered pages.
 No native Khmer reader has confirmed the verdicts. A second, human pass over the
 34 recorded errors is the obvious next step, and the error rate should be read
@@ -140,12 +177,12 @@ Mechanically detected defects, from `dist/validation_report.md`:
 | Entries with no Khmer at all | 24 |
 | Khmer field containing no Khmer characters | 21 |
 | Khmer field is a single bare consonant | 10 |
-| Khmer shorter than 3 characters | 52 |
-| Entries with no English gloss | 1,657 |
-| Duplicate Khmer forms | 123 |
-| Duplicate English glosses (case-insensitive) | 285 |
-| Near-duplicate pairs | 162 |
-| Single-word terms one plausible misread from a RAC dictionary word | 347 |
+| Khmer shorter than 3 characters | 60 |
+| Entries with no English gloss | 1,832 |
+| Duplicate Khmer forms | 253 |
+| Duplicate English glosses (case-insensitive) | 595 |
+| Near-duplicate pairs | 417 |
+| Single-word terms one plausible misread from a RAC dictionary word (v1.0 entries; not rerun) | 347 |
 | Characters outside Khmer, Latin and punctuation | 13 |
 
 These are only defects that produce something *detectably* wrong. The dominant
@@ -158,9 +195,9 @@ unknown margin. Establishing that margin is what `EVALUATION.md` is for.
 
 Public repository: https://github.com/pr0meth4us/khmer-lexicon
 
-The repository ships `dist/sample_lexicon.json` (309 entries drawn from all 15
-sources) together with the complete extraction pipeline, checker and quality
-reports. The full 5,934-entry lexicon is **not** distributed in the repository.
+The repository ships `dist/sample_lexicon.json` (309 entries drawn from the 15
+v1.0 sources) together with the complete extraction pipeline, checker and quality
+reports. The full 6,702-entry lexicon is **not** distributed in the repository.
 
 The compilation is licensed CC BY-SA 4.0 (`LICENSE`). What is licensed is the
 compilation — the extraction pipeline, normalisation and merge rules, provenance
@@ -171,8 +208,9 @@ document when what matters is a term's official status.
 
 ## 9. Other
 
-Source PDFs are not redistributed. All 15 source documents are held locally in
-`source_pdfs/` (gitignored), so every entry can be checked against its page.
+Source PDFs are not redistributed. All 22 source documents are held locally in
+`source_pdfs/` and `source_pdfs/candidates/` (gitignored), so every entry can be
+checked against its page.
 
 `sources.json` records, per source: the issuing body, year, entry count, the
 SHA-256 and byte size of the exact file the pipeline read, and where the
@@ -185,6 +223,7 @@ link was checked:
 | `size-match` | 1 | HTTP 200 and byte size identical; body not re-hashed |
 | `content-identical` | 2 | a copy downloads from the Ministry of Education's Sala Digital library; different bytes, but every page renders pixel-identical |
 | `listed-but-unreachable` | 11 | advertised on the official NCKL page, but the file host does not resolve |
+| `archived-only` | 7 | recovered from a Wayback Machine capture of the NCKL's previous website; the original URL returned 404 on 2026-09-15 |
 
 The eleven NCKL documents are listed for download at
 https://nckl.rac.gov.kh/bulletin/index, but that page serves its files from
