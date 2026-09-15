@@ -28,7 +28,8 @@
     <p class="lede">{{ '{:,}'.format(about.entries) }} entries of official Cambodian
     government terminology, from {{ sources|length }} published documents that
     existed only as scanned paper. This page is the full account: the sources,
-    the pipeline that turned them into data, the data statement, the measured
+    the pipeline that turned them into data, the NLP methods behind each step,
+    the data statement, the measured
     error rate, the defects we know about, and what you may do with it.</p>
 
     <dl class="stats">
@@ -48,11 +49,12 @@
 
     <nav class="toc" aria-label="On this page">
       <a href="#pipeline">1 · Pipeline</a>
-      <a href="#sources">2 · Sources</a>
-      <a href="#statement">3 · Data statement</a>
-      <a href="#evaluation">4 · Evaluation</a>
-      <a href="#defects">5 · Known defects</a>
-      <a href="#licence">6 · Access, licence, citation</a>
+      <a href="#methods">2 · NLP methods</a>
+      <a href="#sources">3 · Sources</a>
+      <a href="#statement">4 · Data statement</a>
+      <a href="#evaluation">5 · Evaluation</a>
+      <a href="#defects">6 · Known defects</a>
+      <a href="#licence">7 · Access, licence, citation</a>
     </nav>
   </section>
 
@@ -117,7 +119,7 @@
       <li>
         <h3>Measure accuracy against the printed page</h3>
         <p>A seeded random sample of entries is checked, character by character,
-        against crops of the source page. See <a href="#evaluation">§4</a>.</p>
+        against crops of the source page. See <a href="#evaluation">§5</a>.</p>
         <p class="path">scripts/evaluate_sample.py · EVALUATION.md</p>
       </li>
       <li>
@@ -131,8 +133,135 @@
     </ol>
   </section>
 
+  <section class="card" id="methods" aria-labelledby="h-methods">
+    <h2 id="h-methods"><span class="num">2</span> NLP methods</h2>
+    <p>Khmer is a low-resource language with a script that breaks many
+    assumptions built into text tools. These are the methods each step relies
+    on, and why the obvious alternative fails for Khmer.</p>
+
+    <h3>Script and encoding</h3>
+    <dl class="concepts">
+      <div><dt>Grapheme clusters (UAX #29)</dt>
+        <dd>Khmer is an abugida: a syllable is a base consonant plus subscript
+        consonants joined by COENG and vowel marks, several code points drawn
+        as one unit. <code>ក្រសួង</code> is 6 code points but 3 clusters. Every
+        length, slice, edit distance and match boundary in this project is
+        measured in clusters, never code points.</dd>
+        <p class="path">khmerlex/graphemes.py</p></div>
+      <div><dt>Canonical mark ordering</dt>
+        <dd>Unicode normalisation (NFC) cannot unify Khmer typed in different
+        mark orders: only 2 of the block's 114 characters have a non-zero
+        combining class, so NFC treats everything else as already ordered. The
+        same word can then be byte-different forever. A Khmer-specific
+        reordering fixes it at build time.</dd>
+        <p class="path">khmerlex/normalize.py</p></div>
+      <div><dt>Script contamination and confusables (UTS #39)</dt>
+        <dd>A Devanagari or Thai vowel sign can sit inside a Khmer word,
+        invisible on screen, and the word stops matching anything. Same-letter
+        pairs across Brahmic scripts are derived from Unicode character names
+        (195 pairs), visual lookalikes from the Unicode confusables data.</dd>
+        <p class="path">khmerlex/contamination.py</p></div>
+    </dl>
+
+    <h3>Extraction</h3>
+    <dl class="concepts">
+      <div><dt>OCR</dt>
+        <dd>Google Cloud Vision reads rendered page images. The PDFs' own text
+        layers are not used: legacy Khmer fonts map glyphs to the wrong Unicode,
+        and ្ត and ្ដ are encoded as one mis-mapped glyph.</dd>
+        <p class="path">scripts/extract_new_sources.py</p></div>
+      <div><dt>LLM information extraction</dt>
+        <dd>A language model maps unstructured OCR text onto a fixed schema
+        (headword, glosses, part of speech, definition, examples): slot filling,
+        with instructions to copy and never correct. It sees text only, because
+        with page images it hallucinated titles. One prompt per page layout: a
+        prompt tuned for gloss-led glossaries shifted definitions onto the wrong
+        entries in numbered tables.</dd>
+        <p class="path">PROMPT_NUMBERED · PROMPT_GLOSS</p></div>
+      <div><dt>Output verification</dt>
+        <dd>Each extracted headword is checked against the OCR text it came
+        from, anchored at the start of a line, with line wraps and item numbers
+        allowed. This catches a model dropping a character the OCR read
+        correctly, which a plain substring test cannot see.</dd>
+        <p class="path">verify_against_ocr()</p></div>
+    </dl>
+
+    <h3>Building the lexical resource</h3>
+    <dl class="concepts">
+      <div><dt>Near-duplicate detection</dt>
+        <dd>A symmetric-deletion index (the idea behind SymSpell) finds every
+        pair of forms one cluster apart without comparing all pairs. Levenshtein
+        distance over clusters then confirms each pair, and a shared English gloss
+        separates spelling variants from different words.</dd>
+        <p class="path">scripts/find_near_duplicates.py</p></div>
+      <div><dt>Character confusion model</dt>
+        <dd>How often people actually confuse two Khmer characters, aggregated
+        from 3.2M searches (seanghay/khmer-character-confusions). This turns
+        "these look similar" into a measured likelihood that a difference is a
+        misread.</dd>
+        <p class="path">data/khmer-character-confusions.csv</p></div>
+      <div><dt>Validation against a reference dictionary</dt>
+        <dd>Errors that turn one real word into another are found by comparison
+        with the Royal Academy's 2022 dictionary (38,694 headwords). Absence
+        proves nothing, because glossaries coin new terms. The test is narrower:
+        one plausible cluster <i>substitution</i> away from a dictionary word,
+        with compounds split into dictionary headwords and skipped first.</dd>
+        <p class="path">scripts/check_against_rac.py</p></div>
+    </dl>
+
+    <h3>Evaluation</h3>
+    <dl class="concepts">
+      <div><dt>Stratified sampling and weighted estimation</dt>
+        <dd>A seeded sample with a per-source floor, so small sources are
+        covered. Each source is weighted by its true size when combining, so the
+        floor does not bias the overall rate.</dd>
+        <p class="path">scripts/evaluate_sample.py</p></div>
+      <div><dt>Wilson score intervals</dt>
+        <dd>Error rates are reported as intervals, not point estimates. The
+        Wilson interval stays valid near 0% and with small samples, where the
+        normal approximation gives impossible or overconfident ranges.</dd>
+        <p class="path">wilson()</p></div>
+      <div><dt>Annotation guidelines and error typology</dt>
+        <dd>Judged against what the page printed, not what is correct. Errors
+        are classed (dropped vowel or subscript, truncation at a wrap, dropped
+        second form, substituted letter) so each can be traced to OCR or
+        extraction. Inter-annotator agreement is not yet measured: one annotator.</dd>
+        <p class="path">EVALUATION.md</p></div>
+    </dl>
+
+    <h3>Using the lexicon</h3>
+    <dl class="concepts">
+      <div><dt>Word segmentation</dt>
+        <dd>Khmer writes no spaces between words. A conditional random field
+        segmenter (khmer-nltk) supplies word boundaries, so a term found inside a
+        longer unrelated word — <code>ប្រក</code> inside <code>ប្រកាស</code> — is
+        rejected.</dd>
+        <p class="path">khmerlex/checker.py</p></div>
+      <div><dt>Multi-pattern matching (Aho–Corasick)</dt>
+        <dd>Every term is found in a draft in one pass, at a cost that depends on
+        the draft's length, not the lexicon's size. Measured: below about 220
+        terms a naive loop is faster.</dd>
+        <p class="path">khmerlex/aho.py</p></div>
+      <div><dt>Typo-tolerant and phonetic retrieval</dt>
+        <dd>A query with no exact match gets entries one cluster away, from the
+        same deletion index. A deliberately lossy Latin search key lets someone
+        who knows a word by sound find it: "tinnany" reaches ទិន្នន័យ.</dd>
+        <p class="path">khmerlex/dictionary.py · khmerlex/romanize.py</p></div>
+      <div><dt>Terminology interchange (TBX)</dt>
+        <dd>Exported as TBX-Basic (ISO 30042:2019), one concept per entry with
+        Khmer, English and French sections and concept-level provenance, for
+        termbases and computer-assisted translation tools.</dd>
+        <p class="path">scripts/export_tbx.py</p></div>
+      <div><dt>Data statement</dt>
+        <dd>Documentation in the schema of Bender &amp; Friedman (2018), so
+        anyone training or evaluating on the data knows its variety, provenance
+        and limits. See <a href="#statement">§4</a>.</dd>
+        <p class="path">DATA_STATEMENT.md</p></div>
+    </dl>
+  </section>
+
   <section class="card" id="sources" aria-labelledby="h-sources">
-    <h2 id="h-sources"><span class="num">2</span> Sources</h2>
+    <h2 id="h-sources"><span class="num">3</span> Sources</h2>
     <p>Every entry names its source, issuing body and year. The link is the most
     official place the document can still be found; its status says how far that
     was checked.</p>
@@ -168,7 +297,7 @@
   </section>
 
   <section class="card" id="statement" aria-labelledby="h-statement">
-    <h2 id="h-statement"><span class="num">3</span> Data statement</h2>
+    <h2 id="h-statement"><span class="num">4</span> Data statement</h2>
     <p>Summarised from the full statement, which follows Bender &amp; Friedman
     (2018), <i>Data Statements for NLP</i>.
     <a href="{{ ev.data_statement }}" target="_blank" rel="noopener">Read DATA_STATEMENT.md →</a></p>
@@ -221,7 +350,7 @@
   </section>
 
   <section class="card" id="evaluation" aria-labelledby="h-eval">
-    <h2 id="h-eval"><span class="num">4</span> Evaluation</h2>
+    <h2 id="h-eval"><span class="num">5</span> Evaluation</h2>
     <p>Automatic checks find empty fields and stray characters. They cannot see
     the error that matters most: an OCR misread that turns one real Khmer word
     into another. Only the printed page can show that, so the entries were
@@ -278,7 +407,7 @@
   </section>
 
   <section class="card" id="defects" aria-labelledby="h-defects">
-    <h2 id="h-defects"><span class="num">5</span> Known defects</h2>
+    <h2 id="h-defects"><span class="num">6</span> Known defects</h2>
     <p>Counted on every build. The build fails if any of these grows.</p>
     <dl class="defects">
       <div><dt>{{ '{:,}'.format(kd.missing_english or 0) }}</dt><dd>entries with no English gloss, mostly from Khmer-only documents</dd></div>
@@ -290,12 +419,12 @@
       <div><dt>{{ kd.khmer_field_with_no_khmer or 0 }}</dt><dd>Khmer fields with no Khmer in them: old-font text read as Latin</dd></div>
     </dl>
     <p class="muted small">These are only the errors a program can see. The error
-    rate in §4 is the better guide.
+    rate in §5 is the better guide.
     <a href="https://github.com/pr0meth4us/khmer-lexicon/issues/new?labels=data-error" target="_blank" rel="noopener">Report an error →</a></p>
   </section>
 
   <section class="card" id="licence" aria-labelledby="h-licence">
-    <h2 id="h-licence"><span class="num">6</span> Access, licence, citation</h2>
+    <h2 id="h-licence"><span class="num">7</span> Access, licence, citation</h2>
     <h3>Access</h3>
     <p>The full dataset is not published. Search it on this site, or look terms
     up through the <a href="/api">API</a>, which has no bulk endpoint and no
@@ -392,6 +521,12 @@
 .defects dd{margin:2px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
 
 .data .small,.data .path{overflow-wrap:anywhere}
+.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:10px;margin:8px 0 6px}
+.concepts>div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg);
+  display:flex;flex-direction:column;gap:6px}
+.concepts dt{font-weight:600;font-size:14.5px}
+.concepts dd{margin:0;font-size:13.5px;line-height:1.65;flex:1}
+.concepts .path{margin:0}
 .cite{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
   white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 </style>
