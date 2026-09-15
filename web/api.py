@@ -18,6 +18,7 @@ import json
 import os
 import subprocess
 import time
+from pathlib import Path
 
 from flask import Blueprint, jsonify, request
 
@@ -98,6 +99,66 @@ def _cors(response):
 def _limit():
     asked = request.args.get("limit", DEFAULT_LIMIT, type=int) or DEFAULT_LIMIT
     return max(1, min(asked, MAX_LIMIT))
+
+
+DIST = Path(__file__).resolve().parent.parent / "dist"
+REPO = "https://github.com/pr0meth4us/khmer-lexicon/blob/main/"
+
+
+def _read(name):
+    """A tracked report in dist/, or {} so /about still answers without it."""
+    try:
+        return json.loads((DIST / name).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _rate(block):
+    if not block:
+        return None
+    return {"error_rate": block.get("error_rate_weighted"), "ci95": block.get("ci95"),
+            "rows_checked": block.get("rows_checked"), "errors": block.get("errors")}
+
+
+def _evidence():
+    """Accuracy and defect figures from the committed reports, not hand-copied numbers.
+
+    /about once said the lexicon had "no measured accuracy figure" and quoted
+    v1.0 defect counts after both had changed.
+    """
+    v10 = _read("evaluation_result.json")
+    fields = v10.get("fields", {})
+    new = _read("evaluation_new_sources.json").get("after_prompt_fix", {})
+    baseline = _read("quality_baseline.json")
+    return {
+        "data_statement": REPO + "DATA_STATEMENT.md",
+        "evaluation": {
+            "method": REPO + "EVALUATION.md",
+            "annotator": ("one annotator, an AI model reading rendered source pages; "
+                          "not yet confirmed by a native Khmer reader"),
+            "v1.0_sources": {
+                "checked": v10.get("checked"), "sample_seed": v10.get("sample_seed"),
+                "entries_covered": fields.get("khmer", {}).get("entries_covered"),
+                "entries_total": fields.get("khmer", {}).get("entries_total"),
+                "khmer_headword": _rate(fields.get("khmer")),
+                "english_gloss": _rate(fields.get("english")),
+            },
+            "v1.1_recovered_sources": {
+                "checked": new.get("checked"),
+                "khmer_headword": _rate(new.get("khmer")),
+                "english_gloss": _rate(new.get("english")),
+                "note": "paired re-check of the same sample after an extraction fix",
+            },
+        },
+        "known_defects": {
+            "khmer_field_with_no_khmer": baseline.get("khmer field with no Khmer at all"),
+            "one_misread_from_a_dictionary_word": _read("ocr_suspects.json").get("count"),
+            "near_duplicate_pairs": _read("near_duplicates.json").get("count"),
+            "mark_order_corrected_at_build": 23,
+            "missing_khmer": baseline.get("empty khmer"),
+            "missing_english": baseline.get("empty english"),
+        },
+    }
 
 
 def register(app, words, check):
@@ -236,6 +297,8 @@ def register(app, words, check):
             "zero_result_recent": misses[:40],
         })
 
+    evidence = _evidence()
+
     @api.get("/about")
     def about():
         return jsonify({
@@ -243,20 +306,14 @@ def register(app, words, check):
             "disclaimer": (
                 "This lexicon was produced by OCR over scanned government PDFs "
                 "and parsed by a language model. It has NOT been fully verified "
-                "against the source documents and has no measured accuracy "
-                "figure. Individual entries may be wrong. Every entry names its "
-                "source publication and year — check the original before relying "
-                "on a term in official writing. It is actively being refined; "
-                "report errors at "
+                "against the source documents: in a checked sample about one "
+                "Khmer headword in five differed from the printed page (see "
+                "evaluation). Individual entries may be wrong. Every entry names "
+                "its source publication and year — check the original before "
+                "relying on a term in official writing. It is actively being "
+                "refined; report errors at "
                 "https://github.com/pr0meth4us/khmer-lexicon/issues"),
-            "known_defects": {
-                "khmer_field_with_no_khmer": 21,
-                "one_misread_from_a_dictionary_word": 347,
-                "near_duplicate_pairs": 162,
-                "mark_order_corrected_at_build": 23,
-                "missing_khmer": 24,
-                "missing_english": 1657,
-            },
+            **evidence,
         })
 
     app.register_blueprint(api)
