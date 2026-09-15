@@ -1,0 +1,398 @@
+{% extends "base.html" %}
+{% block title %}About the data — Official Khmer Terminology{% endblock %}
+{% macro pct(x) %}{{ '{:.1%}'.format(x) }}{% endmacro %}
+{% macro result(label, r) %}
+{% if r %}
+<div class="res">
+  <div class="res-head"><span>{{ label }}</span><b>{{ pct(r.error_rate) }}</b></div>
+  {# scale runs 0–40% so both intervals are readable side by side #}
+  <div class="scale" aria-hidden="true">
+    <span class="ci" style="left:{{ [r.ci95[0] / 0.4 * 100, 100]|min }}%;width:{{ [(r.ci95[1] - r.ci95[0]) / 0.4 * 100, 100]|min }}%"></span>
+    <span class="pt" style="left:{{ [r.error_rate / 0.4 * 100, 100]|min }}%"></span>
+  </div>
+  <div class="res-foot">95% interval {{ pct(r.ci95[0]) }}–{{ pct(r.ci95[1]) }} ·
+    {{ r.errors }} wrong of {{ r.rows_checked }} checked</div>
+</div>
+{% endif %}
+{% endmacro %}
+{% set v10 = ev.evaluation['v1.0_sources'] %}
+{% set v11 = ev.evaluation['v1.1_recovered_sources'] %}
+{% set kd = ev.known_defects %}
+{% block body %}
+<main class="en data">
+  <p><a href="/">← back to the dictionary</a></p>
+
+  <section class="card hero" aria-labelledby="top">
+    <p class="eyebrow">About the data</p>
+    <h1 id="top">Where every term came from, how it was made, and how often it is wrong</h1>
+    <p class="lede">{{ '{:,}'.format(about.entries) }} entries of official Cambodian
+    government terminology, from {{ sources|length }} published documents that
+    existed only as scanned paper. This page is the full account: the sources,
+    the pipeline that turned them into data, the data statement, the measured
+    error rate, the defects we know about, and what you may do with it.</p>
+
+    <dl class="stats">
+      <div><dt>entries</dt><dd>{{ '{:,}'.format(about.entries) }}</dd></div>
+      <div><dt>source documents</dt><dd>{{ sources|length }}</dd></div>
+      {% if v10.khmer_headword %}
+      <div class="warn"><dt>Khmer headwords wrong in the checked sample</dt>
+        <dd>{{ pct(v10.khmer_headword.error_rate) }}</dd></div>
+      {% endif %}
+      {% if v10.english_gloss %}
+      <div><dt>English glosses wrong</dt><dd>{{ pct(v10.english_gloss.error_rate) }}</dd></div>
+      {% endif %}
+    </dl>
+    <p class="muted small">Build <code>{{ manifest.build_id }}</code> ·
+      built {{ manifest.built_at }} · dataset version 1.1.0 ·
+      <a href="https://doi.org/10.5281/zenodo.22761423">DOI 10.5281/zenodo.22761423</a></p>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#pipeline">1 · Pipeline</a>
+      <a href="#sources">2 · Sources</a>
+      <a href="#statement">3 · Data statement</a>
+      <a href="#evaluation">4 · Evaluation</a>
+      <a href="#defects">5 · Known defects</a>
+      <a href="#licence">6 · Access, licence, citation</a>
+    </nav>
+  </section>
+
+  <section class="card" id="pipeline" aria-labelledby="h-pipeline">
+    <h2 id="h-pipeline"><span class="num">1</span> The pipeline</h2>
+    <p>Nothing below runs when you use the site. It runs once per build; the site
+    loads the finished file.</p>
+    <ol class="steps">
+      <li>
+        <h3>Collect the source documents</h3>
+        <p>Terminology bulletins, glossaries and lexicons published by the
+        National Council of Khmer Language, the Royal Academy of Cambodia, the
+        Council of Ministers, the Ministry of Post and Telecommunications and the
+        Royal Government. Each PDF's SHA-256 is recorded, so any entry can be
+        traced to the exact file that was read. Seven were recovered from Wayback
+        Machine captures of the NCKL's previous website, because the council's
+        own download links are dead.</p>
+        <p class="path">sources.json · candidates.json · scripts/verify_sources.py</p>
+      </li>
+      <li>
+        <h3>Read every page with OCR</h3>
+        <p>Each page is rendered to an image and read by Google Cloud Vision.
+        Text layers inside the PDFs are not trusted: several use legacy Khmer
+        fonts whose characters map to the wrong Unicode.</p>
+        <p class="path">scripts/extract_*.py · OCR text cached per page</p>
+      </li>
+      <li>
+        <h3>Structure the OCR text into entries</h3>
+        <p>A language model (Gemini) turns each page's OCR text into fields:
+        Khmer headword, English, French, part of speech, definition, examples.
+        It is given text only, never the page image — shown images, it invented
+        titles that were not on the page. The instructions forbid correcting or
+        translating anything.</p>
+        <p class="path">scripts/extract_new_sources.py</p>
+      </li>
+      <li>
+        <h3>Clean and normalise</h3>
+        <p>Item numbers and gloss markers (<code>អ.</code>, <code>បារ.</code>)
+        are stripped. Characters from other scripts that look like Khmer are
+        repaired, marks are put into canonical order — which Unicode's own
+        normalisation cannot do for Khmer — and a subscript ro typed in the wrong
+        order is fixed.</p>
+        <p class="path">khmerlex/normalize.py · khmerlex/contamination.py</p>
+      </li>
+      <li>
+        <h3>Merge and de-duplicate</h3>
+        <p>An entry with the same Khmer and English as one already present is
+        not added again. Ids are stable: new sources are appended after the
+        existing entries. The recovered documents yielded 2,697 entries, of
+        which 768 were new; most of the rest were terms first published in
+        earlier bulletins.</p>
+        <p class="path">scripts/merge_new_sources.py</p>
+      </li>
+      <li>
+        <h3>Validate, or fail the build</h3>
+        <p>Every build counts its detectable defects — empty fields, duplicates,
+        characters out of range, implausibly long or short terms — and fails if
+        any count is worse than the committed baseline. It then stamps a
+        content-addressed build id, so the same data always has the same id.</p>
+        <p class="path">scripts/validate_lexicon.py · dist/quality_baseline.json · dist/manifest.json</p>
+      </li>
+      <li>
+        <h3>Measure accuracy against the printed page</h3>
+        <p>A seeded random sample of entries is checked, character by character,
+        against crops of the source page. See <a href="#evaluation">§4</a>.</p>
+        <p class="path">scripts/evaluate_sample.py · EVALUATION.md</p>
+      </li>
+      <li>
+        <h3>Publish</h3>
+        <p>The code, reports, provenance and a 309-entry sample go to GitHub and
+        are archived on Zenodo with a DOI. The full lexicon is loaded by this
+        site from private storage and reached through search and the API. A TBX
+        export exists for terminology tools.</p>
+        <p class="path">scripts/export_tbx.py · CITATION.cff</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card" id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources"><span class="num">2</span> Sources</h2>
+    <p>Every entry names its source, issuing body and year. The link is the most
+    official place the document can still be found; its status says how far that
+    was checked.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th>Issued by</th><th class="r">Year</th>
+          <th class="r">Entries</th><th>Added</th><th>Where to find it</th></tr></thead>
+        <tbody>
+        {% for s in sources %}
+          <tr>
+            <td>{% if s.title %}<span class="km">{{ s.title }}</span><br>{% endif %}<code>{{ s.tag }}</code></td>
+            <td>{{ s.author }}</td>
+            <td class="r">{{ s.year }}</td>
+            <td class="r">{{ '{:,}'.format(s.count) }}</td>
+            <td>{{ s.added }}</td>
+            <td><span class="badge {{ s.status }}">{{ s.status }}</span>
+              {% if s.link %}<br><a href="{{ s.link }}" target="_blank" rel="noopener">open</a>{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <dl class="legend">
+      <div><dt><span class="badge verified">verified</span></dt><dd>re-downloaded; checksum identical to the file that was read</dd></div>
+      <div><dt><span class="badge content-identical">content-identical</span></dt><dd>a copy downloads from the Ministry of Education's Sala Digital library; different bytes, every page renders identically</dd></div>
+      <div><dt><span class="badge size-match">size-match</span></dt><dd>the link answers with the same byte size; not re-hashed</dd></div>
+      <div><dt><span class="badge listed-but-unreachable">listed-but-unreachable</span></dt><dd>listed on the NCKL site, but its file host no longer resolves</dd></div>
+      <div><dt><span class="badge archived-only">archived-only</span></dt><dd>recovered from a Wayback Machine capture; the original link returns 404</dd></div>
+    </dl>
+    <p class="muted small">Source PDFs are not redistributed here. That so many
+    official links are already dead is a preservation problem for Khmer
+    terminology, not only for this dataset.</p>
+  </section>
+
+  <section class="card" id="statement" aria-labelledby="h-statement">
+    <h2 id="h-statement"><span class="num">3</span> Data statement</h2>
+    <p>Summarised from the full statement, which follows Bender &amp; Friedman
+    (2018), <i>Data Statements for NLP</i>.
+    <a href="{{ ev.data_statement }}" target="_blank" rel="noopener">Read DATA_STATEMENT.md →</a></p>
+
+    <dl class="ds">
+      <div><dt>Curation rationale</dt>
+        <dd>Government bodies publish the approved Khmer forms of technical,
+        legal and policy terms as scanned PDFs. The aim is to make them
+        checkable rather than guessed. Documents, not words, were selected: every
+        term in a chosen document is included, apart from exact repeats,
+        Bulletin No. 2's word-formation tables (a grammar exercise), and 18
+        entries that were empty or plainly broken.</dd></div>
+      <div><dt>Language variety</dt>
+        <dd>Standard written Khmer (<code>km</code>, ISO 639-3 <code>khm</code>)
+        in the formal register of government publication, often neologisms
+        coined by the issuing body. English and French are glosses, present where
+        the source was bilingual or trilingual.</dd></div>
+      <div><dt>Authorship</dt>
+        <dd>Institutional; individual committee members are not named in the
+        sources.
+          <ul class="bars">
+          {% for name, n in authors %}
+            <li><span class="bar-label">{{ name }}</span>
+              <span class="meter"><span style="width:{{ n / about.entries * 100 }}%"></span></span>
+              <span class="bar-n">{{ '{:,}'.format(n) }}</span></li>
+          {% endfor %}
+          </ul></dd></div>
+      <div><dt>Annotation</dt>
+        <dd>None added. Part of speech, category and definition are
+        transcriptions of what the documents printed, inconsistencies included:
+        the <code>pos</code> field mixes Khmer abbreviations, English labels and
+        French gender markers.</dd></div>
+      <div><dt>Text characteristics</dt>
+        <dd>Terms, not running text — usually one to five words, with one- or
+        two-sentence Khmer definitions. Field coverage:
+          <ul class="bars">
+          {% for field, n, share in coverage %}
+            <li><span class="bar-label"><code>{{ field }}</code></span>
+              <span class="meter"><span style="width:{{ share * 100 }}%"></span></span>
+              <span class="bar-n">{{ pct(share) }}</span></li>
+          {% endfor %}
+          </ul></dd></div>
+      <div><dt>Provenance</dt>
+        <dd>Every entry is OCR output structured by a language model. Both steps
+        make errors, and no entry has been confirmed by a human reader against
+        its page. Publication years span {{ years[0] }}–{{ years[1] }}.</dd></div>
+      <div><dt>Personal data</dt>
+        <dd>None. Published terminology only.</dd></div>
+    </dl>
+  </section>
+
+  <section class="card" id="evaluation" aria-labelledby="h-eval">
+    <h2 id="h-eval"><span class="num">4</span> Evaluation</h2>
+    <p>Automatic checks find empty fields and stray characters. They cannot see
+    the error that matters most: an OCR misread that turns one real Khmer word
+    into another. Only the printed page can show that, so the entries were
+    sampled and checked against it.</p>
+
+    <h3>Method</h3>
+    <ul>
+      <li><b>Sample.</b> Stratified random sample across sources, seed
+        {{ v10.sample_seed }}, fixed before any row was checked.</li>
+      <li><b>Judged against what the document printed</b>, not what is correct:
+        a ministry's own typo reproduced faithfully counts as right. Any
+        difference in characters — one vowel, one subscript — counts as wrong.</li>
+      <li><b>Checked on crops</b> of the headword's cell at 300 dpi, zoomed to
+        600–700 dpi wherever a mark was in doubt, with code points compared when a
+        word looked right but would not match.</li>
+      <li><b>Scored</b> with Wilson 95% intervals, each source weighted by its
+        true size so that small sources don't distort the total.</li>
+      <li><b>Excluded by design:</b> entries containing ្ត or ្ដ, which print
+        identically and cannot be judged by eye. They are listed for checking
+        against the Chuon Nath dictionary instead.</li>
+    </ul>
+
+    <div class="results">
+      <div class="result-group">
+        <h3>The 15 original sources <span class="muted">· {{ v10.checked }}</span></h3>
+        {{ result('Khmer headword', v10.khmer_headword) }}
+        {{ result('English gloss', v10.english_gloss) }}
+        <p class="small">Covers {{ '{:,}'.format(v10.entries_covered or 0) }} of
+        {{ '{:,}'.format(v10.entries_total or 0) }} entries. Most errors (21 of 34)
+        are one dropped vowel or subscript: ឥណ្ឌា read as ឥណ្ឌ.</p>
+      </div>
+      <div class="result-group">
+        <h3>The 7 recovered sources <span class="muted">· {{ v11.checked }}</span></h3>
+        {{ result('Khmer headword', v11.khmer_headword) }}
+        {{ result('English gloss', v11.english_gloss) }}
+        <p class="small">A first pass found 46 Khmer errors. 19 came from the
+        structuring step — headwords cut at a line wrap, second forms dropped —
+        so the extraction was fixed and the same rows re-checked. That makes it a
+        paired re-check, not a fresh sample.</p>
+      </div>
+    </div>
+
+    <h3>What these figures do not tell you</h3>
+    <ul>
+      <li><b>One annotator.</b> {{ ev.evaluation.annotator|capitalize }}. Read
+        the rates as provisional.</li>
+      <li><b>Three original sources could not be checked this way:</b> the Royal
+        Academy's new-words dictionary and the Pentagonal Strategy glossary
+        (image-only scans), and NCKL Bulletin No. 4 (a legacy-font text layer).</li>
+      <li><b>Nothing about missing terms.</b> A term the OCR dropped never
+        reaches the data, so it can never be sampled.</li>
+    </ul>
+    <p><a href="{{ ev.evaluation.method }}" target="_blank" rel="noopener">The full procedure: EVALUATION.md →</a></p>
+  </section>
+
+  <section class="card" id="defects" aria-labelledby="h-defects">
+    <h2 id="h-defects"><span class="num">5</span> Known defects</h2>
+    <p>Counted on every build. The build fails if any of these grows.</p>
+    <dl class="defects">
+      <div><dt>{{ '{:,}'.format(kd.missing_english or 0) }}</dt><dd>entries with no English gloss, mostly from Khmer-only documents</dd></div>
+      <div><dt>{{ '{:,}'.format(baseline['duplicate khmer forms'] or 0) }}</dt><dd>Khmer forms that appear more than once, often with different glosses</dd></div>
+      <div><dt>{{ '{:,}'.format(kd.near_duplicate_pairs or 0) }}</dt><dd>pairs one syllable apart that share an English gloss — probably one term spelled two ways</dd></div>
+      <div><dt>{{ '{:,}'.format(kd.one_misread_from_a_dictionary_word or 0) }}</dt><dd>single-word terms one plausible misread from a Royal Academy dictionary word (original sources only)</dd></div>
+      <div><dt>{{ '{:,}'.format(baseline['terms longer than 20 clusters'] or 0) }}</dt><dd>headwords longer than 20 syllables, some of them definition text in the wrong field</dd></div>
+      <div><dt>{{ kd.missing_khmer or 0 }}</dt><dd>entries with no Khmer form</dd></div>
+      <div><dt>{{ kd.khmer_field_with_no_khmer or 0 }}</dt><dd>Khmer fields with no Khmer in them: old-font text read as Latin</dd></div>
+    </dl>
+    <p class="muted small">These are only the errors a program can see. The error
+    rate in §4 is the better guide.
+    <a href="https://github.com/pr0meth4us/khmer-lexicon/issues/new?labels=data-error" target="_blank" rel="noopener">Report an error →</a></p>
+  </section>
+
+  <section class="card" id="licence" aria-labelledby="h-licence">
+    <h2 id="h-licence"><span class="num">6</span> Access, licence, citation</h2>
+    <h3>Access</h3>
+    <p>The full dataset is not published. Search it on this site, or look terms
+    up through the <a href="/api">API</a>, which has no bulk endpoint and no
+    pagination. The GitHub repository carries the code, the reports, the
+    provenance and a 309-entry sample. For research that needs the whole
+    dataset, <a href="https://github.com/pr0meth4us/khmer-lexicon/issues" target="_blank" rel="noopener">ask</a>.</p>
+    <h3>Licence</h3>
+    <p>CC BY-SA 4.0. The licence covers the compilation: the pipeline,
+    normalisation and merge rules, provenance and the arrangement of entries. The
+    terms themselves were published by Cambodian government bodies and are not
+    claimed. When a term's official status matters, cite the originating
+    document.</p>
+    <h3>Cite</h3>
+    <pre class="cite">Soeung, P. (2026). Khmer Official Terminology (khmer-lexicon)
+(Version 1.1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.22761423</pre>
+    <p class="muted small">All versions: <a href="https://doi.org/10.5281/zenodo.22746199">10.5281/zenodo.22746199</a>.
+    Not an official publication of the Royal Government of Cambodia.</p>
+  </section>
+</main>
+<style>
+.data section{scroll-margin-top:16px}
+.data h1{font-size:clamp(24px,3.4vw,34px);line-height:1.2;margin:4px 0 12px;letter-spacing:-.01em}
+.data h2{font-size:21px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.data h3{font-size:15.5px;margin:18px 0 6px}
+.data .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;
+  background:var(--brand-soft);color:var(--brand);font-size:14px;flex:0 0 auto}
+.data .eyebrow{margin:0;color:var(--brand);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.data .lede{font-size:16.5px;line-height:1.7;max-width:70ch}
+.data .small{font-size:13.5px}
+.data code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.data .km{font-family:'Kantumruy Pro',sans-serif}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0 10px}
+.stats div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg)}
+.stats dt{font-size:12.5px;color:var(--muted);line-height:1.4}
+.stats dd{margin:4px 0 0;font-size:28px;font-weight:700;letter-spacing:-.02em}
+.stats .warn{border-color:var(--warn);background:var(--warn-bg)}
+.stats .warn dd{color:var(--warn)}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.toc a{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13.5px;text-decoration:none}
+.toc a:hover,.toc a:focus-visible{border-color:var(--brand);background:var(--brand-soft)}
+
+.steps{list-style:none;counter-reset:step;padding:0;margin:14px 0 0}
+.steps li{counter-increment:step;position:relative;padding:0 0 18px 44px}
+.steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;
+  border-radius:8px;background:var(--brand);color:var(--card);display:grid;place-items:center;font-weight:700;font-size:14px}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:13px;top:32px;bottom:4px;width:2px;background:var(--line)}
+.steps h3{margin:3px 0 4px}
+.steps p{margin:0 0 6px;max-width:72ch}
+.steps .path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted)}
+
+.table-wrap{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:10px}
+.data table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:720px}
+.data th,.data td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.data th{background:var(--bg);font-weight:600}
+.data tr:last-child td{border-bottom:0}
+.data .r{text-align:right;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;border-radius:6px;padding:1px 7px;font-size:12px;white-space:nowrap;
+  background:var(--brand-soft);color:var(--brand)}
+.badge.verified,.badge.content-identical{background:var(--ok-bg);color:var(--ok)}
+.badge.size-match{background:var(--brand-soft);color:var(--brand)}
+.badge.listed-but-unreachable{background:var(--bad-bg);color:var(--bad)}
+.badge.archived-only{background:var(--warn-bg);color:var(--warn)}
+.legend{display:grid;gap:6px;font-size:13px;margin:10px 0}
+.legend div{display:flex;gap:10px;align-items:baseline}
+.legend dt{flex:0 0 190px}.legend dd{margin:0;color:var(--muted)}
+@media(max-width:600px){.legend div{flex-direction:column;gap:2px}.legend dt{flex:none}}
+
+.ds>div{display:grid;grid-template-columns:180px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.ds dt{font-weight:600}.ds dd{margin:0;line-height:1.7}
+@media(max-width:640px){.ds>div{grid-template-columns:1fr;gap:4px}}
+.bars{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
+.bars li{display:grid;grid-template-columns:minmax(0,260px) 1fr 64px;gap:10px;align-items:center;font-size:13px}
+.meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.meter span{display:block;height:100%;background:var(--brand)}
+.bar-n{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+@media(max-width:640px){.bars li{grid-template-columns:1fr 56px}.bars .meter{grid-column:1/-1;grid-row:2}}
+
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:16px 0}
+.result-group{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
+.result-group h3{margin:0 0 10px}
+.res{margin:0 0 14px}
+.res-head{display:flex;justify-content:space-between;align-items:baseline}
+.res-head b{font-size:24px;letter-spacing:-.02em}
+.scale{position:relative;height:10px;border-radius:5px;background:var(--line);margin:6px 0 5px}
+.scale .ci{position:absolute;top:0;bottom:0;border-radius:5px;background:var(--warn);opacity:.35}
+.scale .pt{position:absolute;top:-3px;width:3px;height:16px;margin-left:-1.5px;border-radius:2px;background:var(--warn)}
+.res-foot{font-size:12.5px;color:var(--muted)}
+
+.defects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
+.defects div{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.defects dt{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.defects dd{margin:2px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
+
+.data .small,.data .path{overflow-wrap:anywhere}
+.cite{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+  white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+</style>
+{% endblock %}

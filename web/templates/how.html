@@ -8,7 +8,8 @@
     <h2>What this is</h2>
     <p>A searchable dictionary of Cambodian government terminology — the approved
     Khmer renderings of technical, legal, economic and administrative terms.
-    {{ '{:,}'.format(about.entries) }} entries from 15 official sources. Until now
+    {{ '{:,}'.format(about.entries) }} entries from {{ sources|length }} official
+    sources (<a href="/data">where they came from</a>). Until now
     this existed almost entirely as scanned paper: a person could look a term up,
     a program could not.</p>
     <p>It was built by running Google Cloud Vision OCR over the source PDFs,
@@ -28,7 +29,7 @@
     <p><b>This is not a spell checker, and it never judges your spelling.</b> It
     forgives an imperfect <i>query</i> so you can reach an entry. Checking whether
     Khmer prose is spelled correctly needs a dictionary of general vocabulary;
-    this is a dictionary of 5,929 official terms, and checking ordinary writing
+    this is a dictionary of {{ '{:,}'.format(about.entries) }} official terms, and checking ordinary writing
     against it would mark almost every normal word as wrong.</p>
     <p>Working in clusters rather than characters matters because a Khmer
     syllable is several code points. <code>ក្រសួង</code> is 6 code points but 3
@@ -70,34 +71,33 @@
   </div>
 
   <div class="card" id="accuracy" style="border-color:var(--warn)">
-    <h2 style="color:var(--warn)">How accurate is this? Honestly: we don't fully know</h2>
+    {% set v10 = ev.evaluation['v1.0_sources'] %}
+    {% set v11 = ev.evaluation['v1.1_recovered_sources'] %}
+    <h2 style="color:var(--warn)">How accurate is this? About one Khmer headword in five is wrong</h2>
     <p>Every entry here was produced by running <b>optical character recognition
     over a scanned paper document</b>, then having a language model parse the
-    messy output into structured fields. Both steps make mistakes, and
-    <b>no one has checked the result against the source PDFs page by page.</b>
-    There is no measured accuracy figure for this dataset. Treat it as a
+    messy output into structured fields. Both steps make mistakes. Treat it as a
     research tool and a finding aid, not as an authoritative citation.</p>
 
-    <p>What we <i>have</i> measured, mechanically:</p>
-    <ul>
-      <li><b>21 entries</b> have a Khmer field containing no Khmer at all —
-        old-font text misread as Latin. Excluded from search.</li>
-      <li><b>347 single-word terms</b> are one plausible misread away from a word
-        in the Royal Academy of Cambodia dictionary. Some are OCR errors; some are
-        legitimate coinages or older spellings. <b>Nobody has been through them
-        one by one.</b></li>
-      <li><b>162 pairs</b> of entries differ by one syllable and share an English
-        gloss — the same term spelled two ways, mostly from transliterated place
-        names.</li>
-      <li><b>23 entries</b> had their marks in a non-standard order and were
-        corrected automatically at build time.</li>
-      <li><b>24 entries</b> have no Khmer form, <b>1,657</b> have no English.</li>
-    </ul>
+    {% if v10.khmer_headword %}
+    <p>A random sample was checked character by character against the printed
+    pages. <b>{{ '{:.1%}'.format(v10.khmer_headword.error_rate) }}</b> of Khmer
+    headwords from the original sources differed from the page
+    ({{ '{:.1%}'.format(v10.khmer_headword.ci95[0]) }}–{{ '{:.1%}'.format(v10.khmer_headword.ci95[1]) }},
+    {{ v10.khmer_headword.rows_checked }} checked){% if v11.khmer_headword %}, and
+    <b>{{ '{:.1%}'.format(v11.khmer_headword.error_rate) }}</b> from the recovered
+    sources{% endif %}. English glosses were almost always right. One annotator,
+    an AI model, made these checks; no native Khmer reader has confirmed them yet.</p>
+    {% endif %}
 
-    <p>Those are only the errors that produce something <i>detectably</i> wrong.
-    An OCR mistake that turns one real Khmer word into a different real Khmer
-    word is invisible to every check we run, and we have no estimate of how often
-    that happens.</p>
+    <p>Beyond that sample, the build counts what a program can see:
+    <b>{{ ev.known_defects.near_duplicate_pairs }}</b> pairs that look like one
+    term spelled two ways, <b>{{ ev.known_defects.one_misread_from_a_dictionary_word }}</b>
+    single-word terms one misread from a Royal Academy dictionary word, and
+    <b>{{ '{:,}'.format(ev.known_defects.missing_english) }}</b> entries with no
+    English. An OCR mistake that turns one real Khmer word into another is
+    invisible to all of those checks, which is why the sample matters.</p>
+    <p><a href="/data#evaluation">The method, the intervals and the limits →</a></p>
 
     <p><b>This is being refined and checked on an ongoing basis.</b> Corrections
     are applied as they are found and the whole dataset is re-validated on every
@@ -117,11 +117,12 @@
       <li><b>It covers terminology, not vocabulary.</b> <code>ក្រសួង</code>
         (“ministry”) is not an entry, because no glossary defined it. Common
         words will often return nothing.</li>
-      <li><b>{{ '{:,}'.format(1657) }} entries have no English.</b> They came from
+      <li><b>{{ '{:,}'.format(ev.known_defects.missing_english) }} entries have no English.</b> They came from
         Khmer-only documents. They're still searchable in Khmer, and we say so
         rather than showing a blank.</li>
-      <li><b>4,771 of 5,929 entries (80%) carry a Khmer definition</b>, and 1,116
-        carry usage examples. Coverage is uneven by source: every NCKL bulletin
+      <li><b>{{ '{:,}'.format(coverage[3][1]) }} of {{ '{:,}'.format(about.entries) }} entries
+        ({{ '{:.0%}'.format(coverage[3][2]) }}) carry a Khmer definition</b>, and
+        {{ '{:,}'.format(coverage[5][1]) }} carry usage examples. Coverage is uneven by source: every NCKL bulletin
         entry has one, but the Pentagonal Strategy glossary is a term list with
         no definitions at all, and only 9% of place names have one. Entries
         without a definition say so rather than looking empty.</li>
@@ -137,13 +138,12 @@
   <div class="card">
     <h2>Known defects in the data</h2>
     <ul>
-      <li><b>24</b> entries have no Khmer form at all.</li>
-      <li><b>21</b> entries have a Khmer field containing no Khmer characters —
+      <li><b>{{ ev.known_defects.missing_khmer }}</b> entries have no Khmer form at all.</li>
+      <li><b>{{ ev.known_defects.khmer_field_with_no_khmer }}</b> entries have a Khmer field containing no Khmer characters —
         old-font OCR misread as Latin, plus six French grammar terms filed in the
         wrong column. These are excluded from search results.</li>
-      <li><b>121</b> exactly duplicated Khmer forms, and <b>162</b> pairs that
-        differ by a single syllable and mean the same thing — mostly OCR
-        confusions on transliterated place names.</li>
+      <li><b>{{ baseline['duplicate khmer forms'] }}</b> Khmer forms appear more than once, and
+        <b>{{ ev.known_defects.near_duplicate_pairs }}</b> pairs differ by a single syllable and mean the same thing.</li>
       <li><b>23</b> entries had their marks in a non-standard order and were
         corrected at build time; Unicode's own normalisation cannot fix this,
         because almost every Khmer mark is invisible to it.</li>

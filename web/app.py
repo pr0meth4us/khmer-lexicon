@@ -70,6 +70,47 @@ WORDS = Dictionary(CHECK.entries)
 CHECK.check(SAMPLES[0]["text"])
 
 
+def _data_page():
+    """Figures for /data and /how, computed once from the loaded lexicon and dist/ reports."""
+    import collections
+    import json
+
+    about = CHECK.about()
+    try:
+        registry = json.loads((BASE.parent / "sources.json").read_text(encoding="utf-8"))["sources"]
+    except (OSError, ValueError, KeyError):
+        registry = {}
+    sources = []
+    for s in sorted(about["sources"], key=lambda s: -s["count"]):
+        meta = registry.get(s["tag"], {})
+        sources.append({
+            **s, "title": meta.get("title", ""),
+            "link": meta.get("official_page") or meta.get("official_url") or meta.get("archived_url"),
+            "status": meta.get("url_status", "unrecorded"),
+            "added": "v1.1" if meta.get("url_status") == "archived-only" else "v1.0",
+        })
+    entries = CHECK.entries
+    total = len(entries) or 1
+    coverage = [(f, n, n / total) for f in ("khmer", "english", "french", "definition", "pos", "examples")
+                for n in [sum(1 for e in entries if (e.get(f) or "").strip())]]
+    years = sorted(int(e["year"]) for e in entries if str(e.get("year", "")).isdigit()) or [0]
+    return {
+        "about": about, "sources": sources, "coverage": coverage,
+        "authors": collections.Counter(e.get("author", "") for e in entries).most_common(),
+        "years": (years[0], years[-1]), "ev": public_api._evidence(),
+        "baseline": public_api._read("quality_baseline.json"),
+        "manifest": public_api._read("manifest.json"),
+    }
+
+
+DATA_PAGE = _data_page()
+
+
+@app.get("/data")
+def data():
+    return render_template("data.html", **DATA_PAGE)
+
+
 @app.get("/")
 def index():
     return render_template("index.html", about=CHECK.about(), samples=SAMPLES,
@@ -78,7 +119,7 @@ def index():
 
 @app.get("/how")
 def how():
-    return render_template("how.html", about=CHECK.about())
+    return render_template("how.html", **DATA_PAGE)
 
 
 @app.get("/admin")

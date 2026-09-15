@@ -7,8 +7,8 @@
   <div class="card">
     <h1 style="margin-top:0">API</h1>
     <p>{{ '{:,}'.format(about.entries) }} official Cambodian government terms,
-    from 15 published sources, as JSON. No key, no account, CORS open to any
-    origin. Read-only.</p>
+    from {{ about.sources|length }} published sources, as JSON. No key, no account, CORS open to any
+    origin. Read-only. <a href="/data">Where the data comes from, and how accurate it is →</a></p>
     <p>This exists because a website makes the data readable by people, and an
     API makes it usable by every other Khmer-language tool —
     keyboards, translation memories, editors, government systems. If you build something
