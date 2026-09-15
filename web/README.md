@@ -10,10 +10,11 @@ build time, and needs no secrets to run.
 309-entry `dist/sample_lexicon.json`, which runs correctly but is not the full
 dictionary.
 
-Three ways to give a deployment the full 5,929 entries:
+Ways to give a deployment the full 6,702 entries:
 
 | approach | how | when |
 |---|---|---|
+| **mounted bucket** (Cloud Run, used by `khmer-terminology`) | private GCS bucket mounted read-only, `LEXICON_PATH` pointing into it | Cloud Run gen2; no token, and the service account reads the object |
 | **`LEXICON_URL`** | put the file in private storage; the app fetches it once at boot | building from GitHub — simplest |
 | **bake into the image** | `COPY dist/unified_lexicon.json`, build locally, push to a private registry | you already push images |
 | **sample only** | change nothing | a public demo where partial data is fine |
@@ -55,7 +56,7 @@ Notes:
 - **One worker.** Each gunicorn worker builds its own automaton and loads its own
   copy of the CRF model. The Dockerfile already sets `--workers 1 --threads 8`.
 - Health check on `/healthz`, which reports the entry count actually loaded —
-  check it after deploy to confirm you got 5,929 and not 309.
+  check it after deploy to confirm you got 6,702 and not 309.
 
 ## Fly.io
 
@@ -77,5 +78,5 @@ git push space main
 
 The build takes a few minutes, mostly `khmer-nltk`. The Space then serves the
 309-entry sample; add `LEXICON_URL` (and `LEXICON_TOKEN` if needed) under
-Settings -> Variables and secrets to load the full 5,929, and confirm with
+Settings -> Variables and secrets to load the full 6,702, and confirm with
 `/healthz`.
