@@ -66,9 +66,10 @@ Notes:
 ## Render (used by `khmer-terminology`)
 
 Free, no card. `render.yaml` at the repository root defines the service:
-Dashboard -> New -> Blueprint -> this repository. Then upload
-`dist/unified_lexicon.json` as a Secret File named `unified_lexicon.json`;
-`LEXICON_PATH` already points at `/etc/secrets/unified_lexicon.json`. Measured
+Dashboard -> New -> Blueprint -> this repository. The full lexicon is fetched at
+boot from the private Hugging Face dataset `spnnnn/khmer-lexicon-data`; set
+`LEXICON_TOKEN` to a read-only HF token. (A Secret File does not work: Render
+rejects a 5 MB paste.) Measured
 resident memory with the full lexicon is ~200 MB, inside the free 512 MB.
 Pushes to `main` redeploy.
 

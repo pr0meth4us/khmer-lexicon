@@ -1,7 +1,7 @@
-# Render free web service. The full lexicon is not in this repo: upload
-# dist/unified_lexicon.json as a Secret File named unified_lexicon.json
-# (Dashboard -> service -> Environment -> Secret Files). Without it the app
-# serves the 309-entry sample; /healthz shows which one loaded.
+# Render free web service. The full lexicon is not in this repo: it is fetched
+# at boot from a private Hugging Face dataset. Set LEXICON_TOKEN in the
+# dashboard to a read-only HF token. Without it the app serves the 309-entry
+# sample; /healthz shows which one loaded.
 services:
   - type: web
     name: khmer-terminology
@@ -11,5 +11,7 @@ services:
     dockerfilePath: ./Dockerfile
     healthCheckPath: /healthz
     envVars:
-      - key: LEXICON_PATH
-        value: /etc/secrets/unified_lexicon.json
+      - key: LEXICON_URL
+        value: https://huggingface.co/datasets/spnnnn/khmer-lexicon-data/resolve/main/unified_lexicon.json
+      - key: LEXICON_TOKEN
+        sync: false
