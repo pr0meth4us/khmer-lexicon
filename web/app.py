@@ -38,7 +38,7 @@ def _fetch_lexicon():
     request = urllib.request.Request(url)
     token = os.environ.get("LEXICON_TOKEN", "").strip()
     if token:
-        request.add_header("Authorization", f"token {token}")
+        request.add_header("Authorization", f"Bearer {token}")
     request.add_header("Accept", "application/octet-stream")
     try:
         with urllib.request.urlopen(request, timeout=60) as response:

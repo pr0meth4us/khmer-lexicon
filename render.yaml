@@ -1,0 +1,15 @@
+# Render free web service. The full lexicon is not in this repo: upload
+# dist/unified_lexicon.json as a Secret File named unified_lexicon.json
+# (Dashboard -> service -> Environment -> Secret Files). Without it the app
+# serves the 309-entry sample; /healthz shows which one loaded.
+services:
+  - type: web
+    name: khmer-terminology
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      - key: LEXICON_PATH
+        value: /etc/secrets/unified_lexicon.json

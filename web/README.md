@@ -21,7 +21,7 @@ Ways to give a deployment the full 6,702 entries:
 
 For `LEXICON_URL`, private storage can be a secret Gist, a release asset on a
 private repo, or an R2/S3 object. Set `LEXICON_TOKEN` too if it needs auth; the
-app sends it as `Authorization: token …`. The file is fetched into the
+app sends it as `Authorization: Bearer …`. The file is fetched into the
 container's temp directory at start-up — the data lives in the running process,
 never on a public URL. A failed fetch logs and falls back to the bundled file
 rather than refusing to boot.
@@ -63,20 +63,16 @@ Notes:
 `fly.toml` is committed and configured (Singapore, 1 GB, health check on
 `/healthz`). Needs a payment method on the account, then `flyctl deploy`.
 
-## Hugging Face Spaces (recommended)
+## Render (used by `khmer-terminology`)
 
-Free, no credit card, and it runs the Dockerfile at the repository root. The
-root `README.md` already carries the YAML front-matter a Docker Space needs
-(`sdk: docker`, `app_port: 8000`), so no file juggling — one push deploys.
+Free, no card. `render.yaml` at the repository root defines the service:
+Dashboard -> New -> Blueprint -> this repository. Then upload
+`dist/unified_lexicon.json` as a Secret File named `unified_lexicon.json`;
+`LEXICON_PATH` already points at `/etc/secrets/unified_lexicon.json`. Measured
+resident memory with the full lexicon is ~200 MB, inside the free 512 MB.
+Pushes to `main` redeploy.
 
-```bash
-hf auth login
-hf repo create khmer-terminology --repo-type space --space_sdk docker
-git remote add space https://huggingface.co/spaces/<user>/khmer-terminology
-git push space main
-```
+## Hugging Face Spaces
 
-The build takes a few minutes, mostly `khmer-nltk`. The Space then serves the
-309-entry sample; add `LEXICON_URL` (and `LEXICON_TOKEN` if needed) under
-Settings -> Variables and secrets to load the full 6,702, and confirm with
-`/healthz`.
+Docker Spaces need a paid PRO account since 2026; the free tier only serves
+static Spaces. Not usable for this app without paying.
