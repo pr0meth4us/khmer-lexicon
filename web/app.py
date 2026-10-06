@@ -15,6 +15,10 @@ _FULL = BASE.parent / "dist" / "unified_lexicon.json"
 _SAMPLE = BASE.parent / "dist" / "sample_lexicon.json"
 
 
+# Why the full lexicon did or did not load, for /healthz. Never holds the token.
+LEXICON_STATUS = "LEXICON_URL not set"
+
+
 def _fetch_lexicon():
     """Pull the full lexicon at boot if LEXICON_URL is configured.
 
@@ -26,6 +30,7 @@ def _fetch_lexicon():
     Fetched once into a temp path at start-up, so the running container holds the
     data but nothing serves the file itself.
     """
+    global LEXICON_STATUS
     url = os.environ.get("LEXICON_URL", "").strip()
     if not url:
         return None
@@ -34,6 +39,7 @@ def _fetch_lexicon():
     import urllib.request
     target = Path(tempfile.gettempdir()) / "unified_lexicon.json"
     if target.exists():
+        LEXICON_STATUS = "loaded from LEXICON_URL (cached this boot)"
         return target
     request = urllib.request.Request(url)
     token = os.environ.get("LEXICON_TOKEN", "").strip()
@@ -48,10 +54,13 @@ def _fetch_lexicon():
             raise ValueError(f"expected the full lexicon, got {len(entries)} entries")
         target.write_bytes(body)
         print(f"loaded {len(entries):,} entries from LEXICON_URL", flush=True)
+        LEXICON_STATUS = "loaded from LEXICON_URL"
         return target
     except Exception as exc:                    # never fail to boot over this
         print(f"LEXICON_URL fetch failed ({exc}); falling back to the bundled "
               f"file", flush=True)
+        LEXICON_STATUS = (f"LEXICON_URL fetch failed: {type(exc).__name__}: {str(exc)[:120]}"
+                          f" (token {'set' if token else 'NOT set'})")
         return None
 
 
@@ -165,7 +174,7 @@ def api_about():
 
 @app.get("/healthz")
 def healthz():
-    return jsonify({"ok": True, "entries": len(CHECK.entries)})
+    return jsonify({"ok": True, "entries": len(CHECK.entries), "lexicon": LEXICON_STATUS})
 
 
 public_api.register(app, WORDS, CHECK)
